@@ -1,0 +1,6 @@
+{
+  "name": "AuraIcons · Interactive Icon Studio",
+  "description": "Crea, personaliza y exporta iconos interactivos ultra estéticos para tus webs con animaciones al hover, morph, click effects y código listo para React, SVG y HTML/CSS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
