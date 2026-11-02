@@ -3,20 +3,17 @@ node_modules/
 .pnp
 .pnp.js
 
-# Production builds
-dist/
-build/
+# Testing coverage & ephemeral logs
 coverage/
-
-# OS and Environment
+*.log
 .DS_Store
 *.pem
-*.log
-.env*
-!.env.example
-.vercel
+.vercel/
 
-# Python virtual environments & caches
+# Wal uncompressed limit guard for GitHub (use .wal.gz)
+*.wal
+
+# Python virtual environments & bytecode caches
 .venv/
 **/.venv/
 venv/
@@ -32,5 +29,3 @@ __pycache__/
 **/.mypy_cache/
 .ruff_cache/
 **/.ruff_cache/
-.antigravity/
-.vscode/

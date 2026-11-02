@@ -1,10 +1,42 @@
 {
   "tenant_id": "novus-capital-enterprise",
-  "cash_cents": 856348,
-  "total_pnl_cents": 903980,
-  "win_count": 79,
+  "cash_cents": 1367999,
+  "total_pnl_cents": 942247,
+  "win_count": 80,
   "loss_count": 10,
   "trades": [
+    {
+      "trade_id": "eb441a81e6924b89",
+      "correlation_id": "TRADE-SOLUSDT-1793650764465",
+      "idempotency_key": "IDEM-TRD-eb441a81e6924b89",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "price": 99.13,
+      "qty": 51.64,
+      "amount_cents": 511907,
+      "pnl_cents": 38267,
+      "status": "SETTLED",
+      "timestamp": 1793650764.4654279,
+      "block_hash": "bfdab24491f1ef61ec24db5fe0e13799715a0b161a70e4d3f9a21797ece4c998",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 256,
+      "rationale": {
+        "thesis": "Toma de Beneficios y Reversi\u00f3n a VWAP desde Sobrecompra Extrema",
+        "trigger": "Z-Score extremo (4.44 > +1.8) perforando la Banda de Bollinger superior (96.23\u20ac)",
+        "factors": [
+          "Z-Score de dispersi\u00f3n: 4.44 (Umbral de entrada: +1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 0.9044",
+          "VWAP ponderado acumulado: 93.75\u20ac",
+          "Banda de Bollinger superior (2\u03c3): 96.23\u20ac",
+          "Agotamiento de volumen comprador en m\u00e1ximos locales"
+        ],
+        "risk_reward_ratio": 3.62,
+        "stop_loss_justification": "Fijado en 100.64\u20ac (+1.5%) para proteger capital ante una rotura alcista explosiva",
+        "take_profit_justification": "Objetivo fijado en VWAP (93.75\u20ac) cerrando la prima de sobrecompra",
+        "historical_edge": "Edge cuantificado de 74.2% de reversi\u00f3n desde techo de volatilidad",
+        "orderbook_bias": "Presi\u00f3n de venta en asks superiores con absorci\u00f3n pasiva"
+      }
+    },
     {
       "trade_id": "916272496f35443d",
       "correlation_id": "TRADE-SOLUSDT-1793650645951",
