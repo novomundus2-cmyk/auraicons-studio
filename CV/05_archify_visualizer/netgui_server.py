@@ -147,6 +147,8 @@ EVERNOTE_MD: Final[Path] = EVERNOTE_DIR / "novus_daily_journal.md"
 STATIC_ROUTES: Final[dict[str, tuple[Path, str, bool, str]]] = {
     "/": (VIS_DIR / "index.html", "text/html; charset=utf-8", False, ""),
     "/index.html": (VIS_DIR / "index.html", "text/html; charset=utf-8", False, ""),
+    "/cockpit": (VIS_DIR / "index.html", "text/html; charset=utf-8", False, ""),
+    "/cockpit.html": (VIS_DIR / "index.html", "text/html; charset=utf-8", False, ""),
     "/live_data_bridge.js": (
         VIS_DIR / "live_data_bridge.js",
         "application/javascript; charset=utf-8",

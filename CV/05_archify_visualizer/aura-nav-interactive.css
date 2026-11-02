@@ -552,3 +552,405 @@
   align-items: center;
   gap: 5px;
 }
+
+/* ==========================================================================
+   🔊 INTERACTIVE AUDIO CONTROLLER (BOTTOM-RIGHT FAB & VOL POPOVER)
+   ========================================================================== */
+.aura-sound-fab-widget {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", "Inter", sans-serif;
+  pointer-events: auto;
+}
+
+.aura-sound-fab-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--aura-dark-glass);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 
+    0 12px 36px -6px rgba(0, 0, 0, 0.65),
+    0 0 20px -3px rgba(56, 189, 248, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: 
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.28s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+  outline: none;
+}
+
+/* Hover: Se agranda suavemente */
+.aura-sound-fab-btn:hover {
+  transform: scale(1.22);
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.94);
+  box-shadow: 
+    0 18px 42px -6px rgba(0, 0, 0, 0.8),
+    0 0 32px 4px rgba(56, 189, 248, 0.65),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.aura-sound-fab-btn.muted {
+  border-color: rgba(148, 163, 184, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0.82;
+}
+
+.aura-sound-fab-btn.muted:hover {
+  border-color: #94a3b8;
+  opacity: 1;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(148, 163, 184, 0.4);
+}
+
+/* Clic: Rebote elástico */
+@keyframes auraFabBounce {
+  0% { transform: scale(1); }
+  20% { transform: scale(0.8) rotate(-9deg); }
+  45% { transform: scale(1.36) rotate(6deg); }
+  70% { transform: scale(0.92) rotate(-3deg); }
+  85% { transform: scale(1.15) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.aura-bounce-active {
+  animation: auraFabBounce 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}
+
+/* POPOVER CONTROLLER */
+.aura-volume-popover {
+  position: absolute;
+  bottom: 66px;
+  right: 0;
+  width: 270px;
+  background: rgba(13, 19, 33, 0.94);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: 
+    0 20px 48px -8px rgba(0, 0, 0, 0.85),
+    0 0 28px -4px rgba(56, 189, 248, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.94);
+  transition: 
+    opacity 0.22s ease,
+    transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aura-volume-popover.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.aura-popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aura-popover-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.aura-vol-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.aura-slider-container {
+  display: flex;
+  align-items: center;
+  padding: 2px 0;
+}
+
+.aura-vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.aura-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aura-vol-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 14px #38bdf8;
+}
+
+.aura-vol-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+  cursor: pointer;
+}
+
+.aura-popover-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: space-between;
+}
+
+.aura-popover-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.aura-popover-btn:hover {
+  transform: translateY(-1px);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.aura-popover-mute:hover {
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #fda4af;
+  background: rgba(244, 63, 94, 0.15);
+}
+
+.aura-popover-boost:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.aura-popover-leave {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.aura-popover-leave:hover {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: #34d399;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+/* ==========================================================================
+   🔔 5-PLAYS SOUND PROMPT TOAST
+   ========================================================================== */
+.aura-sound-toast {
+  position: fixed;
+  bottom: 90px;
+  right: 26px;
+  max-width: 320px;
+  background: rgba(13, 19, 33, 0.95);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 16px;
+  padding: 14px 16px;
+  z-index: 9999999;
+  box-shadow: 
+    0 20px 48px -6px rgba(0, 0, 0, 0.85),
+    0 0 28px 2px rgba(56, 189, 248, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Plus Jakarta Sans", "Inter", sans-serif;
+  opacity: 0;
+  transform: translateY(20px) scale(0.92);
+  pointer-events: none;
+  transition: 
+    opacity 0.28s ease,
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aura-sound-toast.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.aura-sound-toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.aura-sound-toast-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.aura-sound-toast-close {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.18s ease;
+}
+
+.aura-sound-toast-close:hover {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.aura-sound-toast-body {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.aura-sound-toast-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.aura-toast-action-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.aura-toast-keep {
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+}
+
+.aura-toast-keep:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.55);
+}
+
+.aura-toast-mute {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cbd5e1;
+}
+
+.aura-toast-mute:hover {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: rgba(244, 63, 94, 0.5);
+  color: #fda4af;
+  transform: translateY(-1.5px);
+}
+
+/* ==========================================================================
+   📱 RESPONSIVE & PRINT OVERRIDES
+   ========================================================================== */
+@media (max-width: 640px) {
+  .aura-sound-fab-widget {
+    bottom: 18px;
+    right: 18px;
+  }
+  .aura-sound-fab-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+  .aura-volume-popover {
+    bottom: 58px;
+    right: 0;
+    width: 250px;
+  }
+  .aura-sound-toast {
+    bottom: 74px;
+    right: 18px;
+    left: 18px;
+    max-width: calc(100% - 36px);
+  }
+}
+
+@media print {
+  .aura-sound-fab-widget,
+  .aura-volume-popover,
+  .aura-sound-toast,
+  .aura-floating-dock,
+  #aura-share-modal,
+  .proj-action-row,
+  .no-print {
+    display: none !important;
+  }
+}
