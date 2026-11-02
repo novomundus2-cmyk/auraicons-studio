@@ -1,10 +1,136 @@
 {
   "tenant_id": "novus-capital-enterprise",
-  "cash_cents": 814382,
-  "total_pnl_cents": 847667,
-  "win_count": 77,
+  "cash_cents": 856348,
+  "total_pnl_cents": 903980,
+  "win_count": 79,
   "loss_count": 10,
   "trades": [
+    {
+      "trade_id": "916272496f35443d",
+      "correlation_id": "TRADE-SOLUSDT-1793650645951",
+      "idempotency_key": "IDEM-TRD-916272496f35443d",
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "price": 91.67,
+      "qty": 51.64,
+      "amount_cents": 473384,
+      "pnl_cents": 0,
+      "status": "SETTLED",
+      "timestamp": 1793650645.951862,
+      "block_hash": "9dbbf140aac1585bf374d0dec776c40f3371658e24a64ec5827a9c09cf1bbf9a",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 237,
+      "rationale": {
+        "thesis": "Reversi\u00f3n a la Media Estad\u00edstica (Mean Reversion) hacia el centro de masa VWAP",
+        "trigger": "Z-Score extremo (-6.53 < -1.8) con cotizaci\u00f3n penetrando la Banda de Bollinger inferior (91.67\u20ac)",
+        "factors": [
+          "Z-Score de dispersi\u00f3n: -6.53 (Umbral de entrada: -1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 0.9044",
+          "VWAP ponderado acumulado: 93.75\u20ac",
+          "Banda de Bollinger inferior (2\u03c3): 91.67\u20ac",
+          "Divergencia estad\u00edstica de sobreventa con alta probabilidad de retorno al centro de gravedad"
+        ],
+        "risk_reward_ratio": 1.53,
+        "stop_loss_justification": "Fijado en 90.28\u20ac (-1.5%) bajo el piso de volatilidad para cortar p\u00e9rdidas si la fuga persiste",
+        "take_profit_justification": "Objetivo fijado en VWAP (93.75\u20ac) donde convergen compradores y vendedores institucionales",
+        "historical_edge": "Edge cuantificado de 78.4% de win-rate en reversiones con Z < -1.8",
+        "orderbook_bias": "Presi\u00f3n compradora en profundidad de Bids con ratio de absorci\u00f3n favorable (+14.5% imbalance)"
+      }
+    },
+    {
+      "trade_id": "5886b4eda149d5b9",
+      "correlation_id": "TRADE-SOLUSDT-1793650643848",
+      "idempotency_key": "IDEM-TRD-5886b4eda149d5b9",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "price": 97.18,
+      "qty": 50.92,
+      "amount_cents": 494841,
+      "pnl_cents": 27709,
+      "status": "SETTLED",
+      "timestamp": 1793650643.848779,
+      "block_hash": "47259213bfd26be6ad72cf7019af871a420870d2fc3d4d80b1ba2fd4eafa64df",
+      "strategy_used": "RISK_EXIT: Take-Profit alcanzado: precio actual 97.20 >= TP 93.96",
+      "execution_fee_cents": 247,
+      "rationale": {
+        "thesis": "Gesti\u00f3n de Riesgo Automatizada (Take-Profit alcanzado: precio actual 97.20 >= TP 93.96)",
+        "trigger": "Regla de protecci\u00f3n activada: Take-Profit alcanzado: precio actual 97.20 >= TP 93.96 al precio 97.19514\u20ac",
+        "factors": [
+          "Precio medio de entrada: 91.69\u20ac",
+          "Precio actual de salida: 97.20\u20ac",
+          "PnL resultante estimado: +280.32\u20ac",
+          "Cierre sistem\u00e1tico para preservar ratio de Sharpe y control de Drawdown"
+        ],
+        "risk_reward_ratio": 2.0,
+        "stop_loss_justification": "Gatillo de riesgo ejecutado sin demoras: Take-Profit alcanzado: precio actual 97.20 >= TP 93.96",
+        "take_profit_justification": "Cierre de posici\u00f3n para consolidar liquidez en efectivo",
+        "historical_edge": "La asimetr\u00eda positiva se mantiene cortando p\u00e9rdidas y asegurando metas",
+        "orderbook_bias": "Liquidaci\u00f3n inmediata para evitar deslizamiento adicional en libro de \u00f3rdenes"
+      }
+    },
+    {
+      "trade_id": "3e8ca2fbd2478c59",
+      "correlation_id": "TRADE-SOLUSDT-1793650590644",
+      "idempotency_key": "IDEM-TRD-3e8ca2fbd2478c59",
+      "symbol": "SOLUSDT",
+      "side": "BUY",
+      "price": 91.69,
+      "qty": 50.92,
+      "amount_cents": 466885,
+      "pnl_cents": 0,
+      "status": "SETTLED",
+      "timestamp": 1793650590.644041,
+      "block_hash": "52ffcf61af4700bccaf376536d2b7bc6ca64835715b2ec06214dae835234eb12",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 233,
+      "rationale": {
+        "thesis": "Reversi\u00f3n a la Media Estad\u00edstica (Mean Reversion) hacia el centro de masa VWAP",
+        "trigger": "Z-Score extremo (-6.49 < -1.8) con cotizaci\u00f3n penetrando la Banda de Bollinger inferior (91.67\u20ac)",
+        "factors": [
+          "Z-Score de dispersi\u00f3n: -6.49 (Umbral de entrada: -1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 0.9044",
+          "VWAP ponderado acumulado: 93.75\u20ac",
+          "Banda de Bollinger inferior (2\u03c3): 91.67\u20ac",
+          "Divergencia estad\u00edstica de sobreventa con alta probabilidad de retorno al centro de gravedad"
+        ],
+        "risk_reward_ratio": 1.51,
+        "stop_loss_justification": "Fijado en 90.29\u20ac (-1.5%) bajo el piso de volatilidad para cortar p\u00e9rdidas si la fuga persiste",
+        "take_profit_justification": "Objetivo fijado en VWAP (93.75\u20ac) donde convergen compradores y vendedores institucionales",
+        "historical_edge": "Edge cuantificado de 78.4% de win-rate en reversiones con Z < -1.8",
+        "orderbook_bias": "Presi\u00f3n compradora en profundidad de Bids con ratio de absorci\u00f3n favorable (+14.5% imbalance)"
+      }
+    },
+    {
+      "trade_id": "2942d9af942e9f0c",
+      "correlation_id": "TRADE-SOLUSDT-1793650584397",
+      "idempotency_key": "IDEM-TRD-2942d9af942e9f0c",
+      "symbol": "SOLUSDT",
+      "side": "SELL",
+      "price": 97.34,
+      "qty": 50.17,
+      "amount_cents": 488355,
+      "pnl_cents": 28604,
+      "status": "SETTLED",
+      "timestamp": 1793650584.3976278,
+      "block_hash": "fddf9f61b49180eb0cfe6b8989b5c6417670ac467100e025b24bdc78ba296ea6",
+      "strategy_used": "RISK_EXIT: Take-Profit alcanzado: precio actual 97.36 >= TP 93.86",
+      "execution_fee_cents": 244,
+      "rationale": {
+        "thesis": "Gesti\u00f3n de Riesgo Automatizada (Take-Profit alcanzado: precio actual 97.36 >= TP 93.86)",
+        "trigger": "Regla de protecci\u00f3n activada: Take-Profit alcanzado: precio actual 97.36 >= TP 93.86 al precio 97.36267\u20ac",
+        "factors": [
+          "Precio medio de entrada: 91.59\u20ac",
+          "Precio actual de salida: 97.36\u20ac",
+          "PnL resultante estimado: +289.61\u20ac",
+          "Cierre sistem\u00e1tico para preservar ratio de Sharpe y control de Drawdown"
+        ],
+        "risk_reward_ratio": 2.0,
+        "stop_loss_justification": "Gatillo de riesgo ejecutado sin demoras: Take-Profit alcanzado: precio actual 97.36 >= TP 93.86",
+        "take_profit_justification": "Cierre de posici\u00f3n para consolidar liquidez en efectivo",
+        "historical_edge": "La asimetr\u00eda positiva se mantiene cortando p\u00e9rdidas y asegurando metas",
+        "orderbook_bias": "Liquidaci\u00f3n inmediata para evitar deslizamiento adicional en libro de \u00f3rdenes"
+      }
+    },
     {
       "trade_id": "21538492482b6979",
       "correlation_id": "TRADE-SOLUSDT-1793650526778",

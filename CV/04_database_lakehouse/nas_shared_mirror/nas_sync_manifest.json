@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "synced_at_utc": "2026-10-30T03:06:25Z",
+  "nas_mirror_path": "/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/CV/04_database_lakehouse/nas_shared_mirror",
+  "files_synced_count": 19,
+  "files_synced": [
+    "financial_lakehouse.db",
+    "dim_merchants.json",
+    "dim_users.json",
+    "gold_category_metrics.json",
+    "streaming_window_sinks.json",
+    "vw_fraud_alerts.json",
+    "kb_mathematical_formulas.json",
+    "kb_interview_defense.json",
+    "kb_cv_portfolio.json",
+    "kb_10_projects_roadmap.json",
+    "ai_insights_registry.json",
+    "corporate_executive_orders.json",
+    "corporate_hierarchy.json",
+    "corporate_reusable_knowledge.json",
+    "corporate_routes.json",
+    "corporate_hierarchy_supabase_payload.json",
+    "corporate_reusable_knowledge_supabase_payload.json",
+    "corporate_routes_supabase_payload.json",
+    "gold_category_metrics_supabase_payload.json"
+  ],
+  "total_kb": 3939.75,
+  "lan_server_url": "http://192.168.0.19:8765/index.html"
+}
