@@ -12,10 +12,16 @@
     constructor() {
       this.ctx = null;
       this.isMuted = localStorage.getItem('aura_sound_muted') === 'true';
+      const storedVol = parseFloat(localStorage.getItem('aura_sound_volume'));
+      this.volume = isNaN(storedVol) ? 0.8 : Math.max(0, Math.min(1, storedVol));
+      if (this.volume === 0) {
+        this.isMuted = true;
+      }
+      this.soundPlayCount = parseInt(sessionStorage.getItem('aura_sound_play_count') || '0', 10);
     }
 
     getContext() {
-      if (this.isMuted) return null;
+      if (this.isMuted || this.volume <= 0) return null;
       if (typeof window === 'undefined') return null;
 
       if (!this.ctx) {
@@ -30,32 +36,72 @@
       return this.ctx;
     }
 
-    toggleMute() {
-      this.isMuted = !this.isMuted;
-      localStorage.setItem('aura_sound_muted', this.isMuted);
+    recordSoundPlay() {
+      this.soundPlayCount++;
+      try {
+        sessionStorage.setItem('aura_sound_play_count', this.soundPlayCount.toString());
+        if (this.soundPlayCount === 5 && sessionStorage.getItem('aura_sound_prompt_dismissed') !== 'true') {
+          setTimeout(() => {
+            showAuraSoundPromptToast();
+          }, 320);
+        }
+      } catch (e) {}
+    }
+
+    setVolume(vol) {
+      vol = Math.max(0, Math.min(1, Number(vol)));
+      this.volume = vol;
+      if (vol === 0) {
+        this.isMuted = true;
+      } else {
+        this.isMuted = false;
+      }
+      try {
+        localStorage.setItem('aura_sound_volume', this.volume.toString());
+        localStorage.setItem('aura_sound_muted', this.isMuted.toString());
+      } catch (e) {}
+      updateAllSoundUI();
+    }
+
+    setMuted(muted) {
+      this.isMuted = !!muted;
+      if (!this.isMuted && this.volume <= 0) {
+        this.volume = 0.8;
+      }
+      try {
+        localStorage.setItem('aura_sound_muted', this.isMuted.toString());
+        localStorage.setItem('aura_sound_volume', this.volume.toString());
+      } catch (e) {}
+      updateAllSoundUI();
       return this.isMuted;
+    }
+
+    toggleMute() {
+      return this.setMuted(!this.isMuted);
     }
 
     playHoverBlip() {
       const ctx = this.getContext();
-      if (!ctx) return;
+      if (!ctx || this.isMuted || this.volume <= 0) return;
       try {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         const now = ctx.currentTime;
+        const volFactor = this.volume;
 
         osc.type = 'sine';
         osc.frequency.setValueAtTime(540, now);
         osc.frequency.exponentialRampToValueAtTime(840, now + 0.045);
 
-        gain.gain.setValueAtTime(0.02, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        gain.gain.setValueAtTime(0.02 * volFactor, now);
+        gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + 0.05);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start(now);
         osc.stop(now + 0.05);
+        this.recordSoundPlay();
       } catch (e) {
         // Audio might be waiting for user gesture
       }
@@ -63,32 +109,35 @@
 
     playClickPop() {
       const ctx = this.getContext();
-      if (!ctx) return;
+      if (!ctx || this.isMuted || this.volume <= 0) return;
       try {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         const now = ctx.currentTime;
+        const volFactor = this.volume;
 
         osc.type = 'sine';
         osc.frequency.setValueAtTime(380, now);
         osc.frequency.exponentialRampToValueAtTime(740, now + 0.07);
 
-        gain.gain.setValueAtTime(0.04, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        gain.gain.setValueAtTime(0.04 * volFactor, now);
+        gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + 0.08);
 
         osc.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start(now);
         osc.stop(now + 0.08);
+        this.recordSoundPlay();
       } catch (e) {}
     }
 
     playChime() {
       const ctx = this.getContext();
-      if (!ctx) return;
+      if (!ctx || this.isMuted || this.volume <= 0) return;
       try {
         const now = ctx.currentTime;
+        const volFactor = this.volume;
         [620, 930].forEach((freq, idx) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -97,8 +146,8 @@
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(freq, now + delay);
 
-          gain.gain.setValueAtTime(0.03, now + delay);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.12);
+          gain.gain.setValueAtTime(0.03 * volFactor, now + delay);
+          gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + delay + 0.12);
 
           osc.connect(gain);
           gain.connect(ctx.destination);
@@ -106,6 +155,7 @@
           osc.start(now + delay);
           osc.stop(now + delay + 0.12);
         });
+        this.recordSoundPlay();
       } catch (e) {}
     }
   }
@@ -370,16 +420,262 @@
   window.auraOpenShareModal = openAuraShareModal;
   window.auraCloseShareModal = closeAuraShareModal;
 
-  // --- 6. PWA SERVICE WORKER REGISTRATION ---
+  // --- 6. UNIFIED AUDIO STATE SYNCHRONIZATION ---
+  function updateAllSoundUI() {
+    const isMuted = audioSynth.isMuted || audioSynth.volume <= 0;
+    const vol = audioSynth.volume;
+    const volPercent = isMuted ? 0 : Math.round(vol * 100);
+
+    let icon = '🔊';
+    if (isMuted) {
+      icon = '🔇';
+    } else if (vol <= 0.45) {
+      icon = '🔉';
+    }
+
+    // 1. CV Toolbar Sound Pill
+    const cvSoundBtn = document.getElementById('cv-sound-toggle-btn');
+    if (cvSoundBtn) {
+      cvSoundBtn.textContent = isMuted ? '🔇' : '🔔';
+      cvSoundBtn.classList.toggle('muted', isMuted);
+    }
+
+    // 2. Floating Dock Sound Pill
+    const dockSoundBtn = document.getElementById('aura-sound-toggle-btn');
+    if (dockSoundBtn) {
+      dockSoundBtn.textContent = icon;
+      dockSoundBtn.classList.toggle('muted', isMuted);
+    }
+
+    // 3. Bottom-Right Sound FAB Widget
+    const fabIcon = document.getElementById('aura-sound-fab-icon');
+    if (fabIcon) {
+      fabIcon.textContent = icon;
+    }
+    const fabBtn = document.getElementById('aura-sound-fab-btn');
+    if (fabBtn) {
+      fabBtn.classList.toggle('muted', isMuted);
+      fabBtn.setAttribute('title', isMuted ? 'Audio silenciado (Clic para abrir control)' : `Audio activo: ${volPercent}% (Clic para control)`);
+    }
+
+    // 4. Volume Popover Controls
+    const volSlider = document.getElementById('aura-vol-slider');
+    if (volSlider) {
+      volSlider.value = volPercent;
+      volSlider.style.background = `linear-gradient(to right, #38bdf8 0%, #38bdf8 ${volPercent}%, rgba(255,255,255,0.15) ${volPercent}%, rgba(255,255,255,0.15) 100%)`;
+    }
+    const volText = document.getElementById('aura-vol-val-text');
+    if (volText) {
+      volText.textContent = isMuted ? '0% (Silencio)' : `${volPercent}%`;
+    }
+  }
+
+  // --- 7. 5-SOUND PLAYS PROMPT TOAST ---
+  function showAuraSoundPromptToast() {
+    if (document.getElementById('aura-sound-toast')) return;
+    try {
+      if (sessionStorage.getItem('aura_sound_prompt_dismissed') === 'true') return;
+    } catch (e) {}
+
+    const toast = document.createElement('div');
+    toast.id = 'aura-sound-toast';
+    toast.className = 'aura-sound-toast no-print';
+    toast.innerHTML = `
+      <div class="aura-sound-toast-header">
+        <div class="aura-sound-toast-title">
+          <span class="aura-toast-pulse-icon">🔔</span>
+          <span>¿Te gusta el sonido háptico?</span>
+        </div>
+        <button class="aura-sound-toast-close" id="aura-toast-close-btn" title="Cerrar">✕</button>
+      </div>
+      <div class="aura-sound-toast-body">
+        Ha sonado <strong>5 veces</strong> durante tu navegación. Puedes dejar el sonido activo o silenciarlo por completo.
+      </div>
+      <div class="aura-sound-toast-actions">
+        <button class="aura-toast-action-btn aura-toast-keep" id="aura-toast-keep-btn" title="Mantener los efectos de audio interactivos">
+          <span>🔊</span> <span>Dejar Sonido</span>
+        </button>
+        <button class="aura-toast-action-btn aura-toast-mute" id="aura-toast-mute-btn" title="Silenciar efectos de audio">
+          <span>🔇</span> <span>Quitar / Silenciar</span>
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.classList.add('visible');
+    });
+
+    const closeToast = () => {
+      try {
+        sessionStorage.setItem('aura_sound_prompt_dismissed', 'true');
+      } catch (e) {}
+      toast.classList.remove('visible');
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 350);
+    };
+
+    const keepBtn = document.getElementById('aura-toast-keep-btn');
+    if (keepBtn) {
+      keepBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        try { sessionStorage.setItem('aura_sound_prompt_dismissed', 'true'); } catch (err) {}
+        if (audioSynth.isMuted) {
+          audioSynth.setMuted(false);
+        }
+        audioSynth.playChime();
+        closeToast();
+      });
+    }
+
+    const muteBtn = document.getElementById('aura-toast-mute-btn');
+    if (muteBtn) {
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        try { sessionStorage.setItem('aura_sound_prompt_dismissed', 'true'); } catch (err) {}
+        audioSynth.setMuted(true);
+        closeToast();
+      });
+    }
+
+    const closeBtn = document.getElementById('aura-toast-close-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeToast();
+      });
+    }
+  }
+
+  // --- 8. BOTTOM-RIGHT INTERACTIVE SOUND WIDGET (FAB + POPOVER) ---
+  function injectAuraSoundController() {
+    if (document.getElementById('aura-sound-fab-widget')) return;
+
+    const widget = document.createElement('div');
+    widget.id = 'aura-sound-fab-widget';
+    widget.className = 'aura-sound-fab-widget no-print';
+
+    widget.innerHTML = `
+      <!-- Popover Menu -->
+      <div class="aura-volume-popover" id="aura-volume-popover">
+        <div class="aura-popover-header">
+          <div class="aura-popover-title">
+            <span>🎛️ Aura Audio</span>
+          </div>
+          <span class="aura-vol-badge" id="aura-vol-val-text">80%</span>
+        </div>
+
+        <div class="aura-slider-container">
+          <input type="range" min="0" max="100" value="80" class="aura-vol-slider" id="aura-vol-slider" aria-label="Control de volumen AuraIcons">
+        </div>
+
+        <div class="aura-popover-actions">
+          <button class="aura-popover-btn aura-popover-mute" id="aura-popover-mute-btn" title="Apagar el sonido por completo">
+            <span>🔇 Apagar</span>
+          </button>
+          <button class="aura-popover-btn aura-popover-boost" id="aura-popover-boost-btn" title="Subir el volumen al 100%">
+            <span>🔊 Subir</span>
+          </button>
+          <button class="aura-popover-btn aura-popover-leave" id="aura-popover-leave-btn" title="Cerrar manteniendo la configuración actual">
+            <span>✓ Dejarlo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Floating Action Button -->
+      <button class="aura-sound-fab-btn" id="aura-sound-fab-btn" title="Efectos hápticos de sonido AuraIcons (Hover para agrandar, Clic para menú)">
+        <span class="aura-sound-fab-icon" id="aura-sound-fab-icon">🔊</span>
+      </button>
+    `;
+
+    document.body.appendChild(widget);
+
+    const fabBtn = document.getElementById('aura-sound-fab-btn');
+    const popover = document.getElementById('aura-volume-popover');
+    const volSlider = document.getElementById('aura-vol-slider');
+    const muteBtn = document.getElementById('aura-popover-mute-btn');
+    const boostBtn = document.getElementById('aura-popover-boost-btn');
+    const leaveBtn = document.getElementById('aura-popover-leave-btn');
+
+    // Hover effect: enlarges and plays blip
+    fabBtn.addEventListener('mouseenter', () => {
+      audioSynth.playHoverBlip();
+    });
+
+    // Click effect: bounce animation + toggle popover
+    fabBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Trigger elastic bounce animation
+      fabBtn.classList.remove('aura-bounce-active');
+      void fabBtn.offsetWidth; // Force reflow
+      fabBtn.classList.add('aura-bounce-active');
+
+      audioSynth.playClickPop();
+      popover.classList.toggle('open');
+    });
+
+    fabBtn.addEventListener('animationend', () => {
+      fabBtn.classList.remove('aura-bounce-active');
+    });
+
+    // Slider input event
+    if (volSlider) {
+      volSlider.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        audioSynth.setVolume(val / 100);
+      });
+    }
+
+    // Action: Apagar
+    if (muteBtn) {
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        audioSynth.setVolume(0);
+      });
+    }
+
+    // Action: Subir (100%)
+    if (boostBtn) {
+      boostBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        audioSynth.setVolume(1.0);
+        audioSynth.playChime();
+      });
+    }
+
+    // Action: Dejarlo (closes cleanly keeping current audio state)
+    if (leaveBtn) {
+      leaveBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        audioSynth.playHoverBlip();
+        popover.classList.remove('open');
+      });
+    }
+
+    // Close popover when clicking anywhere outside
+    document.addEventListener('click', (e) => {
+      if (popover && popover.classList.contains('open') && !widget.contains(e.target)) {
+        popover.classList.remove('open');
+      }
+    });
+
+    updateAllSoundUI();
+  }
+
+  // --- 9. PWA SERVICE WORKER REGISTRATION ---
   if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     });
   }
 
-  // --- 5. INITIALIZE ALL INTERACTIVE ELEMENTS ---
+  // --- 10. INITIALIZE ALL INTERACTIVE ELEMENTS ---
   function initAuraInteractions() {
     injectAuraFloatingDock();
+    injectAuraSoundController();
+    updateAllSoundUI();
 
     // Hook up all existing navigation buttons, segmented controls, and action pills
     const interactiveSelectors = [
@@ -390,7 +686,8 @@
       '.info-pill-btn',
       '.segmented-btn',
       '.btn-pill',
-      '.aura-header-btn'
+      '.aura-header-btn',
+      '.proj-action-btn'
     ];
 
     document.querySelectorAll(interactiveSelectors.join(',')).forEach((btn) => {
