@@ -207,6 +207,9 @@
     }
 
     dock.innerHTML = `
+      <button class="aura-sound-pill" id="aura-sound-toggle-btn" title="Activar/Silenciar efectos táctiles de audio AuraIcons">
+        ${audioSynth.isMuted ? '🔇' : '🔔'}
+      </button>
       <a href="${primaryLink}" class="aura-dock-btn" id="aura-dock-primary-btn" title="Volver al CV Oficial Imprimible de Mikel Irastorza">
         <div class="aura-icon-container">
           <svg class="aura-svg-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -222,9 +225,6 @@
       </a>
       <button class="aura-share-pill" id="aura-dock-share-btn" title="Escanear QR o Abrir en Móvil / Varios Dispositivos">
         📲
-      </button>
-      <button class="aura-sound-pill" id="aura-sound-toggle-btn" title="Activar/Silenciar efectos táctiles de audio AuraIcons">
-        ${audioSynth.isMuted ? '🔇' : '🔔'}
       </button>
       <button class="aura-compact-toggle" id="aura-compact-btn" title="Minimizar / Expandir muelle de navegación">
         ${isCompact ? '＋' : '—'}

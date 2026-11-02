@@ -646,9 +646,14 @@
 
   <!-- Screen Floating Toolbar (Hidden when printing to PDF) -->
   <div class="screen-toolbar no-print">
-    <div class="toolbar-left">
-      <span>👑 Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</span>
-      <span style="font-weight:400; color:#94a3b8; font-size:11.5px;">Perfil de Ingeniería · 44 Tests Automatizados Verificados</span>
+    <div class="toolbar-left" style="display: flex; align-items: center; gap: 10px;">
+      <button class="aura-sound-pill" id="cv-sound-toggle-btn" onclick="const m = window.AuraAudio ? window.AuraAudio.toggleMute() : false; this.textContent = m ? '🔇' : '🔔'; this.classList.toggle('muted', m); if(!m && window.AuraAudio) window.AuraAudio.playChime();" title="Activar/Silenciar efectos táctiles de audio AuraIcons" style="flex-shrink: 0;">
+        🔔
+      </button>
+      <div>
+        <span>👑 Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</span>
+        <span style="font-weight:400; color:#94a3b8; font-size:11.5px; display: block;">Perfil de Ingeniería · 44 Tests Automatizados Verificados</span>
+      </div>
     </div>
     <div class="toolbar-actions">
       <button class="btn-action btn-action-primary" onclick="window.print()" title="Imprimir o guardar en PDF (formato A4 sin toolbar)">
