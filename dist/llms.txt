@@ -1,0 +1,20 @@
+# Mikel Irastorza · Lead Systems Architect & Big Data Engineer
+
+> Perfil de ingeniería de sistemas distribuidos, motores de concurrencia, trading de baja latencia, enjambres multi-agente y pipelines de streaming ACID.
+
+## Documentación para Agentes y Modelos de Lenguaje (LLMs)
+- [Dossier Completo de Arquitectura](/dossier.md): Especificación técnica exhaustiva, fórmulas matemáticas, monoides de Welford-Chan, simulación física y contratos ACID.
+- [Catálogo de Google Cloud Skills](/google-skills.html): Catálogo interactivo de 100+ skills de Google Cloud, BigQuery, Airflow, Spark y Firebase.
+- [Esquema de Datos de Producción](/google_skills_catalog.json): Especificación JSON del catálogo de herramientas y arquitecturas.
+
+## Producción Verificada en Vercel Edge
+- [CV Oficial Imprimible & PWA](https://auraicons-studio.vercel.app/cv_printable.html): Currículum vitae formal con 44 tests automatizados de producción verificados (100% pasados).
+- [Portfolio Interactivo de Producción](https://auraicons-studio.vercel.app/portfolio.html): Desglose interactivo con fórmulas KaTeX, microestructura de libro de órdenes L2/L3 y simulación termodinámica.
+- [Bot Cuantitativo en Directo](https://auraicons-studio.vercel.app/bot.html): Motor cuantitativo de alta frecuencia con gráficos TradingView Lightweight Charts y asimetría de liquidez.
+- [Cockpit Big Data Studio](https://auraicons-studio.vercel.app/cockpit.html): Visualizador integral de pipeline streaming (NiFi -> Kafka KRaft -> PySpark -> Apache Iceberg ZSTD).
+- [Miky Data Copilot](https://miky-vercel.vercel.app): Asistente de IA Senior con memoria auditable persistente en SQLite y Markdown.
+
+## Principios Inviolables de Ingeniería
+- **Pacioli Core Ledger**: Contabilidad de doble entrada con ordenamiento lexicográfico de cuentas `min(A, B) -> max(A, B)` con `SELECT ... FOR UPDATE` (cero deadlocks por diseño) y firmas SHA-256 encadenadas.
+- **Tolerancias Físicas a Código**: Disciplina transferida de células robóticas de chapa industrial en EPTA France (tolerancias ±0.2 mm) a contratos de tipos deterministas y validaciones Pydantic estrictas.
+- **Estadística Robusta en Streaming**: Agregación en memoria O(1) con Monoide de Welford-Chan y detección de anomalías Z-Score Robusto con Mediana y MAD (50% breakdown point).

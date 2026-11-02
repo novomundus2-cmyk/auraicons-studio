@@ -5,11 +5,10 @@ __pycache__/
 venv/
 .venv/
 06_ai_note_agent/.venv/
-.env
 
 # Spark Checkpoints, Data & Generated SQLite DB
 checkpoints/
-data/
+*.wal
 *.parquet
 *.csv
 *.db

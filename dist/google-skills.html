@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Cloud Skills Explorer · NovusMundus Ecosystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --surface-1: rgba(15, 23, 42, 0.75);
+      --surface-2: rgba(30, 41, 59, 0.65);
+      --surface-hover: rgba(51, 65, 85, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.35);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --google-blue: #4285f4;
+      --google-red: #ea4335;
+      --google-yellow: #fbbc05;
+      --google-green: #34a853;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Inter", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: clamp(16px, 3vw, 40px) 24px 80px;
+    }
+
+    /* Universal Header Mega-Dock */
+    .nav-dock {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 12px 24px;
+      background: var(--surface-1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 36px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title .logo-badge {
+      background: linear-gradient(135deg, var(--google-blue), var(--accent));
+      color: #030712;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-muted);
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-pill:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(51, 65, 85, 0.7);
+    }
+    .btn-pill.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(66, 133, 244, 0.12);
+      border: 1px solid rgba(66, 133, 244, 0.3);
+      color: #60a5fa;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Search & Filter Bar */
+    .search-filter-card {
+      background: var(--surface-1);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .search-input-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .search-input-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+    }
+    .search-input {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px 14px 46px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .search-input::placeholder { color: #64748b; }
+
+    /* Category Filter Tabs */
+    .category-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cat-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cat-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .cat-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .cat-count {
+      background: rgba(255,255,255,0.1);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    /* Skills Grid */
+    .skills-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 640px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Skill Card */
+    .skill-card {
+      background: var(--surface-1);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .skill-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+    .card-cat-badge {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .badge-data { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-ai { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .badge-gke { background: rgba(66, 133, 244, 0.15); color: #60a5fa; border: 1px solid rgba(66, 133, 244, 0.3); }
+    .badge-sec { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-compute { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-tools { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+    .skill-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      word-break: break-all;
+    }
+    .skill-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .btn-action-sm {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-action-sm:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-copy {
+      background: transparent;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="page-wrap">
+
+    <!-- Universal Mega-Dock Navigation -->
+    <nav class="nav-dock">
+      <div class="brand-title">
+        <span class="logo-badge">GOOGLE SKILLS</span>
+        <span>NovusMundus · Directorio Cloud</span>
+      </div>
+      <div class="nav-links">
+        <a href="/portfolio.html" class="btn-pill">👑 Portfolio Mikel</a>
+        <a href="/bot.html" class="btn-pill">🤖 Trading Studio Pro</a>
+        <a href="/cockpit.html" class="btn-pill">⚡ Big Data Cockpit</a>
+        <a href="/evernote.html" class="btn-pill">📓 Diario Evernote</a>
+        <a href="/google-skills.html" class="btn-pill active">🌐 Google Skills (177)</a>
+        <a href="http://127.0.0.1:54323" target="_blank" class="btn-pill">💾 Supabase Studio</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero-section">
+      <div class="hero-eyebrow">
+        <span>⚡ 177 Skills Oficiales de Google Verificadas</span>
+      </div>
+      <h1 class="hero-title">
+        Directorio Oficial de Google Cloud Skills
+      </h1>
+      <p class="hero-subtitle">
+        Arquitecturas, patrones de despliegue, pipelines de BigQuery, clusters GKE y agentes Gemini listos para implementar bajo demanda.
+      </p>
+    </header>
+
+    <!-- Search & Filter Card -->
+    <div class="search-filter-card">
+      <div class="search-input-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="skill-search" class="search-input" placeholder="Buscar por palabra clave: BigQuery, Cloud Run, GKE, Gemini, Vertex, SecOps..." oninput="handleSearch()" />
+      </div>
+
+      <div class="category-pills">
+        <button class="cat-btn active" onclick="setCategory('all', this)">
+          Todos <span class="cat-count" id="count-all">177</span>
+        </button>
+        <button class="cat-btn" onclick="setCategory('Datos & Lakehouse', this)">
+          📊 Datos &amp; Lakehouse <span class="cat-count" id="count-data">0</span>
+        </button>
+        <button class="cat-btn" onclick="setCategory('IA & Agentes Gemini', this)">
+          🤖 IA &amp; Agentes Gemini <span class="cat-count" id="count-ai">0</span>
+        </button>
+        <button class="cat-btn" onclick="setCategory('Kubernetes & GKE', this)">
+          ☸️ Kubernetes &amp; GKE <span class="cat-count" id="count-gke">0</span>
+        </button>
+        <button class="cat-btn" onclick="setCategory('Cómputo & Plataforma', this)">
+          ⚡ Cómputo &amp; Plataforma <span class="cat-count" id="count-compute">0</span>
+        </button>
+        <button class="cat-btn" onclick="setCategory('Seguridad & IAM', this)">
+          🛡️ Seguridad &amp; IAM <span class="cat-count" id="count-sec">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Skills Counter & Grid -->
+    <div class="skills-header-bar">
+      <div>Mostrando <b id="visible-count">177</b> skills oficiales</div>
+      <div id="filter-status-text">Filtro: Todos los dominios</div>
+    </div>
+
+    <div id="skills-container" class="skills-grid">
+      <!-- Cards rendered via JS -->
+    </div>
+
+  </div>
+
+  <script>
+    /* 1. Canvas Background */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+
+    const dots = [];
+    for (let i = 0; i < 40; i++) {
+      dots.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.5 + 0.5,
+      });
+    }
+
+    function animateBg() {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < 0) d.x = w;
+        if (d.x > w) d.x = 0;
+        if (d.y < 0) d.y = h;
+        if (d.y > h) d.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(66, 133, 244, 0.4)';
+        ctx.fill();
+
+        for (let j = i + 1; j < dots.length; j++) {
+          const d2 = dots[j];
+          const dist = Math.hypot(d.x - d2.x, d.y - d2.y);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(d2.x, d2.y);
+            ctx.strokeStyle = `rgba(66, 133, 244, ${0.12 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+
+    /* 2. Skills Data & Filtering */
+    let allSkills = [];
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    const catBadgeClass = {
+      'Datos & Lakehouse': 'badge-data',
+      'IA & Agentes Gemini': 'badge-ai',
+      'Kubernetes & GKE': 'badge-gke',
+      'Seguridad & IAM': 'badge-sec',
+      'Cómputo & Plataforma': 'badge-compute',
+      'Herramientas & SDK': 'badge-tools',
+    };
+
+    async function loadSkills() {
+      try {
+        const res = await fetch('/google_skills_catalog.json');
+        if (res.ok) {
+          const data = await res.json();
+          allSkills = data.skills || [];
+          updateCounts();
+          renderSkills();
+        }
+      } catch (err) {
+        console.error('Failed to load skills catalog:', err);
+      }
+    }
+
+    function updateCounts() {
+      document.getElementById('count-all').innerText = allSkills.length;
+      document.getElementById('count-data').innerText = allSkills.filter(s => s.category === 'Datos & Lakehouse').length;
+      document.getElementById('count-ai').innerText = allSkills.filter(s => s.category === 'IA & Agentes Gemini').length;
+      document.getElementById('count-gke').innerText = allSkills.filter(s => s.category === 'Kubernetes & GKE').length;
+      document.getElementById('count-compute').innerText = allSkills.filter(s => s.category === 'Cómputo & Plataforma').length;
+      document.getElementById('count-sec').innerText = allSkills.filter(s => s.category === 'Seguridad & IAM').length;
+    }
+
+    function setCategory(cat, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = cat;
+      document.getElementById('filter-status-text').innerText = cat === 'all' ? 'Filtro: Todos los dominios' : `Filtro: ${cat}`;
+      renderSkills();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById('skill-search').value.toLowerCase().trim();
+      renderSkills();
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skills-container');
+      const filtered = allSkills.filter(s => {
+        const matchesCat = currentCategory === 'all' || s.category === currentCategory;
+        const matchesQuery = !searchQuery ||
+          s.name.toLowerCase().includes(searchQuery) ||
+          s.description.toLowerCase().includes(searchQuery) ||
+          s.category.toLowerCase().includes(searchQuery);
+        return matchesCat && matchesQuery;
+      });
+
+      document.getElementById('visible-count').innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align:center; padding:60px 20px; color:var(--text-muted);">
+            <div style="font-size:36px; margin-bottom:10px;">🔍</div>
+            <div style="font-size:16px; font-weight:700; color:#fff;">No se encontraron skills para "${searchQuery}"</div>
+            <div style="font-size:13px; margin-top:6px;">Prueba a buscar términos como 'bigquery', 'run', 'gke', 'rag' o 'gemini'.</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(s => {
+        const bCls = catBadgeClass[s.category] || 'badge-tools';
+        return `
+          <div class="skill-card">
+            <div>
+              <div class="card-top">
+                <span class="card-cat-badge ${bCls}">${s.category}</span>
+              </div>
+              <h3 class="skill-name">${s.name}</h3>
+              <p class="skill-desc">${s.description}</p>
+            </div>
+            <div class="card-actions">
+              <a href="${s.doc_url}" target="_blank" class="btn-action-sm">
+                <span>📄 Ver en GitHub</span>
+              </a>
+              <button class="btn-action-sm btn-copy" onclick="copySkillName('${s.name}', this)">
+                <span>📋 Copiar Nombre</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function copySkillName(name, btn) {
+      navigator.clipboard.writeText(`/${name}`);
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<span>✓ Copiado!</span>';
+      setTimeout(() => { btn.innerHTML = orig; }, 1800);
+    }
+
+    loadSkills();
+  </script>
+</body>
+</html>

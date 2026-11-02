@@ -1,0 +1,23 @@
+{
+  "name": "Mikel Irastorza · Lead Systems Architect & CV",
+  "short_name": "Mikel CV",
+  "description": "CV interactivo, Portfolio de producción, Bot Cuantitativo y Cockpit Big Data",
+  "start_url": "/cv_printable.html",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#0ea5e9",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
