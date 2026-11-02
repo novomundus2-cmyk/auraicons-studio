@@ -1,43 +1,40 @@
 {
-  "tenant_id": "test-tbs-smc",
-  "cash_cents": 230782,
+  "tenant_id": "novus-capital-enterprise",
+  "cash_cents": 749825,
   "total_pnl_cents": 0,
   "win_count": 0,
   "loss_count": 0,
   "trades": [
     {
-      "trade_id": "1f87995a86c3b9e2",
-      "correlation_id": "TRADE-BTCUSDT-1793656115136",
-      "idempotency_key": "IDEM-TRD-1f87995a86c3b9e2",
-      "symbol": "BTCUSDT",
+      "trade_id": "4f01ae96a4e6979e",
+      "correlation_id": "TRADE-EURUSD-1793657218530",
+      "idempotency_key": "IDEM-TRD-4f01ae96a4e6979e",
+      "symbol": "EURUSD",
       "side": "BUY",
-      "price": 76883.37,
-      "qty": 0.1,
-      "amount_cents": 768834,
+      "price": 1.11247,
+      "qty": 2247.7,
+      "amount_cents": 250050,
       "pnl_cents": 0,
       "status": "SETTLED",
-      "timestamp": 1793656115.136322,
-      "block_hash": "007a0bbf58e4a4fd2fc479b5a40d8f9c40372586c3c1ffafd64a629f1d4d7732",
-      "strategy_used": "Trading Business School (SMC & FVG)",
-      "execution_fee_cents": 384,
+      "timestamp": 1793657218.5301518,
+      "block_hash": "5d87bc28a0d9fad6156ba14d63d5638f8edff4c17d3956e1a4a4f37232c88a98",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 125,
       "rationale": {
-        "thesis": "Ejecuci\u00f3n T\u00e1ctica en Mercado L\u00edquido (Trading Business School (SMC & FVG))",
-        "trigger": "Orden enviada para BTCUSDT a 76868.0\u20ac en mercado AAA+ (M\u00c1XIMA LIQUIDEZ GLOBAL)",
+        "thesis": "Reversi\u00f3n a la Media Estad\u00edstica (Mean Reversion) hacia el centro de masa VWAP",
+        "trigger": "Z-Score extremo (-2.80 < -1.8) con cotizaci\u00f3n penetrando la Banda de Bollinger inferior (1.12\u20ac)",
         "factors": [
-          "Activo l\u00edquido seleccionado: BTCUSDT (Bitcoin / Tether Spot)",
-          "Rotaci\u00f3n diaria verificada: 28.4B $ / 24h",
-          "Spread Bid-Ask controlado: 0.004% (Impacto despreciable)",
-          "Lado ejecutado: BUY",
-          "Cotizaci\u00f3n de mercado: 76868.0\u20ac",
-          "Estrategia activa: Trading Business School (SMC & FVG)",
-          "Confirmaci\u00f3n criptogr\u00e1fica y registro en Ledger Novus PostgreSQL"
+          "Z-Score de dispersi\u00f3n: -2.80 (Umbral de entrada: -1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 0.0012",
+          "VWAP ponderado acumulado: 1.12\u20ac",
+          "Banda de Bollinger inferior (2\u03c3): 1.12\u20ac",
+          "Divergencia estad\u00edstica de sobreventa con alta probabilidad de retorno al centro de gravedad"
         ],
-        "risk_reward_ratio": 2.2,
-        "stop_loss_justification": "Stop loss din\u00e1mico del 1.5% asignado por el gestor de riesgo central",
-        "take_profit_justification": "Objetivo de retorno ajustado a la volatilidad de la sesi\u00f3n",
-        "historical_edge": "Intervenci\u00f3n en mercado l\u00edquido con llenado inmediato y cero deslizamiento",
-        "orderbook_bias": "Llenado optimizado contra los mejores niveles de Bids/Asks de alta profundidad",
-        "liquidity_verification": "Aprobada: AAA+ (M\u00c1XIMA LIQUIDEZ GLOBAL) con spread 0.004%"
+        "risk_reward_ratio": 0.48,
+        "stop_loss_justification": "Fijado en 1.10\u20ac (-1.5%) bajo el piso de volatilidad para cortar p\u00e9rdidas si la fuga persiste",
+        "take_profit_justification": "Objetivo fijado en VWAP (1.12\u20ac) donde convergen compradores y vendedores institucionales",
+        "historical_edge": "Edge cuantificado de 78.4% de win-rate en reversiones con Z < -1.8",
+        "orderbook_bias": "Presi\u00f3n compradora en profundidad de Bids con ratio de absorci\u00f3n favorable (+14.5% imbalance)"
       }
     }
   ]

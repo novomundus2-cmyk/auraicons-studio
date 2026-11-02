@@ -548,49 +548,159 @@
     }
   }
 
-  // --- 8. BOTTOM-RIGHT INTERACTIVE SOUND WIDGET (FAB + POPOVER) ---
-  function injectAuraSoundController() {
-    if (document.getElementById('aura-sound-fab-widget')) return;
+  // --- 8. PAGE CONTEXT DETECTION ---
+  function getPageContext() {
+    const path = (window.location.pathname || '').toLowerCase();
+    const title = (document.title || '').toLowerCase();
 
-    const widget = document.createElement('div');
-    widget.id = 'aura-sound-fab-widget';
-    widget.className = 'aura-sound-fab-widget no-print';
+    if (path.includes('bot')) {
+      return {
+        icon: '🤖',
+        name: 'Bot',
+        fullName: 'Trading Bot Cuantitativo SMC',
+        color: '#f59e0b',
+        glow: 'rgba(245, 158, 11, 0.45)'
+      };
+    }
+    if (path.includes('portfolio')) {
+      return {
+        icon: '🌐',
+        name: 'Portfolio',
+        fullName: 'Portfolio Interactivo & Dinámica Molecular',
+        color: '#10b981',
+        glow: 'rgba(16, 185, 129, 0.45)'
+      };
+    }
+    if (path.includes('cv') || title.includes('cv') || title.includes('irastorza')) {
+      return {
+        icon: '📄',
+        name: 'CV',
+        fullName: 'CV Oficial · Mikel Irastorza',
+        color: '#38bdf8',
+        glow: 'rgba(56, 189, 248, 0.45)'
+      };
+    }
+    if (path.includes('cockpit') || path.includes('visualizer') || path === '/' || path.endsWith('index.html')) {
+      return {
+        icon: '⚡',
+        name: 'Cockpit',
+        fullName: 'Cockpit Big Data & Telemetría',
+        color: '#38bdf8',
+        glow: 'rgba(56, 189, 248, 0.45)'
+      };
+    }
+    return {
+      icon: '✨',
+      name: 'Aura',
+      fullName: document.title || 'AuraIcons Studio',
+      color: '#38bdf8',
+      glow: 'rgba(56, 189, 248, 0.45)'
+    };
+  }
 
-    widget.innerHTML = `
-      <!-- Popover Menu -->
-      <div class="aura-volume-popover" id="aura-volume-popover">
-        <div class="aura-popover-header">
-          <div class="aura-popover-title">
-            <span>🎛️ Aura Audio</span>
-          </div>
-          <span class="aura-vol-badge" id="aura-vol-val-text">80%</span>
-        </div>
+  // --- 9. BOTTOM-RIGHT CLUSTER (PAGE CONTEXT ARROW + INTERACTIVE SOUND FAB) ---
+  function injectAuraBottomRightCluster() {
+    if (document.getElementById('aura-bottom-right-cluster')) return;
 
-        <div class="aura-slider-container">
-          <input type="range" min="0" max="100" value="80" class="aura-vol-slider" id="aura-vol-slider" aria-label="Control de volumen AuraIcons">
-        </div>
+    const ctx = getPageContext();
+    const cluster = document.createElement('div');
+    cluster.id = 'aura-bottom-right-cluster';
+    cluster.className = 'aura-bottom-right-cluster no-print';
 
-        <div class="aura-popover-actions">
-          <button class="aura-popover-btn aura-popover-mute" id="aura-popover-mute-btn" title="Apagar el sonido por completo">
-            <span>🔇 Apagar</span>
-          </button>
-          <button class="aura-popover-btn aura-popover-boost" id="aura-popover-boost-btn" title="Subir el volumen al 100%">
-            <span>🔊 Subir</span>
-          </button>
-          <button class="aura-popover-btn aura-popover-leave" id="aura-popover-leave-btn" title="Cerrar manteniendo la configuración actual">
-            <span>✓ Dejarlo</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Floating Action Button -->
-      <button class="aura-sound-fab-btn" id="aura-sound-fab-btn" title="Efectos hápticos de sonido AuraIcons (Hover para agrandar, Clic para menú)">
-        <span class="aura-sound-fab-icon" id="aura-sound-fab-icon">🔊</span>
+    cluster.innerHTML = `
+      <!-- Contextual Page Arrow Button -->
+      <button class="aura-page-arrow-btn" id="aura-page-arrow-btn" title="Subir al inicio · ${ctx.fullName}">
+        <span class="aura-page-arrow-icon" id="aura-page-arrow-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </span>
+        <span class="aura-page-icon-badge">${ctx.icon}</span>
+        <span class="aura-page-name-badge">${ctx.name}</span>
       </button>
+
+      <!-- Interactive Sound Widget (FAB + Popover) -->
+      <div class="aura-sound-fab-widget" id="aura-sound-fab-widget">
+        <!-- Popover Menu -->
+        <div class="aura-volume-popover" id="aura-volume-popover">
+          <div class="aura-popover-header">
+            <div class="aura-popover-title">
+              <span>🎛️ Aura Audio</span>
+            </div>
+            <span class="aura-vol-badge" id="aura-vol-val-text">80%</span>
+          </div>
+
+          <div class="aura-slider-container">
+            <input type="range" min="0" max="100" value="80" class="aura-vol-slider" id="aura-vol-slider" aria-label="Control de volumen AuraIcons">
+          </div>
+
+          <div class="aura-popover-actions">
+            <button class="aura-popover-btn aura-popover-mute" id="aura-popover-mute-btn" title="Apagar el sonido por completo">
+              <span>🔇 Apagar</span>
+            </button>
+            <button class="aura-popover-btn aura-popover-boost" id="aura-popover-boost-btn" title="Subir el volumen al 100%">
+              <span>🔊 Subir</span>
+            </button>
+            <button class="aura-popover-btn aura-popover-leave" id="aura-popover-leave-btn" title="Cerrar manteniendo la configuración actual">
+              <span>✓ Dejarlo</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="aura-sound-fab-btn" id="aura-sound-fab-btn" title="Efectos hápticos de sonido AuraIcons (Hover para agrandar, Clic para menú)">
+          <span class="aura-sound-fab-icon" id="aura-sound-fab-icon">🔊</span>
+        </button>
+      </div>
     `;
 
-    document.body.appendChild(widget);
+    document.body.appendChild(cluster);
 
+    // --- Arrow Button Interactions ---
+    const arrowBtn = document.getElementById('aura-page-arrow-btn');
+    if (arrowBtn) {
+      arrowBtn.addEventListener('mouseenter', () => {
+        audioSynth.playHoverBlip();
+      });
+
+      arrowBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // Bounce spring effect
+        arrowBtn.classList.remove('aura-bounce-active');
+        void arrowBtn.offsetWidth;
+        arrowBtn.classList.add('aura-bounce-active');
+
+        audioSynth.playClickPop();
+
+        // Smooth scroll to top
+        if (window.scrollY > 40) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          // If already at top, scroll slightly down to content or trigger pulse
+          const scrollTarget = Math.min(window.innerHeight * 0.7, 450);
+          window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+        }
+      });
+
+      arrowBtn.addEventListener('animationend', () => {
+        arrowBtn.classList.remove('aura-bounce-active');
+      });
+
+      // Dynamic scroll state update
+      window.addEventListener('scroll', () => {
+        const atTop = window.scrollY <= 40;
+        arrowBtn.setAttribute('title', atTop ? `Inicio de página · ${ctx.fullName}` : `Subir al inicio · ${ctx.fullName}`);
+        const arrowSvg = arrowBtn.querySelector('.aura-page-arrow-icon svg');
+        if (arrowSvg) {
+          arrowSvg.style.transform = atTop ? 'rotate(180deg)' : 'rotate(0deg)';
+          arrowSvg.style.transition = 'transform 0.3s ease';
+        }
+      }, { passive: true });
+    }
+
+    // --- Sound Controller Interactions ---
     const fabBtn = document.getElementById('aura-sound-fab-btn');
     const popover = document.getElementById('aura-volume-popover');
     const volSlider = document.getElementById('aura-vol-slider');
@@ -607,9 +717,8 @@
     fabBtn.addEventListener('click', (e) => {
       e.stopPropagation();
 
-      // Trigger elastic bounce animation
       fabBtn.classList.remove('aura-bounce-active');
-      void fabBtn.offsetWidth; // Force reflow
+      void fabBtn.offsetWidth;
       fabBtn.classList.add('aura-bounce-active');
 
       audioSynth.playClickPop();
@@ -620,7 +729,6 @@
       fabBtn.classList.remove('aura-bounce-active');
     });
 
-    // Slider input event
     if (volSlider) {
       volSlider.addEventListener('input', (e) => {
         const val = parseInt(e.target.value, 10);
@@ -628,7 +736,6 @@
       });
     }
 
-    // Action: Apagar
     if (muteBtn) {
       muteBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -636,7 +743,6 @@
       });
     }
 
-    // Action: Subir (100%)
     if (boostBtn) {
       boostBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -645,7 +751,6 @@
       });
     }
 
-    // Action: Dejarlo (closes cleanly keeping current audio state)
     if (leaveBtn) {
       leaveBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -654,9 +759,8 @@
       });
     }
 
-    // Close popover when clicking anywhere outside
     document.addEventListener('click', (e) => {
-      if (popover && popover.classList.contains('open') && !widget.contains(e.target)) {
+      if (popover && popover.classList.contains('open') && !cluster.contains(e.target)) {
         popover.classList.remove('open');
       }
     });
@@ -664,17 +768,17 @@
     updateAllSoundUI();
   }
 
-  // --- 9. PWA SERVICE WORKER REGISTRATION ---
+  // --- 10. PWA SERVICE WORKER REGISTRATION ---
   if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
     });
   }
 
-  // --- 10. INITIALIZE ALL INTERACTIVE ELEMENTS ---
+  // --- 11. INITIALIZE ALL INTERACTIVE ELEMENTS ---
   function initAuraInteractions() {
     injectAuraFloatingDock();
-    injectAuraSoundController();
+    injectAuraBottomRightCluster();
     updateAllSoundUI();
 
     // Hook up all existing navigation buttons, segmented controls, and action pills
