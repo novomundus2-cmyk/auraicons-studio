@@ -1,0 +1,152 @@
+[
+  {
+    "merchant_id": "merch_001",
+    "merchant_name": "Groceries Global Store #1",
+    "category": "groceries",
+    "base_fee_pct": 2.16
+  },
+  {
+    "merchant_id": "merch_002",
+    "merchant_name": "Electronics Global Store #2",
+    "category": "electronics",
+    "base_fee_pct": 2.86
+  },
+  {
+    "merchant_id": "merch_003",
+    "merchant_name": "Fashion Global Store #3",
+    "category": "fashion",
+    "base_fee_pct": 1.21
+  },
+  {
+    "merchant_id": "merch_004",
+    "merchant_name": "Travel Global Store #4",
+    "category": "travel",
+    "base_fee_pct": 2.83
+  },
+  {
+    "merchant_id": "merch_005",
+    "merchant_name": "Luxury Global Store #5",
+    "category": "luxury",
+    "base_fee_pct": 2.79
+  },
+  {
+    "merchant_id": "merch_006",
+    "merchant_name": "Groceries Global Store #6",
+    "category": "groceries",
+    "base_fee_pct": 2.73
+  },
+  {
+    "merchant_id": "merch_007",
+    "merchant_name": "Electronics Global Store #7",
+    "category": "electronics",
+    "base_fee_pct": 1.69
+  },
+  {
+    "merchant_id": "merch_008",
+    "merchant_name": "Fashion Global Store #8",
+    "category": "fashion",
+    "base_fee_pct": 2.45
+  },
+  {
+    "merchant_id": "merch_009",
+    "merchant_name": "Travel Global Store #9",
+    "category": "travel",
+    "base_fee_pct": 1.82
+  },
+  {
+    "merchant_id": "merch_010",
+    "merchant_name": "Luxury Global Store #10",
+    "category": "luxury",
+    "base_fee_pct": 2.52
+  },
+  {
+    "merchant_id": "merch_011",
+    "merchant_name": "Groceries Global Store #11",
+    "category": "groceries",
+    "base_fee_pct": 1.35
+  },
+  {
+    "merchant_id": "merch_012",
+    "merchant_name": "Electronics Global Store #12",
+    "category": "electronics",
+    "base_fee_pct": 2.4
+  },
+  {
+    "merchant_id": "merch_013",
+    "merchant_name": "Fashion Global Store #13",
+    "category": "fashion",
+    "base_fee_pct": 1.14
+  },
+  {
+    "merchant_id": "merch_014",
+    "merchant_name": "Travel Global Store #14",
+    "category": "travel",
+    "base_fee_pct": 1.42
+  },
+  {
+    "merchant_id": "merch_015",
+    "merchant_name": "Luxury Global Store #15",
+    "category": "luxury",
+    "base_fee_pct": 1.7
+  },
+  {
+    "merchant_id": "merch_016",
+    "merchant_name": "Groceries Global Store #16",
+    "category": "groceries",
+    "base_fee_pct": 1.11
+  },
+  {
+    "merchant_id": "merch_017",
+    "merchant_name": "Electronics Global Store #17",
+    "category": "electronics",
+    "base_fee_pct": 1.38
+  },
+  {
+    "merchant_id": "merch_018",
+    "merchant_name": "Fashion Global Store #18",
+    "category": "fashion",
+    "base_fee_pct": 2.3
+  },
+  {
+    "merchant_id": "merch_019",
+    "merchant_name": "Travel Global Store #19",
+    "category": "travel",
+    "base_fee_pct": 2.29
+  },
+  {
+    "merchant_id": "merch_020",
+    "merchant_name": "Luxury Global Store #20",
+    "category": "luxury",
+    "base_fee_pct": 2.56
+  },
+  {
+    "merchant_id": "merch_021",
+    "merchant_name": "Groceries Global Store #21",
+    "category": "groceries",
+    "base_fee_pct": 2.71
+  },
+  {
+    "merchant_id": "merch_022",
+    "merchant_name": "Electronics Global Store #22",
+    "category": "electronics",
+    "base_fee_pct": 1.34
+  },
+  {
+    "merchant_id": "merch_023",
+    "merchant_name": "Fashion Global Store #23",
+    "category": "fashion",
+    "base_fee_pct": 2.36
+  },
+  {
+    "merchant_id": "merch_024",
+    "merchant_name": "Travel Global Store #24",
+    "category": "travel",
+    "base_fee_pct": 1.13
+  },
+  {
+    "merchant_id": "merch_025",
+    "merchant_name": "Luxury Global Store #25",
+    "category": "luxury",
+    "base_fee_pct": 2.22
+  }
+]

@@ -1,0 +1,125 @@
+services:
+  # ============================================================================
+  # 1. NOVUS QUANT PLATFORM & INTERACTIVE VISUALIZER (Main Application Engine)
+  # ============================================================================
+  novus-platform:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: novus-quant-visualizer
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - SUPABASE_URL=${SUPABASE_URL:-http://localhost:54321}
+      - SUPABASE_KEY=${SUPABASE_KEY:-}
+    volumes:
+      - ./05_archify_visualizer:/app/05_archify_visualizer
+      - ./07_trading_bot:/app/07_trading_bot
+      - ./07_trading_bot/data:/app/07_trading_bot/data
+      - novus_stream_data:/app/07_trading_bot/data/wal
+    depends_on:
+      - minio
+
+  # ==========================================
+  # 2. APACHE KAFKA (KRaft Mode - No ZooKeeper)
+  # ==========================================
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: data-platform-kafka
+    ports:
+      - "9092:9092"
+      - "9094:9094"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
+      KAFKA_LISTENERS: 'PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:29093,PLAINTEXT_HOST://0.0.0.0:9092'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-cluster cluster-id --bootstrap-server localhost:9092 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================
+  # 3. APACHE NIFI (Data Ingestion & Flow Engine)
+  # ==========================================
+  nifi:
+    image: apache/nifi:1.24.0
+    container_name: data-platform-nifi
+    ports:
+      - "8443:8443"
+    environment:
+      - NIFI_WEB_HTTPS_PORT=8443
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=adminPassword123!
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  # ==========================================
+  # 4. APACHE SPARK (Distributed Analytics Engine)
+  # ==========================================
+  spark-master:
+    image: bitnami/spark:3.5.0
+    container_name: data-platform-spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - ./02_streaming_platform/spark_jobs:/opt/bitnami/spark/jobs
+      - ./04_database_lakehouse:/opt/bitnami/spark/database
+
+  spark-worker:
+    image: bitnami/spark:3.5.0
+    container_name: data-platform-spark-worker
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./02_streaming_platform/spark_jobs:/opt/bitnami/spark/jobs
+      - ./04_database_lakehouse:/opt/bitnami/spark/database
+
+  # ==========================================
+  # 5. MINIO (Local S3-Compatible Object Store)
+  # ==========================================
+  minio:
+    image: minio/minio:RELEASE.2023-10-25T06-33-25Z
+    container_name: data-platform-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+
+volumes:
+  minio_data:
+  novus_stream_data:

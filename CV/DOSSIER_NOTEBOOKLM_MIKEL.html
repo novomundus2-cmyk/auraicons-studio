@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dossier Maestro MIKEL · NOVUSMUNDUS - Gemini Notebook</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #1e293b;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  h1, h2, h3, h4 { color: #0f172a; }
+  h1 { border-bottom: 2px solid #0284c7; padding-bottom: 8px; font-size: 26px; }
+  h2 { border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; margin-top: 30px; font-size: 20px; }
+  h3 { margin-top: 24px; color: #0369a1; font-size: 16px; }
+  pre { background: #0f172a; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 16px; overflow-x: auto; font-family: monospace; font-size: 13px; line-height: 1.4; }
+  code { font-family: monospace; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  hr { border: 0; border-top: 1px solid #e2e8f0; margin: 30px 0; }
+  li { margin-bottom: 6px; }
+  .banner { background: #e0f2fe; border: 1.5px solid #38bdf8; border-radius: 12px; padding: 14px 18px; margin-bottom: 28px; font-size: 14px; }
+  @media print {
+    body { max-width: 100%; margin: 0; padding: 15px; }
+    .banner { display: none; }
+    @page { margin: 15mm; }
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  💡 <strong>Documento listo para Gemini Notebook (NotebookLM):</strong> Puedes descargarlo con 1 clic en PDF o Markdown para subirlo a <strong>Gemini Notebook</strong> y que te genere mapas conceptuales, presentaciones, resúmenes y podcasts:
+  <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="/dossier.pdf" download style="background: #0284c7; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px;">📥 Descargar PDF Directo</a>
+    <a href="/dossier.md" download style="background: #0f172a; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px;">📄 Descargar Markdown (.md)</a>
+    <a href="/notebooks.zip" download style="background: #7c3aed; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 13px;">📦 Descargar Cuadernos (.zip)</a>
+    <button onclick="window.print()" style="background: #059669; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 13px;">🖨️ Imprimir / Guardar PDF</button>
+  </div>
+</div>
+<h1>DOSSIER MAESTRO PARA GEMINI NOTEBOOK (NOTEBOOKLM)</h1>
+<h2>MIKEL · NOVUSMUNDUS — DATA & AI SYSTEMS ARCHITECT & PRODUCT BUILDER</h2>
+<p><strong>Ubicación:</strong> Donostia / Gipuzkoa, Spain  </p>
+<p><strong>GitHub:</strong> github.com/novomundus2-cmyk  </p>
+<p><strong>Idiomas de Trabajo:</strong> Español (Nativo) · Français (C1 Fluido profesional: Robótica en EPTA France Hendaye + ~2 años en Bayonne + Ventas técnicas industriales España-Francia) · English (Fluido técnico en ingeniería y documentación)  </p>
+<p><strong>Trayectoria y Enfoque:</strong> 100% constructor autodidacta sin titulitis académica. Dominio técnico demostrado mediante sistemas en producción, proyectos reales de extremo a extremo, automatización, IA jerárquica y finanzas aplicadas.</p>
+<br>
+<hr>
+<br>
+<h2>1. RESUMEN EJECUTIVO Y PERFIL DE INGENIERO</h2>
+<p>Constructor de software y arquitecto de sistemas de datos enfocado en pipelines de streaming en tiempo real, plataformas analíticas financieras, enjambres jerárquicos de agentes de inteligencia artificial y computación distribuida de alto rendimiento.</p>
+<br>
+<p>Todo mi conocimiento técnico está respaldado por código verificado en repositorios y arquitecturas funcionando:</p>
+<li>1. <strong>Pipelines de Big Data Resilientes:</strong> Ingesta con Apache NiFi y control de Backpressure, buses distribuidos con Apache Kafka en modo KRaft dimensionados con Teoría de Colas ($M/M/c$) y Ley de Little, procesamiento en micro-batches y streaming continuo con PySpark y Polars (motor Apache Arrow en Rust), y Lakehouses abiertos con Apache Iceberg (formato Parquet con compresión ZSTD y garantías transaccionales ACID).</li>
+<li>2. <strong>Infraestructura Jerárquica de Agentes IA:</strong> Orquestación de agentes con memoria compartida auditable en SQL (<code>ai_insights_registry</code>), roles especializados y balanceo de carga mediante *Work-Stealing* (manteniendo 1 a 2 tareas por agente para minimizar la latencia), combinando inferencia local (Ollama, RAG, embeddings y protocolo MCP) con modelos fundacionales en la nube (Gemini 2.5 Flash, TimesFM 2.0 y Antigravity SDK).</li>
+<li>3. <strong>Validación Matemática y Algorítmica Senior:</strong> Implementación de agregaciones algebraicas en una sola pasada asociativa con el *Monoide de Welford-Chan* (evitando cancelación catastrófica de coma flotante IEEE 754 con memoria $O(1)$) y escudos antifraude con *Mediana y MAD* (Desviación Absoluta Mediana) con un 50% de punto de ruptura, inmunes al efecto de enmascaramiento que sufren los modelos clásicos de media y varianza.</li>
+<li>4. <strong>Física Computacional y Simulación Energética:</strong> Simulación de consumo eléctrico desde primeros principios físicos ($W \to kW \to kWh \to €$) con optimización en tuplas empaquetadas en C (<code>NamedTuple</code>) y resolución analítica exacta según tarifas contratadas.</li>
+<br>
+<hr>
+<br>
+<h2>2. MAPA DE CONOCIMIENTO TÉCNICO APLICADO EN PROYECTOS</h2>
+<br>
+<h3>PROYECTO 1 · Novus Capital / NovusMundus — AI & Finance Platform</h3>
+<li><strong>Áreas:</strong> Backend, Bases de Datos Relacionales, Seguridad RLS, Finanzas Cuantitativas e IA.</li>
+<li><strong>Tecnologías:</strong> Python, React, TypeScript, PostgreSQL, Supabase (Autenticación, Row-Level Security / RLS, migraciones, índices y restricciones relacionales), SQLite ACID (25.000 transacciones y 5,34 M€ auditados).</li>
+<li><strong>Conocimiento Aplicado:</strong></li>
+<p>  - Diseño de bases de datos transaccionales y analíticas con políticas estrictas de seguridad por fila (RLS).</p>
+<p>  - Implementación del Monoide de Welford-Chan para calcular medias y varianzas de carteras en tiempo constante $O(1)$.</p>
+<p>  - Algoritmo Z-Score Robusto con Mediana y MAD ($Z_{\text{rob}} = 295.76$ frente a $Z_{\text{clásico}} = 2.83$), detectando anomalías que la media inflada oculta.</p>
+<p>  - Conocimiento profundo de mercados, valoración de empresas, análisis macroeconómico y productos financieros derivado de la formación en la senda <strong>EIP / EFA</strong>.</p>
+<br>
+<h3>PROYECTO 2 · Hierarchical AI Agent Infrastructure (Enjambre Multi-Agente)</h3>
+<li><strong>Áreas:</strong> Inteligencia Artificial Aplicada, Orquestación de Agentes, LLMs Locales y Cloud.</li>
+<li><strong>Tecnologías:</strong> Ollama, RAG (Retrieval-Augmented Generation), Embeddings vectoriales, Model Context Protocol (MCP), Tool Use, Gemini 2.5 Flash, TimesFM 2.0 (Google Research), Antigravity SDK.</li>
+<li><strong>Conocimiento Aplicado:</strong></li>
+<p>  - Arquitectura multi-agente donde cada agente tiene una función atómica (Ingesta, Validación Matemática, Detección de Fraude, Compactación de Almacén, Pronóstico de Series Temporales y Diagnóstico de Causa Raíz).</p>
+<p>  - Protocolo *Work-Stealing*: los agentes que finalizan su cola roban automáticamente tareas a los agentes sobrecargados para mantener el principio de eficiencia óptimo (1 a 2 tareas por trabajador).</p>
+<p>  - Memoria compartida estructurada y auditable en base de datos (<code>ai_insights_registry</code>) para trazabilidad de cada decisión algorítmica.</p>
+<br>
+<h3>PROYECTO 3 · Physics CAD Lab & Calculadora Energética de Alta Eficiencia</h3>
+<li><strong>Áreas:</strong> Física Aplicada, Python Científico, C/C++, Simulación de Restricciones y Testing.</li>
+<li><strong>Tecnologías:</strong> Python 3.14 Clean Code, C, C++, Haskell, NumPy, SciPy, SymPy, Polars, pandas, Matplotlib, flujos CAD/CAE, pytest.</li>
+<li><strong>Conocimiento Aplicado:</strong></li>
+<p>  - Modelado de consumo eléctrico real para optimizar facturas: despeje de potencia instantánea en Vatios ($W$) a kilovatios ($kW$), integración temporal a kilovatios-hora ($kWh$) y cálculo financiero según contratos reales (Caso verificado: tarifa de <strong>0,1329 €/kWh</strong> para una factura de <strong>137,00 €</strong> equivale a <strong>1.030,85 kWh/mes</strong> y <strong>1.431,8 W continuos las 24 horas</strong>).</p>
+<p>  - Optimización de código con tuplas en C (<code>NamedTuple</code>) y bucles fusionados, logrando una reducción del <strong>80,4% en memoria RAM</strong> y un aumento del <strong>69,6% en velocidad de CPU</strong> (de 119,8 ms a 36,4 ms en 50.000 iteraciones).</p>
+<p>  - Verificación formal de teoremas algebraicos con SymPy y testing unitario exhaustivo con pytest.</p>
+<br>
+<h3>PROYECTO 4 · Archify Streaming Lakehouse, Servidor Multi-PC LAN & AuraIcons Studio</h3>
+<li><strong>Áreas:</strong> Ingeniería de Datos Distribuida, Infraestructura de Red Local, Docker, Linux y Experiencia de Usuario.</li>
+<li><strong>Tecnologías:</strong> Apache NiFi, Apache Kafka (KRaft), PySpark Structured Streaming, Apache Iceberg, BigQuery (DTS & Property Graph GQL), Docker, Linux, Servidor LAN (<code>0.0.0.0:8765</code>), sincronización con NAS RAID y React a 60 FPS.</li>
+<li><strong>Conocimiento Aplicado:</strong></li>
+<p>  - Configuración de servidores centrales para conectar múltiples equipos en red local y replicar automáticamente datos a sistemas de almacenamiento masivo NAS con tolerancia a fallos.</p>
+<p>  - Implementación del concepto de <strong>Fraccionamiento Cognitivo</strong>: interfaces diseñadas para que cualquier usuario, cliente o director entienda la arquitectura paso a paso pulsando conceptos interactivos.</p>
+<br>
+<hr>
+<br>
+<h2>3. ARQUITECTURA DEL PIPELINE DE STREAMING (6 ETAPAS)</h2>
+<br>
+<pre>
+[Fuentes Heterogéneas / APIs / Sensores / LAN Multi-PC]
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 1: Apache NiFi (Ingesta en el Borde &amp; Backpressure) │
+│  - 3 Repositorios en disco: FlowFile, Content, Provenance│
+│  - Umbral de Backpressure: 10.000 objetos / 1 GB          │
+│  - Desacoplamiento total para evitar colapsos por OOM    │
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 2: Apache Kafka en Modo KRaft (Buffer Distribuido) │
+│  - Eliminación de ZooKeeper mediante consenso Raft       │
+│  - Particionado determinista con murmur2(clave)          │
+│  - Dimensionamiento con Teoría de Colas M/M/c (ρ &lt; 0.80) │
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 3: PySpark &amp; Polars (Motor Vectorizado SIMD)      │
+│  - Procesamiento Arrow en memoria sin bloqueo            │
+│  - Watermarking de 10 minutos para eventos tardíos       │
+│  - Detección de Data Skew y Salting con Entropía Shannon │
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 4: Validación Matemática &amp; Estadística Robusta     │
+│  - Monoide de Welford-Chan: media y varianza en O(1)     │
+│  - Z-Score Robusto con Mediana y MAD (Punto ruptura 50%) │
+│  - Inmunidad total al Efecto de Enmascaramiento          │
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 5: Open Data Lakehouse (Apache Iceberg &amp; Parquet) │
+│  - Transacciones ACID y aislamiento de snapshots         │
+│  - Compactación de micro-batches a bloques de 256 MB     │
+│  - Eliminación del Small Files Problem sobre almacenamiento│
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│  ETAPA 6: Capa Analítica, Grafos BigQuery &amp; 3 IAs        │
+│  - BigQuery GQL Property Graph (25.000 aristas trazadas) │
+│  - TimesFM 2.0: pronóstico temporal de series a 14 días │
+│  - Gemini 2.5 Flash: diagnóstico de causa raíz           │
+│  - Antigravity SDK: orquestador de agentes en paralelo   │
+└──────────────────────────────────────────────────────────┘
+</pre>
+<br>
+<hr>
+<br>
+<h2>4. FUNDAMENTOS MATEMÁTICOS Y FÓRMULAS CLAVE</h2>
+<br>
+<h3>A. Monoide de Welford-Chan (Media y Varianza Paralela en $O(1)$)</h3>
+<p>Para fusionar dos particiones independientes $A$ y $B$ de transacciones:</p>
+<p>$$n_{AB} = n_A + n_B$$</p>
+<p>$$\mu_{AB} = \mu_A + \frac{n_B}{n_{AB}} (\mu_B - \mu_A)$$</p>
+<p>$$M2_{AB} = M2_A + M2_B + (\mu_B - \mu_A)^2 \cdot \frac{n_A \cdot n_B}{n_{AB}}$$</p>
+<p>$$\sigma^2 = \frac{M2_{AB}}{n_{AB}}$$</p>
+<li><strong>Ventaja:</strong> Requiere una sola lectura de datos, mantiene precisión numérica IEEE 754 y permite paralelización masiva en clúster.</li>
+<br>
+<h3>B. Z-Score Robusto con Mediana y MAD (Inmune a Outliers Gigantes)</h3>
+<p>$$\text{MAD} = \text{mediana}(|X - \text{mediana}(X)|)$$</p>
+<p>$$Z_{\text{robusto}} = \frac{|x - \text{mediana}(X)|}{1.4826 \cdot \text{MAD}}$$</p>
+<li><strong>Ventaja:</strong> La media clásica se desplaza ante un fraude masivo inflando la desviación típica y ocultando la anomalía ($Z < 3$). El MAD resiste hasta un 50% de datos contaminados.</li>
+<br>
+<h3>C. Teoría de Colas ($M/M/c$) y Ley de Little para Streaming</h3>
+<p>$$\rho = \frac{\lambda}{c \cdot \mu} < 0.80$$</p>
+<p>$$L = \lambda \cdot W$$</p>
+<li>$\lambda$: tasa de llegada de eventos.</li>
+<li>$c$: número de núcleos o particiones en Kafka/Spark.</li>
+<li>$\mu$: capacidad de procesamiento por partición.</li>
+<li>$L$: número medio de paquetes en cola.</li>
+<li>$W$: tiempo medio de espera.</li>
+<li><strong>Ventaja:</strong> Garantiza que el retardo (*Consumer Lag*) no crezca hacia el infinito en picos de tráfico.</li>
+<br>
+<h3>D. Entropía de Shannon para Detección de Data Skew</h3>
+<p>$$H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)$$</p>
+<li><strong>Ventaja:</strong> Permite medir cuantitativamente si el tráfico se distribuye uniformemente o si una sola partición acumula desproporcionadamente la carga, activando la técnica de *Salting* automáticamente.</li>
+<br>
+<h3>E. Despeje Físico y Financiero del Caso Energético Real</h3>
+<p>$$E_{\text{mes}} = \frac{\text{Factura (€)}}{\text{Tarifa (€/kWh)}} = \frac{137.00}{0.1329} = 1\,030.85\text{ kWh/mes}$$</p>
+<p>$$P_{\text{media 24h}} = \frac{1\,030.85\text{ kWh}}{720\text{ h}} = 1.4318\text{ kW } (1\,431.8\text{ W continuos})$$</p>
+<li><strong>Desglose de los 7 consumidores auditados:</strong></li>
+<li>1. Termo Eléctrico / Calefacción ($2.000\text{ W} \times 6,8\text{ h/d}$): $408,0\text{ kWh} \to 54,22\text{ €/mes}$ (Cuello de botella principal).</li>
+<li>2. PC Workstation con IA ($420\text{ W} \times 10,5\text{ h/d}$): $132,3\text{ kWh} \to 17,58\text{ €/mes}$.</li>
+<li>3. Servidor Multi-PC LAN + NAS 24h ($95\text{ W} \times 24\text{ h/d}$): $68,4\text{ kWh} \to 9,09\text{ €/mes}$.</li>
+<li>4. Nevera Combi ($180\text{ W} \times 21\text{ h/d}$): $113,4\text{ kWh} \to 15,07\text{ €/mes}$.</li>
+<li>5. Cocina / Placa / Horno ($2.200\text{ W} \times 1,8\text{ h/d}$): $118,8\text{ kWh} \to 15,79\text{ €/mes}$.</li>
+<li>6. Lavadora / Secadora ($2.100\text{ W} \times 1,75\text{ h/d}$): $110,25\text{ kWh} \to 14,65\text{ €/mes}$.</li>
+<li>7. Iluminación / TV / Standby ($220\text{ W} \times 12,08\text{ h/d}$): $79,73\text{ kWh} \to 10,60\text{ €/mes}$.</li>
+<p>  * <strong>Total:</strong> $1.030,88\text{ kWh/mes} = 137,00\text{ €}$.</p>
+<br>
+<hr>
+<br>
+<h2>5. EXPERIENCIA PROFESIONAL REAL, IDIOMAS Y CULTURA DE NEGOCIO</h2>
+<br>
+<h3>🌍 Idiomas de Trabajo:</h3>
+<li><strong>Español:</strong> Nativo.</li>
+<li><strong>Francés:</strong> C1 / Fluido profesional. Demostrado trabajando en Francia en planta industrial en <strong>EPTA France (Hendaye)</strong> en células robóticas de conformado de chapa según planos técnicos, cerca de 2 años en desarrollo de software y aplicaciones web en <strong>Bayonne (Francia)</strong>, además de consultoría comercial técnica bilingüe en <strong>IRC Railway</strong> entre España y Francia.</li>
+<li><strong>Inglés:</strong> Fluido profesional en documentación técnica, diseño de arquitectura de datos y comunicación internacional.</li>
+<br>
+<h3>💼 Trayectoria Profesional Cronológica (100% Verídica):</h3>
+<li><strong>Lead Software Engineer & Systems Architect — NovusMundus / Novus Capital (2025 – Actualidad):</strong></li>
+<p>  Arquitectura del motor algorítmico institucional *Trading Core v3.0 Enterprise* con doble entrada contable Pacioli y sellado SHA-256. Despliegue de Lakehouse de streaming con Kafka KRaft, NiFi, PySpark e Iceberg. Orquestación de enjambres jerárquicos de 9–16 agentes IA (*Work-Stealing*) e integración con TensorFlow 2.22 Keras.</p>
+<li><strong>Consultoría Comercial Técnica & Movilidad Ferroviaria PMR — IRC International Railway Consulting (España & Francia, 2026):</strong></li>
+<p>  Negociación comercial bilingüe, consultoría técnica de equipamiento de movilidad para personas con movilidad reducida (PMR) y coordinación con fabricantes e ingenieros de planta de ambos países.</p>
+<li><strong>Desarrollo de Software / Web — Empresa Tecnológica (Bayonne, Francia, 2023 – 2024 · ~2 años):</strong></li>
+<p>  Desarrollo de aplicaciones, maquetación de interfaces, entrega continua de software e integración de servicios trabajando en entorno completamente francófono.</p>
+<li><strong>Técnico de Fabricación, Células Robóticas & Conformado de Chapa — EPTA France (Hendaye, Francia, 2022 – 2023):</strong></li>
+<p>  En la nave industrial de conformado de chapa (*atelier de tôlerie / parte trasera de la planta*):</p>
+<p>  - Interpretación rigurosa de planos mecánicos y esquemas de fabricación CAD (cotas, tolerancias milimétricas $\pm 0.2\text{ mm}$, radios de plegado y desarrollo plano) para producción de piezas y cerramientos de muebles frigoríficos comerciales.</p>
+<p>  - Operación, alimentación y supervisión de células automatizadas y robóticas de conformado, punzonado y prensas plegadoras CNC de chapa metálica.</p>
+<p>  - Control metrológico y de calidad pieza a pieza con calibres digitales y micrómetros contra plano técnico antes de la fase de pintura y ensamblaje.</p>
+<p>  - Coordinación operativa diaria en idioma francés técnico bajo estándares de seguridad y Lean Manufacturing (5S).</p>
+<li><strong>Banca Comercial & Asesoramiento Financiero — BBVA (España, 2021 – 2022 · ~1 año):</strong></li>
+<p>  Gestión directa de clientes, análisis de riesgos y necesidades operativas, consolidando una visión financiera práctica que hoy nutre la plataforma Novus Capital.</p>
+<br>
+<h3>🎓 Formación Continua Práctica:</h3>
+<li>Cursos especializados en la senda <strong>EIP / EFA</strong> (European Investment Practitioner / Financial Advisor), análisis fundamental y valoración de empresas.</li>
+<li>Formación autodidacta intensiva en Ingeniería de Datos (Kafka, NiFi, Spark, Iceberg), Sistemas de Agentes de IA (MCP, RAG, Ollama) y Python Científico.</li>
+<br>
+<hr>
+<br>
+<h2>6. PREGUNTAS Y RESPUESTAS CLAVE PARA PRESENTACIONES O ENTREVISTAS</h2>
+<br>
+<p><strong>P: ¿Por qué no tienes un título universitario formal en informática?</strong>  </p>
+<p>*R:* Porque aprendo construyendo. Todo lo que sé está demostrado en repositorios abiertos con arquitecturas completas en funcionamiento: pipelines de datos con tolerancia a fallos, enjambres de agentes con algoritmos de equilibrio de carga, modelos matemáticos verificados simbólicamente y sistemas desplegados en servidores reales. Un título acredita que escuchaste clases; mi portafolio demuestra que resuelvo problemas de ingeniería complejos desde el primer día.</p>
+<br>
+<p><strong>P: ¿Cómo gestionas el escalado y los picos de datos en streaming?</strong>  </p>
+<p>*R:* Aplico desacoplamiento y dimensionamiento formal. En la entrada utilizo Apache NiFi con límites estrictos de backpressure para que la cola en disco proteja la memoria del clúster. Para el bus de eventos uso Kafka KRaft particionado con murmur2, dimensionado con la Ley de Little y modelos de colas $M/M/c$ para mantener la utilización del sistema por debajo del 80%. En el procesamiento utilizo PySpark y Polars con watermarking para limitar el estado en RAM y salting para eliminar el sesgo de datos.</p>
+<br>
+<p><strong>P: ¿Qué aporta tu dominio del francés y del inglés?</strong>  </p>
+<p>*R:* Capacidad inmediata para integrarme en equipos multinacionales en remoto (Francia, Suiza, Bélgica, Reino Unido o EE.UU.), comprender documentación técnica de vanguardia sin barreras y liderar la interlocución técnica con clientes y proveedores internacionales.</p>
+<br>
+<hr>
+<br>
+<h2>7. ORGANIZACIÓN CORPORATIVA DE ENJAMBRE DE AGENTES, TEST HARNESSES Y MATEMÁTICAS</h2>
+<br>
+<h3>🧠 Mapa Mental del Sistema Unificado</h3>
+<pre>
+mindmap
+  root((Plataforma de Datos &amp; Agentes))
+    Dirección Corporativa
+      CEO Orchestrator
+        Descompone objetivos
+        Supervisa fidelidad al objetivo
+        Mantiene ritmo 3h continuas
+    Especialistas de Tarea Única
+      Agente Sentinel NiFi
+        Valida schemas JSON
+        Monitorea contrapresión
+      Agente Traffic Kafka
+        Hash Blake2b
+        Balanceo 8 particiones
+      Agente Math Welford
+        Haskell &amp; Python Monoid
+        Media y Varianza asociativas
+      Agente Security MAD
+        Z-Score robusto 50% breakdown
+        Alertas de fraude &gt; 8.0
+      Agente Lakehouse ACID
+        Transacciones SQLite / Iceberg
+        Commit y verificación
+      Agente Reporting
+        Infografía y Métricas en vivo
+        Bridge JS y Dossier
+    Test Harnesses Bancos de Prueba
+      Pre-condiciones de entrada
+      Post-condiciones de salida
+      Aislamiento de fallos
+      Contratos estrictos
+    Matemáticas Rigurosas
+      Haskell Types &amp; Semigroups
+      Ley de Little L = lambda * W
+      Entropía de Shannon H_X
+      Estadística Robusta MAD
+</pre>
+<br>
+<hr>
+<br>
+<h3>🏢 Estructura de Agentes como una Empresa (Single Responsibility Principle)</h3>
+<p>Para garantizar que el sistema opere sin intervención, sin fatiga y fiel al objetivo macro:</p>
+<br>
+<pre>
+flowchart TD
+    CEO["👔 CEO Orchestrator Agent\n(Define objetivos y asigna micro-tareas simples)"]
+    
+    subgraph Pipeline["Cadena de Trabajo Especializada (1 Tarea por Agente)"]
+        A1["🛡️ Agente Sentinel (NiFi)\nTarea: Validar JSON &amp; Backpressure"]
+        A2["🚦 Agente Traffic (Kafka)\nTarea: Hash &amp; Asignación Partición (0..7)"]
+        A3["🧮 Agente Math (Haskell/Python)\nTarea: Combinar Monoide Welford A ⊕ B"]
+        A4["🚨 Agente Security (MAD)\nTarea: Detectar Anomalías Robusto Z &gt; 8.0"]
+        A5["💾 Agente Lakehouse (ACID Sink)\nTarea: Transacción y Persistencia"]
+        A6["📊 Agente Reporting &amp; UI\nTarea: Generar Dossier y Actualizar Web"]
+    end
+
+    subgraph Harness["🛡️ Arquitectura de Test Harnesses (Contratos)"]
+        H1["Pre-Check / Post-Check de Invariantes"]
+        H2["Aislamiento: ningún error tumba a otro agente"]
+        H3["Garantía de ejecución continua (3 horas sin deriva)"]
+    end
+
+    CEO --&gt; A1
+    A1 --&gt;|Harness 1 OK| A2
+    A2 --&gt;|Harness 2 OK| A3
+    A3 --&gt;|Harness 3 OK| A4
+    A4 --&gt;|Harness 4 OK| A5
+    A5 --&gt;|Harness 5 OK| A6
+    
+    Pipeline -.-&gt; Harness
+</pre>
+<br>
+<hr>
+<br>
+<h3>📐 Las Fórmulas Matemáticas: Por qué Haskell y Pythonista</h3>
+<li>1. <strong>Monoide Paralelo de Welford ($A \oplus B$):</strong></li>
+<p>   Permite calcular la media y la varianza exacta combinando particiones sin cargar todos los datos en memoria:</p>
+<p>   $$\mu_{AB} = \mu_A + (\mu_B - \mu_A) \frac{n_B}{n_A + n_B}, \qquad M_{2,AB} = M_{2,A} + M_{2,B} + (\mu_B - \mu_A)^2 \frac{n_A n_B}{n_A + n_B}$$</p>
+<li>2. <strong>Ley de Little y Teoría de Colas ($M/M/c$):</strong></li>
+<p>   Dimensiona el número de núcleos de Kafka y Spark para evitar cuellos de botella:</p>
+<p>   $$L = \lambda W, \qquad \rho = \frac{\lambda}{c \cdot \mu} \le 0.80$$</p>
+<li>3. <strong>Estadística Robusta ($\text{MAD}$):</strong></li>
+<p>   A diferencia de la desviación clásica $\sigma$ que se infla con un solo fraude gigante, el MAD tiene un punto de ruptura del 50%:</p>
+<p>   $$\text{MAD} = \text{mediana}(|X_i - \text{mediana}(X)|), \qquad Z_{\text{robusto}} = \frac{|X_i - \text{mediana}(X)|}{1.4826 \cdot \text{MAD}}$$</p>
+<li>4. <strong>Entropía de Shannon ($H(X)$):</strong></li>
+<p>   Mide en bits la homogeneidad del particionado en Kafka para neutralizar *Hot Keys*:</p>
+<p>   $$H(X) = -\sum_{i=1}^{k} p_i \log_2(p_i)$$</p>
+<br>
+<li>5. <strong>Potencial Many-Body de Sutton-Chen para Nanoclúster de Oro ($Au_{20}$):</strong></li>
+<p>   Modela la interacción cuántica interatómica metálica superando las limitaciones de pares de Lennard-Jones al incorporar la densidad electrónica local de muchos cuerpos:</p>
+<p>   $$U = \sum_{i} \left[ \frac{1}{2} \sum_{j \ne i} \epsilon \left( \frac{a}{r_{ij}} \right)^n - c \epsilon \sqrt{\rho_i} \right], \qquad \rho_i = \sum_{j \ne i} \left( \frac{a}{r_{ij}} \right)^m$$</p>
+<p>   Para oro ($Au$): $\epsilon = 1.2793 \times 10^{-2} \text{ eV}$, $a = 4.08 \text{ \AA}$, $n = 9$, $m = 6$, $c = 34.408$.</p>
+<br>
+<li>6. <strong>Ecuación Black-Scholes para Opciones Europeas (Kernel Haskell GHC 9.14.1):</strong></li>
+<p>   Valoración analítica de derivados con derivación estocástica de Itô:</p>
+<p>   $$C(S, K, T, r, \sigma) = S_0 N(d_1) - K e^{-r T} N(d_2), \quad d_1 = \frac{\ln(S_0/K) + (r + \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}, \quad d_2 = d_1 - \sigma \sqrt{T}$$</p>
+<br>
+<li>7. <strong>Proceso de Difusión y Reversión a la Media de Ornstein-Uhlenbeck:</strong></li>
+<p>   Dinámica estocástica empleada en las estrategias de reversión a la media institucional:</p>
+<p>   $$dX_t = \theta (\mu - X_t) dt + \sigma dW_t$$</p>
+<br>
+<li>8. <strong>Invariante Criptográfico del WAL en NovusStreamDB (SHA-256 Hash Chaining):</strong></li>
+<p>   Garantía matemática de inmutabilidad en el registro de operaciones:</p>
+<p>   $$H_n = \text{SHA256}(H_{n-1} \parallel \text{seq} \parallel \text{topic} \parallel \text{symbol} \parallel t \parallel \text{payload})$$</p>
+<br>
+<hr>
+<br>
+<h3>🔬 Nanoclúster de Oro ($Au_{20}$): Física Cuántica y Aplicaciones Industriales</h3>
+<p>El nanoclúster $Au_{20}$ es una de las estructuras moleculares más fascinantes de la nanotecnología contemporánea. Descubierto experimentalmente y validado mediante teoría del funcional de la densidad (DFT), consiste en una <strong>pirámide tetraédrica perfecta ($T_d$)</strong> con facetas tipo $\{111\}$, similar a un fragmento cristalino de red FCC pero con un comportamiento molecular cuántico único:</p>
+<br>
+<li>1. <strong>Gap HOMO-LUMO y Carácter Molecular:</strong></li>
+<p>   A diferencia del oro metálico masivo (que es un conductor continuo con bandas de valencia solapadas), el nanoclúster $Au_{20}$ posee un salto energético HOMO-LUMO amplio ($\approx 1.8 \text{ eV}$), comparable al del silicio semiconductor, lo que le confiere propiedades de <strong>punto cuántico artificial</strong>.</p>
+<li>2. <strong>Nanocatálisis Heterogénea Verde:</strong></li>
+<p>   Los átomos de los vértices y aristas presentan un número de coordinación reducido ($CN = 3$ y $CN = 6$), lo que genera orbitales frontera deslocalizados de alta reactividad. Permite la <strong>oxidación catalítica de monóxido de carbono ($\text{CO} + \frac{1}{2}\text{O}_2 \to \text{CO}_2$) a temperatura ambiente (298 K)</strong> sin requerir metales pesados contaminantes ni altas presiones.</p>
+<li>3. <strong>Biosensores de Resonancia Plasmónica Localizada (LSPR):</strong></li>
+<p>   La oscilación colectiva de los electrones de conducción ante la radiación visible produce un pico plasmónico extraordinariamente sensible a cambios del índice de refracción del medio circundante ($< 10^{-6} \text{ RIU}$), empleado para detectar trazas ultrabajas de ADN circulante, antígenos y biomarcadores oncológicos en sangre.</p>
+<li>4. <strong>Electrónica Molecular y Transistores Monoelectrónicos (Single-Electron Transistors - SET):</strong></li>
+<p>   Gracias al bloqueo de Coulomb a escala manométrica, el $Au_{20}$ actúa como un nodo cuántico que conmuta electrones individuales a frecuencias de terahercios, reduciendo drásticamente la disipación térmica en chips neuromórficos.</p>
+<li>5. <strong>Fototerapia Hipertérmica Selectiva:</strong></li>
+<p>   Al sintonizar su absorción óptica en la ventana biológica infrarroja (NIR), las nanopartículas de oro se concentran en tejidos tumorales y transforman la luz en calor localizado ($42-45^\circ\text{C}$), destruyendo células cancerígenas con precisión microscópica sin dañar tejido sano.</p>
+<br>
+<hr>
+<br>
+<h3>🛡️ Núcleo Cuantitativo en Haskell Puro (<code>NovusQuantEngine.hs</code>)</h3>
+<p>Compilado nativamente con <strong>Glasgow Haskell Compiler (GHC 9.14.1)</strong> y optimización <code>-O2</code> en <code>/CV/07_trading_bot/haskell/novus_quant_haskell</code>:</p>
+<li><strong>Verificación de Invariante de Luca Pacioli:</strong></li>
+<p>  Verifica formalmente en microsegundos que la suma de asientos en el Debe iguala con exactitud al Haber ($\sum \text{Debe} - \sum \text{Haber} \equiv 0$). Si un tick o un trade rompe la igualdad contable, el kernel Haskell emite un fallo estricto antes de cualquier mutación de saldo.</p>
+<li><strong>Pricer Analítico de Black-Scholes:</strong></li>
+<p>  Calcula con precisión de 64 bits los precios teóricos de opciones Call y Put y las letras griegas ($\Delta, \Gamma, \Theta, \mathcal{V}$), comparándolos contra la volatilidad implícita del mercado.</p>
+<li><strong>Deriva de Ornstein-Uhlenbeck y VWAP Streaming:</strong></li>
+<p>  Implementa algoritmos funcionales puros de ventana deslizante para estimar la velocidad de reversión ($\theta$) y la volatilidad ($\sigma$) en tiempo real.</p>
+<br>
+<hr>
+<br>
+<h3>🌊 Base de Datos de Streaming de Alto Rendimiento (<code>NovusStreamDB</code>)</h3>
+<p>Diseñada para ingesta financiera sub-milisegundo sin sobrecarga de red:</p>
+<li><strong>Ring Buffer In-Memory:</strong> Capacidad para 10.000 eventos en memoria RAM organizados por índices temáticos y de símbolo.</li>
+<li><strong>Write-Ahead Log (WAL) Criptográfico:</strong> Cada evento se asienta en disco en <code>/CV/07_trading_bot/data/novus_stream.wal</code> con hash chaining SHA-256 resistente a manipulaciones (*tamper-evident*).</li>
+<li><strong>Agregaciones Continuas O(1):</strong> Mantiene ventanas deslizantes con VWAP, volatilidad y volumen acumulado sin recomputar todo el histórico.</li>
+<li><strong>Aceleración Columnar con Polars:</strong> Exporta eventos a DataFrames en formato Apache Arrow con Polars, logrando vectorización SIMD para pipelines de backtesting y aprendizaje automático.</li>
+<li><strong>Transmisión Reactiva Server-Sent Events (SSE):</strong> Conexión persistente mediante <code>/api/stream/events</code> para actualización en tiempo real de gráficos e interfaces web.</li>
+<br>
+<hr>
+<br>
+<h3>🌙 Motor Multi-Mercado 24/7 y Fallback Automático a Cryptos</h3>
+<p>Los mercados financieros globales operan bajo diferentes calendarios institucionales:</p>
+<li><strong>Renta Variable Española / Europea (IBEX 35, Euronext):</strong> Lunes a Viernes, 08:00 a 16:30 UTC.</li>
+<li><strong>Wall Street (NASDAQ, NYSE):</strong> Lunes a Viernes, 13:30 a 20:00 UTC.</li>
+<li><strong>Mercado Forex Interbancario (EUR/USD, USD/JPY, etc.):</strong> Domingo 22:00 a Viernes 22:00 UTC.</li>
+<li><strong>Oro Físico y Materias Primas (GC=F, XAU/USD):</strong> Domingo 23:00 a Viernes 22:00 UTC.</li>
+<li><strong>Criptoactivos (BTC, ETH, SOL, BNB):</strong> <strong>24 horas al día, 7 días a la semana, 365 días al año (24/7 SPOT)</strong>.</li>
+<br>
+<p><strong>Lógica del Piloto Automático:</strong></p>
+<p>El algoritmo evalúa continuamente el régimen de mercado (<code>ALL_MARKETS</code>, <code>CRYPTO_AND_FOREX</code> o <code>CRYPTO_ONLY</code>). En cuanto los mercados tradicionales cierran por fin de semana o sesión nocturna, el motor <strong>reorienta de inmediato el 100% del escaneo de liquidez, análisis técnico y asignación de capital a criptomonedas</strong>, garantizando actividad trading ininterrumpida y captura de alfa 24/7.</p>
+<br>
+<hr>
+<br>
+<h3>🟢 API REST Institucional de Precios Verdaderos (<code>/api/prices/true</code>)</h3>
+<p>Proporciona cotizaciones 100% verídicas y auditadas sin recurrir a datos simulados:</p>
+<li><strong>Binance v3 REST 24hr Ticker:</strong> Cotizaciones directas para pares spot <code>BTCUSDT</code>, <code>ETHUSDT</code>, <code>SOLUSDT</code>, <code>BNBUSDT</code>.</li>
+<li><strong>Yahoo Finance Institutional Feed (v8):</strong> Cotizaciones en directo para activos de divisas (<code>EURUSD=X</code>, <code>USDJPY=X</code>, <code>GBPUSD=X</code>), oro (<code>GC=F</code>) y valores bursátiles líderes (<code>NVDA</code>, <code>AAPL</code>, <code>TSLA</code>, <code>IBE.MC</code>, <code>SAN.MC</code>, <code>ITX.MC</code>, <code>ACS.MC</code>, <code>SU.PA</code>).</li>
+<li><strong>Verificación de Inactividad:</strong> Detecta cierres bursátiles y etiqueta cada activo con su estado oficial (<code>ABIERTO</code> / <code>CERRADO</code>) y su desfase horario UTC.</li>
+<br>
+<hr>
+<br>
+<p>*Dossier generado y compilado para Google NotebookLM / Gemini Notebook. Listo para generar resúmenes ejecutivos, mapas conceptuales, análisis de grafos y guías de estudio interactivas.*</p>
+<br>
+</body>
+</html>

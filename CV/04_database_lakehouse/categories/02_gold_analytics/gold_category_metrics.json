@@ -1,0 +1,57 @@
+[
+  {
+    "category": "groceries",
+    "txn_count": 5015,
+    "total_volume_eur": 643860.02,
+    "welford_mean_eur": 128.39,
+    "welford_std_eur": 643.12,
+    "robust_median_eur": 63.93,
+    "robust_mad_eur": 43.59,
+    "shannon_entropy_bits": 2.807,
+    "fraud_alerts_count": 52
+  },
+  {
+    "category": "electronics",
+    "txn_count": 4980,
+    "total_volume_eur": 638851.9,
+    "welford_mean_eur": 128.28,
+    "welford_std_eur": 627.1,
+    "robust_median_eur": 64.84,
+    "robust_mad_eur": 44.1,
+    "shannon_entropy_bits": 2.806,
+    "fraud_alerts_count": 55
+  },
+  {
+    "category": "fashion",
+    "txn_count": 5008,
+    "total_volume_eur": 636959.86,
+    "welford_mean_eur": 127.19,
+    "welford_std_eur": 605.86,
+    "robust_median_eur": 64.04,
+    "robust_mad_eur": 43.8,
+    "shannon_entropy_bits": 2.807,
+    "fraud_alerts_count": 50
+  },
+  {
+    "category": "travel",
+    "txn_count": 5087,
+    "total_volume_eur": 700597.9,
+    "welford_mean_eur": 137.72,
+    "welford_std_eur": 697.88,
+    "robust_median_eur": 63.23,
+    "robust_mad_eur": 41.68,
+    "shannon_entropy_bits": 2.807,
+    "fraud_alerts_count": 64
+  },
+  {
+    "category": "luxury",
+    "txn_count": 4910,
+    "total_volume_eur": 559911.58,
+    "welford_mean_eur": 114.03,
+    "welford_std_eur": 498.34,
+    "robust_median_eur": 64.44,
+    "robust_mad_eur": 44.44,
+    "shannon_entropy_bits": 2.807,
+    "fraud_alerts_count": 44
+  }
+]

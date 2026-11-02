@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mikel Irastorza · CV">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#0f172a">
+  <title>Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+  <!-- AuraIcons Interactive Engine & Styles -->
+  <link rel="stylesheet" href="/aura-nav-interactive.css">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm 12mm 8mm 12mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-light: #d1fae5;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --indigo: #4f46e5;
+      --indigo-light: #e0e7ff;
+      --cyan: #0891b2;
+      --cyan-light: #cffafe;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--slate-900);
+      background: #f8fafc;
+      line-height: 1.4;
+      font-size: 9.2pt;
+    }
+
+    /* Screen Floating Toolbar (Hidden during Print) */
+    .screen-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .toolbar-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-action:hover {
+      background: #fff;
+      color: var(--slate-900);
+      transform: translateY(-1px);
+    }
+    .btn-action-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .btn-action-primary:hover {
+      background: #0ea5e9;
+      color: #fff;
+    }
+
+    /* CV Document Sheet */
+    .cv-sheet {
+      max-width: 860px;
+      width: min(860px, calc(100% - 24px));
+      margin: clamp(12px, 2vw, 24px) auto clamp(20px, 3.5vw, 40px);
+      background: #ffffff;
+      padding: clamp(16px, 2.8vw, 26px) clamp(14px, 3.2vw, 30px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      border-radius: 12px;
+    }
+
+    /* Code Tags Styling */
+    code, .tech-inline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      background: rgba(2, 132, 199, 0.08);
+      color: var(--primary-dark);
+      padding: 1px 4px;
+      border-radius: 3px;
+      border: 1px solid rgba(2, 132, 199, 0.16);
+      font-weight: 600;
+    }
+
+    /* Header Section */
+    .cv-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .header-main h1 {
+      font-size: 22pt;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.6px;
+      line-height: 1.05;
+    }
+    .header-main .title {
+      font-size: 10.8pt;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-top: 3px;
+      letter-spacing: -0.2px;
+    }
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 8.6pt;
+      color: var(--slate-600);
+      font-weight: 500;
+    }
+    .header-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .header-meta a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .header-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3.5px;
+    }
+    .lang-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-size: 7.7pt;
+      font-weight: 700;
+      color: var(--slate-700);
+      white-space: nowrap;
+    }
+
+    /* Executive Profile Box */
+    .summary-card {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.05), rgba(248, 250, 252, 0.95));
+      border-left: 3.5px solid var(--primary);
+      padding: 7px 11px;
+      border-radius: 0 8px 8px 0;
+      font-size: 8.9pt;
+      color: var(--slate-700);
+      line-height: 1.4;
+      margin-bottom: 11px;
+    }
+    .summary-card strong {
+      color: var(--slate-900);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 9.6pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: var(--slate-900);
+      border-bottom: 1.5px solid var(--slate-200);
+      padding-bottom: 3px;
+      margin-top: 12px;
+      margin-bottom: 7px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-title-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-title .sec-icon {
+      color: var(--primary);
+      font-size: 10pt;
+    }
+    .section-title-tag {
+      font-size: 7.3pt;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Projects Section (Puro Programador / Central) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+    .proj-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 6px;
+      padding: 7px 9px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .proj-top {
+      margin-bottom: 3px;
+    }
+    .proj-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .proj-name {
+      font-size: 8.9pt;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+    .proj-badge {
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .badge-amber { background: var(--amber-light); color: var(--amber); }
+    .badge-purple { background: var(--purple-light); color: var(--purple); }
+    .badge-cyan { background: var(--cyan-light); color: var(--cyan); }
+    .badge-indigo { background: var(--indigo-light); color: var(--indigo); }
+    .badge-emerald { background: var(--emerald-light); color: var(--emerald-dark); }
+    .badge-sky { background: var(--primary-light); color: var(--primary-dark); }
+
+    .proj-stack {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.1pt;
+      color: var(--primary-dark);
+      font-weight: 700;
+      margin-bottom: 3px;
+      line-height: 1.25;
+    }
+    .proj-bullets {
+      list-style-type: disc;
+      padding-left: 13px;
+      font-size: 8.1pt;
+      color: var(--slate-700);
+      line-height: 1.33;
+    }
+    .proj-bullets li {
+      margin-bottom: 2px;
+    }
+    .proj-bullets strong {
+      color: var(--slate-900);
+    }
+
+    /* Page Break Deterministic Anchor */
+    .page-break {
+      page-break-before: always;
+      break-before: page;
+      margin: 0;
+      padding: 0;
+      height: 0;
+    }
+
+    /* Experience Items */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exp-item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9.1pt;
+    }
+    .exp-role {
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+    .exp-company {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    .exp-date {
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--slate-500);
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .exp-location {
+      font-size: 7.8pt;
+      color: var(--slate-500);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .exp-bullets {
+      list-style-type: disc;
+      padding-left: 14px;
+      font-size: 8.4pt;
+      color: var(--slate-700);
+      line-height: 1.33;
+      margin-top: 1px;
+    }
+    .exp-bullets li {
+      margin-bottom: 2px;
+    }
+    .exp-bullets strong {
+      color: var(--slate-900);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .skill-cell {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 8pt;
+    }
+    .skill-cell strong {
+      display: block;
+      color: var(--primary-dark);
+      font-size: 8.2pt;
+      margin-bottom: 2px;
+      font-weight: 800;
+    }
+    .skill-cell span {
+      color: var(--slate-700);
+      line-height: 1.28;
+      display: block;
+    }
+
+    /* Defense / Principles Box */
+    .interview-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 5px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .interview-card {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-left: 3px solid var(--primary);
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 8.1pt;
+      line-height: 1.3;
+    }
+    .interview-card b {
+      color: var(--slate-900);
+      display: block;
+      margin-bottom: 2px;
+      font-size: 8.3pt;
+    }
+
+    /* Footer */
+    .cv-footer {
+      margin-top: 10px;
+      padding-top: 5px;
+      border-top: 1px solid var(--slate-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7.5pt;
+      color: var(--slate-500);
+    }
+    .cv-footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS: DESKTOP SPLIT-SCREEN, IPAD, TABLET & IPHONE
+       Fluid behavior when resizing window big or small ("grande / pequeño")
+       ========================================================================== */
+
+    /* Tier 1: Medium Screens & Split-Screen macOS Viewports (<= 1040px) */
+    @media screen and (max-width: 1040px) {
+      body {
+        overflow-x: hidden;
+      }
+      .screen-toolbar {
+        padding: calc(9px + env(safe-area-inset-top, 0px)) 16px 10px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .toolbar-left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 12.5px;
+        line-height: 1.25;
+      }
+      .toolbar-actions {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 8px;
+        padding: 2px 0 4px;
+        width: 100%;
+      }
+      .toolbar-actions::-webkit-scrollbar {
+        display: none;
+      }
+      .btn-action {
+        font-size: 11.5px;
+        padding: 6px 13px;
+        min-height: 38px;
+        flex-shrink: 0;
+        white-space: nowrap;
+        touch-action: manipulation;
+      }
+    }
+
+    /* Tier 2: iPad, Tablet & Tiled Windows (<= 880px) */
+    @media screen and (max-width: 880px) {
+      .cv-sheet {
+        margin: 14px auto 30px;
+        padding: 20px 18px;
+        width: calc(100% - 24px);
+        max-width: 100%;
+      }
+      .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .header-badges {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 6px;
+        width: 100%;
+      }
+      .lang-pill {
+        white-space: normal;
+        font-size: 7.8pt;
+        padding: 3px 10px;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
+      }
+      .interview-box {
+        grid-template-columns: 1fr !important;
+        gap: 8px;
+      }
+    }
+
+    /* Tier 3: iPhone & Narrow Mobile Viewports (<= 640px) */
+    @media screen and (max-width: 640px) {
+      body {
+        font-size: 8.8pt;
+      }
+      .screen-toolbar {
+        padding: calc(8px + env(safe-area-inset-top, 0px)) 12px 10px;
+        gap: 8px;
+      }
+      .toolbar-left {
+        font-size: 11.5px;
+      }
+      .toolbar-left span:last-child {
+        display: none;
+      }
+      .toolbar-actions {
+        gap: 6px;
+      }
+      .btn-action {
+        font-size: 11px;
+        padding: 6px 12px;
+        min-height: 40px;
+      }
+      .cv-sheet {
+        margin: 8px auto 30px;
+        padding: 16px 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: calc(100% - 14px);
+      }
+      .header-main h1 {
+        font-size: 18pt !important;
+        letter-spacing: -0.02em;
+      }
+      .header-main .title {
+        font-size: 9.5pt !important;
+        line-height: 1.35;
+      }
+      .header-meta {
+        flex-direction: column;
+        gap: 4px;
+        font-size: 8pt;
+      }
+      .header-badges {
+        flex-direction: column;
+        gap: 5px;
+      }
+      .lang-pill {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+        font-size: 8pt;
+        padding: 4px 10px;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px;
+      }
+      .cv-footer {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+        font-size: 7pt;
+      }
+    }
+
+    /* Print Optimization (A4 Perfectly Fitted) */
+    @media print {
+      body {
+        background: #fff;
+        color: #0f172a;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .cv-sheet {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .summary-card {
+        background: #f8fafc !important;
+        border-left-color: #0284c7 !important;
+      }
+      .proj-card, .skill-cell, .interview-card {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+      }
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+        height: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Floating Toolbar (Hidden when printing to PDF) -->
+  <div class="screen-toolbar no-print">
+    <div class="toolbar-left">
+      <span>👑 Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</span>
+      <span style="font-weight:400; color:#94a3b8; font-size:11.5px;">Perfil de Ingeniería · 44 Tests Automatizados Verificados</span>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn-action btn-action-primary" onclick="window.print()" title="Imprimir o guardar en PDF (formato A4 sin toolbar)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        <span>Imprimir / PDF</span>
+      </button>
+      <a href="/cv.pdf" download class="btn-action" title="Descargar PDF Oficial Precompilado">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>PDF Oficial</span>
+      </a>
+      <button class="btn-action" onclick="if(window.auraOpenShareModal) window.auraOpenShareModal();" title="Abrir en Móvil (Código QR & PWA)">
+        <span>📲</span> <span>Móvil / QR</span>
+      </button>
+      <a href="/portfolio.html" class="btn-action" title="Ver Portfolio Interactivo">
+        <span>🌐</span> <span>Portfolio</span>
+      </a>
+      <a href="/bot.html" class="btn-action" title="Ver Trading Bot Cuantitativo en Directo">
+        <span>🤖</span> <span>Bot Cuantitativo</span>
+      </a>
+      <a href="https://miky-vercel.vercel.app" target="_blank" rel="noopener" class="btn-action" title="Abrir Miky Copilot IA con Memoria Persistente">
+        <span>🧠</span> <span>Miky IA</span>
+      </a>
+      <a href="/cockpit.html" class="btn-action aura-cockpit-link" style="border-color:#38bdf8; background:rgba(56,189,248,0.18); color:#38bdf8; font-weight:800; box-shadow:0 0 16px rgba(56,189,248,0.3);" title="Entrar al Cockpit Big Data">
+        <span>⚡</span> <span>Cockpit Big Data →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cv-sheet">
+
+    <!-- ====================================================================== -->
+    <!-- PÁGINA 1: IDENTIDAD PROFESIONAL & PROYECTOS DE INGENIERÍA CENTRALES    -->
+    <!-- ====================================================================== -->
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="cv-header">
+      <div class="header-main">
+        <h1>MIKEL IRASTORZA</h1>
+        <div class="title">Lead Software Engineer &amp; Systems Architect · Concurrency, Backend &amp; Applied AI</div>
+        <div class="header-meta">
+          <span>📍 <strong>Donostia / Gipuzkoa, Spain</strong> (Movilidad Francia–España &amp; Remoto)</span>
+          <span>💻 GitHub: <a href="https://github.com/novomundus2-cmyk" target="_blank">github.com/novomundus2-cmyk</a></span>
+          <span>✉️ <a href="mailto:mikel@novusmundus.com">mikel@novusmundus.com</a></span>
+          <span>🌐 <a href="/portfolio.html">Live Production Portfolio</a></span>
+        </div>
+      </div>
+      <div class="header-badges">
+        <div class="lang-pill">🇪🇸 <strong>Español</strong> (Nativo)</div>
+        <div class="lang-pill">🇫🇷 <strong>Français</strong> (C1 · Fluido profesional fábrica &amp; oficina en Francia)</div>
+        <div class="lang-pill">🇬🇧 <strong>English</strong> (B2/C1 · Fluido técnico en ingeniería de software e IA)</div>
+      </div>
+    </header>
+
+    <!-- Resumen Profesional de Alto Impacto -->
+    <div class="summary-card">
+      <strong>Ingeniero de software sénior y constructor de sistemas ("Project-First Builder")</strong>. Especializado en arquitectura de backend distribuido, motores de concurrencia y streaming de baja latencia, asentamiento contable ACID de doble entrada y enjambres jerárquicos de agentes IA. Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en <strong>EPTA France</strong>, Hendaye), trasladando esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y suites de tests automatizados (<strong>44 tests sin fallos en producción</strong>).
+    </div>
+
+    <!-- PROYECTOS INSIGNIA EN PRODUCCIÓN (PURO PROGRAMADOR) -->
+    <section>
+      <div class="section-title">
+        <div class="section-title-left">
+          <span class="sec-icon">🚀</span> Proyectos Insignia en Producción (Software Engineering &amp; Architecture)
+        </div>
+        <span class="section-title-tag">Code &amp; Systems First</span>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Proyecto 1: Trading Core & Ledger -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">1. Novus Capital &amp; Trading Engine v3.0</span>
+              <span class="proj-badge badge-amber">Fintech &amp; Concurrency</span>
+            </div>
+            <div class="proj-stack">Python 3.14 · TensorFlow 2.22 · PostgreSQL 17 · Supabase RLS · SQLite ACID</div>
+            <ul class="proj-bullets">
+              <li><strong>Motor Cuantitativo &amp; ML:</strong> Inferencia continua online con TensorFlow Keras y detección de desbalances institucionales SMC (Order Blocks, FVG, MSS).</li>
+              <li><strong>Pacioli Core Ledger:</strong> Doble entrada formal (Luca Pacioli: ∑ Debe = ∑ Haber) con bloqueos lexicográficos <code>SELECT ... FOR UPDATE</code> (cero deadlocks) y hash encadenado SHA-256.</li>
+              <li><strong>Microestructura L2/L3:</strong> Cálculo de micro-precios, profundidad acumulada de libro de órdenes y latencia sub-milisegundo en mercados líquidos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Proyecto 2: Enjambre Jerárquico de IA -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">2. Enjambre Multi-Agente Jerárquico</span>
+              <span class="proj-badge badge-purple">Distributed AI Swarm</span>
+            </div>
+            <div class="proj-stack">Antigravity SDK · Ollama · Model Context Protocol (MCP) · AsyncIO · Vector RAG</div>
+            <ul class="proj-bullets">
+              <li><strong>Orquestación Jerárquica:</strong> Coordinación de 9 a 16 agentes autónomos con planificador <em>Work-Stealing</em> (1-2 micro-tareas/agente) eliminando colas de contención.</li>
+              <li><strong>Memoria Compartida Auditable:</strong> Persistencia transaccional en SQL (<code>ai_insights_registry</code>), latencia entre agentes &lt; 5 ms y trazas reproducibles.</li>
+              <li><strong>Tolerancia a Fallos:</strong> Protocolo MCP para integración de herramientas con degradación elegante y conmutación por error ante caídas de nodos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Proyecto 3: Streaming Lakehouse Big Data -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">3. Streaming Lakehouse Big Data</span>
+              <span class="proj-badge badge-cyan">High-Throughput Streaming</span>
+            </div>
+            <div class="proj-stack">Kafka KRaft · Apache NiFi · PySpark Streaming · Apache Iceberg · Parquet ZSTD</div>
+            <ul class="proj-bullets">
+              <li><strong>Dimensionamiento Formal:</strong> Pipeline dimensionado formalmente con la <strong>Ley de Little (L = λ·W)</strong> y <strong>Teoría de Colas M/M/c</strong> (factor de carga ρ ≤ 0.80) para evitar desbordamientos OOM.</li>
+              <li><strong>Control de Contrapresión:</strong> NiFi configurado con límites de backpressure a 10.000 objetos / 1 GB y particionado determinista en Kafka sin ZooKeeper.</li>
+              <li><strong>Almacenamiento ACID:</strong> Escritura en tablas Apache Iceberg con particionado temporal y compresión Parquet ZSTD.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Proyecto 4: Physics CAD Engine & Computación Científica -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">4. Physics CAD Lab &amp; Dinámica Molecular</span>
+              <span class="proj-badge badge-indigo">CAD &amp; Nanomaterials</span>
+            </div>
+            <div class="proj-stack">C++ · Python · SymPy · Potencial Sutton-Chen · Sobolev H¹ · JAX · LSPR</div>
+            <ul class="proj-bullets">
+              <li><strong>Nanoclústeres Au₂₀ &amp; Plasmónica:</strong> Simulación de potenciales Sutton-Chen / EAM en redes FCC de oro, resonancia plasmónica (LSPR 525 nm) y gap HOMO-LUMO 1.77 eV para nanomedicina y nanoelectrónica cuántica.</li>
+              <li><strong>Geometría Computacional &amp; EDPs:</strong> Cálculo de tolerancias geométricas ±0.2 mm, secuencias CNC de chapa y EDPs 2D en espacios de Sobolev H¹.</li>
+              <li><strong>Metrología Patrón:</strong> Invariancia de red del oro (a = 4.078 Å) como patrón absoluto de calibración física y simulación térmica.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Proyecto 5: Algoritmia Monoidal de Streaming -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">5. Streaming Monoidal &amp; Filtro MAD O(1)</span>
+              <span class="proj-badge badge-emerald">Algebraic Streaming</span>
+            </div>
+            <div class="proj-stack">Python · Haskell (Semigroups) · Welford-Chan Algorithm · Estadísticos Robustos</div>
+            <ul class="proj-bullets">
+              <li><strong>Monoide Asociativo O(1):</strong> Acumulación paralela de media y varianza con Welford-Chan en memoria O(1) con leyes monoidales verificadas por tests.</li>
+              <li><strong>Filtro de Ruido &amp; Outliers:</strong> Z-Score Robusto con Desviación Absoluta de la Mediana (MAD), inmune al enmascaramiento (Z_rob = 295.76 vs. Z_clásico = 2.83).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Proyecto 6: Cockpit Web Reactivo en Tiempo Real -->
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title-row">
+              <span class="proj-name">6. Cockpit Web Reactivo &amp; Telemetría</span>
+              <span class="proj-badge badge-sky">Full-Stack Platform</span>
+            </div>
+            <div class="proj-stack">TypeScript · JavaScript ES2024 · WebSockets · HTML5 Canvas GPU · Starlette</div>
+            <ul class="proj-bullets">
+              <li><strong>Sin Dependencias Pesadas:</strong> Interfaz de alto rendimiento en Vanilla JS y Canvas interactivo a 60 FPS con partículas magnéticas y gráficos financieros.</li>
+              <li><strong>Telemetría Bidireccional:</strong> Conexión por WebSocket para streaming de órdenes, ejecución de agentes y auditoría de eventos en tiempo real.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================================== -->
+    <!-- SALTO DE PÁGINA DETERMINISTA (CORTE LIMPIO A PÁGINA 2)                 -->
+    <!-- ====================================================================== -->
+    <div class="page-break"></div>
+
+    <!-- ====================================================================== -->
+    <!-- PÁGINA 2: TRAYECTORIA REAL, STACK DE PRODUCCIÓN & DEFENSA TÉCNICA      -->
+    <!-- ====================================================================== -->
+
+    <!-- TRAYECTORIA PROFESIONAL & EXPERIENCIA INDUSTRIAL (100% VERÍDICA) -->
+    <section>
+      <div class="section-title">
+        <div class="section-title-left">
+          <span class="sec-icon">💼</span> Trayectoria Profesional &amp; Experiencia Industrial
+        </div>
+        <span class="section-title-tag">2021 – 2026 (Cronología Coherente)</span>
+      </div>
+
+      <div class="experience-list">
+
+        <!-- 1. NOVUSMUNDUS -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-role">Lead Software Engineer &amp; Systems Architect</span> —
+              <span class="exp-company">NovusMundus / Novus Capital</span>
+            </div>
+            <div class="exp-date">2025 – ACTUALIDAD</div>
+          </div>
+          <div class="exp-location">Donostia / Gipuzkoa, España · Plataforma de Producción Propia</div>
+          <ul class="exp-bullets">
+            <li>Diseño y desarrollo integral del motor institucional <strong>Trading Core v3.0</strong>, APIs de streaming y arquitectura de agentes con suite de <strong>44 tests unitarios y de integración continuos</strong> sin fallos.</li>
+            <li>Implementación del sistema contable en doble entrada con firmas de bloque criptográficas SHA-256 en PostgreSQL 17 y Supabase RLS.</li>
+          </ul>
+        </div>
+
+        <!-- 2. IRC RAILWAY -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-role">Consultoría Comercial Técnica &amp; Equipamiento Ferroviario PMR</span> —
+              <span class="exp-company">IRC (International Railway Consulting)</span>
+            </div>
+            <div class="exp-date">2026</div>
+          </div>
+          <div class="exp-location">España &amp; Francia · Sector Industrial Ferroviario</div>
+          <ul class="exp-bullets">
+            <li>Asesoramiento comercial y técnico bilingüe (Francia–España) en proyectos de accesibilidad y movilidad reducida (PMR) en material rodante.</li>
+            <li>Interlocución con ingenieros de planta y oficinas de métodos industriales cumpliendo normativas técnicas europeas.</li>
+          </ul>
+        </div>
+
+        <!-- 3. SOFTWARE / WEB EN BAYONNE -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-role">Desarrollador de Software y Aplicaciones Web</span> —
+              <span class="exp-company">Empresa Tecnológica</span>
+            </div>
+            <div class="exp-date">2023 – 2024 (~2 AÑOS)</div>
+          </div>
+          <div class="exp-location">Bayonne, Nouvelle-Aquitaine, Francia · Entorno Profesional Francófono</div>
+          <ul class="exp-bullets">
+            <li>Desarrollo full-stack de arquitecturas web, integración de servicios backend, APIs REST y bases de datos relacionales en idioma francés.</li>
+            <li>Optimización de rendimiento en producción, resolución de incidencias y consolidación de fluidez técnica profesional en francés.</li>
+          </ul>
+        </div>
+
+        <!-- 4. EPTA FRANCE (ROBÓTICA, CHAPAS Y PLANOS) -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-role">Técnico de Fabricación, Células Robóticas &amp; Conformado de Chapa (Tôlerie)</span> —
+              <span class="exp-company">EPTA France</span>
+            </div>
+            <div class="exp-date">2022 – 2023</div>
+          </div>
+          <div class="exp-location">Hendaye, Nouvelle-Aquitaine, Francia · Planta Industrial de Refrigeración Comercial</div>
+          <ul class="exp-bullets">
+            <li><strong>Interpretación de planos técnicos:</strong> Lectura rigurosa de planos mecánicos y desarrollos CAD diédricos (cotas dimensionales ±0.2 mm, espesores de chapa, secuencias y radios de curvatura) para cerramientos y componentes industriales.</li>
+            <li><strong>Operación de células robóticas de chapa:</strong> Trabajo en el taller de chapa industrial (<em>atelier de tôlerie / parte trasera de planta</em>), supervisando y operando células robotizadas, punzonadoras y prensas plegadoras CNC de chapa metálica.</li>
+            <li><strong>Metrología y calidad en francés:</strong> Verificación dimensional continua con calibres digitales y micrómetros contra plano técnico, aplicando Lean Manufacturing y estándares 5S.</li>
+          </ul>
+        </div>
+
+        <!-- 5. BBVA -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="exp-role">Banca Comercial &amp; Asesoramiento Financiero</span> —
+              <span class="exp-company">BBVA</span>
+            </div>
+            <div class="exp-date">2021 – 2022 (~1 AÑO)</div>
+          </div>
+          <div class="exp-location">España · Sector Bancario y Financiero</div>
+          <ul class="exp-bullets">
+            <li>Atención a particulares y empresas, análisis de balances, riesgo crediticio y asesoramiento de fondos, base de la rigurosidad financiera y senda EIP/EFA.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STACK TÉCNICO & MATRIZ DE COMPETENCIAS (PURO PROGRAMADOR) -->
+    <section>
+      <div class="section-title">
+        <div class="section-title-left">
+          <span class="sec-icon">🛠️</span> Stack Técnico &amp; Herramientas de Producción
+        </div>
+        <span class="section-title-tag">Pure Programmer Stack</span>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-cell">
+          <strong>💻 Lenguajes de Programación</strong>
+          <span>Python 3.14 (AsyncIO, CPython, Pydantic, NumPy, Polars), Haskell (GHC 9.14.1), TypeScript, JavaScript (ES2024), C++, C11, SQL, Bash.</span>
+        </div>
+        <div class="skill-cell">
+          <strong>⚙️ Backend &amp; Concurrencia</strong>
+          <span>AsyncIO, Multiprocessing, Starlette, WebSockets, NovusStreamDB (SSE, Ring Buffer), Locks lexicográficos (Zero Deadlocks), APIs RESTful.</span>
+        </div>
+        <div class="skill-cell">
+          <strong>💾 Bases de Datos &amp; Almacenamiento</strong>
+          <span>PostgreSQL 17 (Triggers, RLS, CTEs, BRIN/B-Tree), SQLite WAL ACID, Supabase Auth/RLS, Apache Iceberg, NovusStreamDB (WAL SHA-256).</span>
+        </div>
+        <div class="skill-cell">
+          <strong>🌊 Big Data &amp; Streaming</strong>
+          <span>Apache Kafka (KRaft), Apache NiFi (Backpressure 10k/1GB), PySpark Structured Streaming, Parquet ZSTD, Ley de Little (L = λ·W), Polars SIMD.</span>
+        </div>
+        <div class="skill-cell">
+          <strong>🧠 IA, Agentes &amp; Machine Learning</strong>
+          <span>Google Antigravity SDK, TensorFlow 2.22 Keras (Online Learning), Ollama (DeepSeek/Llama), Protocolo MCP, Gemini Flash, RAG Vectorial.</span>
+        </div>
+        <div class="skill-cell">
+          <strong>🏭 Robótica &amp; Prácticas DevOps</strong>
+          <span>Planos mecánicos CAD/CAM, células robóticas de chapa, dinámica molecular (Sutton-Chen Au₂₀), Docker, Git/GitHub, Pytest (50 tests en verde), Lean/5S.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUNDAMENTOS Y DEFENSA TÉCNICA EN ENTREVISTA -->
+    <section>
+      <div class="section-title">
+        <div class="section-title-left">
+          <span class="sec-icon">🎯</span> Principios de Ingeniería &amp; Defensa Técnica
+        </div>
+        <span class="section-title-tag">Engineering Rigor</span>
+      </div>
+
+      <div class="interview-box">
+        <div class="interview-card">
+          <b>De la Chapa y Células Robóticas (EPTA) a los Contratos de Software:</b>
+          En robótica de chapa industrial, un error de 0.2 mm en un plano dobla mal la pieza o estrella la matriz CNC. Esa disciplina física la traslado a mis contratos de datos en software: si un tipo o payload viola el esquema estricto, es rechazado de inmediato antes de contaminar la memoria o la base de datos.
+        </div>
+        <div class="interview-card">
+          <b>Consistencia Contable ACID Inviolable en Trading:</b>
+          Para evitar discrepancias de saldos o pérdidas de fondos bajo alta concurrencia, las cuentas se bloquean lexicográficamente con <code>SELECT ... FOR UPDATE</code> en orden min(A, B) → max(A, B), eliminando deadlocks por diseño, y se firma cada bloque con hash SHA-256 inmutable.
+        </div>
+      </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="cv-footer">
+      <div>Mikel Irastorza · Donostia / Gipuzkoa, Spain · <a href="https://github.com/novomundus2-cmyk" target="_blank">github.com/novomundus2-cmyk</a></div>
+      <div>CV Oficial Verificado · Suite de 50 Tests Automatizados en Producción (100% Pasados)</div>
+    </footer>
+
+  </div>
+
+  <!-- AuraIcons Interactive Engine & Navigation Dock -->
+  <script src="/aura-nav-interactive.js"></script>
+</body>
+</html>

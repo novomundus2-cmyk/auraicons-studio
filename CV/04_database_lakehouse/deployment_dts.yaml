@@ -1,0 +1,33 @@
+# ==============================================================================
+# DECLARATIVE BIGQUERY DATA TRANSFER SERVICE (DTS) PROVISIONING
+# SKILL: bigquery-data-transfer-service & gcp-pipeline-resource-provisioning
+# PURPOSE: Automates scheduled ingestion from NAS / Cloud Storage Lakehouse mirror
+#          into BigQuery dataset `financial_lakehouse` without imperative CLI calls.
+# ==============================================================================
+environments:
+  dev:
+    project: auraicons-data-lakehouse-dev
+    region: europe-west1
+
+resources:
+  - name: bq_dataset_financial_lakehouse
+    type: bigquery.dataset
+    properties:
+      datasetId: financial_lakehouse
+      location: europe-west1
+      description: "Medallion Gold Lakehouse synchronized from Multi-PC & NAS cluster"
+
+  - name: dts_nas_to_bigquery_gold_transfer
+    type: bigquery.datatransfer.config
+    properties:
+      displayName: "NAS & GCS Lakehouse Mirror to BigQuery Gold"
+      dataSourceId: google_cloud_storage
+      destinationDatasetId: financial_lakehouse
+      schedule: "every 1 hours"
+      disabled: false
+      params:
+        data_path_template: "gs://auraicons-nas-lakehouse-mirror/categories/*.json"
+        destination_table_name_template: "gold_category_metrics_sync"
+        file_format: "JSON"
+        max_bad_records: "0"
+        write_disposition: "WRITE_TRUNCATE"

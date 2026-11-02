@@ -1,0 +1,21 @@
+# Python & uv virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+06_ai_note_agent/.venv/
+.env
+
+# Spark Checkpoints, Data & Generated SQLite DB
+checkpoints/
+data/
+*.parquet
+*.csv
+*.db
+
+# Operating System
+.DS_Store
+Thumbs.db
+nas_shared_mirror/
+.mypy_cache/

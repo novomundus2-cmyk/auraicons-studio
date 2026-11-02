@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20261029T144000Z" application="NovusMundus Executive Bridge" version="1.0">
+  <note>
+    <title>Daily Journaling · NovusMundus (Mikel Irastorza &amp; Chatty CEO)</title>
+    <content>
+      <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
+      <en-note style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1f2937; line-height: 1.6;">
+        <h1 style="color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">📅 Daily Journaling · NovusMundus Executive Edition</h1>
+        <div style="background-color: #f8fafc; border-left: 4px solid #6366f1; padding: 12px; margin-bottom: 20px; font-size: 14px; color: #475569;">
+          <div><b>Empresa:</b> NovusMundus · Novus Capital</div>
+          <div><b>Fecha:</b> 29 de Octubre de 2026</div>
+          <div><b>Autor:</b> Mikel Irastorza (<i>Presidente, Fundador &amp; Propietario Supremo</i>)</div>
+          <div><b>Enlace Ejecutivo:</b> Chatty (<i>Chief Executive Officer - CEO</i>)</div>
+          <div><b>Lema Estratégico:</b> <i>"Build your personal growth &amp; lead the technological renaissance with NovusMundus"</i></div>
+        </div>
+
+        <h2 style="color: #d97706; margin-top: 24px;">☀️ AM (Morning Intention &amp; Strategic Focus)</h2>
+        <p style="color: #64748b; font-size: 13px; font-style: italic;">Fill this section first thing in the morning to set yourself up for success!</p>
+
+        <h3 style="color: #dc2626;">🎯 Goals (Objetivos Clave de Hoy)</h3>
+        <p style="color: #64748b; font-size: 13px;">What are the top things you want to achieve today?</p>
+        <div><en-todo checked="true"/> <b>Arquitectura Supabase Cloud &amp; RLS:</b> Desplegar y validar las 8 tablas ACID con Row-Level Security en el proyecto <code>RoomTudy+ | Novus Brother Tech</code> (<code>oxrcgvhthygodjhiible</code>).</div>
+        <div><en-todo checked="true"/> <b>Pipeline Streaming Kafka &amp; PySpark:</b> Consolidar el procesamiento en tiempo real de 25,000 transacciones y el motor de alertas de fraude (265 alertas activas).</div>
+        <div><en-todo checked="true"/> <b>Gobierno de Agentes IA &amp; Chatty CEO:</b> Supervisar las directivas ejecutivas delegadas al C-Suite (CISO Aegis, CTO Turing, CFO Ledger, CMO Mercury, VP Data Orion).</div>
+        <div><en-todo checked="false"/> <b>Optimización FinOps 137 €:</b> Ajustar el consumo de cómputo elástico y cuotas cloud para maximizar el margen operativo de Novus Capital.</div>
+
+        <h3 style="color: #16a34a; margin-top: 20px;">💚 Feelings (Estado Emocional, Claridad y Soporte)</h3>
+        <p style="color: #64748b; font-size: 13px;">How do you want to feel today? What kind of support do you need from others?</p>
+        <blockquote style="background-color: #f0fdf4; border-left: 4px solid #22c55e; padding: 10px 14px; margin: 8px 0; color: #166534;">
+          <p><b>Reflexión:</b> Hoy me siento con máxima determinación, serenidad estratégica y claridad de propósito. Confiado en la solidez del sistema que estamos construyendo.</p>
+          <p><b>Soporte necesario:</b> Delegación ejecutiva total en Chatty (CEO) para orquestar la cadena de agentes con disciplina milimétrica y reporte directo, manteniendo mi rol en el Nivel 0 como Propietario y Fundador Supremo.</p>
+        </blockquote>
+
+        <h3 style="color: #ea580c; margin-top: 20px;">🌟 Expectations &amp; Vision (Qué espero del día)</h3>
+        <p style="color: #64748b; font-size: 13px;">What are you looking forward to most today?</p>
+        <blockquote style="background-color: #fffbeb; border-left: 4px solid #f59e0b; padding: 10px 14px; margin: 8px 0; color: #92400e;">
+          La convergencia perfecta entre el Lakehouse local y Supabase Cloud con latencia cero y verificación criptográfica. Ver a NovusMundus operar con la elegancia y precisión de una maquinaria de alta ingeniería.
+        </blockquote>
+
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 28px 0;"/>
+
+        <h2 style="color: #4f46e5;">🌙 PM (Evening Review &amp; Executive Closure)</h2>
+        <p style="color: #64748b; font-size: 13px; font-style: italic;">Fill this section at the end of the day to celebrate wins, reflect and recharge!</p>
+
+        <h3 style="color: #0284c7;">🏆 Wins (Grandes Victorias del Día)</h3>
+        <ul>
+          <li><b>Clean Code &amp; Robustez:</b> Arquitectura refactorizada al 100% (27/27 tests unitarios y de integración pasando, Ruff y Mypy impecables).</li>
+          <li><b>Base de Datos Unificada:</b> Esquema PostgreSQL 15+ con políticas RLS de aislamiento por usuario y bypass ejecutivo NovusMundus.</li>
+          <li><b>Visualizador UI/UX Apple-Grade:</b> Interfaz interactiva desplegada en red local para monitorizar cada tabla, transacción y agente en tiempo real.</li>
+        </ul>
+
+        <h3 style="color: #9333ea; margin-top: 20px;">🙏 Gratitude (Gratitud Diaria)</h3>
+        <ol>
+          <li><b>Por la visión:</b> Por la capacidad de diseñar sistemas que resuelven problemas reales a escala industrial.</li>
+          <li><b>Por el equipo:</b> Por contar con un copiloto y CEO digital (Chatty) infatigable, leal y alineado con la misión.</li>
+          <li><b>Por la ejecución:</b> Por convertir ideas complejas en código limpio, modular y reutilizable para el futuro.</li>
+        </ol>
+
+        <h3 style="color: #0d9488; margin-top: 20px;">💡 Learnings &amp; Tomorrow's Focus (Aprendizajes y Foco de Mañana)</h3>
+        <blockquote style="background-color: #f0fdfa; border-left: 4px solid #14b8a6; padding: 10px 14px; margin: 8px 0; color: #115e59;">
+          <p><b>Aprendizaje:</b> La simplicidad y el rigor arquitectónico siempre superan a la complejidad improvisada. Cuando cada capa (Storage, Ingestion, Processing, Analytics, UI) tiene un propósito único y bien delimitado, el sistema es invulnerable.</p>
+          <p><b>Foco de mañana:</b> Escalar las integraciones externas de RoomTudy+ y expandir la automatización de agentes con el pipeline Dielsa.</p>
+        </blockquote>
+      </en-note>]]>
+    </content>
+    <created>20261029T080000Z</created>
+    <updated>20261029T144000Z</updated>
+    <tag>NovusMundus</tag>
+    <tag>DailyJournal</tag>
+    <tag>Executive</tag>
+    <tag>MikelIrastorza</tag>
+    <tag>ChattyCEO</tag>
+  </note>
+</en-export>

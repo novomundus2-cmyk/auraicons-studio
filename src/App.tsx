@@ -3,19 +3,35 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { ICONS_LIST } from './data/iconsList';
 import { IconCategory, InteractiveIconDef, StudioSettings } from './types/icon';
-import { Header } from './components/Header';
+import { Header, StudioTab } from './components/Header';
 import { InteractiveIcon } from './components/InteractiveIcon';
 import { IconStudioCanvas } from './components/IconStudioCanvas';
 import { WebContextsShowcase } from './components/WebContextsShowcase';
 import { CodeExportModal } from './components/CodeExportModal';
+import { ArchifyLiveAndCvHub } from './components/ArchifyLiveAndCvHub';
 import { soundEffects } from './utils/audio';
 
+const ICON_BY_ID_MAP = new Map<string, InteractiveIconDef>(
+  ICONS_LIST.map((icon) => [icon.id, icon])
+);
+
+const CATEGORIES: { id: IconCategory; label: string }[] = [
+  { id: 'all', label: 'Todos' },
+  { id: 'navigation', label: 'Navegación' },
+  { id: 'actions', label: 'Acciones' },
+  { id: 'commerce', label: 'Comercio' },
+  { id: 'media', label: 'Multimedia' },
+  { id: 'interface', label: 'Interfaz' },
+  { id: 'social', label: 'Social & Rating' },
+  { id: 'tech', label: 'Tecnología & IA' },
+];
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'library' | 'playground' | 'showcase'>('library');
-  const [selectedIconId, setSelectedIconId] = useState<string>('sparkle-ai');
+  const [activeTab, setActiveTab] = useState<StudioTab>('archify');
+  const [selectedIconId, setSelectedIconId] = useState<string>('nas-server-cluster');
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false);
   const [quickCopiedId, setQuickCopiedId] = useState<string | null>(null);
 
@@ -36,7 +52,7 @@ export default function App() {
     containerShape: 'squircle',
   });
 
-  const handleUpdateSettings = (partial: Partial<StudioSettings>) => {
+  const handleUpdateSettings = useCallback((partial: Partial<StudioSettings>) => {
     setSettings((prev) => {
       const next = { ...prev, ...partial };
       if (partial.enableSound !== undefined) {
@@ -44,49 +60,44 @@ export default function App() {
       }
       return next;
     });
-  };
+  }, []);
 
-  const categories: { id: IconCategory; label: string }[] = [
-    { id: 'all', label: 'Todos' },
-    { id: 'navigation', label: 'Navegación' },
-    { id: 'actions', label: 'Acciones' },
-    { id: 'commerce', label: 'Comercio' },
-    { id: 'media', label: 'Multimedia' },
-    { id: 'interface', label: 'Interfaz' },
-    { id: 'social', label: 'Social & Rating' },
-    { id: 'tech', label: 'Tecnología & IA' },
-  ];
+  const categories = CATEGORIES;
 
   // Filtered icons
   const filteredIcons = useMemo(() => {
+    const query = settings.searchQuery.toLowerCase().trim();
+    const cat = settings.selectedCategory;
+    if (cat === 'all' && !query) return ICONS_LIST;
+
     return ICONS_LIST.filter((icon) => {
-      const matchCat =
-        settings.selectedCategory === 'all' || icon.category === settings.selectedCategory;
-      const query = settings.searchQuery.toLowerCase().trim();
-      const matchQuery =
-        !query ||
+      if (cat !== 'all' && icon.category !== cat) return false;
+      if (!query) return true;
+      return (
         icon.name.toLowerCase().includes(query) ||
         icon.nameEs.toLowerCase().includes(query) ||
-        icon.tags.some((t) => t.toLowerCase().includes(query));
-      return matchCat && matchQuery;
+        icon.tags.some((t) => t.toLowerCase().includes(query))
+      );
     });
   }, [settings.selectedCategory, settings.searchQuery]);
 
-  const selectedIcon: InteractiveIconDef =
-    ICONS_LIST.find((i) => i.id === selectedIconId) || ICONS_LIST[0];
+  const selectedIcon: InteractiveIconDef = useMemo(
+    () => ICON_BY_ID_MAP.get(selectedIconId) || ICONS_LIST[0],
+    [selectedIconId]
+  );
 
-  const handleQuickCopy = (icon: InteractiveIconDef, e: React.MouseEvent) => {
+  const handleQuickCopy = useCallback((icon: InteractiveIconDef, e: React.MouseEvent) => {
     e.stopPropagation();
     soundEffects.playChime();
     setQuickCopiedId(icon.id);
     setSelectedIconId(icon.id);
     setIsExportModalOpen(true);
     setTimeout(() => setQuickCopiedId(null), 1800);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200">
-      {/* 3-Zone Top Bar Contract */}
+      {/* Top Bar */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -97,21 +108,21 @@ export default function App() {
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
         {/* Editorial Hero Header */}
         <div className="flex flex-col gap-2 pt-2">
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span className="text-indigo-400 font-semibold font-mono">AURAICONS STUDIO</span>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+            <span className="text-emerald-400 font-extrabold font-mono">ARCHIFY PIPELINE &amp; AURAICONS STUDIO</span>
             <span aria-hidden="true">·</span>
-            <span>Iconos Web Vivos con Micro-Física</span>
+            <span>Enjambre Multi-Agente (Work-Stealing)</span>
             <span aria-hidden="true">·</span>
-            <span className="font-mono text-slate-500">60 FPS</span>
+            <span className="font-mono text-sky-400">CV Completo &amp; 10 Proyectos</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-display text-balance">
-                Iconos interactivos y animados para tus páginas web
+              <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-white font-display text-balance">
+                Pipeline Big Data en Directo, Enjambre de Agentes, Mi CV &amp; Estudio de Iconos
               </h1>
-              <p className="text-sm text-slate-400 mt-1.5 max-w-2xl leading-relaxed">
-                Reacción al cursor, morphing vectorial, feedback sonoro opcional y código listo para React y HTML/CSS.
+              <p className="text-sm text-slate-400 mt-1.5 max-w-3xl leading-relaxed">
+                Visualiza el pipeline Archify en tiempo real, añade o balancea agentes (<strong className="text-emerald-400">cuantos más agentes y menos tareas tenga cada uno, mejor</strong>), explora tu <strong className="text-sky-400">Currículum Vitae (CV) completo</strong> y personaliza tus 48 iconos vectoriales animados.
               </p>
             </div>
 
@@ -145,37 +156,57 @@ export default function App() {
         </div>
 
         {/* View Switcher Bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <div className="flex items-center gap-1 p-1 bg-slate-900/90 rounded-2xl border border-slate-800/80">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-slate-900/90 rounded-2xl border border-slate-800/80">
+            <button
+              onClick={() => setActiveTab('archify')}
+              className={`px-4 py-2 text-xs font-extrabold rounded-xl transition-all ${
+                activeTab === 'archify'
+                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/30'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              🏛️ Pipeline Archify, Agentes en Directo &amp; CV
+            </button>
+            <button
+              onClick={() => setActiveTab('cv')}
+              className={`px-4 py-2 text-xs font-extrabold rounded-xl transition-all ${
+                activeTab === 'cv'
+                  ? 'bg-sky-500 text-slate-950 shadow-md shadow-sky-500/30'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              📄 Mi CV Completo &amp; 10 Proyectos
+            </button>
             <button
               onClick={() => setActiveTab('library')}
-              className={`px-4 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
                 activeTab === 'library'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Colección Completa ({ICONS_LIST.length})
+              ✨ Colección Iconos ({ICONS_LIST.length})
             </button>
             <button
               onClick={() => setActiveTab('playground')}
-              className={`px-4 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
                 activeTab === 'playground'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Taller de Ajustes ({selectedIcon.nameEs})
+              🎛️ Taller de Ajustes ({selectedIcon.nameEs})
             </button>
             <button
               onClick={() => setActiveTab('showcase')}
-              className={`px-4 py-1.5 text-xs font-semibold rounded-xl transition-all ${
+              className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all ${
                 activeTab === 'showcase'
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Simulador en Tu Web
+              🌐 Simulador en Tu Web
             </button>
           </div>
 
@@ -184,6 +215,12 @@ export default function App() {
             <span className="font-semibold text-slate-300 capitalize">{settings.selectedTheme}</span>
           </div>
         </div>
+
+        {/* TAB 0A: ARCHIFY LIVE PIPELINE + AGENTS + CV */}
+        {activeTab === 'archify' && <ArchifyLiveAndCvHub initialView="both" />}
+
+        {/* TAB 0B: COMPLETE CV & 10 PROJECTS */}
+        {activeTab === 'cv' && <ArchifyLiveAndCvHub initialView="cv" />}
 
         {/* TAB 1: LIBRARY VIEW */}
         {activeTab === 'library' && (
@@ -357,6 +394,7 @@ export default function App() {
               settings={settings}
               onUpdateSettings={handleUpdateSettings}
               onOpenExport={() => setIsExportModalOpen(true)}
+              onSelectIcon={(id) => setSelectedIconId(id)}
             />
           </div>
         )}

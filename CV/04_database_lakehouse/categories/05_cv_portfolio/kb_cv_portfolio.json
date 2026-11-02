@@ -1,0 +1,34 @@
+[
+  {
+    "item_id": "CV_01",
+    "section": "Streaming & Ingesta",
+    "title": "Clúster Kafka KRaft & Pasarela NiFi de Grado Bancario",
+    "technologies": "Apache Kafka (KRaft), Apache NiFi, Schema Registry, Docker, Kubernetes",
+    "impact_bullet": "Arquitecté un bus de eventos Kafka KRaft con productores idempotentes (acks=all) y contrapresión en NiFi para 45.000 msg/s con 99.99% de disponibilidad y cero pérdida de datos.",
+    "defense_tip": "Explicar la fórmula de utilización M/M/c (ρ <= 0.80) y los 3 repositorios físicos de NiFi."
+  },
+  {
+    "item_id": "CV_02",
+    "section": "Matemática Funcional & Pythonista",
+    "title": "Motor Algebraico en Haskell y Estadística Robusta en Python",
+    "technologies": "Haskell, Python 3.14, SymPy, SciPy, NumPy, Polars (Apache Arrow)",
+    "impact_bullet": "Implementé el Monoide Paralelo de Welford-Chan en Haskell/SymPy y el Z-Score Robusto (MAD) en SciPy/Polars, eliminando el Efecto de Enmascaramiento y elevando la sensibilidad antifraude de Z=2.83 a Z=295.76.",
+    "defense_tip": "Mostrar cómo la mediana tiene un punto de ruptura del 50% frente a outliers extremos."
+  },
+  {
+    "item_id": "CV_03",
+    "section": "Base de Datos & BigQuery AI/ML",
+    "title": "Almacén Analítico en Estrella y Modelos Fundacionales en SQL",
+    "technologies": "SQLite/DuckDB, Google BigQuery AI/ML, TimesFM 2.0, Gemini 2.5 Flash, Iceberg",
+    "impact_bullet": "Diseñé un Data Warehouse en Estrella (Medallion Bronze/Silver/Gold) de 25.000 transacciones e integré AI.DETECT_ANOMALIES, AI.FORECAST y AI.GENERATE_TABLE directamente en SQL.",
+    "defense_tip": "Destacar la división cronológica estricta (history_data vs actual_data) y el uso de TVFs en la cláusula FROM."
+  },
+  {
+    "item_id": "CV_04",
+    "section": "Despliegue, GitOps & Visualización",
+    "title": "Simulador Interactivo Archify Studio y Agente de Notas IA",
+    "technologies": "Google Antigravity SDK, uv, Kubernetes, Terraform, ArgoCD, KaTeX",
+    "impact_bullet": "Construí el visualizador en tiempo real Archify Studio y un Agente de Notas automatizado con Google Antigravity SDK que persiste apuntes y cuadernos Gemini Notebooks en la base de datos maestra.",
+    "defense_tip": "Enseñar en vivo cómo cambia la curva de la Ley de Little y cómo el agente guarda cada celda en SQLite."
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "formula_id": "MATH_01",
+    "name": "Monoide Paralelo de Welford-Chan",
+    "domain": "Álgebra Abstracta & Streaming en 1 Pasada",
+    "latex_expression": "M_{2,AB} = M_{2,A} + M_{2,B} + (\\mu_B - \\mu_A)^2 \\frac{n_A n_B}{n_A + n_B}",
+    "haskell_implementation": "instance Semigroup StatsMonoid where (StatsMonoid nA muA m2A) <> (StatsMonoid nB muB m2B) = let n = nA + nB; delta = muB - muA; mu = muA + delta * fromIntegral nB / fromIntegral n; m2 = m2A + m2B + delta^2 * fromIntegral (nA * nB) / fromIntegral n in StatsMonoid n mu m2",
+    "python_implementation": "delta = other.mean - self.mean; m2_ab = self.m2 + other.m2 + (delta**2)*(self.count*other.count/n_ab)",
+    "classroom_explanation": "Permite a Spark y Flink fusionar la varianza de dos particiones en paralelo en una sola pasada sin errores de redondeo (Error asociativo SymPy = 0)."
+  },
+  {
+    "formula_id": "MATH_02",
+    "name": "Z-Score Robusto basado en la Mediana (MAD)",
+    "domain": "Estadística Robusta Antifraude",
+    "latex_expression": "Z_{\\text{robusto}} = \\frac{|x - \\text{mediana}(X)|}{1.4826 \\cdot \\text{mediana}(|X - \\text{mediana}(X)|)}",
+    "haskell_implementation": "robustZScore x med mad = abs (x - med) / (1.4826 * mad)",
+    "python_implementation": "mad_normal = stats.median_abs_deviation(amounts, scale='normal'); robust_z = np.abs(amounts - np.median(amounts)) / mad_normal",
+    "classroom_explanation": "Su punto de ruptura es del 50%: aunque la mitad de un lote sean fraudes extremos de 10.000€, la mediana y el MAD no se corrompen."
+  },
+  {
+    "formula_id": "MATH_03",
+    "name": "Entropía de Información de Shannon",
+    "domain": "Teoría de la Información & Balanceo Kafka/Spark",
+    "latex_expression": "H(X) = -\\sum_{i=1}^{P} p(x_i) \\log_2 p(x_i)",
+    "haskell_implementation": "shannonEntropy ps = negate $ sum [ p * logBase 2 p | p <- ps, p > 0 ]",
+    "python_implementation": "probs = counts / counts.sum(); entropy = -np.sum(probs * np.log2(probs))",
+    "classroom_explanation": "Mide matemáticamente si una clave está sesgada (Data Skew). Si H(X) cae bruscamente, activamos Key Salting."
+  },
+  {
+    "formula_id": "MATH_04",
+    "name": "Ley de Little y Explosión de Cola M/M/c",
+    "domain": "Teoría de Colas & Dimensionamiento de Clústeres",
+    "latex_expression": "L = \\lambda W, \\quad \\rho = \\frac{\\lambda}{c \\cdot \\mu} \\le 0.80, \\quad \\frac{dL}{d\\lambda} = \\frac{\\mu}{(\\mu - \\lambda)^2}",
+    "haskell_implementation": "minRequiredPartitions lambda mu = ceiling (lambda / (mu * 0.80))",
+    "python_implementation": "min_cores = np.ceil(lambda_rate / (mu_rate * 0.80))",
+    "classroom_explanation": "Demuestra por qué un clúster nunca debe superar el 80% de carga (Actual demo: rho=69.2%, ráfaga Poisson 99.99%=36708 msg/s)."
+  },
+  {
+    "formula_id": "MATH_05",
+    "name": "Operador Elíptico de Helmholtz / Sobolev 2D",
+    "domain": "Ecuaciones en Derivadas Parciales & Análisis Funcional H1",
+    "latex_expression": "-\\kappa \\nabla^2 u(x,y) + \\gamma u(x,y) = f(x,y), \\quad A = \\frac{\\kappa}{h^2}(T_{1D} \\otimes I + I \\otimes T_{1D}) + \\gamma I",
+    "haskell_implementation": "helmholtzResidual kappa gamma lapU u rhs = negate (kappa * lapU) + gamma * u - rhs",
+    "python_implementation": "ilu = spla.spilu(A_csr.tocsc(), drop_tol=1e-4); u_sol, info = spla.bicgstab(A_csr, rhs.ravel(), rtol=1e-10, M=spla.LinearOperator(A_csr.shape, ilu.solve))",
+    "classroom_explanation": "Solver híbrido simbólico-numérico (SymPy -> SciPy CSR + ILU -> JAX XLA) que certifica convergencia con error L2 < 1e-4 en espacio de Sóbolev H1(Ω)."
+  },
+  {
+    "formula_id": "MATH_06",
+    "name": "Potencial de Muchos Cuerpos de Sutton-Chen (Au20)",
+    "domain": "Física Cuántica Molecular & Nanoclusters de Oro",
+    "latex_expression": "E_{tot} = \\sum_{i} \\left[ \\frac{1}{2} \\sum_{j \\neq i} \\epsilon \\left(\\frac{a}{r_{ij}}\\right)^n - c \\epsilon \\sqrt{\\sum_{j \\neq i} \\left(\\frac{a}{r_{ij}}\\right)^m} \\right]",
+    "haskell_implementation": "suttonChenEnergy a eps c n m coords = sum [ 0.5 * pairRep i - c * eps * sqrt (dens i) | i <- [0..length coords - 1] ]",
+    "python_implementation": "rep = 0.5 * eps * np.sum((a / dists)**n); coh = c * eps * np.sum(np.sqrt(np.sum((a / dists)**m, axis=1))); e_tot = rep - coh",
+    "classroom_explanation": "Determina la energía de enlace cohesiva de la pirámide tetraédrica Au20 (a=4.08 Å, c=34.408, n=10, m=8, eps=1.2793e-2 eV), base de la visualización cristalográfica tridimensional."
+  },
+  {
+    "formula_id": "MATH_07",
+    "name": "Invariante de Conservación de Doble Partida de Haskell",
+    "domain": "Sistemas Cuantitativos & Auditoría Financiera Formal",
+    "latex_expression": "\\sum_{k=1}^N \\text{Debe}_k \\equiv \\sum_{k=1}^N \\text{Haber}_k \\iff \\Delta \\text{Balance} = 0",
+    "haskell_implementation": "verifyLedgerInvariant entries = let debit = sum [ d | Debit d <- entries ]; credit = sum [ c | Credit c <- entries ] in debit == credit",
+    "python_implementation": "assert abs(ledger.sum_debits() - ledger.sum_credits()) < 1e-9, 'Violación de Invariante de Doble Partida'",
+    "classroom_explanation": "Garantía formal evaluada en Haskell puro (GHC 9.14) que prohíbe la creación o destrucción artificial de valor monetario en el settlement de órdenes."
+  },
+  {
+    "formula_id": "MATH_08",
+    "name": "Proceso Estocástico de Itô y Drift Log-Normal",
+    "domain": "Cálculo Estocástico & Modelado Financiero",
+    "latex_expression": "dS_t = \\mu S_t dt + \\sigma S_t dW_t \\implies \\ln\\left(\\frac{S_t}{S_0}\\right) \\sim \\mathcal{N}\\left(\\left(\\mu - \\frac{\\sigma^2}{2}\\right)t, \\,\\sigma^2 t\\right)",
+    "haskell_implementation": "geometricBrownian s0 mu sigma dt dw = s0 * exp ((mu - 0.5 * sigma^2) * dt + sigma * sqrt dt * dw)",
+    "python_implementation": "log_returns = np.log(prices[1:] / prices[:-1]); mu = np.mean(log_returns); sigma = np.std(log_returns) * np.sqrt(252)",
+    "classroom_explanation": "Fundamento matemático de Black-Scholes-Merton y de la generación de caminos de Monte Carlo para valoración de riesgo y volatilidad continua."
+  },
+  {
+    "formula_id": "MATH_09",
+    "name": "Ratios Cuantitativos de Sharpe y Sortino Asimétrico",
+    "domain": "Gestión Cuantitativa de Carteras & EFA",
+    "latex_expression": "\\text{Sharpe} = \\frac{\\mathbb{E}[R_p - R_f]}{\\sigma_p}, \\quad \\text{Sortino} = \\frac{\\mathbb{E}[R_p - R_f]}{\\sqrt{\\mathbb{E}[\\min(0, R_p - \\text{MAR})^2]}}",
+    "haskell_implementation": "sortinoRatio rf mar returns = let excess = map (\\r -> r - rf) returns; downDev = sqrt $ mean [ min 0 (r - mar) ^ 2 | r <- returns ] in mean excess / downDev",
+    "python_implementation": "downside = returns[returns < mar] - mar; down_std = np.sqrt(np.mean(downside**2)); sortino = (np.mean(returns) - rf) / down_std",
+    "classroom_explanation": "Sortino penaliza exclusivamente la volatilidad negativa (downside risk), evitando castigar a un algoritmo por saltos positivos de rentabilidad."
+  },
+  {
+    "formula_id": "MATH_10",
+    "name": "Encadenamiento Criptográfico SHA-256 de Bloques WAL",
+    "domain": "Criptografía Aplicada & Integridad de Datos en Streaming",
+    "latex_expression": "\\mathcal{H}_{k} = \\text{SHA256}(\\mathcal{H}_{k-1} \\,|\\,|\\, \\text{Timestamp} \\,|\\,|\\, \\text{Payload})",
+    "haskell_implementation": "chainBlockHash prevHash payload ts = SHA256.hash (prevHash <> encodeUtf8 ts <> encodeUtf8 payload)",
+    "python_implementation": "h = hashlib.sha256(f'{self.latest_block_hash}:{timestamp_ns}:{event_payload}'.encode()).hexdigest()",
+    "classroom_explanation": "Invariante criptográfico del motor NovusStreamDB WAL: convierte el flujo de transacciones en un registro a prueba de manipulación (tamper-evident)."
+  },
+  {
+    "formula_id": "MATH_11",
+    "name": "Ecuación de Poisson y Microestructura de Orderbook",
+    "domain": "Microestructura de Mercado & Alta Frecuencia",
+    "latex_expression": "P(K = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}, \\quad \\text{Imbalance}_{L2} = \\frac{V_{\\text{bid}} - V_{\\text{ask}}}{V_{\\text{bid}} + V_{\\text{ask}}} \\in [-1, 1]",
+    "haskell_implementation": "orderbookImbalance vBid vAsk = (vBid - vAsk) / (vBid + vAsk)",
+    "python_implementation": "imbalance = (depth['bids_vol'] - depth['asks_vol']) / (depth['bids_vol'] + depth['asks_vol'])",
+    "classroom_explanation": "Modela el flujo de llegada de órdenes límites y órdenes de mercado (Proceso de Poisson no homogéneo) y cuantifica la presión direccional del libro."
+  }
+]

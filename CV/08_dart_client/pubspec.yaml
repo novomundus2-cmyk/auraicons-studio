@@ -1,0 +1,13 @@
+name: novus_ledger
+description: NovusMundus Financial Core Ledger Client for Flutter & Dart
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  crypto: ^3.0.3
+
+dev_dependencies:
+  test: ^1.24.0
+  lints: ^3.0.0
