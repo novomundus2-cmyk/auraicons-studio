@@ -1,0 +1,86 @@
+[
+  {
+    "playbook_id": "PB-01-PRODUCTION-AI-ARCHITECTURE",
+    "category": "ai_engineering",
+    "title": "Production AI Architecture & Latency-Cost Routing Guide",
+    "subtitle": "Guía de Decisión para CTOs: Arquitectura Híbrida de Inferencia (Frontier APIs + Modelos Locales)",
+    "target_audience": "CTOs, VP of Engineering, Lead AI Architects",
+    "badge": "AI & SYSTEMS",
+    "dilemma": "¿Cuándo delegar a APIs frontera (Gemini 3.8 / Claude 3.7) versus ejecutar modelos locales en microsegundos (TensorFlow / ONNX / GHC)?",
+    "decision_framework": [
+      "1. Latencia < 5ms: Ejecución local determinista en memoria (Haskell/C/Python local).",
+      "2. Análisis Multimodal & Tesis Cuantitativa: Llamada en segundo plano a Gemini 3.8 con esquemas estructurados Pydantic.",
+      "3. Fallback en Cascada: Local Rule Engine -> Online Adaptive ML -> Frontier LLM.",
+      "4. Guardrails de Coste: Circuit breaker a 150$/día y rate-limiting por token."
+    ],
+    "verification_code": "# Enrutamiento Híbrido Determinista\ndef route_ai_inference(market_tick, urgency_ms=5):\n    if urgency_ms <= 5:\n        return LOCAL_TENSORFLOW_ADAPTIVE.predict_signal(market_tick)\n    return GEMINI_38_FLASH.generate_structured_thesis(market_tick)",
+    "production_checklist": [
+      "Esquemas Pydantic / TypeScript estrictos para validar todo output LLM.",
+      "Timeouts asíncronos no bloqueantes con fallbacks locales seguros.",
+      "Auditoría de costes en tiempo real con alertas a Prometheus/Slack."
+    ]
+  },
+  {
+    "playbook_id": "PB-02-FORMAL-SECURITY-AUDIT-FRAMEWORK",
+    "category": "security_fintech",
+    "title": "Framework de Seguridad Financiera & Auditoría Formal Haskell (GHC 9.14)",
+    "subtitle": "Marco de Auditoría Institucional: Invariantes Contables y Sellado Criptográfico WAL",
+    "target_audience": "CISOs, Security Engineers, Auditores Financieros",
+    "badge": "FORMAL VERIFICATION",
+    "dilemma": "¿Cómo garantizar con certeza matemática absoluta que un sistema autónomo de liquidación jamás cree, destruya o duplique capital?",
+    "decision_framework": [
+      "1. Invariante Innegociable de Doble Partida: Σ(Debe) ≡ Σ(Haber) verificado por tipos inductivos en Haskell GHC 9.14.",
+      "2. Inmutabilidad de Transición: Ningún balance se actualiza in-place; todo cambio es un evento encadenado con SHA-256.",
+      "3. Aritmética de Enteros en Centésimas: Prohibición total de float en almacenamiento contable para evitar errores de redondeo IEEE 754.",
+      "4. Separación de Llaves: Claves de firma de eventos separadas de claves de ejecución de órdenes."
+    ],
+    "verification_code": "-- Verificación Formal en Haskell GHC 9.14\nverifyLedgerInvariant :: [LedgerEntry] -> Bool\nverifyLedgerInvariant entries =\n  let debits  = sum [ d | Debit d <- entries ]\n      credits = sum [ c | Credit c <- entries ]\n  in debits == credits && debits >= 0",
+    "production_checklist": [
+      "Verificación formal en pre-commit con GHC estricto sin warnings.",
+      "Rechazo automático de transacciones que generen residuo contable > 0.",
+      "Hash previo verificado en cada bloque del archivo WAL antes de asentar."
+    ]
+  },
+  {
+    "playbook_id": "PB-03-STREAMING-INFRASTRUCTURE-SCALING",
+    "category": "streaming_infrastructure",
+    "title": "Guía de Escalado de Streaming & Dimensionamiento de Colas (Ley de Little)",
+    "subtitle": "Arquitectura de Streaming Reactivo de Cero Pérdida con NovusStreamDB",
+    "target_audience": "Data Architects, Platform Engineers, SREs",
+    "badge": "STREAMING & WAL",
+    "dilemma": "¿Cómo dimensionar buffers, hilos y clústeres de streaming para soportar picos de 35.000 msg/s sin caída de rendimiento ni OOM?",
+    "decision_framework": [
+      "1. Umbral Crítico de Carga: La utilización ρ = λ / (c * μ) nunca debe superar 0.80 para evitar la explosión exponencial de cola (dL/dλ).",
+      "2. Monoide de Welford-Chan: Fusión asociativa de estadísticas (A ⊕ B) ⊕ C en O(1) de memoria sin pérdida de precisión.",
+      "3. Ring-Buffer Circular sin Asignación: 10.000 slots preasignados en RAM para evitar pausas por Garbage Collection.",
+      "4. Desacoplamiento Productor-Consumidor: Colas thread-safe con backpressure no bloqueante."
+    ],
+    "verification_code": "# Cálculo de Particiones Requeridas (Ley de Little & M/M/c)\ndef calculate_min_partitions(lambda_rate, mu_worker_rate, max_rho=0.80):\n    return int(np.ceil(lambda_rate / (mu_worker_rate * max_rho)))",
+    "production_checklist": [
+      "Métricas de lag en milisegundos observadas continuamente vía Server-Sent Events (SSE).",
+      "Recuperación determinista ante fallos reproduciendo el archivo WAL desde el último bloque verificado.",
+      "Saturación de buffer alertada proactivamente al superar el 85% de capacidad."
+    ]
+  },
+  {
+    "playbook_id": "PB-04-ZERO-TRUST-LAKEHOUSE-BLUEPRINT",
+    "category": "data_engineering",
+    "title": "Arquetipo Zero-Trust de Lago de Datos & Contratos Pandera (Medallion)",
+    "subtitle": "Patrón de Extracción Seguro y Gobernanza de Datos (Bronze / Silver / Gold)",
+    "target_audience": "Staff Data Engineers, CDOs, Compliance Officers",
+    "badge": "DATA GOVERNANCE",
+    "dilemma": "¿Cómo permitir que agentes y desarrolladores exploren y transformen datos corporativos sin riesgo de inyecciones o alteración de fuentes maestras?",
+    "decision_framework": [
+      "1. Solo Lectura en Origen a nivel AST: Los conectores SQL rechazan toda sentencia que no comience por SELECT o WITH.",
+      "2. Capa Bronze Sagrada: Almacenamiento idéntico al origen con columnas de linaje (_source, _ingested_at, _run_id, sha256).",
+      "3. Contratos de Calidad en Silver: Tipado explícito con Pandera; registros corruptos se desvían a cuarentena sin frenar el flujo.",
+      "4. Enmascaramiento PII Obligatorio: Nombres, emails y datos sensibles anonimizados antes de publicar vistas en Gold."
+    ],
+    "verification_code": "# Conector Seguro de Solo Lectura (AST Parsing)\ndef assert_readonly_query(sql: str) -> None:\n    normalized = sql.strip().upper()\n    if not (normalized.startswith('SELECT') or normalized.startswith('WITH')):\n        raise SecurityException('Violación de Seguridad: Sentencia de escritura no permitida')",
+    "production_checklist": [
+      "Credenciales fuera del código: inyección exclusiva por Secrets de Kubernetes o variables de entorno.",
+      "Generación obligatoria de informe de auditoría Markdown por cada ejecución de pipeline.",
+      "Idempotencia garantizada por hash del contenido y clave de negocio."
+    ]
+  }
+]

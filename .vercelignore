@@ -1,0 +1,15 @@
+node_modules
+.venv
+**/__pycache__
+**/.venv
+**/.pytest_cache
+**/.ruff_cache
+**/*.pyc
+**/*.sqlite3
+**/*.db
+CV/06_ai_note_agent/.venv
+CV/07_trading_bot/.venv
+CV/04_database_lakehouse/*.db
+CV/.git
+.git
+.DS_Store

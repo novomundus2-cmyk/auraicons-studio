@@ -1,8 +1,55 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { InteractiveIconDef, IconStyleTheme, AnimationType, TriggerMode } from '../types/icon';
 import { soundEffects } from '../utils/audio';
+
+const THEME_COLOR_MAP: Record<IconStyleTheme, { stroke: string; secondary: string; glow: string; bgGlow: string }> = {
+  neon: {
+    stroke: '#38bdf8',
+    secondary: '#c084fc',
+    glow: 'rgba(56, 189, 248, 0.45)',
+    bgGlow: 'rgba(56, 189, 248, 0.12)',
+  },
+  sunset: {
+    stroke: '#f43f5e',
+    secondary: '#fb923c',
+    glow: 'rgba(244, 63, 94, 0.45)',
+    bgGlow: 'rgba(244, 63, 94, 0.15)',
+  },
+  minimal: {
+    stroke: '#f8fafc',
+    secondary: '#94a3b8',
+    glow: 'rgba(255, 255, 255, 0.2)',
+    bgGlow: 'rgba(255, 255, 255, 0.05)',
+  },
+  emerald: {
+    stroke: '#10b981',
+    secondary: '#34d399',
+    glow: 'rgba(16, 185, 129, 0.45)',
+    bgGlow: 'rgba(16, 185, 129, 0.12)',
+  },
+  cyber: {
+    stroke: '#06b6d4',
+    secondary: '#ec4899',
+    glow: 'rgba(6, 182, 212, 0.5)',
+    bgGlow: 'rgba(6, 182, 212, 0.15)',
+  },
+  duotone: {
+    stroke: '#8b5cf6',
+    secondary: '#f59e0b',
+    glow: 'rgba(139, 92, 246, 0.45)',
+    bgGlow: 'rgba(139, 92, 246, 0.12)',
+  },
+  glass: {
+    stroke: '#60a5fa',
+    secondary: '#a78bfa',
+    glow: 'rgba(96, 165, 250, 0.4)',
+    bgGlow: 'rgba(96, 165, 250, 0.12)',
+  },
+};
+
+const CONFETTI_COLORS = ['#38bdf8', '#818cf8', '#ec4899', '#34d399', '#f59e0b'];
 
 interface InteractiveIconProps {
   icon: InteractiveIconDef;
@@ -24,7 +71,7 @@ interface InteractiveIconProps {
   className?: string;
 }
 
-export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
+const InteractiveIconComponent: React.FC<InteractiveIconProps> = ({
   icon,
   size = 28,
   strokeWidth = 2,
@@ -44,41 +91,53 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
   className = '',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Handle magnetic cursor pull
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!enableMagnetic || triggerMode === 'loop') return;
-    if (!containerRef.current) return;
+  // Handle magnetic cursor pull with 60 FPS requestAnimationFrame throttling
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!enableMagnetic || triggerMode === 'loop' || !containerRef.current) return;
+      if (rafRef.current !== null) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
 
-    const pullStrength = 0.28;
-    const deltaX = (e.clientX - centerX) * pullStrength;
-    const deltaY = (e.clientY - centerY) * pullStrength;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width * 0.5;
+        const centerY = rect.top + rect.height * 0.5;
+        setMousePos({
+          x: (clientX - centerX) * 0.28,
+          y: (clientY - centerY) * 0.28,
+        });
+      });
+    },
+    [enableMagnetic, triggerMode]
+  );
 
-    setMousePos({ x: deltaX, y: deltaY });
-  };
-
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
     if (enableSound && triggerMode !== 'click') {
       soundEffects.playHoverBlip();
     }
-  };
+  }, [enableSound, triggerMode]);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     setIsHovered(false);
     setMousePos({ x: 0, y: 0 });
-  };
+  }, []);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const nextToggle = !isToggled;
-    setIsToggled(nextToggle);
+  const handleClick = useCallback(() => {
+    setIsToggled((prev) => !prev);
 
     if (enableSound) {
       if (icon.id === 'heart-like') {
@@ -94,8 +153,8 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
 
     if (enableParticles && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
-      const x = (rect.left + rect.width / 2) / window.innerWidth;
-      const y = (rect.top + rect.height / 2) / window.innerHeight;
+      const x = (rect.left + rect.width * 0.5) / window.innerWidth;
+      const y = (rect.top + rect.height * 0.5) / window.innerHeight;
 
       confetti({
         particleCount: 16,
@@ -103,7 +162,7 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
         startVelocity: 18,
         ticks: 50,
         origin: { x, y },
-        colors: ['#38bdf8', '#818cf8', '#ec4899', '#34d399', '#f59e0b'],
+        colors: CONFETTI_COLORS,
         disableForReducedMotion: true,
       });
     }
@@ -111,7 +170,7 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
     if (onClick) {
       onClick();
     }
-  };
+  }, [enableSound, enableParticles, icon.id, onClick]);
 
   // Determine active visual trigger
   const isTriggered =
@@ -121,87 +180,31 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
       ? isToggled
       : isHovered;
 
-  // Resolve color palette based on theme
-  const getThemeColors = () => {
+  // O(1) Memoized theme color palette
+  const colors = useMemo(() => {
     if (primaryColor) {
       return {
         stroke: primaryColor,
         secondary: secondaryColor || primaryColor,
         glow: accentColor || primaryColor,
-        bgGlow: `rgba(99, 102, 241, 0.12)`,
+        bgGlow: 'rgba(99, 102, 241, 0.12)',
       };
     }
+    return THEME_COLOR_MAP[theme] || THEME_COLOR_MAP.glass;
+  }, [primaryColor, secondaryColor, accentColor, theme]);
 
-    switch (theme) {
-      case 'neon':
-        return {
-          stroke: '#38bdf8',
-          secondary: '#c084fc',
-          glow: 'rgba(56, 189, 248, 0.45)',
-          bgGlow: 'rgba(56, 189, 248, 0.12)',
-        };
-      case 'sunset':
-        return {
-          stroke: '#f43f5e',
-          secondary: '#fb923c',
-          glow: 'rgba(244, 63, 94, 0.45)',
-          bgGlow: 'rgba(244, 63, 94, 0.15)',
-        };
-      case 'minimal':
-        return {
-          stroke: '#f8fafc',
-          secondary: '#94a3b8',
-          glow: 'rgba(255, 255, 255, 0.2)',
-          bgGlow: 'rgba(255, 255, 255, 0.05)',
-        };
-      case 'emerald':
-        return {
-          stroke: '#10b981',
-          secondary: '#34d399',
-          glow: 'rgba(16, 185, 129, 0.45)',
-          bgGlow: 'rgba(16, 185, 129, 0.12)',
-        };
-      case 'cyber':
-        return {
-          stroke: '#06b6d4',
-          secondary: '#ec4899',
-          glow: 'rgba(6, 182, 212, 0.5)',
-          bgGlow: 'rgba(6, 182, 212, 0.15)',
-        };
-      case 'duotone':
-        return {
-          stroke: '#8b5cf6',
-          secondary: '#f59e0b',
-          glow: 'rgba(139, 92, 246, 0.45)',
-          bgGlow: 'rgba(139, 92, 246, 0.12)',
-        };
-      case 'glass':
-      default:
-        return {
-          stroke: '#60a5fa',
-          secondary: '#a78bfa',
-          glow: 'rgba(96, 165, 250, 0.4)',
-          bgGlow: 'rgba(96, 165, 250, 0.12)',
-        };
-    }
-  };
-
-  const colors = getThemeColors();
-
-  // Container styling classes
-  const getContainerClasses = () => {
+  // Memoized container styling classes
+  const containerClasses = useMemo(() => {
     const base = 'relative inline-flex items-center justify-center transition-all duration-300 select-none';
     if (containerShape === 'none') return `${base} p-1`;
 
     let shapeClasses = 'rounded-2xl';
     if (containerShape === 'circle') shapeClasses = 'rounded-full';
-    if (containerShape === 'square') shapeClasses = 'rounded-xl';
-    if (containerShape === 'squircle') shapeClasses = 'rounded-[22%]';
+    else if (containerShape === 'square') shapeClasses = 'rounded-xl';
+    else if (containerShape === 'squircle') shapeClasses = 'rounded-[22%]';
 
-    const glassStyle =
-      'bg-slate-900/60 backdrop-blur-md border border-slate-700/50 shadow-sm hover:border-slate-500/60';
-    return `${base} ${shapeClasses} ${glassStyle} p-3 cursor-pointer`;
-  };
+    return `${base} ${shapeClasses} bg-slate-900/60 backdrop-blur-md border border-slate-700/50 shadow-sm hover:border-slate-500/60 p-3 cursor-pointer`;
+  }, [containerShape]);
 
   // Specific Morph Renderers
   const renderIconPaths = () => {
@@ -374,6 +377,111 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
       );
     }
 
+    // 7. Custom: Multi-PC & NAS RAID Server Cluster
+    if (icon.id === 'nas-server-cluster') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <motion.rect
+            x="2"
+            y="3"
+            width="20"
+            height="7"
+            rx="2"
+            fill={isTriggered ? colors.bgGlow : 'none'}
+            animate={isTriggered ? { y: -1 } : { y: 0 }}
+          />
+          <motion.rect
+            x="2"
+            y="14"
+            width="20"
+            height="7"
+            rx="2"
+            fill={isTriggered ? colors.bgGlow : 'none'}
+            animate={isTriggered ? { y: 1 } : { y: 0 }}
+          />
+          <circle cx="6" cy="6.5" r="1" fill={isTriggered ? '#10b981' : colors.stroke} />
+          <circle cx="9.5" cy="6.5" r="1" fill={isTriggered ? '#38bdf8' : colors.secondary} />
+          <circle cx="6" cy="17.5" r="1" fill={isTriggered ? '#10b981' : colors.stroke} />
+          <circle cx="9.5" cy="17.5" r="1" fill={isTriggered ? '#f59e0b' : colors.secondary} />
+          <motion.line x1="14" y1="6.5" x2="18.5" y2="6.5" animate={isTriggered ? { scaleX: 1.15 } : { scaleX: 1 }} />
+          <motion.line x1="14" y1="17.5" x2="18.5" y2="17.5" animate={isTriggered ? { scaleX: 1.15 } : { scaleX: 1 }} />
+          <motion.path d="M12 10v4" stroke={colors.secondary} strokeDasharray="2 2" />
+        </g>
+      );
+    }
+
+    // 8. Custom: BigQuery Property Graph (GQL)
+    if (icon.id === 'bigquery-graph-nodes') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <motion.line
+            x1="6"
+            y1="6"
+            x2="18"
+            y2="7"
+            stroke={colors.secondary}
+            animate={isTriggered ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.75 }}
+            transition={{ repeat: isTriggered ? Infinity : 0, duration: 0.9 }}
+          />
+          <motion.line
+            x1="6"
+            y1="6"
+            x2="12"
+            y2="18"
+            stroke={colors.secondary}
+            animate={isTriggered ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.75 }}
+            transition={{ repeat: isTriggered ? Infinity : 0, duration: 0.9, delay: 0.2 }}
+          />
+          <motion.line
+            x1="18"
+            y1="7"
+            x2="12"
+            y2="18"
+            stroke={colors.secondary}
+            animate={isTriggered ? { opacity: [0.4, 1, 0.4] } : { opacity: 0.75 }}
+            transition={{ repeat: isTriggered ? Infinity : 0, duration: 0.9, delay: 0.4 }}
+          />
+          <motion.circle cx="6" cy="6" r="3" fill={colors.bgGlow} animate={isTriggered ? { scale: 1.2 } : { scale: 1 }} />
+          <motion.circle cx="18" cy="7" r="3" fill={colors.bgGlow} animate={isTriggered ? { scale: 1.2 } : { scale: 1 }} />
+          <motion.circle cx="12" cy="18" r="3.2" fill={colors.secondary} fillOpacity={0.35} animate={isTriggered ? { scale: 1.25 } : { scale: 1 }} />
+        </g>
+      );
+    }
+
+    // 9. Custom: Firebase Cloud Flame
+    if (icon.id === 'firebase-cloud-flame') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <motion.path
+            d="M5 18L8.5 3.5l4.5 5.5L16.5 5 19 18l-7 4-7-4z"
+            fill={colors.secondary}
+            fillOpacity={isTriggered ? 0.28 : 0.1}
+            animate={isTriggered ? { y: [-1, 1, -1], scale: 1.06 } : { y: 0, scale: 1 }}
+            transition={{ duration: 0.6, repeat: isTriggered ? Infinity : 0 }}
+          />
+          <motion.path
+            d="M5 18l7-9.5L19 18"
+            stroke={colors.secondary}
+          />
+        </g>
+      );
+    }
+
+    // 10. Custom: Welford-MAD Cyber Shield
+    if (icon.id === 'welford-shield-mad') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill={colors.bgGlow} />
+          <motion.path
+            d="M7 12h2.5l1.5-3.5 2 7 1.5-3.5H17"
+            stroke={isTriggered ? '#10b981' : colors.secondary}
+            animate={isTriggered ? { pathLength: [0.2, 1], scale: 1.08 } : { pathLength: 1, scale: 1 }}
+            transition={{ duration: 0.45 }}
+          />
+        </g>
+      );
+    }
+
     // Default icon path renderer with enhanced animation styles
     return (
       <g stroke={colors.stroke} strokeWidth={strokeWidth} fill="none">
@@ -483,7 +591,7 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
-      className={`${getContainerClasses()} ${className}`}
+      className={`${containerClasses} ${className}`}
       style={{
         boxShadow: isTriggered && theme === 'neon' ? `0 0 25px ${colors.glow}` : undefined,
       }}
@@ -546,3 +654,6 @@ export const InteractiveIcon: React.FC<InteractiveIconProps> = ({
     </div>
   );
 };
+
+export const InteractiveIcon = React.memo(InteractiveIconComponent);
+

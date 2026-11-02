@@ -1,45 +1,107 @@
 import React from 'react';
 import { InteractiveIconDef, StudioSettings, IconStyleTheme, TriggerMode, AnimationType } from '../types/icon';
 import { InteractiveIcon } from './InteractiveIcon';
+import { ICONS_LIST } from '../data/iconsList';
 
 interface IconStudioCanvasProps {
   icon: InteractiveIconDef;
   settings: StudioSettings;
   onUpdateSettings: (partial: Partial<StudioSettings>) => void;
   onOpenExport: () => void;
+  onSelectIcon?: (id: string) => void;
 }
 
-export const IconStudioCanvas: React.FC<IconStudioCanvasProps> = ({
+const THEMES: { id: IconStyleTheme; name: string; color: string }[] = [
+  { id: 'glass', name: 'Glass Aura', color: '#60a5fa' },
+  { id: 'neon', name: 'Cyber Neon', color: '#38bdf8' },
+  { id: 'cyber', name: 'Neon Magenta', color: '#ec4899' },
+  { id: 'emerald', name: 'Emerald Tech', color: '#10b981' },
+  { id: 'duotone', name: 'Duotone Pop', color: '#8b5cf6' },
+  { id: 'sunset', name: 'Sunset Rose', color: '#f43f5e' },
+  { id: 'minimal', name: 'Minimal Clean', color: '#f8fafc' },
+];
+
+const FEATURED_DOCK_IDS = [
+  'nas-server-cluster',
+  'bigquery-graph-nodes',
+  'firebase-cloud-flame',
+  'welford-shield-mad',
+  'kafka-spark-stream',
+  'iceberg-lakehouse-cube',
+  'dts-transfer-portal',
+  'quantum-cpu-core',
+  'sparkle-ai',
+  'sun-moon',
+];
+
+const FEATURED_ICONS: InteractiveIconDef[] = FEATURED_DOCK_IDS
+  .map((id) => ICONS_LIST.find((item) => item.id === id))
+  .filter((item): item is InteractiveIconDef => Boolean(item));
+
+const ANIMATIONS: { id: AnimationType; label: string }[] = [
+  { id: 'bounce', label: 'Rebote Elástico' },
+  { id: 'morph', label: 'Morph / Transformación' },
+  { id: 'pulse', label: 'Pulso Rítmico' },
+  { id: 'glow', label: 'Resplandor Aura' },
+  { id: 'spin', label: 'Rotación Giro' },
+  { id: 'shake', label: 'Vibración / Dindán' },
+  { id: 'tilt', label: 'Inclinación 3D' },
+  { id: 'strokeDraw', label: 'Dibujo de Trazo' },
+  { id: 'heartbeat', label: 'Latido Cardíaco' },
+  { id: 'burst', label: 'Explosión Estelar' },
+];
+
+export const IconStudioCanvas: React.FC<IconStudioCanvasProps> = React.memo(({
   icon,
   settings,
   onUpdateSettings,
   onOpenExport,
+  onSelectIcon,
 }) => {
-  const themes: { id: IconStyleTheme; name: string; color: string }[] = [
-    { id: 'glass', name: 'Glass Aura', color: '#60a5fa' },
-    { id: 'neon', name: 'Cyber Neon', color: '#38bdf8' },
-    { id: 'sunset', name: 'Sunset Rose', color: '#f43f5e' },
-    { id: 'minimal', name: 'Minimal Monocromo', color: '#f8fafc' },
-    { id: 'emerald', name: 'Emerald Tech', color: '#10b981' },
-    { id: 'duotone', name: 'Duotone Pop', color: '#8b5cf6' },
-  ];
-
-  const animations: { id: AnimationType; label: string }[] = [
-    { id: 'bounce', label: 'Rebote Elástico' },
-    { id: 'morph', label: 'Morph / Transformación' },
-    { id: 'pulse', label: 'Pulso Rítmico' },
-    { id: 'glow', label: 'Resplandor Aura' },
-    { id: 'spin', label: 'Rotación Giro' },
-    { id: 'shake', label: 'Vibración / Dindán' },
-    { id: 'tilt', label: 'Inclinación 3D' },
-    { id: 'strokeDraw', label: 'Dibujo de Trazo' },
-  ];
+  const themes = THEMES;
+  const featuredIcons = FEATURED_ICONS;
+  const animations = ANIMATIONS;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       {/* Big Hero Interactive Stage */}
       <div className="lg:col-span-7 flex flex-col gap-4">
-        <div className="relative flex flex-col items-center justify-center min-h-[440px] rounded-3xl bg-slate-900/60 border border-slate-800/80 p-8 overflow-hidden backdrop-blur-sm group">
+        {/* Live Featured Dock for Quick Icon Switching */}
+        <div className="flex flex-col gap-2 p-3.5 rounded-2xl bg-slate-900/75 border border-slate-800/90">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-semibold text-sky-400">⚡ Dock Rápido · Iconos de Servidor, NAS, Grafo BigQuery, Firebase &amp; IA</span>
+            <span className="text-[11px] text-slate-400">Pulsa cualquiera para probarlo en el escenario</span>
+          </div>
+          <div className="flex items-center gap-2 overflow-x-auto py-1">
+            {featuredIcons.map((feat) => {
+              const active = feat.id === icon.id;
+              return (
+                <button
+                  key={feat.id}
+                  onClick={() => onSelectIcon?.(feat.id)}
+                  className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl border text-xs whitespace-nowrap transition-all shrink-0 ${
+                    active
+                      ? 'bg-indigo-600/25 border-sky-400 text-white shadow-md shadow-sky-500/10'
+                      : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                  }`}
+                >
+                  <InteractiveIcon
+                    icon={feat}
+                    size={18}
+                    strokeWidth={2}
+                    theme={settings.selectedTheme}
+                    containerShape="none"
+                    enableSound={false}
+                    enableParticles={false}
+                  />
+                  <span className="font-medium">{feat.nameEs}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative flex flex-col items-center justify-center min-h-[450px] rounded-3xl bg-slate-900/60 border border-slate-800/80 p-8 overflow-hidden backdrop-blur-sm group">
           {/* Subtle grid pattern background */}
           <div
             className="absolute inset-0 opacity-[0.07] pointer-events-none"
@@ -62,14 +124,14 @@ export const IconStudioCanvas: React.FC<IconStudioCanvasProps> = ({
 
           <div className="absolute top-4 right-6 flex items-center gap-1.5 bg-slate-800/70 border border-slate-700/60 rounded-xl px-2.5 py-1 text-xs text-slate-300">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Listo para interactuar</span>
+            <span>60 FPS · Vectorial Interactivo</span>
           </div>
 
-          {/* The Hero Interactive Icon */}
-          <div className="my-auto transform transition-transform duration-300 flex flex-col items-center gap-6">
+          {/* The Hero Interactive Icon + Multi-Scale Live Strip */}
+          <div className="my-auto transform transition-transform duration-300 flex flex-col items-center gap-5">
             <InteractiveIcon
               icon={icon}
-              size={settings.iconSize * 1.5}
+              size={settings.iconSize * 1.65}
               strokeWidth={settings.strokeWidth}
               theme={settings.selectedTheme}
               triggerMode={settings.triggerMode}
@@ -79,8 +141,26 @@ export const IconStudioCanvas: React.FC<IconStudioCanvasProps> = ({
               containerShape={settings.containerShape}
               className="shadow-2xl"
             />
-            <p className="text-xs text-slate-400 max-w-sm text-center">
-              Pasa el ratón por encima, muévelo cerca o haz clic para probar la física y el sonido sintetizado.
+            <div className="flex items-center gap-4 px-4 py-2 rounded-2xl bg-slate-950/70 border border-slate-800/80">
+              {[20, 28, 40].map((sz) => (
+                <div key={sz} className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono">
+                  <InteractiveIcon
+                    icon={icon}
+                    size={sz}
+                    strokeWidth={settings.strokeWidth}
+                    theme={settings.selectedTheme}
+                    triggerMode={settings.triggerMode}
+                    enableMagnetic={false}
+                    enableSound={false}
+                    enableParticles={false}
+                    containerShape="none"
+                  />
+                  <span>{sz}px</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-slate-400 max-w-md text-center">
+              {icon.description}
             </p>
           </div>
 
@@ -308,4 +388,5 @@ export const IconStudioCanvas: React.FC<IconStudioCanvasProps> = ({
       </div>
     </div>
   );
-};
+});
+

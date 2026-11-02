@@ -1,0 +1,102 @@
+[
+  {
+    "project_number": 1,
+    "project_code": "PROJ_01",
+    "title": "Motor Algebraico Antifraude en Tiempo Real (Welford Monoid & MAD)",
+    "status": "COMPLETADO ✅",
+    "core_stack": "Haskell, Python 3.14, SymPy, SciPy, Polars, SQLite Star Schema",
+    "math_foundation": "Monoide Asociativo de Welford-Chan + Z-Score Robusto (MAD) con 50% Breakdown Point",
+    "deliverable_folder": "03_math_haskell_python/ + 04_database_lakehouse/",
+    "what_you_prove": "Demuestras que sabes detectar fraudes que engañan a la desviación típica clásica (Z=2.83 -> Z=295.76) y agregar particiones en 1 sola pasada O(1)."
+  },
+  {
+    "project_number": 2,
+    "project_code": "PROJ_02",
+    "title": "Pasarela Edge con Apache NiFi, Backpressure & Linaje Forense",
+    "status": "LISTO PARA EMPEZAR 🔜",
+    "core_stack": "Apache NiFi, FlowFiles, Avro Schema Registry, Python Edge Simulator",
+    "math_foundation": "Proceso de Poisson P(k; λt) y Acotación de Colas en Disco",
+    "deliverable_folder": "02_streaming_platform/nifi/",
+    "what_you_prove": "Demuestras cómo frenar picos de tráfico (Backpressure 10k objetos / 1 GB) sin perder datos ni tumbar Kafka por falta de RAM."
+  },
+  {
+    "project_number": 3,
+    "project_code": "PROJ_03",
+    "title": "Clúster Apache Kafka KRaft (Sin ZooKeeper) & Dimensionamiento M/M/c",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Apache Kafka KRaft, Docker Compose, Productor Idempotente (acks=all)",
+    "math_foundation": "Teoría de Colas M/M/c, Ley de Little (L = λW) y Asíntota ρ -> 1",
+    "deliverable_folder": "02_streaming_platform/producers/",
+    "what_you_prove": "Demuestras cómo calcular matemáticamente el número exacto de particiones para mantener ρ <= 0.80 y evitar rebalances."
+  },
+  {
+    "project_number": 4,
+    "project_code": "PROJ_04",
+    "title": "PySpark Structured Streaming: Watermarking, RocksDB & Anti-Data Skew",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "PySpark 3.5, Tumbling Windows (1 min), Watermark (10 min), Salting",
+    "math_foundation": "Entropía de Shannon H(X) = -Σ p_i log2(p_i) para detección de Hot Keys",
+    "deliverable_folder": "02_streaming_platform/spark_jobs/",
+    "what_you_prove": "Demuestras cómo eliminar errores OutOfMemory (OOM) en el State Store y cómo repartir claves sesgadas mediante Salting en 2 fases."
+  },
+  {
+    "project_number": 5,
+    "project_code": "PROJ_05",
+    "title": "Open Data Lakehouse con Apache Iceberg, Compaction & Time Travel",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Apache Iceberg, MinIO S3, Parquet + ZSTD, PyIceberg / Spark SQL",
+    "math_foundation": "Optimización de Bloques Columnares y Eliminación del Small Files Problem",
+    "deliverable_folder": "04_database_lakehouse/",
+    "what_you_prove": "Demuestras cómo pasar de miles de micro-archivos lentos a snapshots ACID compactados de 256 MB con consultas instantáneas."
+  },
+  {
+    "project_number": 6,
+    "project_code": "PROJ_06",
+    "title": "Motor Vectorizado Ultra-Rápido con Polars, Apache Arrow & DuckDB",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Polars Lazy API, Apache Arrow Zero-Copy, DuckDB OLAP",
+    "math_foundation": "Álgebra Relacional Vectorizada SIMD y Pushdown de Predicados",
+    "deliverable_folder": "03_math_haskell_python/",
+    "what_you_prove": "Demuestras cómo procesar millones de filas en un solo nodo 15x más rápido que Pandas tradicional y con una fracción de RAM."
+  },
+  {
+    "project_number": 7,
+    "project_code": "PROJ_07",
+    "title": "IA Analítica en SQL con BigQuery AI/ML (TimesFM 2.0 & Gemini 2.5)",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Google BigQuery, AI.DETECT_ANOMALIES, AI.FORECAST, AI.EVALUATE, AI.GENERATE_TABLE",
+    "math_foundation": "Modelos Fundacionales de Series Temporales Zero-Shot y Evaluación RMSE/MAE",
+    "deliverable_folder": "01_notebooks/03_bigquery_ai_ml_database.ipynb",
+    "what_you_prove": "Demuestras cómo pronosticar demanda y extraer entidades estructuradas con IA directamente en SQL sin pipelines complejos de reentrenamiento."
+  },
+  {
+    "project_number": 8,
+    "project_code": "PROJ_08",
+    "title": "Calidad de Datos Automatizada y Contratos de Esquema (Zero-Trust)",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Pydantic v2, Pandera / Polars Contracts, Dead-Letter Queue (DLQ)",
+    "math_foundation": "Teoría de Conjuntos, Invariantes de Dominio y Test Estadístico KS (Kolmogorov-Smirnov)",
+    "deliverable_folder": "04_database_lakehouse/",
+    "what_you_prove": "Demuestras cómo aislar registros corruptos y detectar Data Drift estadístico antes de que contamine las tablas Gold."
+  },
+  {
+    "project_number": 9,
+    "project_code": "PROJ_09",
+    "title": "Despliegue Cloud-Native en Kubernetes, Helm, Terraform & GitOps ArgoCD",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Kubernetes (K8s), Strimzi Kafka Operator, Spark Operator, Terraform, ArgoCD",
+    "math_foundation": "Autoescalado basado en Derivada de Lag dL/dλ y SLOs de Latencia p99",
+    "deliverable_folder": "08_kubernetes_gitops/",
+    "what_you_prove": "Demuestras que no solo programas pipelines, sino que sabes desplegarlos en producción real con infraestructura como código y CI/CD."
+  },
+  {
+    "project_number": 10,
+    "project_code": "PROJ_10",
+    "title": "Capstone Final: Gemelo Digital Financiero + Agente IA Autónomo",
+    "status": "PENDIENTE ⏳",
+    "core_stack": "Archify Studio, Google Antigravity SDK, FastAPI/SQLite, Portfolio Completo",
+    "math_foundation": "Integración Total de los 4 Pilares Matemáticos y Defensa Ejecutiva",
+    "deliverable_folder": "05_archify_visualizer/ + 06_ai_note_agent/ + 07_cv_and_career/",
+    "what_you_prove": "Tu proyecto cumbre: un sistema completo extremo a extremo con visualizador en vivo y agente IA que demuestra nivel Senior/Staff."
+  }
+]

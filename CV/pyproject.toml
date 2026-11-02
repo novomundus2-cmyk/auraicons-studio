@@ -1,0 +1,60 @@
+[project]
+name = "aura-cv-platform"
+version = "1.0.0"
+description = "Clean-Code Pythonista Data Platform & Executive Portfolio"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0.0",
+    "scipy>=1.14.0",
+    "sympy>=1.13.0",
+    "polars>=1.0.0",
+    "pytest>=8.0.0",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflakes
+    "I",     # isort (import sorting)
+    "UP",    # pyupgrade (modern Python 3.11+ idioms)
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "PIE",   # flake8-pie
+    "RUF",   # ruff clean-code rules
+    "N",     # pep8-naming
+]
+ignore = [
+    "E501",  # line length handled by formatter
+    "N802",  # function name lower case (e.g. HTTP do_GET/do_POST standard library overrides)
+]
+allowed-confusables = ["σ", "ρ", "λ", "μ", "€", "➔", "•", "⏳", "✅"]
+
+[tool.ruff.lint.per-file-ignores]
+"01_notebooks/*.ipynb" = [
+    "N816",   # mathematical notation in SymPy (nA, muA, etc.)
+    "E402",   # imports in educational markdown cells
+    "B018",   # interactive notebook display of expressions
+    "RUF001", # mathematical docstrings with Greek letters in notebooks
+]
+"tests/*.py" = [
+    "S101",   # assert statements in pytest
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = [
+    "agent",
+    "build_database",
+    "home_energy_calculator",
+    "netgui_server",
+    "pipeline_orchestrator",
+    "scientific_analytics",
+    "streaming_processor",
+    "transaction_producer",
+]

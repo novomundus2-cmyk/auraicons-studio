@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovusMundus · Executive Daily Journaling (Evernote)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: rgba(15, 23, 42, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --gold: #f59e0b;
+      --accent: #38bdf8;
+      --green: #10b981;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Inter", sans-serif;
+      background: var(--bg) radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 50%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: clamp(16px, 3vw, 40px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 860px;
+    }
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+    .badge-presidential {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+    .badge-ceo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+    /* Action Bar */
+    .action-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border-color: var(--card-border);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+    }
+    /* Note Paper / Sheet */
+    .note-sheet {
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 24px;
+      padding: clamp(24px, 4vw, 48px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .note-header {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .note-title {
+      font-size: clamp(24px, 3.5vw, 34px);
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .meta-card {
+      background: #f8fafc;
+      border-left: 4px solid #6366f1;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: #475569;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 32px;
+      margin-bottom: 6px;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .subsection-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    /* Tasks */
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .task-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      accent-color: #10b981;
+      margin-top: 2px;
+    }
+    .task-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #334155;
+    }
+    .task-text strong {
+      color: #0f172a;
+    }
+    /* Callout Boxes */
+    .callout {
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin: 12px 0 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .callout-green {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      color: #166534;
+    }
+    .callout-amber {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+    .callout-teal {
+      background: #f0fdfa;
+      border-left: 4px solid #14b8a6;
+      color: #115e59;
+    }
+    .list-wins, .list-gratitude {
+      padding-left: 20px;
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.7;
+    }
+    .list-wins li, .list-gratitude li {
+      margin-bottom: 6px;
+    }
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <span class="badge-presidential">👑 MIKEL IRASTORZA · PRESIDENTE SUPREMO (NIVEL 0)</span>
+      <span class="badge-ceo">🤖 CHATTY · CEO (NIVEL 1)</span>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted);">
+      Sincronizado: 29 Oct 2026 · Novus Capital
+    </div>
+  </div>
+
+  <!-- Action Bar -->
+  <div class="action-bar">
+    <button class="btn btn-primary" onclick="copyFormattedForEvernote()">
+      📋 Copiar para Evernote (Cmd + V)
+    </button>
+    <a href="/novus_daily_journal.enex" download class="btn btn-secondary">
+      ⚡ Descargar .ENEX (Evernote)
+    </a>
+    <a href="https://lite.evernote.com/note/82d463b0-65bd-4ba2-e5cc-3e7e1062c6eb" target="_blank" class="btn btn-secondary">
+      🌐 Abrir Nota en Evernote Web
+    </a>
+    <a href="/index.html" class="btn btn-secondary">
+      🚀 Volver al Cockpit NovusMundus
+    </a>
+  </div>
+
+  <!-- Note Sheet -->
+  <div class="note-sheet" id="evernote-note-content">
+    <div class="note-header">
+      <h1 class="note-title">📅 Daily Journaling · NovusMundus Executive Edition</h1>
+      <div class="meta-card">
+        <div><b>🏢 Empresa:</b> NovusMundus · Novus Capital</div>
+        <div><b>📅 Fecha:</b> 29 de Octubre de 2026</div>
+        <div><b>👑 Autor:</b> Mikel Irastorza (<i>Presidente &amp; Propietario Supremo</i>)</div>
+        <div><b>💼 Enlace Ejecutivo:</b> Chatty (<i>Chief Executive Officer - CEO</i>)</div>
+        <div style="grid-column: 1 / -1;"><b>⚡ Lema:</b> <i>"Build your personal growth &amp; lead the technological renaissance with NovusMundus"</i></div>
+      </div>
+    </div>
+
+    <!-- AM SECTION -->
+    <div class="section-title" style="color: #d97706;">
+      ☀️ AM (Morning Intention &amp; Strategic Focus)
+    </div>
+    <div class="section-subtitle">
+      Fill this section first thing in the morning to set yourself up for success!
+    </div>
+
+    <div class="subsection-title" style="color: #dc2626;">
+      🎯 Goals (Objetivos de Alto Impacto de Hoy)
+    </div>
+    <p style="font-size: 12.5px; color: #64748b; margin-bottom: 8px;">What are the top things you want to achieve today?</p>
+
+    <label class="task-item">
+      <input type="checkbox" checked class="task-checkbox">
+      <div class="task-text">
+        <strong>Arquitectura Supabase Cloud &amp; RLS:</strong> Desplegar y validar las 8 tablas ACID con Row-Level Security en producción (<code>RoomTudy+ | Novus Brother Tech</code>, ID: <code>oxrcgvhthygodjhiible</code>).
+      </div>
+    </label>
+
+    <label class="task-item">
+      <input type="checkbox" checked class="task-checkbox">
+      <div class="task-text">
+        <strong>Pipeline Streaming Kafka &amp; PySpark:</strong> Consolidar procesamiento en tiempo real de 25,000 transacciones y motor de 265 alertas activas de fraude financiero.
+      </div>
+    </label>
+
+    <label class="task-item">
+      <input type="checkbox" checked class="task-checkbox">
+      <div class="task-text">
+        <strong>Gobierno de Agentes IA &amp; Chatty CEO:</strong> Supervisar directivas ejecutivas delegadas al C-Suite (CISO Aegis, CTO Turing, CFO Ledger, CMO Mercury, VP Data Orion).
+      </div>
+    </label>
+
+    <label class="task-item">
+      <input type="checkbox" class="task-checkbox">
+      <div class="task-text">
+        <strong>Optimización FinOps 137 €:</strong> Ajustar consumo elástico de workers y cuotas cloud para maximizar el margen operativo de Novus Capital.
+      </div>
+    </label>
+
+    <div class="subsection-title" style="color: #16a34a; margin-top: 24px;">
+      💚 Feelings (Estado Emocional, Claridad y Soporte)
+    </div>
+    <p style="font-size: 12.5px; color: #64748b; margin-bottom: 6px;">How do you want to feel today? What kind of support do you need from others?</p>
+    <div class="callout callout-green">
+      <p style="margin-bottom: 8px;"><strong>Reflexión Interior:</strong> Hoy me siento con máxima determinación, serenidad estratégica y claridad de visión. Confiado plenamente en la solidez del sistema que estamos consolidando.</p>
+      <p><strong>Soporte Ejecutivo Necesario:</strong> Delegación total en Chatty (CEO) para ejecutar la orquestación de agentes con rigor suizo, permitiéndome liderar desde el Nivel 0 como Propietario Supremo.</p>
+    </div>
+
+    <div class="subsection-title" style="color: #ea580c; margin-top: 24px;">
+      🌟 Expectations &amp; Vision (Qué espero del día)
+    </div>
+    <p style="font-size: 12.5px; color: #64748b; margin-bottom: 6px;">What are you looking forward to most today?</p>
+    <div class="callout callout-amber">
+      La convergencia perfecta entre el Lakehouse local y Supabase Cloud con latencia cero y verificación criptográfica instantánea. Ver a NovusMundus operar con la elegancia, precisión y potencia de una empresa de primer nivel mundial.
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 32px 0 24px 0;">
+
+    <!-- PM SECTION -->
+    <div class="section-title" style="color: #4f46e5;">
+      🌙 PM (Evening Review &amp; Executive Closure)
+    </div>
+    <div class="section-subtitle">
+      Fill this section at the end of the day to celebrate wins, reflect and recharge!
+    </div>
+
+    <div class="subsection-title" style="color: #0284c7;">
+      🏆 Wins (Grandes Victorias del Día)
+    </div>
+    <ul class="list-wins">
+      <li><strong>Clean Code &amp; Calidad Absoluta:</strong> 27/27 tests unitarios y de integración pasando al 100%, con Ruff linter, Ruff formatter y Mypy en estado impecable.</li>
+      <li><strong>Base de Datos Dual (ACID + Cloud):</strong> SQLite WAL local ultra-rápido sincronizado con DDL PostgreSQL 15+ y políticas RLS activas en Supabase.</li>
+      <li><strong>Centro de Mando Visual UI/UX:</strong> Visualizador interactivo de red y pipeline desplegado en red local para monitorizar el ecosistema empresarial.</li>
+    </ul>
+
+    <div class="subsection-title" style="color: #9333ea; margin-top: 24px;">
+      🙏 Gratitude (Gratitud Diaria)
+    </div>
+    <ol class="list-gratitude">
+      <li><strong>Por la visión:</strong> Por la lucidez de concebir infraestructuras que resuelven problemas de gran escala.</li>
+      <li><strong>Por el equipo digital:</strong> Por contar con Chatty (CEO) como mano derecha infatigable, leal y alineada con la cultura de NovusMundus.</li>
+      <li><strong>Por la ejecución:</strong> Por cada línea de código que convierte la ambición en una realidad tangible y reutilizable.</li>
+    </ol>
+
+    <div class="subsection-title" style="color: #0d9488; margin-top: 24px;">
+      💡 Learnings &amp; Tomorrow's Focus (Aprendizajes y Foco de Mañana)
+    </div>
+    <div class="callout callout-teal">
+      <p style="margin-bottom: 8px;"><strong>Aprendizaje:</strong> La simplicidad arquitectónica vence a cualquier artificio. Cuando los contratos de datos y las responsabilidades entre capas están claramente definidos, el sistema es indestructible.</p>
+      <p><strong>Foco de mañana:</strong> Escalar las integraciones externas de RoomTudy+ y afianzar la orquestación continua de datos con el pipeline Dielsa.</p>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✅ ¡Copiado con formato enriquecido! Pégalo con Cmd+V en Evernote</div>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.style.display = 'flex';
+    setTimeout(() => { t.style.display = 'none'; }, 3500);
+  }
+
+  async function copyFormattedForEvernote() {
+    const node = document.getElementById('evernote-note-content');
+    const html = node.innerHTML;
+    const text = node.innerText;
+
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        const blobHtml = new Blob([html], { type: 'text/html' });
+        const blobText = new Blob([text], { type: 'text/plain' });
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'text/html': blobHtml,
+            'text/plain': blobText
+          })
+        ]);
+        showToast('✅ ¡Copiado para Evernote! Pulsa Cmd+V en tu nota.');
+        return;
+      }
+    } catch (e) {
+      console.warn('ClipboardItem error, falling back:', e);
+    }
+
+    // Fallback: standard selection copy
+    const range = document.createRange();
+    range.selectNode(node);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    showToast('✅ ¡Copiado para Evernote! Pulsa Cmd+V en tu nota.');
+  }
+</script>
+
+</body>
+</html>

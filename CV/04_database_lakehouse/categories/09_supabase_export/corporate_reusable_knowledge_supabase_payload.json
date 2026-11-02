@@ -1,0 +1,38 @@
+[
+  {
+    "knowledge_id": "KB-01-WELFORD-MONOID",
+    "category": "matematicas_algebraicas",
+    "title": "Monoide de Welford-Chan en Haskell & Python",
+    "summary": "Agregación paralela asociativa (A ⊕ B) ⊕ C en O(1) de memoria sin cancelación catastrófica.",
+    "executable_code": "data StatsMonoid = StatsMonoid !Int !Double !Double deriving (Show, Eq)\ninstance Semigroup StatsMonoid where\n  (StatsMonoid nA mA sA) <> (StatsMonoid nB mB sB) =\n    let n = nA + nB\n        delta = mB - mA\n        m = mA + delta * fromIntegral nB / fromIntegral n\n        s = sA + sB + delta * delta * fromIntegral (nA * nB) / fromIntegral n\n    in StatsMonoid n m s",
+    "reusable_prompt": "Demuestra formalmente por qué la agregación distribuida en Spark requiere estructura algebraica de monoide.",
+    "created_at": "2026-10-29T10:00:00Z"
+  },
+  {
+    "knowledge_id": "KB-02-MAD-ROBUST-Z",
+    "category": "antifraude_estadistico",
+    "title": "Z-Score Robusto por Mediana y Desviación Absoluta Mediana (MAD)",
+    "summary": "Punto de ruptura del 50% inmune al enmascaramiento de outliers masivos en transacciones financieras.",
+    "executable_code": "def robust_mad_z_score(x: np.ndarray) -> np.ndarray:\n    med = np.median(x)\n    mad = np.median(np.abs(x - med))\n    if mad == 0.0:\n        return np.zeros_like(x)\n    return 0.6745 * (x - med) / mad",
+    "reusable_prompt": "Explica cómo evitar que 10 transacciones fraudulentas de 10.000 € inflen la media y oculten el fraude.",
+    "created_at": "2026-10-29T10:00:00Z"
+  },
+  {
+    "knowledge_id": "KB-03-ENERGY-PVPC-AUDIT",
+    "category": "finops_energia",
+    "title": "Optimización de Termo Eléctrico y Tarifa Regulada PVPC (137,21 € Ahorro)",
+    "summary": "Modelado termodinámico del agua (1 cal = 4.186 J) y programación horaria de 3 horas valle.",
+    "executable_code": "E_kwh = (V_litros * delta_T * 4186) / 3_600_000\ncoste_sin_timer = 24 * P_standby_kw * precio_medio\ncoste_con_timer = 3 * P_nom_kw * precio_valle\nahorro_anual = (coste_sin_timer - coste_con_timer) * 365",
+    "reusable_prompt": "Calcula el ahorro exacto en euros al año para un termo de 100L con contrato regulado de 0,1329 €/kWh.",
+    "created_at": "2026-10-29T10:00:00Z"
+  },
+  {
+    "knowledge_id": "KB-04-BIGQUERY-TIMESFM",
+    "category": "cloud_ia_forecasting",
+    "title": "BigQuery AI.DETECT_ANOMALIES con TimesFM 2.0",
+    "summary": "Detección predictiva de anomalías cronológicas en tablas analíticas con particionado temporal.",
+    "executable_code": "SELECT *\nFROM AI.DETECT_ANOMALIES(\n  TABLE gold_category_metrics,\n  data_col => 'total_volume_eur',\n  timestamp_col => 'window_start',\n  id_cols => ['category']\n);",
+    "reusable_prompt": "Formula la consulta SQL nativa en BigQuery para predecir series temporales financieras con TimesFM.",
+    "created_at": "2026-10-29T10:00:00Z"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "question_id": "QA_01",
+    "topic": "PySpark & Memoria Distribuida",
+    "interview_question": "¿Qué provoca un OutOfMemory (OOM) en el Driver o en los Executors de Spark Streaming y cómo lo erradicas?",
+    "failure_symptom": "El job se cae tras unas horas con java.lang.OutOfMemoryError: Java heap space.",
+    "root_cause": "Uso de collect() en el Driver, joins sin broadcast bien medido, o agregaciones de streaming sin Watermark donde el estado en RAM crece hasta el infinito.",
+    "senior_answer": "1) Jamás usar collect() sobre tablas grandes; 2) Definir siempre .withWatermark('event_time', '10 minutes') para limpiar estados antiguos; 3) Usar RocksDB como State Store; 4) Aplicar Salting a claves sesgadas si la Entropía de Shannon H(X) cae."
+  },
+  {
+    "question_id": "QA_02",
+    "topic": "Estadística & Detección de Anomalías",
+    "interview_question": "¿Por qué el Z-Score clásico falla estrepitosamente detectando fraudes financieros en ventanas pequeñas?",
+    "failure_symptom": "Un fraude de 4.500 € obtiene un Z-Score de 2.83 (< 3.0) y pasa sin generar alerta.",
+    "root_cause": "Efecto de Enmascaramiento (Masking Effect): el propio valor atípico infla la desviación típica muestral σ de 12 € a 1.378 €, camuflándose a sí mismo.",
+    "senior_answer": "Sustituimos la media y desviación estándar por el Z-Score Robusto basado en la Mediana y el MAD escalado (1.4826 * MAD). En el mismo lote, el Z-Score Robusto sube de 2.83 a 295.76."
+  },
+  {
+    "question_id": "QA_03",
+    "topic": "Kafka KRaft & Teoría de Colas",
+    "interview_question": "¿Por qué migraste Kafka de ZooKeeper a KRaft y cómo evitas tormentas de rebalanceo (Rebalance Storms)?",
+    "failure_symptom": "Los consumidores entran en bucle 'Revoking partitions' y el Consumer Lag se dispara a millones.",
+    "root_cause": "El hilo de procesamiento tarda más que max.poll.interval.ms o la tasa de llegada λ iguala a la capacidad c·μ (ρ -> 1).",
+    "senior_answer": "KRaft elimina ZooKeeper integrando consenso Raft en los brokers (failover en ms y millones de particiones). Para evitar rebalances, usamos CooperativeStickyAssignor, ajustamos max.poll.records y garantizamos ρ = λ/(c·μ) <= 0.80."
+  },
+  {
+    "question_id": "QA_04",
+    "topic": "Apache NiFi & Ingesta",
+    "interview_question": "¿Por qué colocar Apache NiFi delante de Kafka en lugar de enviar los datos directo a Kafka?",
+    "failure_symptom": "Fuentes legadas o picos de tráfico externos saturan los brokers o envían esquemas corruptos.",
+    "root_cause": "Kafka es un bus de eventos, no un gestor de protocolos heterogéneos con control visual de linaje.",
+    "senior_answer": "NiFi aporta conversión de protocolos, validación de esquemas Avro, auditoría forense con Provenance Repository y colas con Backpressure automático (10.000 objetos / 1 GB) que absorben ráfagas sin perder un solo byte."
+  },
+  {
+    "question_id": "QA_05",
+    "topic": "Lakehouse & BigQuery AI/ML",
+    "interview_question": "¿Cómo resuelves el Small Files Problem en streaming y cómo integras IA analítica sin mover datos?",
+    "failure_symptom": "Millones de archivos Parquet de pocos KB en S3/MinIO degradan las consultas analíticas.",
+    "root_cause": "Cada micro-batch de Spark escribe un fichero pequeño independiente.",
+    "senior_answer": "Usamos tablas abiertas Apache Iceberg con compactación periódica (rewrite_data_files a 256 MB con ZSTD) y ejecutamos TimesFM 2.0 (AI.DETECT_ANOMALIES, AI.FORECAST) y Gemini 2.5 (AI.GENERATE_TABLE) nativamente en SQL."
+  }
+]

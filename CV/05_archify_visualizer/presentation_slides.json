@@ -1,0 +1,108 @@
+[
+  {
+    "slide_id": "slide-01-vision",
+    "number": 1,
+    "title": "Mikel Irastorza · Data Platform & AI Systems Architect",
+    "eyebrow": "VISIÓN & LIDERAZGO INSTITUCIONAL",
+    "subtitle": "Ingeniería de software de alta fidelidad: de sistemas distribuidos en streaming a kernels matemáticos compilados en Haskell GHC 9.14.",
+    "bullets": [
+      "Presidente Supremo y Fundador de NovusMundus: Gobernanza Zero-Trust y C-Suite Multi-IA.",
+      "Especialista en streaming de ultra-bajo retardo (Kafka KRaft, PySpark Work-Stealing, NiFi).",
+      "Garantías matemáticas formales: Monoides asociativos de Welford O(1) y álgebra de Sobolev.",
+      "Diseño visual Cupertino de precisión métrica (60 FPS, KaTeX y tipografía SF Pro)."
+    ],
+    "highlight_badge": "Nivel 0 · Gobernanza Absoluta",
+    "infographic_svg": "/vendor/infographics/infographic_financial_pipeline.svg",
+    "speaker_notes": "Presentar el trasfondo del arquitecto: convergencia única entre rigor matemático formal (Haskell), ingeniería de datos masiva (Lakehouse) y estética de producto al nivel de Apple.",
+    "target_time_seconds": 90
+  },
+  {
+    "slide_id": "slide-02-pipeline",
+    "number": 2,
+    "title": "Arquitectura de Streaming & Data Lakehouse 6-Etapas",
+    "eyebrow": "PIPELINE DE ALTO RENDIMIENTO",
+    "subtitle": "Procesamiento en tiempo real de 35.000 msg/seg con encolamiento acotado bajo la Ley de Little (ρ = λ/μ ≤ 0.80).",
+    "bullets": [
+      "Etapa 1 (Ingesta): Apache NiFi transaccional con buffers de memoria acotados.",
+      "Etapa 2 (Broker): Kafka KRaft con particionado por hash determinista de usuario.",
+      "Etapa 3 (Compute): PySpark con algoritmo de balanceo Work-Stealing y baja latencia.",
+      "Etapa 4 (Analítica): Agregaciones monoidales de Welford en O(1) memoria y O(N) tiempo.",
+      "Etapa 5 (Defensa): Detección de anomalías y fraude mediante Z-Score Robusto MAD.",
+      "Etapa 6 (Persistencia): Financial Lakehouse SQLite WAL con espejo NAS y sincronización Supabase."
+    ],
+    "highlight_badge": "35.000 tx/s · Latencia < 5ms",
+    "infographic_svg": "/vendor/infographics/infographic_financial_pipeline.svg",
+    "speaker_notes": "Destacar que cada componente no es un mock: existe un pipeline reproducible con PySpark, SQLite WAL y DuckDB que corre en local y en la nube.",
+    "target_time_seconds": 120
+  },
+  {
+    "slide_id": "slide-03-ledger",
+    "number": 3,
+    "title": "Libro Mayor de Partida Doble & Hash Chain SHA-256",
+    "eyebrow": "INTEGRIDAD FINANCIERA & AUDITORÍA PACIOLI",
+    "subtitle": "Invariante matemática inviolable: la suma de débitos es idéntica a la suma de créditos a nivel de motor de base de datos.",
+    "bullets": [
+      "Invariante fundamental: Σ Debe ≡ Σ Haber (Cero saldo huérfano en cualquier corte temporal).",
+      "Unidades enteras en céntimos (BIGINT): Cero error de redondeo por representación de coma flotante IEEE 754.",
+      "Idempotencia estricta: Prevención absoluta de ataques de repetición y doble gasto (Double-Spending).",
+      "Cadena criptográfica inmutable: Cada asiento enlaza con el hash SHA-256 del bloque anterior (Audit Trail formal)."
+    ],
+    "highlight_badge": "Σ Debe ≡ Σ Haber · Cero Discrepancias",
+    "infographic_svg": "/vendor/infographics/infographic_double_entry_ledger.svg",
+    "speaker_notes": "Explicar por qué los bancos fallan cuando usan floats y cómo Novus resuelve la conciliación en tiempo real con pruebas criptográficas verificables.",
+    "target_time_seconds": 120
+  },
+  {
+    "slide_id": "slide-04-quant",
+    "number": 4,
+    "title": "Motor Cuantitativo & Trading Algorítmico Multiactivo",
+    "eyebrow": "ESTRATEGIAS HFT & MICROESTRUCTURA",
+    "subtitle": "Ejecución automatizada con libro de órdenes en vivo, perfiles de liquidez y simulación estocástica de shocks.",
+    "bullets": [
+      "Estrategia 1 (VWAP Mean Reversion): Entradas estadísticas en reversión a la media con bandas dinámicas.",
+      "Estrategia 2 (Momentum EMA/RSI): Captura de tendencias parabólicas con filtros de volatilidad ATR.",
+      "Estrategia 3 (Dynamic Grid): Malla de órdenes escalonadas para mercados laterales en rango.",
+      "Estrategia 4 (Trading Business School SMC): Detección de Fair Value Gaps (FVG), Order Blocks y Liquidity Sweeps.",
+      "Risk Manager & Circuit Breaker: Desconexión automática ante caídas de balance superiores al 2.5%."
+    ],
+    "highlight_badge": "Win-Rate 82.5% · Sharpe 2.41",
+    "infographic_svg": "/vendor/infographics/infographic_quant_trading_architecture.svg",
+    "speaker_notes": "Mostrar los gráficos de velas y el libro de órdenes. Demostrar la respuesta en menos de 2 ms ante shocks de volatilidad.",
+    "target_time_seconds": 110
+  },
+  {
+    "slide_id": "slide-05-playbooks",
+    "number": 5,
+    "title": "Flagship Engineering Playbooks & Guías para CTOs",
+    "eyebrow": "ESTÁNDARES DE INGENIERÍA 2026",
+    "subtitle": "Frameworks ejecutables y auditables para decisiones de arquitectura de misión crítica.",
+    "bullets": [
+      "PB-01: AI Architecture & Routing: Gemini 3.8 Flash vs SLM local por entropía semántica y presupuesto de latencia.",
+      "PB-02: Framework de Seguridad Financiera: Auditoría formal en Haskell GHC 9.14 y ledger Pacioli.",
+      "PB-03: Dimensionamiento de Colas & Streaming: Ley de Little y varianza online de Welford.",
+      "PB-04: Zero-Trust Data Lakehouse: Contratos Pandera y validación AST SQL read-only estricta."
+    ],
+    "highlight_badge": "4 Playbooks · Código Copiable",
+    "infographic_svg": "/vendor/infographics/infographic_financial_pipeline.svg",
+    "speaker_notes": "Explicar que estos playbooks son la condensación del mejor conocimiento de la industria para resolver dilemas reales de escalado.",
+    "target_time_seconds": 100
+  },
+  {
+    "slide_id": "slide-06-boutique",
+    "number": 6,
+    "title": "Novus Boutique · Soluciones, Licencias & Servicios",
+    "eyebrow": "MODELO DE NEGOCIO & CONTRATACIÓN",
+    "subtitle": "Adquisición directa de software probado, servicios de arquitectura y programas formativos ejecutivos.",
+    "bullets": [
+      "Consultoría de Arquitectura & Fractional CTO: Despliegue de lagos de datos, optimización FinOps y auditorías.",
+      "Licencia del Motor Cuantitativo Novus: Código fuente en Python/Haskell para fondos y gestores de capital.",
+      "Pack Masterclass & Dossier NotebookLM: Guías exhaustivas y 5 Gemini Notebooks ejecutables (.ipynb).",
+      "AuraIcons Studio Pro Design Kit: Más de 800 componentes vectoriales e iconos SVG interactivos.",
+      "Acelerador de Talento & Colocación Laboral: Reconstrucción de perfiles técnicos y colocación activa en empresas tech."
+    ],
+    "highlight_badge": "Tienda Activa · Liquidación Inmediata",
+    "infographic_svg": "/vendor/infographics/infographic_double_entry_ledger.svg",
+    "speaker_notes": "Invitar al cliente o inversor a explorar la tienda integrada en el portfolio, añadir productos al carrito y comprobar la liquidación en tiempo real.",
+    "target_time_seconds": 80
+  }
+]
