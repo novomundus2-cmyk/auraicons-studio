@@ -1,0 +1,802 @@
+[
+  {
+    "user_id": "user_1000",
+    "full_name": "Javier Garcia",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1001",
+    "full_name": "Mateo Mendoza",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1002",
+    "full_name": "Javier Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1003",
+    "full_name": "Carlos Dubois",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1004",
+    "full_name": "Mateo Silva",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1005",
+    "full_name": "Javier Kowalski",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1006",
+    "full_name": "David Silva",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1007",
+    "full_name": "Sofia Silva",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1008",
+    "full_name": "Clara Rossi",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1009",
+    "full_name": "Paula Kowalski",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1010",
+    "full_name": "David Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1011",
+    "full_name": "David Garcia",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1012",
+    "full_name": "Elena Dubois",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1013",
+    "full_name": "Sofia Silva",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1014",
+    "full_name": "Paula Kowalski",
+    "country": "US",
+    "kyc_verified": 0,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1015",
+    "full_name": "Javier Kowalski",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1016",
+    "full_name": "Elena Vega",
+    "country": "MX",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1017",
+    "full_name": "Paula Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1018",
+    "full_name": "Elena Rossi",
+    "country": "MX",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1019",
+    "full_name": "Carlos Garcia",
+    "country": "IT",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1020",
+    "full_name": "Clara Mendoza",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1021",
+    "full_name": "Sofia Irastorza",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1022",
+    "full_name": "David Kowalski",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1023",
+    "full_name": "Carlos Vega",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1024",
+    "full_name": "Mikel Kowalski",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1025",
+    "full_name": "Paula Rossi",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1026",
+    "full_name": "Elena Rossi",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1027",
+    "full_name": "Sofia Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1028",
+    "full_name": "Lucia Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1029",
+    "full_name": "David Irastorza",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1030",
+    "full_name": "Clara Dubois",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1031",
+    "full_name": "Javier Mendoza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1032",
+    "full_name": "Carlos Silva",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1033",
+    "full_name": "Lucia Dubois",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1034",
+    "full_name": "Paula Dubois",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1035",
+    "full_name": "Mateo Kowalski",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1036",
+    "full_name": "Sofia Vega",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1037",
+    "full_name": "Mateo Irastorza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1038",
+    "full_name": "Mikel Kowalski",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1039",
+    "full_name": "Carlos Rossi",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1040",
+    "full_name": "Javier Kowalski",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1041",
+    "full_name": "Carlos Mendoza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1042",
+    "full_name": "Lucia Irastorza",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1043",
+    "full_name": "David Kowalski",
+    "country": "MX",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1044",
+    "full_name": "Javier Rossi",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1045",
+    "full_name": "David Dubois",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "VIP",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1046",
+    "full_name": "Paula Mendoza",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1047",
+    "full_name": "Carlos Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1048",
+    "full_name": "Mikel Silva",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1049",
+    "full_name": "David Vega",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1050",
+    "full_name": "Javier Rossi",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1051",
+    "full_name": "David Rossi",
+    "country": "FR",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1052",
+    "full_name": "Javier Vega",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1053",
+    "full_name": "Carlos Mendoza",
+    "country": "US",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1054",
+    "full_name": "Sofia Mendoza",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1055",
+    "full_name": "Elena Silva",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1056",
+    "full_name": "Javier Silva",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "VIP",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1057",
+    "full_name": "Elena Kowalski",
+    "country": "DE",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1058",
+    "full_name": "Javier Rossi",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1059",
+    "full_name": "David Mendoza",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1060",
+    "full_name": "Mateo Rossi",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1061",
+    "full_name": "Lucia Garcia",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1062",
+    "full_name": "Javier Irastorza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1063",
+    "full_name": "Sofia Irastorza",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1064",
+    "full_name": "Mikel Mendoza",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1065",
+    "full_name": "Mikel Vega",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1066",
+    "full_name": "Carlos Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1067",
+    "full_name": "Javier Vega",
+    "country": "US",
+    "kyc_verified": 0,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1068",
+    "full_name": "Lucia Vega",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1069",
+    "full_name": "Elena Irastorza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1070",
+    "full_name": "David Rossi",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1071",
+    "full_name": "Elena Vega",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "VIP",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1072",
+    "full_name": "Sofia Kowalski",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1073",
+    "full_name": "Sofia Vega",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1074",
+    "full_name": "Mikel Irastorza",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1075",
+    "full_name": "Clara Dubois",
+    "country": "ES",
+    "kyc_verified": 0,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1076",
+    "full_name": "David Garcia",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1077",
+    "full_name": "Clara Silva",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1078",
+    "full_name": "Clara Kowalski",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1079",
+    "full_name": "Mikel Silva",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1080",
+    "full_name": "Sofia Rossi",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1081",
+    "full_name": "Mateo Kowalski",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1082",
+    "full_name": "Elena Vega",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1083",
+    "full_name": "Sofia Silva",
+    "country": "UK",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1084",
+    "full_name": "Javier Rossi",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1085",
+    "full_name": "Sofia Vega",
+    "country": "IT",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1086",
+    "full_name": "Carlos Dubois",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1087",
+    "full_name": "Lucia Garcia",
+    "country": "FR",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1088",
+    "full_name": "Elena Irastorza",
+    "country": "US",
+    "kyc_verified": 0,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1089",
+    "full_name": "Mateo Mendoza",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1090",
+    "full_name": "Lucia Dubois",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1091",
+    "full_name": "Sofia Vega",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1092",
+    "full_name": "Sofia Vega",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1093",
+    "full_name": "Clara Rossi",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1094",
+    "full_name": "Carlos Vega",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1095",
+    "full_name": "Elena Irastorza",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1096",
+    "full_name": "Elena Silva",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "HIGH",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1097",
+    "full_name": "Lucia Kowalski",
+    "country": "ES",
+    "kyc_verified": 1,
+    "risk_tier": "LOW",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1098",
+    "full_name": "Carlos Kowalski",
+    "country": "US",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "user_id": "user_1099",
+    "full_name": "Elena Mendoza",
+    "country": "DE",
+    "kyc_verified": 1,
+    "risk_tier": "MEDIUM",
+    "created_at": "2026-01-15T10:00:00Z"
+  }
+]

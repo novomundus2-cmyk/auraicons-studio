@@ -13,9 +13,9 @@ data/
 *.parquet
 *.csv
 *.db
+!financial_lakehouse.db
 
 # Operating System
 .DS_Store
 Thumbs.db
-nas_shared_mirror/
 .mypy_cache/
