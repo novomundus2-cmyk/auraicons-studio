@@ -3,5 +3,14 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install --legacy-peer-deps"
+  "installCommand": "npm install --legacy-peer-deps",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/cv", "destination": "/cv_printable.html" },
+    { "source": "/portfolio", "destination": "/portfolio.html" },
+    { "source": "/bot", "destination": "/bot.html" },
+    { "source": "/cockpit", "destination": "/cockpit.html" },
+    { "source": "/visualizer", "destination": "/cockpit.html" },
+    { "source": "/dossier", "destination": "/dossier.md" }
+  ]
 }
