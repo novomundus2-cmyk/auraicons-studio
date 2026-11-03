@@ -100,10 +100,16 @@ class CadToleranceResult:
 # ============================================================================
 
 def _load_c_engine() -> Optional[ctypes.CDLL]:
-    """Dynamically loads the compiled C dylib if available."""
+    """Dynamically loads the compiled C dylib/so/dll across macOS, Linux, and Windows."""
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    dylib_path = os.path.join(current_dir, "libekc_byte_engine.dylib")
-    if not os.path.exists(dylib_path):
+    candidates = [
+        os.path.join(current_dir, "libekc_byte_engine.dylib"),  # macOS
+        os.path.join(current_dir, "libekc_byte_engine.so"),     # Linux
+        os.path.join(current_dir, "ekc_byte_engine.dll"),       # Windows
+        os.path.join(current_dir, "libekc_byte_engine.dll"),    # Windows MinGW
+    ]
+    dylib_path = next((p for p in candidates if os.path.exists(p)), None)
+    if not dylib_path:
         return None
 
     try:
