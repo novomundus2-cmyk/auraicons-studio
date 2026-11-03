@@ -1,82 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="Mikel Irastorza · Lead Systems Architect &amp; Big Data Engineer · EKC &amp; EFA">
   <defs>
 
-    <!-- Deep Obsidian Void Gradient -->
-    <radialGradient id="hdr_luxBg" cx="50%" cy="50%" r="72%">
-      <stop offset="0%" stop-color="#1c1917" />
-      <stop offset="45%" stop-color="#0c0a09" />
+    <!-- Warm Velvet Obsidian Void -->
+    <radialGradient id="hdr_humBg" cx="50%" cy="46%" r="72%">
+      <stop offset="0%" stop-color="#1f1b16" />
+      <stop offset="50%" stop-color="#0f0d0b" />
       <stop offset="100%" stop-color="#05070c" />
     </radialGradient>
 
-    <!-- Volumetric Core Gold Aura -->
-    <radialGradient id="hdr_luxAura" cx="50%" cy="50%" r="48%">
-      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.38" />
-      <stop offset="35%" stop-color="#d97706" stop-opacity="0.14" />
-      <stop offset="70%" stop-color="#b45309" stop-opacity="0.04" />
+    <!-- Warm Amber Hearth Halo (Calor Humano) -->
+    <radialGradient id="hdr_humHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4" />
+      <stop offset="40%" stop-color="#d97706" stop-opacity="0.18" />
+      <stop offset="80%" stop-color="#92400e" stop-opacity="0.05" />
       <stop offset="100%" stop-color="#000000" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Top Champagne Gold (Specular Light Crest) -->
-    <linearGradient id="hdr_specularChampagne" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Soft Champagne Specular Ribbon Light -->
+    <linearGradient id="hdr_humChampagne" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff" />
       <stop offset="25%" stop-color="#fffbeb" />
       <stop offset="60%" stop-color="#fef3c7" />
       <stop offset="100%" stop-color="#fde68a" />
     </linearGradient>
 
-    <!-- Sun-Facing Left Isometric Plane -->
-    <linearGradient id="hdr_goldLightPlane" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Warm Hand-Etched Gold (Left Flow) -->
+    <linearGradient id="hdr_humGoldLeft" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fef08a" />
-      <stop offset="30%" stop-color="#f59e0b" />
-      <stop offset="85%" stop-color="#d97706" />
+      <stop offset="35%" stop-color="#f59e0b" />
+      <stop offset="80%" stop-color="#d97706" />
       <stop offset="100%" stop-color="#b45309" />
     </linearGradient>
 
-    <!-- Mid Tone Brushed Amber Surface -->
-    <linearGradient id="hdr_goldMidPlane" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#b45309" />
-      <stop offset="40%" stop-color="#d97706" />
-      <stop offset="80%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#fef3c7" />
-    </linearGradient>
-
-    <!-- Deep Bronze Shadow Plane (Right Flank) -->
-    <linearGradient id="hdr_goldDarkPlane" x1="100%" y1="0%" x2="0%" y2="100%">
+    <!-- Hand-Chiseled Cognac Bronze (Right Shade) -->
+    <linearGradient id="hdr_humGoldRight" x1="100%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fde68a" />
-      <stop offset="20%" stop-color="#d97706" />
+      <stop offset="25%" stop-color="#d97706" />
       <stop offset="65%" stop-color="#92400e" />
       <stop offset="100%" stop-color="#5a2307" />
     </linearGradient>
 
-    <!-- Platinum Gold for Central Needle -->
-    <linearGradient id="hdr_spirePlatinum" x1="0%" y1="0%" x2="0%" y2="100%">
+    <!-- Central Human Spire / Column of Trust -->
+    <linearGradient id="hdr_humSpire" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="25%" stop-color="#fef3c7" />
-      <stop offset="70%" stop-color="#f59e0b" />
+      <stop offset="30%" stop-color="#fffbeb" />
+      <stop offset="70%" stop-color="#fbbf24" />
       <stop offset="100%" stop-color="#b45309" />
     </linearGradient>
 
-    <!-- Razor Bevel Wireframe Edge Highlight -->
-    <linearGradient id="hdr_edgeGleam" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+    <!-- Artisan Bevel Wireframe Sheen -->
+    <linearGradient id="hdr_humSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
       <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.5" />
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9" />
     </linearGradient>
 
-    <!-- Multi-stage Depth Drop Shadow -->
-    <filter id="hdr_monolithShadow" x="-25%" y="-25%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.88" />
-      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#f59e0b" flood-opacity="0.32" />
+    <!-- Soft Depth Shadow with Warm Glow -->
+    <filter id="hdr_humShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000000" flood-opacity="0.85" />
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#f59e0b" flood-opacity="0.3" />
     </filter>
 
   </defs>
 
   <!-- Base Obsidian Plaque -->
-  <rect width="1200" height="300" rx="24" fill="url(#hdr_luxBg)" />
-  <rect width="1198" height="298" x="1" y="1" rx="23" fill="none" stroke="url(#hdr_edgeGleam)" stroke-width="1.5" stroke-opacity="0.4" />
+  <rect width="1200" height="300" rx="24" fill="url(#hdr_humBg)" />
+  <rect width="1198" height="298" x="1" y="1" rx="23" fill="none" stroke="url(#hdr_humSheen)" stroke-width="1.5" stroke-opacity="0.4" />
 
   <!-- Ambient Golden Halo -->
-  <circle cx="1020" cy="150" r="380" fill="url(#hdr_luxAura)" />
+  <circle cx="1020" cy="150" r="380" fill="url(#hdr_humHalo)" />
 
   <!-- CAD Crosshairs & Concentric Calibration Rings -->
   <g fill="none" stroke="#f59e0b" stroke-opacity="0.16" stroke-width="1.5">
@@ -93,12 +85,12 @@
       PORTAFOLIO TÉCNICO · SISTEMAS DISTRIBUIDOS
     </text>
 
-    <text x="0" y="142" fill="url(#hdr_specularChampagne)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="56" font-weight="900" letter-spacing="1">
+    <text x="0" y="142" fill="url(#hdr_humChampagne)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="56" font-weight="900" letter-spacing="1">
       Mikel Irastorza
     </text>
 
     <text x="0" y="194" fill="#e7e5e4" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="21" font-weight="500">
-      Big Data · Sistemas C/Haskell/Python · Robótica CAD · Finanzas
+      Big Data · Sistemas C/Haskell/Python · Robótica CAD · Criterio Humano
     </text>
 
     <g transform="translate(0, 222)">
@@ -112,81 +104,78 @@
       <text x="424" y="24" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">PACIOLI DIF = 0.00¢</text>
 
       <rect x="546" y="0" width="170" height="38" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1" />
-      <text x="631" y="24" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800">±0.200mm CAD</text>
+      <text x="631" y="24" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800">CRITERIO HUMANO</text>
     </g>
   </g>
 
-  <!-- Right Geometric Architectural Emblem -->
-  <g transform="translate(1020, 150) scale(0.48) translate(-256, -256)" filter="url(#hdr_monolithShadow)">
+  <!-- Right Geometric Architectural Emblem with Human Touch -->
+  <g transform="translate(1020, 150) scale(0.48) translate(-256, -256)" filter="url(#hdr_humShadow)">
 
-    <!-- OUTER SHIELD HEXAGON -->
-    <polygon points="256,104 388,180 388,332 256,408 124,332 124,180"
-             fill="#0c0a09" fill-opacity="0.6"
-             stroke="url(#hdr_edgeGleam)" stroke-width="3" stroke-linejoin="round" />
-    
-    <!-- Precision Corner Micro-Rivets -->
-    <circle cx="256" cy="104" r="3.5" fill="#ffffff" />
-    <circle cx="388" cy="180" r="3.5" fill="#fef3c7" />
-    <circle cx="388" cy="332" r="3.5" fill="#fef3c7" />
-    <circle cx="256" cy="408" r="3.5" fill="#fef3c7" />
-    <circle cx="124" cy="332" r="3.5" fill="#fef3c7" />
-    <circle cx="124" cy="180" r="3.5" fill="#fef3c7" />
+    <!-- Protective Seal Hexagon with Curved Fillets -->
+    <path d="M 248,109 Q 256,104 264,109 L 382,176 Q 388,180 388,188 L 388,324 Q 388,332 382,336 L 264,403 Q 256,408 248,403 L 130,336 Q 124,332 124,324 L 124,188 Q 124,180 130,176 Z"
+          fill="#0c0a09" fill-opacity="0.65"
+          stroke="url(#hdr_humSheen)" stroke-width="2.8" stroke-linejoin="round" />
 
-    <!-- ================= THE "M" MONOLITH ================= -->
-    <!-- Left Outer Wall -->
-    <path d="M 142,196 L 186,170 L 186,326 L 142,300 Z"
-          fill="url(#hdr_goldLightPlane)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+    <!-- Corner Gold Rivets / Human Anchor Points -->
+    <circle cx="256" cy="106" r="3.5" fill="#ffffff" />
+    <circle cx="385" cy="182" r="3.5" fill="#fef3c7" />
+    <circle cx="385" cy="330" r="3.5" fill="#fef3c7" />
+    <circle cx="256" cy="406" r="3.5" fill="#fef3c7" />
+    <circle cx="127" cy="330" r="3.5" fill="#fef3c7" />
+    <circle cx="127" cy="182" r="3.5" fill="#fef3c7" />
 
-    <!-- Left Peak Incline (Specular Champagne Crest) -->
-    <path d="M 186,170 L 224,148 L 224,198 L 186,220 Z"
-          fill="url(#hdr_specularChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+    <!-- ================= THE "M" SCULPTURE ================= -->
+    <!-- Left Ascending Wing -->
+    <path d="M 144,198 L 186,172 L 186,326 L 144,302 Z"
+          fill="url(#hdr_humGoldLeft)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
 
-    <!-- Left Valley (Descending slope into center) -->
-    <path d="M 224,148 L 256,198 L 256,246 L 224,198 Z"
-          fill="url(#hdr_goldMidPlane)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+    <!-- Left Peak Crest (Gentle Arched Curve) -->
+    <path d="M 186,172 Q 206,158 224,148 L 224,198 Q 206,208 186,220 Z"
+          fill="url(#hdr_humChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
 
-    <!-- Right Valley (Ascending slope from center) -->
-    <path d="M 256,198 L 288,148 L 288,198 L 256,246 Z"
-          fill="url(#hdr_goldDarkPlane)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+    <!-- Left Valley (Flowing down into the center) -->
+    <path d="M 224,148 Q 240,174 256,198 L 256,246 Q 240,222 224,198 Z"
+          fill="url(#hdr_humGoldLeft)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
 
-    <!-- Right Peak Incline (Specular Champagne Crest) -->
-    <path d="M 288,148 L 326,170 L 326,220 L 288,198 Z"
-          fill="url(#hdr_specularChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+    <!-- Right Valley (Ascending from center with matching curvature) -->
+    <path d="M 256,198 Q 272,174 288,148 L 288,198 Q 272,222 256,246 Z"
+          fill="url(#hdr_humGoldRight)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
 
-    <!-- Right Outer Wall -->
-    <path d="M 326,170 L 370,196 L 370,300 L 326,326 Z"
-          fill="url(#hdr_goldDarkPlane)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+    <!-- Right Peak Crest (Gentle Arched Curve) -->
+    <path d="M 288,148 Q 306,158 326,172 L 326,220 Q 306,208 288,198 Z"
+          fill="url(#hdr_humChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
 
-    <!-- Left Front Flange (Structural base) -->
+    <!-- Right Ascending Wing -->
+    <path d="M 326,172 L 368,198 L 368,302 L 326,326 Z"
+          fill="url(#hdr_humGoldRight)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Structural Flange Base -->
     <path d="M 186,220 L 224,198 L 224,346 L 186,326 Z"
-          fill="url(#hdr_goldLightPlane)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+          fill="url(#hdr_humGoldLeft)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
 
-    <!-- Right Front Flange -->
+    <!-- Right Structural Flange Base -->
     <path d="M 288,198 L 326,220 L 326,326 L 288,346 Z"
-          fill="url(#hdr_goldDarkPlane)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+          fill="url(#hdr_humGoldRight)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
 
-    <!-- ================= THE "I" CENTRAL KEYSTONE SPIRE ================= -->
-    <!-- Needle Left Facet -->
+    <!-- ================= THE "I" COLUMN OF TRUST ================= -->
     <path d="M 248,132 L 256,124 L 256,364 L 248,358 Z"
-          fill="url(#hdr_spirePlatinum)" stroke="#ffffff" stroke-width="0.8" />
-
-    <!-- Needle Right Facet -->
+          fill="url(#hdr_humSpire)" stroke="#ffffff" stroke-width="0.8" />
     <path d="M 256,124 L 264,132 L 264,358 L 256,364 Z"
-          fill="url(#hdr_goldMidPlane)" stroke="#ffffff" stroke-width="0.8" />
+          fill="url(#hdr_humGoldRight)" stroke="#ffffff" stroke-width="0.8" />
 
-    <!-- Top Crown Diamond of "I" -->
+    <!-- Crown Diamond Jewel -->
     <polygon points="256,108 268,120 256,132 244,120"
-             fill="#ffffff" stroke="url(#hdr_edgeGleam)" stroke-width="1.5" />
-    <circle cx="256" cy="120" r="2.2" fill="#f59e0b" />
+             fill="#ffffff" stroke="url(#hdr_humSheen)" stroke-width="1.5" />
+    <circle cx="256" cy="120" r="2.4" fill="#f59e0b" />
 
-    <!-- Bottom Anchor Diamond of "I" -->
+    <!-- Bottom Plumb Jewel -->
     <polygon points="256,358 266,368 256,378 246,368"
-             fill="url(#hdr_goldLightPlane)" stroke="#ffffff" stroke-width="1" />
+             fill="url(#hdr_humGoldLeft)" stroke="#ffffff" stroke-width="1" />
 
-    <!-- Optical Core Lens Flare -->
-    <circle cx="256" cy="198" r="3.5" fill="#ffffff" />
-    <line x1="238" y1="198" x2="274" y2="198" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
-    <line x1="256" y1="180" x2="256" y2="216" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
+    <!-- Optical Core Warm Spark -->
+    <circle cx="256" cy="198" r="4" fill="#ffffff" />
+    <line x1="236" y1="198" x2="276" y2="198" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
+    <line x1="256" y1="178" x2="256" y2="218" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
 
   </g>
 </svg>
