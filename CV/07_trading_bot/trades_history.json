@@ -1,10 +1,42 @@
 {
   "tenant_id": "novus-capital-enterprise",
-  "cash_cents": 666370,
+  "cash_cents": 373987,
   "total_pnl_cents": 168483,
   "win_count": 9,
   "loss_count": 3,
   "trades": [
+    {
+      "trade_id": "45c001a2cdd656dd",
+      "correlation_id": "TRADE-XAUUSD-1793714595272",
+      "idempotency_key": "IDEM-TRD-45c001a2cdd656dd",
+      "symbol": "XAUUSD",
+      "side": "BUY",
+      "price": 2736.56,
+      "qty": 1.0679,
+      "amount_cents": 292237,
+      "pnl_cents": 0,
+      "status": "SETTLED",
+      "timestamp": 1793714595.2725272,
+      "block_hash": "4e32907cd58bed6c9005189b5bc012fbfc96147c5b23989ed1b8dd4cf6e4d744",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 146,
+      "rationale": {
+        "thesis": "Reversi\u00f3n a la Media Estad\u00edstica (Mean Reversion) hacia el centro de masa VWAP",
+        "trigger": "Z-Score extremo (-2.03 < -1.8) con cotizaci\u00f3n penetrando la Banda de Bollinger inferior (2763.52\u20ac)",
+        "factors": [
+          "Z-Score de dispersi\u00f3n: -2.03 (Umbral de entrada: -1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 76.1982",
+          "VWAP ponderado acumulado: 2900.32\u20ac",
+          "Banda de Bollinger inferior (2\u03c3): 2763.52\u20ac",
+          "Divergencia estad\u00edstica de sobreventa con alta probabilidad de retorno al centro de gravedad"
+        ],
+        "risk_reward_ratio": 4.0,
+        "stop_loss_justification": "Fijado en 2694.97\u20ac (-1.5%) bajo el piso de volatilidad para cortar p\u00e9rdidas si la fuga persiste",
+        "take_profit_justification": "Objetivo fijado en VWAP (2900.32\u20ac) donde convergen compradores y vendedores institucionales",
+        "historical_edge": "Edge cuantificado de 78.4% de win-rate en reversiones con Z < -1.8",
+        "orderbook_bias": "Presi\u00f3n compradora en profundidad de Bids con ratio de absorci\u00f3n favorable (+14.5% imbalance)"
+      }
+    },
     {
       "trade_id": "9e5322dd9fa45831",
       "correlation_id": "TRADE-AAPL-1793714084129",
