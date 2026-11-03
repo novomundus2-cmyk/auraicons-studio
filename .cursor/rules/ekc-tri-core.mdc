@@ -1,0 +1,26 @@
+---
+description: Reglas y convenciones para el Tri-Core matemático EKC (Python + C11 + Haskell)
+globs: ["**/*.py", "**/*.c", "**/*.h", "**/*.hs"]
+---
+
+# Invariantes del Tri-Core Matemático EKC
+
+Al editar o generar código en Python, C o Haskell en este repositorio:
+
+1. **Python (`ekc_clean_math.py`)**:
+   - Cumplir rigurosamente PEP 8 y clean code.
+   - Usar `dataclasses` con `frozen=True` para modelos inmutables de dominio.
+   - Todo cálculo financiero DEBE usar `from decimal import Decimal, ROUND_HALF_UP`.
+   - Interfaz C con `ctypes` sin copias redundantes (`ctypes.byref`, structs nativos).
+   - Tipado estricto con `typing`.
+
+2. **C11 (`ekc_byte_engine.c`, `ekc_byte_engine.h`)**:
+   - `EkcStreamRecord` tiene exactamente 32 bytes con `__attribute__((packed))`.
+   - Alineado para que 2 registros encajen perfectamente en una línea de caché L1 de 64 bytes.
+   - Cero llamadas a `malloc` en el bucle caliente.
+   - Chequeo de integridad CRC-32 IEEE 802.3.
+
+3. **Haskell GHC (`ekc_math_proofs.hs`)**:
+   - Pruebas formales de monoides y semigrupos de Welford.
+   - Demostración de asociatividad dentro del epsilon de máquina ($2.22 \times 10^{-16}$).
+   - Balance contable de Pacioli exacto con racionales (`Rational` / `Ratio Integer`).

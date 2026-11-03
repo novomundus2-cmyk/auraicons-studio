@@ -1,0 +1,23 @@
+---
+description: Reglas y persistencia para los 9 agentes EKC (The Brothers) y sus bases de datos SQLite
+globs: ["EKC_AGENTS/*", "sync_ekc_math_to_dbs.py", "**/*agent*"]
+---
+
+# Reglas de Agentes EKC ("The Brothers")
+
+Los 9 agentes operan de forma distribuida y tienen asignada una base de datos SQLite WAL en `EKC_AGENTS/`:
+
+1. `EKC - David` (`david.db`)
+2. `EKC - Salomón` (`salomon.db`)
+3. `EKC - Bezalel` (`bezalel.db`)
+4. `EKC - San Miguel Arcángel` (`san_miguel_arcangel.db`)
+5. `EKC - Gabriel` (`gabriel.db`)
+6. `EKC - Rafael` (`rafael.db`)
+7. `EKC - Uriel` (`uriel.db`)
+8. `EKC - Daniel` (`daniel.db`)
+9. `EKC - Nehemías` (`nehemias.db`)
+
+## Directivas de Base de Datos
+- Las bases de datos operan con `PRAGMA journal_mode=WAL;` y `PRAGMA foreign_keys=ON;`.
+- Al insertar métricas desde el Tri-Core, usar `sync_ekc_math_to_dbs.py`.
+- No modificar esquemas sin migración auditable con firma SHA-256.
