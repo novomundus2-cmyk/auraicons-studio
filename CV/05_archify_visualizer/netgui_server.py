@@ -798,6 +798,27 @@ class ArchifyNetGUIHandler(SimpleHTTPRequestHandler):
                 self._send_json(get_corporate_status())
             elif route == "/api/enterprise/routes":
                 self._send_json({"ok": True, "routes": get_all_routes_telemetry()})
+            elif route in ("/api/ekc/agents", "/api/ekc/all", "/api/agents/ekc"):
+                ekc_root = Path("/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/EKC_AGENTS")
+                agents_summary = []
+                if ekc_root.exists():
+                    for folder in sorted(ekc_root.iterdir()):
+                        if folder.is_dir() and folder.name.startswith("EKC - "):
+                            db_files = list(folder.glob("*.db"))
+                            if db_files:
+                                db_f = db_files[0]
+                                try:
+                                    with sqlite3.connect(db_f) as conn:
+                                        conn.row_factory = sqlite3.Row
+                                        row = conn.execute("SELECT * FROM agent_identity").fetchone()
+                                        if row:
+                                            d = dict(row)
+                                            d["folder"] = folder.name
+                                            d["db_size_bytes"] = db_f.stat().st_size
+                                            agents_summary.append(d)
+                                except Exception:
+                                    pass
+                self._send_json({"ok": True, "brand": "ElektriKubercisC (EKC)", "owner": "Mikel Irastorza (EFA)", "total_agents": len(agents_summary), "agents": agents_summary})
             elif route == "/api/enterprise/knowledge":
                 with closing(sqlite3.connect(PATHS.db_path)) as conn:
                     cur = conn.execute(

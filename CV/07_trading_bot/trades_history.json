@@ -1,10 +1,42 @@
 {
   "tenant_id": "novus-capital-enterprise",
-  "cash_cents": 510208,
-  "total_pnl_cents": 16978,
-  "win_count": 10,
+  "cash_cents": 765969,
+  "total_pnl_cents": 19720,
+  "win_count": 11,
   "loss_count": 1,
   "trades": [
+    {
+      "trade_id": "fb06dae9ad808ba9",
+      "correlation_id": "TRADE-IBE.MC-1793709600730",
+      "idempotency_key": "IDEM-TRD-fb06dae9ad808ba9",
+      "symbol": "IBE.MC",
+      "side": "SELL",
+      "price": 22.29,
+      "qty": 114.8,
+      "amount_cents": 255889,
+      "pnl_cents": 2742,
+      "status": "SETTLED",
+      "timestamp": 1793709600.730182,
+      "block_hash": "6ae6ac69794c163e7b7fe319069c6ef401eeee44cf02c268dde6862ec924a64b",
+      "strategy_used": "VWAP & Robust MAD Mean Reversion",
+      "execution_fee_cents": 128,
+      "rationale": {
+        "thesis": "Toma de Beneficios y Reversi\u00f3n a VWAP desde Sobrecompra Extrema",
+        "trigger": "Z-Score extremo (4.31 > +1.8) perforando la Banda de Bollinger superior (22.29\u20ac)",
+        "factors": [
+          "Z-Score de dispersi\u00f3n: 4.31 (Umbral de entrada: +1.8)",
+          "Desviaci\u00f3n Absoluta Mediana (MAD): 0.0445",
+          "VWAP ponderado acumulado: 22.17\u20ac",
+          "Banda de Bollinger superior (2\u03c3): 22.29\u20ac",
+          "Agotamiento de volumen comprador en m\u00e1ximos locales"
+        ],
+        "risk_reward_ratio": 0.36,
+        "stop_loss_justification": "Fijado en 22.62\u20ac (+1.5%) para proteger capital ante una rotura alcista explosiva",
+        "take_profit_justification": "Objetivo fijado en VWAP (22.17\u20ac) cerrando la prima de sobrecompra",
+        "historical_edge": "Edge cuantificado de 74.2% de reversi\u00f3n desde techo de volatilidad",
+        "orderbook_bias": "Presi\u00f3n de venta en asks superiores con absorci\u00f3n pasiva"
+      }
+    },
     {
       "trade_id": "69c2859c1add4b90",
       "correlation_id": "TRADE-XAUUSD-1793709270768",
