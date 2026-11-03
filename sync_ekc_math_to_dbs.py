@@ -23,6 +23,17 @@ from ekc_clean_math import EkcMathematicalEngine
 def generate_sha(data: str) -> str:
     return hashlib.sha256(data.encode('utf-8')).hexdigest()
 
+def connect_fast_db(db_path: str) -> sqlite3.Connection:
+    """Creates a high-performance SQLite connection with WAL, MMAP 256MB, and RAM cache."""
+    conn = sqlite3.connect(db_path)
+    conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA synchronous = NORMAL;")
+    conn.execute("PRAGMA mmap_size = 268435456;")  # 256MB memory-mapped zero-copy I/O
+    conn.execute("PRAGMA cache_size = -64000;")     # 64MB RAM cache
+    conn.execute("PRAGMA temp_store = MEMORY;")
+    conn.execute("PRAGMA busy_timeout = 5000;")
+    return conn
+
 def update_ekc_agent_databases():
     engine = EkcMathematicalEngine()
     audit = engine.run_full_tri_core_audit()
@@ -34,7 +45,7 @@ def update_ekc_agent_databases():
     # 1. Update EKC - David (david.db)
     david_db_path = os.path.join(agents_dir, "EKC - David", "david.db")
     if os.path.exists(david_db_path):
-        conn = sqlite3.connect(david_db_path)
+        conn = connect_fast_db(david_db_path)
         cur = conn.cursor()
         w_stats = audit.get("c_byte_engine", {}).get("welford_stream_stats", {})
         agg_id = f"welford-{int(time.time())}"
@@ -75,7 +86,7 @@ def update_ekc_agent_databases():
     # 2. Update EKC - Bezalel (bezalel.db)
     bezalel_db_path = os.path.join(agents_dir, "EKC - Bezalel", "bezalel.db")
     if os.path.exists(bezalel_db_path):
-        conn = sqlite3.connect(bezalel_db_path)
+        conn = connect_fast_db(bezalel_db_path)
         cur = conn.cursor()
         spec_id = f"cad-spec-{int(time.time())}"
         cur.execute(
@@ -114,7 +125,7 @@ def update_ekc_agent_databases():
     # 3. Update EKC - San Miguel Arcángel (san_miguel_arcangel.db)
     san_miguel_db_path = os.path.join(agents_dir, "EKC - San Miguel Arcángel", "san_miguel_arcangel.db")
     if os.path.exists(san_miguel_db_path):
-        conn = sqlite3.connect(san_miguel_db_path)
+        conn = connect_fast_db(san_miguel_db_path)
         cur = conn.cursor()
         threat_id = f"threat-{int(time.time())}"
         cur.execute(
