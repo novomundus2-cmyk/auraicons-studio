@@ -12,6 +12,8 @@ coverage/
 
 # Wal uncompressed limit guard for GitHub (use .wal.gz)
 *.wal
+*.db-wal
+*.db-shm
 
 # Python virtual environments & bytecode caches
 .venv/
