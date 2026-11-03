@@ -1,0 +1,190 @@
+rules_version = '2';
+
+/**
+ * Cloud Firestore Security Rules · EFA Institutional & Zero-Trust Architecture
+ * 
+ * Author: Mikel Irastorza (EFA) & San Miguel Arcángel / CISO Aegis
+ * Governance: Strict Default Deny, CEL Type Enforcement, Anti-DoS Resource Bounds,
+ *             Immutable Audit Fields, and Double-Validation (Create + Update).
+ */
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =========================================================================
+    // GLOBAL SECURITY HELPERS & ZERO-TRUST GUARDS
+    // =========================================================================
+
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isUser(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Authority derivation: trusted custom claims or verified bootstrap owner email
+    function isOwnerAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        (request.auth.token.email_verified == true && 
+         request.auth.token.email == 'mikelirastorza@gmail.com')
+      );
+    }
+
+    function isTimestamp(val) {
+      return val is timestamp;
+    }
+
+    function isNonEmptyString(val, minLen, maxLen) {
+      return val is string && val.size() >= minLen && val.size() <= maxLen;
+    }
+
+    function isPositiveNumber(val) {
+      return (val is int || val is float) && val > 0;
+    }
+
+    function isInteger(val) {
+      return val is int;
+    }
+
+    // =========================================================================
+    // DOMAIN VALIDATORS (CALLED ON BOTH CREATE AND UPDATE TO PREVENT BYPASS)
+    // =========================================================================
+
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'email', 'createdAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'displayName', 'photoUrl', 'role', 'createdAt', 'updatedAt']) &&
+        data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 &&
+        isNonEmptyString(data.email, 5, 150) &&
+        (!('displayName' in data) || isNonEmptyString(data.displayName, 1, 100)) &&
+        (!('photoUrl' in data) || isNonEmptyString(data.photoUrl, 5, 500)) &&
+        (!('role' in data) || data.role in ['viewer', 'engineer', 'ciso_guardian', 'owner']) &&
+        isTimestamp(data.createdAt);
+    }
+
+    function isValidProjectNote(data) {
+      return data.keys().hasAll(['userId', 'projectSlug', 'content', 'createdAt']) &&
+        data.keys().hasOnly(['userId', 'projectSlug', 'content', 'rating', 'createdAt', 'updatedAt']) &&
+        data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128 &&
+        isNonEmptyString(data.projectSlug, 1, 100) &&
+        isNonEmptyString(data.content, 1, 5000) &&
+        (!('rating' in data) || (data.rating is int && data.rating >= 1 && data.rating <= 5)) &&
+        isTimestamp(data.createdAt);
+    }
+
+    function isValidSimulationLog(data) {
+      return data.keys().hasAll(['userId', 'simulationType', 'eventsCount', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['userId', 'simulationType', 'eventsCount', 'status', 'payload', 'createdAt']) &&
+        data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128 &&
+        data.simulationType in ['roomtudy_idempotency', 'cad_tolerance_mcp', 'cloudsql_acid', 'flink_streaming', 'bigframes_ml'] &&
+        isInteger(data.eventsCount) && data.eventsCount >= 0 && data.eventsCount <= 100000 &&
+        data.status in ['RUNNING', 'SUCCESS', 'DEDUPLICATED', 'FAILED'] &&
+        (!('payload' in data) || (data.payload is string && data.payload.size() <= 10000)) &&
+        isTimestamp(data.createdAt);
+    }
+
+    function isValidFinancialTransaction(data) {
+      return data.keys().hasAll(['txHash', 'accountRef', 'amount', 'currency', 'partitionId', 'sequenceNum', 'status', 'processedAt']) &&
+        data.keys().hasOnly(['txHash', 'accountRef', 'amount', 'currency', 'partitionId', 'sequenceNum', 'status', 'latencyMs', 'processedAt']) &&
+        data.txHash is string && data.txHash.size() == 64 &&
+        isNonEmptyString(data.accountRef, 3, 64) &&
+        isNonEmptyString(data.amount, 1, 32) &&
+        data.currency in ['EUR', 'USD', 'GBP'] &&
+        isInteger(data.partitionId) && data.partitionId >= 0 && data.partitionId < 16 &&
+        isInteger(data.sequenceNum) && data.sequenceNum >= 0 &&
+        data.status in ['ACCEPTED', 'DEDUPLICATED', 'AUDIT_FLAGGED'] &&
+        (!('latencyMs' in data) || (isInteger(data.latencyMs) && data.latencyMs >= 0 && data.latencyMs <= 60000)) &&
+        isTimestamp(data.processedAt);
+    }
+
+    function isValidJobRequest(data) {
+      return data.keys().hasAll(['reference', 'clientName', 'clientEmail', 'roleRequested', 'projectScope', 'status', 'createdAt']) &&
+        data.keys().hasOnly(['reference', 'clientName', 'clientEmail', 'company', 'roleRequested', 'projectScope', 'budgetRange', 'timeline', 'status', 'createdAt']) &&
+        data.reference is string && data.reference.size() >= 8 && data.reference.size() <= 32 &&
+        isNonEmptyString(data.clientName, 2, 80) &&
+        isNonEmptyString(data.clientEmail, 5, 120) &&
+        (!('company' in data) || isNonEmptyString(data.company, 1, 100)) &&
+        isNonEmptyString(data.roleRequested, 2, 100) &&
+        isNonEmptyString(data.projectScope, 10, 2000) &&
+        (!('budgetRange' in data) || isNonEmptyString(data.budgetRange, 1, 50)) &&
+        (!('timeline' in data) || isNonEmptyString(data.timeline, 1, 50)) &&
+        data.status in ['PENDING', 'REVIEWED', 'ACCEPTED', 'REJECTED'] &&
+        isTimestamp(data.createdAt);
+    }
+
+    function isValidSecurityAuditLog(data) {
+      return data.keys().hasAll(['auditId', 'overallScore', 'securityGrade', 'passedChecks', 'failedChecks', 'digitalSeal', 'timestamp']) &&
+        data.auditId is string && data.auditId.size() >= 8 && data.auditId.size() <= 64 &&
+        isInteger(data.overallScore) && data.overallScore >= 0 && data.overallScore <= 100 &&
+        isNonEmptyString(data.securityGrade, 1, 50) &&
+        isInteger(data.passedChecks) && data.passedChecks >= 0 &&
+        isInteger(data.failedChecks) && data.failedChecks >= 0 &&
+        data.digitalSeal is string && data.digitalSeal.size() == 64 &&
+        isTimestamp(data.timestamp);
+    }
+
+    match /users/{userId} {
+      allow read: if isUser(userId) || isOwnerAdmin();
+      allow create: if isUser(userId) && isValidUserProfile(request.resource.data);
+      allow update: if isUser(userId) &&
+        isValidUserProfile(request.resource.data) &&
+        request.resource.data.uid == resource.data.uid &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        (!('role' in request.resource.data) || request.resource.data.role == resource.data.role || isOwnerAdmin());
+      allow delete: if isOwnerAdmin();
+    }
+
+    match /project_notes/{noteId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isOwnerAdmin());
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid &&
+        isValidProjectNote(request.resource.data);
+      allow update: if isAuthenticated() &&
+        resource.data.userId == request.auth.uid &&
+        isValidProjectNote(request.resource.data) &&
+        request.resource.data.userId == resource.data.userId &&
+        request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAuthenticated() && (resource.data.userId == request.auth.uid || isOwnerAdmin());
+    }
+
+    match /simulation_logs/{logId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isOwnerAdmin());
+      allow create: if isAuthenticated() &&
+        request.resource.data.userId == request.auth.uid &&
+        isValidSimulationLog(request.resource.data);
+      allow update: if false;
+      allow delete: if isOwnerAdmin();
+    }
+
+    match /financial_transactions/{txId} {
+      allow read: if isOwnerAdmin();
+      allow create: if isOwnerAdmin() && isValidFinancialTransaction(request.resource.data);
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    match /job_requests/{requestId} {
+      allow read: if isOwnerAdmin();
+      allow create: if isValidJobRequest(request.resource.data) &&
+        request.resource.data.status == 'PENDING';
+      allow update: if isOwnerAdmin() && isValidJobRequest(request.resource.data);
+      allow delete: if isOwnerAdmin();
+    }
+
+    match /bioscience_reference/{docId} {
+      allow read: if true;
+      allow write: if isOwnerAdmin();
+    }
+
+    match /security_audit_logs/{auditId} {
+      allow read: if isAuthenticated();
+      allow create: if isOwnerAdmin() && isValidSecurityAuditLog(request.resource.data);
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
