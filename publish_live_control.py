@@ -75,8 +75,8 @@ def set_privacy(mode: str):
     projects = get_projects(token)
 
     # mode 'lock' -> deploymentType 'all'
-    # mode 'unlock' -> deploymentType 'only_preview' (Public production, private preview)
-    target_sso = {"deploymentType": "all"} if mode == "lock" else {"deploymentType": "only_preview"}
+    # mode 'unlock' -> None (Public access, no login required)
+    target_sso = {"deploymentType": "all"} if mode == "lock" else None
     mode_label = "🔒 PRIVADO (Bloqueo total)" if mode == "lock" else "🌐 PÚBLICO (Listo para subir / lanzamiento)"
 
     print(f"\n[APLICANDO CAMBIO DE ACCESO]: {mode_label}\n")
