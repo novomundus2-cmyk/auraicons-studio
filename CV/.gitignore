@@ -14,7 +14,11 @@ checkpoints/
 *.db
 !financial_lakehouse.db
 
-# Operating System
+# Operating System & Binaries
 .DS_Store
 Thumbs.db
 .mypy_cache/
+*.o
+*.hi
+*.dylib
+ekc_math_proofs
