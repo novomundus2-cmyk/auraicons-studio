@@ -1,77 +1,87 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" width="1000" height="240" role="img" aria-label="Mikel Irastorza · Lead Systems Architect &amp; Big Data Engineer · EKC &amp; EFA">
   <defs>
 
-    <!-- Warm Velvet Obsidian Void -->
-    <radialGradient id="h_humBg" cx="50%" cy="46%" r="72%">
-      <stop offset="0%" stop-color="#1f1b16" />
-      <stop offset="50%" stop-color="#0f0d0b" />
-      <stop offset="100%" stop-color="#05070c" />
+    <!-- Deep Obsidian Velvet Canvas -->
+    <radialGradient id="h_artMedalBg" cx="50%" cy="46%" r="72%">
+      <stop offset="0%" stop-color="#221b14" />
+      <stop offset="42%" stop-color="#110d0a" />
+      <stop offset="85%" stop-color="#070607" />
+      <stop offset="100%" stop-color="#020304" />
     </radialGradient>
 
-    <!-- Warm Amber Hearth Halo (Calor Humano) -->
-    <radialGradient id="h_humHalo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4" />
-      <stop offset="40%" stop-color="#d97706" stop-opacity="0.18" />
-      <stop offset="80%" stop-color="#92400e" stop-opacity="0.05" />
+    <!-- Warm Golden Ambient Hearth -->
+    <radialGradient id="h_artMedalHalo" cx="50%" cy="50%" r="52%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.45" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.22" />
+      <stop offset="70%" stop-color="#b45309" stop-opacity="0.06" />
       <stop offset="100%" stop-color="#000000" stop-opacity="0" />
     </radialGradient>
 
-    <!-- Soft Champagne Specular Ribbon Light -->
-    <linearGradient id="h_humChampagne" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Liquid Mirror Champagne Specular Gradient -->
+    <linearGradient id="h_artLiquidGold" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="25%" stop-color="#fffbeb" />
-      <stop offset="60%" stop-color="#fef3c7" />
-      <stop offset="100%" stop-color="#fde68a" />
-    </linearGradient>
-
-    <!-- Warm Hand-Etched Gold (Left Flow) -->
-    <linearGradient id="h_humGoldLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fef08a" />
-      <stop offset="35%" stop-color="#f59e0b" />
-      <stop offset="80%" stop-color="#d97706" />
+      <stop offset="18%" stop-color="#fffbeb" />
+      <stop offset="45%" stop-color="#fef08a" />
+      <stop offset="75%" stop-color="#f59e0b" />
       <stop offset="100%" stop-color="#b45309" />
     </linearGradient>
 
-    <!-- Hand-Chiseled Cognac Bronze (Right Shade) -->
-    <linearGradient id="h_humGoldRight" x1="100%" y1="0%" x2="0%" y2="100%">
+    <!-- Sun-Facing Left Sculptural Flank -->
+    <linearGradient id="h_artFacetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="30%" stop-color="#f59e0b" />
+      <stop offset="75%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+
+    <!-- Center Folded Valley (Artistic Patina) -->
+    <linearGradient id="h_artFacetCenter" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="40%" stop-color="#78350f" />
+      <stop offset="80%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+
+    <!-- Deep Forged Bronze Flank (Right Wing) -->
+    <linearGradient id="h_artFacetRight" x1="100%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fde68a" />
       <stop offset="25%" stop-color="#d97706" />
       <stop offset="65%" stop-color="#92400e" />
-      <stop offset="100%" stop-color="#5a2307" />
+      <stop offset="100%" stop-color="#451a03" />
     </linearGradient>
 
-    <!-- Central Human Spire / Column of Trust -->
-    <linearGradient id="h_humSpire" x1="0%" y1="0%" x2="0%" y2="100%">
+    <!-- Pure Platinum Spire -->
+    <linearGradient id="h_artPlatinumSpire" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="30%" stop-color="#fffbeb" />
-      <stop offset="70%" stop-color="#fbbf24" />
+      <stop offset="25%" stop-color="#fffef0" />
+      <stop offset="60%" stop-color="#fbbf24" />
       <stop offset="100%" stop-color="#b45309" />
     </linearGradient>
 
-    <!-- Artisan Bevel Wireframe Sheen -->
-    <linearGradient id="h_humSheen" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
-      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.5" />
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9" />
+    <!-- Specular Bevel Hairline -->
+    <linearGradient id="h_artBevelSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.95" />
     </linearGradient>
 
-    <!-- Soft Depth Shadow with Warm Glow -->
-    <filter id="h_humShadow" x="-25%" y="-25%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="16" stdDeviation="22" flood-color="#000000" flood-opacity="0.85" />
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#f59e0b" flood-opacity="0.3" />
+    <!-- High-Relief Shadow -->
+    <filter id="h_highReliefShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000000" flood-opacity="0.92" />
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#f59e0b" flood-opacity="0.4" />
     </filter>
 
   </defs>
 
   <!-- Base Obsidian Plaque -->
-  <rect width="1000" height="240" rx="28" fill="url(#h_humBg)" />
-  <rect width="998" height="238" x="1" y="1" rx="27" fill="none" stroke="url(#h_humSheen)" stroke-width="1.6" stroke-opacity="0.38" />
+  <rect width="1000" height="240" rx="28" fill="url(#h_artMedalBg)" />
+  <rect width="998" height="238" x="1" y="1" rx="27" fill="none" stroke="url(#h_artBevelSheen)" stroke-width="1.6" stroke-opacity="0.4" />
 
   <!-- Ambient Light Behind Symbol -->
-  <circle cx="120" cy="120" r="100" fill="url(#h_humHalo)" />
+  <circle cx="120" cy="120" r="100" fill="url(#h_artMedalHalo)" />
 
   <!-- CAD Background Grids -->
-  <g fill="none" stroke="#f59e0b" stroke-opacity="0.12" stroke-width="1">
+  <g fill="none" stroke="#f59e0b" stroke-opacity="0.14" stroke-width="1">
     <circle cx="120" cy="120" r="88" stroke-dasharray="3 6" />
     <circle cx="120" cy="120" r="62" />
     <line x1="24" y1="120" x2="216" y2="120" />
@@ -80,73 +90,73 @@
   </g>
 
   <!-- ================= EMBLEM ICON (Left) ================= -->
-  <g transform="translate(120, 120) scale(0.36) translate(-256, -256)" filter="url(#h_humShadow)">
+  <g transform="translate(120, 120) scale(0.36) translate(-256, -256)" filter="url(#h_highReliefShadow)">
 
-    <!-- Protective Seal Hexagon with Curved Fillets -->
-    <path d="M 248,109 Q 256,104 264,109 L 382,176 Q 388,180 388,188 L 388,324 Q 388,332 382,336 L 264,403 Q 256,408 248,403 L 130,336 Q 124,332 124,324 L 124,188 Q 124,180 130,176 Z"
-          fill="#0c0a09" fill-opacity="0.65"
-          stroke="url(#h_humSheen)" stroke-width="2.8" stroke-linejoin="round" />
+    <!-- Protective Outer Hexagonal Seal with Curved Fillets -->
+    <path d="M 248,104 Q 256,98 264,104 L 384,174 Q 392,178 392,188 L 392,324 Q 392,334 384,338 L 264,408 Q 256,414 248,408 L 128,338 Q 120,334 120,324 L 120,188 Q 120,178 128,174 Z"
+          fill="#0c0907" fill-opacity="0.75"
+          stroke="url(#h_artBevelSheen)" stroke-width="3.2" stroke-linejoin="round" />
 
-    <!-- Corner Gold Rivets / Human Anchor Points -->
-    <circle cx="256" cy="106" r="3.5" fill="#ffffff" />
-    <circle cx="385" cy="182" r="3.5" fill="#fef3c7" />
-    <circle cx="385" cy="330" r="3.5" fill="#fef3c7" />
-    <circle cx="256" cy="406" r="3.5" fill="#fef3c7" />
-    <circle cx="127" cy="330" r="3.5" fill="#fef3c7" />
-    <circle cx="127" cy="182" r="3.5" fill="#fef3c7" />
+    <!-- Corner Star Rivets / Golden Constellation -->
+    <circle cx="256" cy="101" r="3.8" fill="#ffffff" />
+    <circle cx="388" cy="181" r="3.8" fill="#fef3c7" />
+    <circle cx="388" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="256" cy="411" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="181" r="3.8" fill="#fef3c7" />
 
-    <!-- ================= THE "M" SCULPTURE ================= -->
-    <!-- Left Ascending Wing -->
-    <path d="M 144,198 L 186,172 L 186,326 L 144,302 Z"
-          fill="url(#h_humGoldLeft)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+    <!-- ================= THE "M" MONOLITHIC SCULPTURE ================= -->
+    <!-- Left Wing Outer Wall -->
+    <path d="M 140,194 L 186,168 L 186,328 L 140,302 Z"
+          fill="url(#h_artFacetLeft)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
 
-    <!-- Left Peak Crest (Gentle Arched Curve) -->
-    <path d="M 186,172 Q 206,158 224,148 L 224,198 Q 206,208 186,220 Z"
-          fill="url(#h_humChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
+    <!-- Left Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 186,168 Q 206,154 226,144 L 226,196 Q 206,206 186,220 Z"
+          fill="url(#h_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
 
-    <!-- Left Valley (Flowing down into the center) -->
-    <path d="M 224,148 Q 240,174 256,198 L 256,246 Q 240,222 224,198 Z"
-          fill="url(#h_humGoldLeft)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+    <!-- Left Valley (Deep Patina Fold) -->
+    <path d="M 226,144 Q 242,172 256,196 L 256,248 Q 242,222 226,196 Z"
+          fill="url(#h_artFacetCenter)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
 
-    <!-- Right Valley (Ascending from center with matching curvature) -->
-    <path d="M 256,198 Q 272,174 288,148 L 288,198 Q 272,222 256,246 Z"
-          fill="url(#h_humGoldRight)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+    <!-- Right Valley -->
+    <path d="M 256,196 Q 270,172 286,144 L 286,196 Q 270,222 256,248 Z"
+          fill="url(#h_artFacetRight)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
 
-    <!-- Right Peak Crest (Gentle Arched Curve) -->
-    <path d="M 288,148 Q 306,158 326,172 L 326,220 Q 306,208 288,198 Z"
-          fill="url(#h_humChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
+    <!-- Right Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 286,144 Q 306,154 326,168 L 326,220 Q 306,206 286,196 Z"
+          fill="url(#h_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
 
-    <!-- Right Ascending Wing -->
-    <path d="M 326,172 L 368,198 L 368,302 L 326,326 Z"
-          fill="url(#h_humGoldRight)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+    <!-- Right Wing Outer Wall (Forged Cognac Bronze) -->
+    <path d="M 326,168 L 372,194 L 372,302 L 326,328 Z"
+          fill="url(#h_artFacetRight)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
 
-    <!-- Left Structural Flange Base -->
-    <path d="M 186,220 L 224,198 L 224,346 L 186,326 Z"
-          fill="url(#h_humGoldLeft)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+    <!-- Left Base Flange -->
+    <path d="M 186,220 L 226,196 L 226,348 L 186,328 Z"
+          fill="url(#h_artFacetLeft)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
 
-    <!-- Right Structural Flange Base -->
-    <path d="M 288,198 L 326,220 L 326,326 L 288,346 Z"
-          fill="url(#h_humGoldRight)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+    <!-- Right Base Flange -->
+    <path d="M 286,196 L 326,220 L 326,328 L 286,348 Z"
+          fill="url(#h_artFacetRight)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
 
-    <!-- ================= THE "I" COLUMN OF TRUST ================= -->
-    <path d="M 248,132 L 256,124 L 256,364 L 248,358 Z"
-          fill="url(#h_humSpire)" stroke="#ffffff" stroke-width="0.8" />
-    <path d="M 256,124 L 264,132 L 264,358 L 256,364 Z"
-          fill="url(#h_humGoldRight)" stroke="#ffffff" stroke-width="0.8" />
+    <!-- ================= THE "I" RADIANT SPIRE ================= -->
+    <path d="M 248,128 L 256,120 L 256,366 L 248,360 Z"
+          fill="url(#h_artPlatinumSpire)" stroke="#ffffff" stroke-width="0.8" />
+    <path d="M 256,120 L 264,128 L 264,360 L 256,366 Z"
+          fill="url(#h_artFacetRight)" stroke="#ffffff" stroke-width="0.8" />
 
-    <!-- Crown Diamond Jewel -->
-    <polygon points="256,108 268,120 256,132 244,120"
-             fill="#ffffff" stroke="url(#h_humSheen)" stroke-width="1.5" />
-    <circle cx="256" cy="120" r="2.4" fill="#f59e0b" />
+    <!-- Crown Brilliant Diamond Jewel -->
+    <polygon points="256,104 268,116 256,128 244,116"
+             fill="#ffffff" stroke="url(#h_artBevelSheen)" stroke-width="1.6" />
+    <circle cx="256" cy="116" r="2.5" fill="#f59e0b" />
 
-    <!-- Bottom Plumb Jewel -->
-    <polygon points="256,358 266,368 256,378 246,368"
-             fill="url(#h_humGoldLeft)" stroke="#ffffff" stroke-width="1" />
+    <!-- Bottom Plumb Jewel of Pacioli Invariant -->
+    <polygon points="256,360 267,371 256,382 245,371"
+             fill="url(#h_artFacetLeft)" stroke="#ffffff" stroke-width="1.2" />
 
-    <!-- Optical Core Warm Spark -->
-    <circle cx="256" cy="198" r="4" fill="#ffffff" />
-    <line x1="236" y1="198" x2="276" y2="198" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
-    <line x1="256" y1="178" x2="256" y2="218" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.9" />
+    <!-- Optical Core Lens Flare Spark -->
+    <circle cx="256" cy="196" r="4.2" fill="#ffffff" />
+    <line x1="234" y1="196" x2="278" y2="196" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
+    <line x1="256" y1="174" x2="256" y2="218" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
 
   </g>
 
@@ -156,12 +166,12 @@
       SISTEMAS DISTRIBUIDOS · DATA ENGINEERING · EFA
     </text>
 
-    <text x="0" y="112" fill="url(#h_humChampagne)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="1.5">
+    <text x="0" y="112" fill="url(#h_artLiquidGold)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="1.5">
       MIKEL IRASTORZA
     </text>
 
     <text x="0" y="152" fill="#e7e5e4" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="17" font-weight="600" letter-spacing="0.8">
-      Lead Systems Architect &amp; Big Data Engineer · Artesanía Digital
+      Lead Systems Architect &amp; Big Data Engineer · Escultura de Datos
     </text>
 
     <!-- Tech Badges & Invariant Badges -->
@@ -175,8 +185,8 @@
       <rect x="324" y="0" width="156" height="26" rx="6" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1" />
       <text x="402" y="17" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">CAD ±0.200mm</text>
 
-      <rect x="490" y="0" width="154" height="26" rx="6" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1" />
-      <text x="567" y="17" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800">CRITERIO HUMANO</text>
+      <rect x="490" y="0" width="168" height="26" rx="6" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1" />
+      <text x="574" y="17" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800">CRITERIO HUMANO</text>
     </g>
   </g>
 </svg>
