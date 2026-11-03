@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" width="1000" height="240" role="img" aria-label="Mikel Irastorza · Lead Systems Architect &amp; Big Data Engineer · EKC &amp; EFA">
+  <defs>
+
+    <!-- Deep Obsidian Void Gradient -->
+    <radialGradient id="h_luxBg" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="45%" stop-color="#0c0a09" />
+      <stop offset="100%" stop-color="#05070c" />
+    </radialGradient>
+
+    <!-- Volumetric Core Gold Aura -->
+    <radialGradient id="h_luxAura" cx="50%" cy="50%" r="48%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.38" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.14" />
+      <stop offset="70%" stop-color="#b45309" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Top Champagne Gold (Specular Light Crest) -->
+    <linearGradient id="h_specularChampagne" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fffbeb" />
+      <stop offset="60%" stop-color="#fef3c7" />
+      <stop offset="100%" stop-color="#fde68a" />
+    </linearGradient>
+
+    <!-- Sun-Facing Left Isometric Plane -->
+    <linearGradient id="h_goldLightPlane" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="30%" stop-color="#f59e0b" />
+      <stop offset="85%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Mid Tone Brushed Amber Surface -->
+    <linearGradient id="h_goldMidPlane" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="40%" stop-color="#d97706" />
+      <stop offset="80%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+
+    <!-- Deep Bronze Shadow Plane (Right Flank) -->
+    <linearGradient id="h_goldDarkPlane" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" />
+      <stop offset="20%" stop-color="#d97706" />
+      <stop offset="65%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#5a2307" />
+    </linearGradient>
+
+    <!-- Platinum Gold for Central Needle -->
+    <linearGradient id="h_spirePlatinum" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fef3c7" />
+      <stop offset="70%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Razor Bevel Wireframe Edge Highlight -->
+    <linearGradient id="h_edgeGleam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Multi-stage Depth Drop Shadow -->
+    <filter id="h_monolithShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.88" />
+      <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#f59e0b" flood-opacity="0.32" />
+    </filter>
+
+  </defs>
+
+  <!-- Base Obsidian Plaque -->
+  <rect width="1000" height="240" rx="28" fill="url(#h_luxBg)" />
+  <rect width="998" height="238" x="1" y="1" rx="27" fill="none" stroke="url(#h_edgeGleam)" stroke-width="1.6" stroke-opacity="0.38" />
+
+  <!-- Ambient Light Behind Symbol -->
+  <circle cx="120" cy="120" r="100" fill="url(#h_luxAura)" />
+
+  <!-- CAD Background Grids -->
+  <g fill="none" stroke="#f59e0b" stroke-opacity="0.12" stroke-width="1">
+    <circle cx="120" cy="120" r="88" stroke-dasharray="3 6" />
+    <circle cx="120" cy="120" r="62" />
+    <line x1="24" y1="120" x2="216" y2="120" />
+    <line x1="120" y1="24" x2="120" y2="216" />
+    <line x1="244" y1="32" x2="244" y2="208" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="1.5" />
+  </g>
+
+  <!-- ================= EMBLEM ICON (Left) ================= -->
+  <g transform="translate(120, 120) scale(0.36) translate(-256, -256)" filter="url(#h_monolithShadow)">
+
+    <!-- OUTER SHIELD HEXAGON -->
+    <polygon points="256,104 388,180 388,332 256,408 124,332 124,180"
+             fill="#0c0a09" fill-opacity="0.6"
+             stroke="url(#h_edgeGleam)" stroke-width="3" stroke-linejoin="round" />
+    
+    <!-- Precision Corner Micro-Rivets -->
+    <circle cx="256" cy="104" r="3.5" fill="#ffffff" />
+    <circle cx="388" cy="180" r="3.5" fill="#fef3c7" />
+    <circle cx="388" cy="332" r="3.5" fill="#fef3c7" />
+    <circle cx="256" cy="408" r="3.5" fill="#fef3c7" />
+    <circle cx="124" cy="332" r="3.5" fill="#fef3c7" />
+    <circle cx="124" cy="180" r="3.5" fill="#fef3c7" />
+
+    <!-- ================= THE "M" MONOLITH ================= -->
+    <!-- Left Outer Wall -->
+    <path d="M 142,196 L 186,170 L 186,326 L 142,300 Z"
+          fill="url(#h_goldLightPlane)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Peak Incline (Specular Champagne Crest) -->
+    <path d="M 186,170 L 224,148 L 224,198 L 186,220 Z"
+          fill="url(#h_specularChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+
+    <!-- Left Valley (Descending slope into center) -->
+    <path d="M 224,148 L 256,198 L 256,246 L 224,198 Z"
+          fill="url(#h_goldMidPlane)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Valley (Ascending slope from center) -->
+    <path d="M 256,198 L 288,148 L 288,198 L 256,246 Z"
+          fill="url(#h_goldDarkPlane)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Peak Incline (Specular Champagne Crest) -->
+    <path d="M 288,148 L 326,170 L 326,220 L 288,198 Z"
+          fill="url(#h_specularChampagne)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.8" />
+
+    <!-- Right Outer Wall -->
+    <path d="M 326,170 L 370,196 L 370,300 L 326,326 Z"
+          fill="url(#h_goldDarkPlane)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Front Flange (Structural base) -->
+    <path d="M 186,220 L 224,198 L 224,346 L 186,326 Z"
+          fill="url(#h_goldLightPlane)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- Right Front Flange -->
+    <path d="M 288,198 L 326,220 L 326,326 L 288,346 Z"
+          fill="url(#h_goldDarkPlane)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- ================= THE "I" CENTRAL KEYSTONE SPIRE ================= -->
+    <!-- Needle Left Facet -->
+    <path d="M 248,132 L 256,124 L 256,364 L 248,358 Z"
+          fill="url(#h_spirePlatinum)" stroke="#ffffff" stroke-width="0.8" />
+
+    <!-- Needle Right Facet -->
+    <path d="M 256,124 L 264,132 L 264,358 L 256,364 Z"
+          fill="url(#h_goldMidPlane)" stroke="#ffffff" stroke-width="0.8" />
+
+    <!-- Top Crown Diamond of "I" -->
+    <polygon points="256,108 268,120 256,132 244,120"
+             fill="#ffffff" stroke="url(#h_edgeGleam)" stroke-width="1.5" />
+    <circle cx="256" cy="120" r="2.2" fill="#f59e0b" />
+
+    <!-- Bottom Anchor Diamond of "I" -->
+    <polygon points="256,358 266,368 256,378 246,368"
+             fill="url(#h_goldLightPlane)" stroke="#ffffff" stroke-width="1" />
+
+    <!-- Optical Core Lens Flare -->
+    <circle cx="256" cy="198" r="3.5" fill="#ffffff" />
+    <line x1="238" y1="198" x2="274" y2="198" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
+    <line x1="256" y1="180" x2="256" y2="216" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.85" />
+
+  </g>
+
+  <!-- ================= TYPOGRAPHY & IDENTITY (Right) ================= -->
+  <g transform="translate(284, 0)">
+    <!-- Small Category Kicker -->
+    <text x="0" y="60" fill="#fbbf24" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="4">
+      SISTEMAS DISTRIBUIDOS · DATA ENGINEERING · EFA
+    </text>
+
+    <!-- Main Name Title -->
+    <text x="0" y="112" fill="url(#h_specularChampagne)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="1.5">
+      MIKEL IRASTORZA
+    </text>
+
+    <!-- Subtitle / Role -->
+    <text x="0" y="152" fill="#e7e5e4" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="17" font-weight="600" letter-spacing="0.8">
+      Lead Systems Architect &amp; Big Data Engineer
+    </text>
+
+    <!-- Tech Badges & Invariant Badges -->
+    <g transform="translate(0, 172)">
+      <!-- Badge 1: EKC Core -->
+      <rect x="0" y="0" width="134" height="26" rx="6" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1" />
+      <text x="67" y="17" text-anchor="middle" fill="#fef3c7" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">EKC TRI-CORE</text>
+
+      <!-- Badge 2: Invariants Pacioli -->
+      <rect x="144" y="0" width="170" height="26" rx="6" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1" />
+      <text x="229" y="17" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">LUCA PACIOLI 0.00¢</text>
+
+      <!-- Badge 3: Tolerance -->
+      <rect x="324" y="0" width="156" height="26" rx="6" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1" />
+      <text x="402" y="17" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">CAD ±0.200mm</text>
+
+      <!-- Badge 4: Gold Touch -->
+      <rect x="490" y="0" width="154" height="26" rx="6" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1" />
+      <text x="567" y="17" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800">ORO INDUSTRIAL</text>
+    </g>
+  </g>
+</svg>
