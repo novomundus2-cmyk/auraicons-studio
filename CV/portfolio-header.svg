@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="Mikel Irastorza · Lead Systems Architect &amp; Big Data Engineer · EKC &amp; EFA">
+  <defs>
+
+    <!-- Deep Obsidian Velvet Canvas -->
+    <radialGradient id="hdr_artMedalBg" cx="50%" cy="46%" r="72%">
+      <stop offset="0%" stop-color="#221b14" />
+      <stop offset="42%" stop-color="#110d0a" />
+      <stop offset="85%" stop-color="#070607" />
+      <stop offset="100%" stop-color="#020304" />
+    </radialGradient>
+
+    <!-- Warm Golden Ambient Hearth -->
+    <radialGradient id="hdr_artMedalHalo" cx="50%" cy="50%" r="52%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.45" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.22" />
+      <stop offset="70%" stop-color="#b45309" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Liquid Mirror Champagne Specular Gradient -->
+    <linearGradient id="hdr_artLiquidGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="18%" stop-color="#fffbeb" />
+      <stop offset="45%" stop-color="#fef08a" />
+      <stop offset="75%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Sun-Facing Left Sculptural Flank -->
+    <linearGradient id="hdr_artFacetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="30%" stop-color="#f59e0b" />
+      <stop offset="75%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+
+    <!-- Center Folded Valley (Artistic Patina) -->
+    <linearGradient id="hdr_artFacetCenter" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="40%" stop-color="#78350f" />
+      <stop offset="80%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+
+    <!-- Deep Forged Bronze Flank (Right Wing) -->
+    <linearGradient id="hdr_artFacetRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" />
+      <stop offset="25%" stop-color="#d97706" />
+      <stop offset="65%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Pure Platinum Spire -->
+    <linearGradient id="hdr_artPlatinumSpire" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fffef0" />
+      <stop offset="60%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Specular Bevel Hairline -->
+    <linearGradient id="hdr_artBevelSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- High-Relief Shadow -->
+    <filter id="hdr_highReliefShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000000" flood-opacity="0.92" />
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#f59e0b" flood-opacity="0.4" />
+    </filter>
+
+  </defs>
+
+  <!-- Base Obsidian Plaque -->
+  <rect width="1200" height="300" rx="24" fill="url(#hdr_artMedalBg)" />
+  <rect width="1198" height="298" x="1" y="1" rx="23" fill="none" stroke="url(#hdr_artBevelSheen)" stroke-width="1.5" stroke-opacity="0.4" />
+
+  <!-- Ambient Golden Halo -->
+  <circle cx="1020" cy="150" r="380" fill="url(#hdr_artMedalHalo)" />
+
+  <!-- CAD Crosshairs & Concentric Calibration Rings -->
+  <g fill="none" stroke="#f59e0b" stroke-opacity="0.16" stroke-width="1.5">
+    <circle cx="1020" cy="150" r="54" stroke-dasharray="3 6" />
+    <circle cx="1020" cy="150" r="95" />
+    <circle cx="1020" cy="150" r="140" stroke-dasharray="5 10" />
+    <circle cx="1020" cy="150" r="190" />
+    <path d="M820 150h400M1020 0v300" />
+  </g>
+
+  <!-- Left Content Block -->
+  <g transform="translate(80, 0)">
+    <text x="0" y="68" fill="#fbbf24" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="800" letter-spacing="5">
+      PORTAFOLIO TÉCNICO · SISTEMAS DISTRIBUIDOS
+    </text>
+
+    <text x="0" y="142" fill="url(#hdr_artLiquidGold)" font-family="'Cabinet Grotesk', 'Space Grotesk', -apple-system, sans-serif" font-size="56" font-weight="900" letter-spacing="1">
+      Mikel Irastorza
+    </text>
+
+    <text x="0" y="194" fill="#e7e5e4" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="21" font-weight="500">
+      Big Data · Sistemas C/Haskell/Python · Escultura de Datos · Criterio Humano
+    </text>
+
+    <g transform="translate(0, 222)">
+      <rect x="0" y="0" width="100" height="38" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1.5" />
+      <text x="50" y="24" text-anchor="middle" fill="#fef3c7" font-family="'Space Grotesk', sans-serif" font-size="15" font-weight="800" letter-spacing="1">EFA</text>
+
+      <rect x="112" y="0" width="190" height="38" rx="8" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1" />
+      <text x="207" y="24" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">EKC TRI-CORE</text>
+
+      <rect x="314" y="0" width="220" height="38" rx="8" fill="#f59e0b" fill-opacity="0.14" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1" />
+      <text x="424" y="24" text-anchor="middle" fill="#fde68a" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">PACIOLI DIF = 0.00¢</text>
+
+      <rect x="546" y="0" width="170" height="38" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1" />
+      <text x="631" y="24" text-anchor="middle" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800">CRITERIO HUMANO</text>
+    </g>
+  </g>
+
+  <!-- Right Geometric Architectural Emblem with High-Relief Art -->
+  <g transform="translate(1020, 150) scale(0.48) translate(-256, -256)" filter="url(#hdr_highReliefShadow)">
+
+    <!-- Protective Outer Hexagonal Seal with Curved Fillets -->
+    <path d="M 248,104 Q 256,98 264,104 L 384,174 Q 392,178 392,188 L 392,324 Q 392,334 384,338 L 264,408 Q 256,414 248,408 L 128,338 Q 120,334 120,324 L 120,188 Q 120,178 128,174 Z"
+          fill="#0c0907" fill-opacity="0.75"
+          stroke="url(#hdr_artBevelSheen)" stroke-width="3.2" stroke-linejoin="round" />
+
+    <!-- Corner Star Rivets / Golden Constellation -->
+    <circle cx="256" cy="101" r="3.8" fill="#ffffff" />
+    <circle cx="388" cy="181" r="3.8" fill="#fef3c7" />
+    <circle cx="388" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="256" cy="411" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="181" r="3.8" fill="#fef3c7" />
+
+    <!-- ================= THE "M" MONOLITHIC SCULPTURE ================= -->
+    <!-- Left Wing Outer Wall -->
+    <path d="M 140,194 L 186,168 L 186,328 L 140,302 Z"
+          fill="url(#hdr_artFacetLeft)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 186,168 Q 206,154 226,144 L 226,196 Q 206,206 186,220 Z"
+          fill="url(#hdr_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
+
+    <!-- Left Valley (Deep Patina Fold) -->
+    <path d="M 226,144 Q 242,172 256,196 L 256,248 Q 242,222 226,196 Z"
+          fill="url(#hdr_artFacetCenter)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Valley -->
+    <path d="M 256,196 Q 270,172 286,144 L 286,196 Q 270,222 256,248 Z"
+          fill="url(#hdr_artFacetRight)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 286,144 Q 306,154 326,168 L 326,220 Q 306,206 286,196 Z"
+          fill="url(#hdr_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
+
+    <!-- Right Wing Outer Wall (Forged Cognac Bronze) -->
+    <path d="M 326,168 L 372,194 L 372,302 L 326,328 Z"
+          fill="url(#hdr_artFacetRight)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Base Flange -->
+    <path d="M 186,220 L 226,196 L 226,348 L 186,328 Z"
+          fill="url(#hdr_artFacetLeft)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- Right Base Flange -->
+    <path d="M 286,196 L 326,220 L 326,328 L 286,348 Z"
+          fill="url(#hdr_artFacetRight)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- ================= THE "I" RADIANT SPIRE ================= -->
+    <path d="M 248,128 L 256,120 L 256,366 L 248,360 Z"
+          fill="url(#hdr_artPlatinumSpire)" stroke="#ffffff" stroke-width="0.8" />
+    <path d="M 256,120 L 264,128 L 264,360 L 256,366 Z"
+          fill="url(#hdr_artFacetRight)" stroke="#ffffff" stroke-width="0.8" />
+
+    <!-- Crown Brilliant Diamond Jewel -->
+    <polygon points="256,104 268,116 256,128 244,116"
+             fill="#ffffff" stroke="url(#hdr_artBevelSheen)" stroke-width="1.6" />
+    <circle cx="256" cy="116" r="2.5" fill="#f59e0b" />
+
+    <!-- Bottom Plumb Jewel of Pacioli Invariant -->
+    <polygon points="256,360 267,371 256,382 245,371"
+             fill="url(#hdr_artFacetLeft)" stroke="#ffffff" stroke-width="1.2" />
+
+    <!-- Optical Core Lens Flare Spark -->
+    <circle cx="256" cy="196" r="4.2" fill="#ffffff" />
+    <line x1="234" y1="196" x2="278" y2="196" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
+    <line x1="256" y1="174" x2="256" y2="218" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
+
+  </g>
+</svg>

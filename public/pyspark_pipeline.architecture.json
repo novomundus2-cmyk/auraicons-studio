@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Laboratorio: BigQuery + PySpark + Random Forest",
+    "subtitle": "Arquitectura propuesta; demo local y servicios cloud opcionales",
+    "output": "pyspark_pipeline_archify.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    { "id": "gcp_iam", "type": "security", "label": "GCP IAM & ADC", "sublabel": "Auth Token", "pos": [50, 120], "size": [130, 64], "tag": "OAuth 2.0" },
+    { "id": "bq_raw", "type": "database", "label": "BigQuery Source", "sublabel": "my_transactions", "pos": [50, 270], "size": [130, 64], "tag": "Configurable" },
+    { "id": "gcs_staging", "type": "cloud", "label": "Cloud Storage", "sublabel": "temporaryGcsBucket", "pos": [290, 120], "size": [140, 64], "tag": "Buffer" },
+    { "id": "spark_connector", "type": "backend", "label": "PySpark Connector", "sublabel": "Storage Read API", "pos": [290, 270], "size": [140, 64], "tag": "Parallel Streams" },
+    { "id": "spark_features", "type": "backend", "label": "Split + Pipeline", "sublabel": "Fit solo train/fold", "pos": [540, 270], "size": [140, 64], "tag": "VectorAssembler" },
+    { "id": "class_weight", "type": "security", "label": "Class Balancer", "sublabel": "Pesos de training", "pos": [540, 420], "size": [140, 64], "tag": "Class weights" },
+    { "id": "rf_crossval", "type": "backend", "label": "Random Forest ML", "sublabel": "CrossValidator 3-Fold", "pos": [790, 270], "size": [150, 64], "tag": "PR-AUC Tuning" },
+    { "id": "gcs_model", "type": "cloud", "label": "Model Registry", "sublabel": "gs://bucket/models/rf_v1", "pos": [790, 120], "size": [150, 64], "tag": "PipelineModel" },
+    { "id": "bq_scored", "type": "database", "label": "BigQuery Sink", "sublabel": "transactions_scored", "pos": [1050, 270], "size": [140, 64], "tag": "Opt-in write" },
+    { "id": "miky_app", "type": "frontend", "label": "Miky Vercel Copilot", "sublabel": "Workbench & Dashboard", "pos": [1050, 420], "size": [140, 64], "tag": "Proposed UI" }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Google Cloud Platform (GCP)", "wraps": ["bq_raw", "gcp_iam", "gcs_staging", "gcs_model", "bq_scored"] },
+    { "kind": "security-group", "label": "Spark Cluster (Dataproc Serverless)", "wraps": ["spark_connector", "spark_features", "class_weight", "rf_crossval"] }
+  ],
+  "connections": [
+    { "id": "auth-to-spark", "from": "gcp_iam", "to": "spark_connector", "label": "authorized", "variant": "security", "fromSide": "right", "toSide": "top" },
+    { "id": "bq-to-spark", "from": "bq_raw", "to": "spark_connector", "label": "Storage Streams", "variant": "emphasis" },
+    { "id": "spark-to-gcs", "from": "spark_connector", "to": "gcs_staging", "label": "staging", "variant": "dashed", "fromSide": "top", "toSide": "bottom" },
+    { "id": "spark-to-features", "from": "spark_connector", "to": "spark_features", "label": "split train/test" },
+    { "id": "weight-to-features", "from": "class_weight", "to": "spark_features", "label": "class_weight", "variant": "security", "fromSide": "top", "toSide": "bottom" },
+    { "id": "features-to-rf", "from": "spark_features", "to": "rf_crossval", "label": "fit en cada fold", "variant": "emphasis" },
+    { "id": "rf-to-model", "from": "rf_crossval", "to": "gcs_model", "label": "opt-in save", "variant": "dashed", "fromSide": "top", "toSide": "bottom" },
+    { "id": "rf-to-scored", "from": "rf_crossval", "to": "bq_scored", "label": "opt-in batch", "variant": "emphasis" },
+    { "id": "scored-to-app", "from": "bq_scored", "to": "miky_app", "label": "proposed queries", "fromSide": "bottom", "toSide": "top" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Ingesta y Cómputo Distribuido",
+      "items": [
+        "Lectura opcional desde BigQuery con credenciales; el uso de memoria depende del volumen y de las particiones.",
+        "Demo sintética explícita o lectura cloud; los errores no activan un fallback silencioso.",
+        "La lectura y escritura cloud requieren permisos, configuración y revisión de costes."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Ajuste de Hiperparámetros con PR-AUC",
+      "items": [
+        "CrossValidator evalúa numTrees (30, 60) y maxDepth (5, 8) mediante 3 folds distribuidos.",
+        "Train/test se separan antes del ajuste; el preprocesado se vuelve a ajustar dentro de cada fold.",
+        "Las métricas y las importancias se calculan al ejecutar; no prueban eficacia sobre fraude real."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Exposición y Consumo de Resultados",
+      "items": [
+        "La escritura en BigQuery es opcional y falla si la tabla de destino ya existe.",
+        "El PipelineModel completo puede guardarse en una ruta nueva, conservando el preprocesado.",
+        "Miky Vercel y Cockpit muestran los recursos del laboratorio; el consumo cloud representado es una propuesta."
+      ]
+    }
+  ]
+}

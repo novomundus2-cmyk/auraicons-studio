@@ -11,17 +11,24 @@ Verifies:
   Pass 7: Python Clean Code ekc_clean_math.py verifies exact Decimal and ctypes bindings
   Pass 8: Web Audio System unit verification (synthesizer routines non-null)
   Pass 9: TypeScript & Vite production build (npm run check 0 errors)
-  Pass 10: Headless Chrome screenshot of Slide 4 (Architecture, Math, Photo) with 0 broken images
+  Pass 10: Headless Chrome screenshot of Slide 4 (Architecture, Math, Photo) (capture only; image content requires review)
 """
 
 import json
 import os
 import subprocess
 import sys
-import time
+import tempfile
 import urllib.request
+from pathlib import Path
 
-ARTIFACTS_DIR = "/Users/mikelirastorza/.gemini/antigravity/brain/e00b84c9-dcdc-4e80-bf4e-c1e1e10d9b2f"
+REPO_DIR = Path(__file__).resolve().parent
+PORTFOLIO_DIR = Path(os.environ.get(
+    "EKC_PORTFOLIO_DIR",
+    "/Users/mikelirastorza/Documents/Codex/2026-11-03/portfolio-improvements/work/portfolio",
+))
+BASE_URL = os.environ.get("EKC_VERIFY_BASE_URL", "http://127.0.0.1:3222").rstrip("/")
+ARTIFACTS_DIR = tempfile.mkdtemp(prefix="ekc-verification-")
 CHROME_BIN = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 def log_pass(pass_num: int, title: str, details: str, passed: bool):
@@ -37,13 +44,15 @@ def main():
     print("   Author: Mikel Irastorza (Data & Deployment Engineer · EFA)       ")
     print("=" * 72 + "\n")
 
+    print(f"Candidate: {REPO_DIR} | Portfolio: {PORTFOLIO_DIR} | URL: {BASE_URL}")
+
     # Pass 1: Static Assets HTTP 200
     try:
-        req1 = urllib.request.Request("http://127.0.0.1:3222/assets/atlas-cover-concept.png", method="HEAD")
+        req1 = urllib.request.Request(f"{BASE_URL}/assets/atlas-cover-concept.png", method="HEAD")
         resp1 = urllib.request.urlopen(req1, timeout=5)
         len1 = resp1.headers.get("Content-Length")
 
-        req2 = urllib.request.Request("http://127.0.0.1:3222/assets/local-ai-concept.png", method="HEAD")
+        req2 = urllib.request.Request(f"{BASE_URL}/assets/local-ai-concept.png", method="HEAD")
         resp2 = urllib.request.urlopen(req2, timeout=5)
         len2 = resp2.headers.get("Content-Length")
 
@@ -55,7 +64,7 @@ def main():
 
     # Pass 2: Tri-Core Math API Endpoint
     try:
-        resp = urllib.request.urlopen("http://127.0.0.1:3222/api/ekc/math/verify", timeout=5)
+        resp = urllib.request.urlopen(f"{BASE_URL}/api/ekc/math/verify", timeout=5)
         data = json.loads(resp.read().decode("utf-8"))
         audit = data.get("audit", {})
         log_pass(2, "Tri-Core Math API (/api/ekc/math/verify)",
@@ -66,7 +75,7 @@ def main():
 
     # Pass 3: EKC Agents 16 Databases
     try:
-        resp = urllib.request.urlopen("http://127.0.0.1:3222/api/ekc/agents", timeout=5)
+        resp = urllib.request.urlopen(f"{BASE_URL}/api/ekc/agents", timeout=5)
         data = json.loads(resp.read().decode("utf-8"))
         total = data.get("total_agents", 0)
         log_pass(3, "EKC Agents SQLite WAL Ecosystem (/api/ekc/agents)",
@@ -77,7 +86,7 @@ def main():
 
     # Pass 4: Anti-Hacking Security Audit Score 100/100
     try:
-        resp = urllib.request.urlopen("http://127.0.0.1:3222/api/security/audit", timeout=5)
+        resp = urllib.request.urlopen(f"{BASE_URL}/api/security/audit", timeout=5)
         data = json.loads(resp.read().decode("utf-8"))
         rep = data.get("report", {})
         log_pass(4, "Anti-Hacking Security Sentinel (/api/security/audit)",
@@ -89,7 +98,7 @@ def main():
     # Pass 5: C Byte Engine Compiled Memory Layout
     try:
         import ctypes
-        dylib = "/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/CV/03_math_haskell_python/libekc_byte_engine.dylib"
+        dylib = str(REPO_DIR / "CV/03_math_haskell_python/libekc_byte_engine.dylib")
         clib = ctypes.CDLL(dylib)
         clib.ekc_record_size_bytes.restype = ctypes.c_size_t
         rec_size = clib.ekc_record_size_bytes()
@@ -101,7 +110,7 @@ def main():
 
     # Pass 6: Haskell Formal Proofs Binary Execution
     try:
-        hs_bin = "/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/CV/03_math_haskell_python/ekc_math_proofs"
+        hs_bin = str(REPO_DIR / "CV/03_math_haskell_python/ekc_math_proofs")
         res = subprocess.run([hs_bin], capture_output=True, text=True, check=True)
         hs_data = json.loads(res.stdout.strip())
         log_pass(6, "Haskell Formal Proofs Execution (ekc_math_proofs)",
@@ -112,8 +121,8 @@ def main():
 
     # Pass 7: Python Clean Code Cross-Language Verification
     try:
-        py_bin = "/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/CV/06_ai_note_agent/.venv/bin/python"
-        py_script = "/Users/mikelirastorza/antigravity/AuraIcons-·-Interactive-Icon-Studio/CV/03_math_haskell_python/ekc_clean_math.py"
+        py_bin = sys.executable
+        py_script = str(REPO_DIR / "CV/03_math_haskell_python/ekc_clean_math.py")
         res = subprocess.run([py_bin, py_script], capture_output=True, text=True, check=True)
         log_pass(7, "Python Clean Code Engine (ekc_clean_math.py)",
                  "PEP 8 typed frozen dataclasses, exact Decimal arithmetic and ctypes bindings verified",
@@ -123,7 +132,7 @@ def main():
 
     # Pass 8: Web Audio System Sound Engine File Integrity
     try:
-        audio_ts = "/Users/mikelirastorza/Documents/Codex/2026-11-03/portfolio-improvements/work/portfolio/src/utils/audioSystem.ts"
+        audio_ts = PORTFOLIO_DIR / "src/utils/audioSystem.ts"
         with open(audio_ts, "r", encoding="utf-8") as f:
             content = f.read()
         has_page_flip = "playPageFlip" in content
@@ -138,18 +147,18 @@ def main():
 
     # Pass 9: TypeScript & Vite Build Pipeline
     try:
-        portfolio_dir = "/Users/mikelirastorza/Documents/Codex/2026-11-03/portfolio-improvements/work/portfolio"
+        portfolio_dir = PORTFOLIO_DIR
         res = subprocess.run(["npm", "run", "check"], cwd=portfolio_dir, capture_output=True, text=True, check=True)
         log_pass(9, "TypeScript & Vite Production Check (npm run check)",
-                 "Zero type errors (tsc --noEmit), successful production bundling (vite build), 2/2 unit tests passing",
+                 "Zero type errors (tsc --noEmit), successful production bundling (vite build), configured tests passing",
                  res.returncode == 0)
     except Exception as e:
         log_pass(9, "TypeScript & Vite Production Check", str(e), False)
 
-    # Pass 10: Headless Chrome Visual Capture of Slide 4 (0 broken images)
+    # Pass 10: Headless Chrome Visual Capture of Slide 4 (capture only)
     try:
         screenshot_path = os.path.join(ARTIFACTS_DIR, "evidence_pass10_slide4_fresh_verified.png")
-        url = "http://127.0.0.1:3222/?tab=the-brothers&slide=4"
+        url = f"{BASE_URL}/?tab=the-brothers&slide=4"
         cmd = [
             CHROME_BIN,
             "--headless=new",
@@ -161,7 +170,7 @@ def main():
         subprocess.run(cmd, capture_output=True, check=True)
         exists = os.path.exists(screenshot_path) and os.path.getsize(screenshot_path) > 10000
         log_pass(10, "Headless Chrome Visual Verification (Slide 4)",
-                 f"Captured {screenshot_path} ({os.path.getsize(screenshot_path) if exists else 0} bytes) with zero broken image icons",
+                 f"Captured {screenshot_path} ({os.path.getsize(screenshot_path) if exists else 0} bytes) ; PNG generated (image content requires review)",
                  exists)
     except Exception as e:
         log_pass(10, "Headless Chrome Visual Verification", str(e), False)

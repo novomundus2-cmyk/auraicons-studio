@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Mikel Irastorza · Circular LinkedIn / GitHub Avatar · Alta Numismática">
+  <defs>
+
+    <!-- Deep Obsidian Velvet Canvas -->
+    <radialGradient id="cir_artMedalBg" cx="50%" cy="46%" r="72%">
+      <stop offset="0%" stop-color="#221b14" />
+      <stop offset="42%" stop-color="#110d0a" />
+      <stop offset="85%" stop-color="#070607" />
+      <stop offset="100%" stop-color="#020304" />
+    </radialGradient>
+
+    <!-- Warm Golden Ambient Hearth -->
+    <radialGradient id="cir_artMedalHalo" cx="50%" cy="50%" r="52%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.45" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.22" />
+      <stop offset="70%" stop-color="#b45309" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Liquid Mirror Champagne Specular Gradient -->
+    <linearGradient id="cir_artLiquidGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="18%" stop-color="#fffbeb" />
+      <stop offset="45%" stop-color="#fef08a" />
+      <stop offset="75%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Sun-Facing Left Sculptural Flank -->
+    <linearGradient id="cir_artFacetLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3" />
+      <stop offset="30%" stop-color="#f59e0b" />
+      <stop offset="75%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+
+    <!-- Center Folded Valley (Artistic Patina) -->
+    <linearGradient id="cir_artFacetCenter" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#451a03" />
+      <stop offset="40%" stop-color="#78350f" />
+      <stop offset="80%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+
+    <!-- Deep Forged Bronze Flank (Right Wing) -->
+    <linearGradient id="cir_artFacetRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" />
+      <stop offset="25%" stop-color="#d97706" />
+      <stop offset="65%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Pure Platinum Spire -->
+    <linearGradient id="cir_artPlatinumSpire" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="25%" stop-color="#fffef0" />
+      <stop offset="60%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Specular Bevel Hairline -->
+    <linearGradient id="cir_artBevelSheen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#fbbf24" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- High-Relief Shadow -->
+    <filter id="cir_highReliefShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000000" flood-opacity="0.92" />
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#f59e0b" flood-opacity="0.4" />
+    </filter>
+
+  </defs>
+
+  <!-- Circular Outer Shield -->
+  <circle cx="256" cy="256" r="256" fill="url(#cir_artMedalBg)" />
+  <circle cx="256" cy="256" r="252" fill="none" stroke="url(#cir_artBevelSheen)" stroke-width="2.5" stroke-opacity="0.48" />
+  <circle cx="256" cy="256" r="242" fill="none" stroke="#f59e0b" stroke-width="0.8" stroke-opacity="0.2" stroke-dasharray="3 6" />
+
+  <!-- Core Ambient Glow -->
+  <circle cx="256" cy="256" r="215" fill="url(#cir_artMedalHalo)" />
+
+  <!-- 36-Petal Sacred Geometry Guilloche -->
+  <g fill="none" stroke="#f59e0b" stroke-opacity="0.16" stroke-width="0.8">
+    <path d="M 376.0,256.0 Q 394.6,336.0 356.0,429.2" />
+    <path d="M 374.2,276.8 Q 378.6,358.8 324.4,443.9" />
+    <path d="M 368.8,297.0 Q 358.8,378.6 290.7,453.0" />
+    <path d="M 359.9,316.0 Q 336.0,394.6 256.0,456.0" />
+    <path d="M 347.9,333.1 Q 310.7,406.4 221.3,453.0" />
+    <path d="M 333.1,347.9 Q 283.8,413.6 187.6,443.9" />
+    <path d="M 316.0,359.9 Q 256.0,416.0 156.0,429.2" />
+    <path d="M 297.0,368.8 Q 228.2,413.6 127.4,409.2" />
+    <path d="M 276.8,374.2 Q 201.3,406.4 102.8,384.6" />
+    <path d="M 256.0,376.0 Q 176.0,394.6 82.8,356.0" />
+    <path d="M 235.2,374.2 Q 153.2,378.6 68.1,324.4" />
+    <path d="M 215.0,368.8 Q 133.4,358.8 59.0,290.7" />
+    <path d="M 196.0,359.9 Q 117.4,336.0 56.0,256.0" />
+    <path d="M 178.9,347.9 Q 105.6,310.7 59.0,221.3" />
+    <path d="M 164.1,333.1 Q 98.4,283.8 68.1,187.6" />
+    <path d="M 152.1,316.0 Q 96.0,256.0 82.8,156.0" />
+    <path d="M 143.2,297.0 Q 98.4,228.2 102.8,127.4" />
+    <path d="M 137.8,276.8 Q 105.6,201.3 127.4,102.8" />
+    <path d="M 136.0,256.0 Q 117.4,176.0 156.0,82.8" />
+    <path d="M 137.8,235.2 Q 133.4,153.2 187.6,68.1" />
+    <path d="M 143.2,215.0 Q 153.2,133.4 221.3,59.0" />
+    <path d="M 152.1,196.0 Q 176.0,117.4 256.0,56.0" />
+    <path d="M 164.1,178.9 Q 201.3,105.6 290.7,59.0" />
+    <path d="M 178.9,164.1 Q 228.2,98.4 324.4,68.1" />
+    <path d="M 196.0,152.1 Q 256.0,96.0 356.0,82.8" />
+    <path d="M 215.0,143.2 Q 283.8,98.4 384.6,102.8" />
+    <path d="M 235.2,137.8 Q 310.7,105.6 409.2,127.4" />
+    <path d="M 256.0,136.0 Q 336.0,117.4 429.2,156.0" />
+    <path d="M 276.8,137.8 Q 358.8,133.4 443.9,187.6" />
+    <path d="M 297.0,143.2 Q 378.6,153.2 453.0,221.3" />
+    <path d="M 316.0,152.1 Q 394.6,176.0 456.0,256.0" />
+    <path d="M 333.1,164.1 Q 406.4,201.3 453.0,290.7" />
+    <path d="M 347.9,178.9 Q 413.6,228.2 443.9,324.4" />
+    <path d="M 359.9,196.0 Q 416.0,256.0 429.2,356.0" />
+    <path d="M 368.8,215.0 Q 413.6,283.8 409.2,384.6" />
+    <path d="M 374.2,235.2 Q 406.4,310.7 384.6,409.2" />
+    <circle cx="256" cy="256" r="192" stroke-width="1.2" stroke-opacity="0.25" />
+    <circle cx="256" cy="256" r="186" stroke-width="0.5" stroke-dasharray="2 4" />
+    <line x1="56" y1="256" x2="108" y2="256" stroke-width="1" />
+    <line x1="404" y1="256" x2="456" y2="256" stroke-width="1" />
+    <line x1="256" y1="56" x2="256" y2="108" stroke-width="1" />
+    <line x1="256" y1="404" x2="256" y2="456" stroke-width="1" />
+  </g>
+
+  <!-- 3D Monolith Group -->
+  <g filter="url(#cir_highReliefShadow)">
+
+    <!-- Protective Outer Hexagonal Seal with Curved Fillets -->
+    <path d="M 248,104 Q 256,98 264,104 L 384,174 Q 392,178 392,188 L 392,324 Q 392,334 384,338 L 264,408 Q 256,414 248,408 L 128,338 Q 120,334 120,324 L 120,188 Q 120,178 128,174 Z"
+          fill="#0c0907" fill-opacity="0.75"
+          stroke="url(#cir_artBevelSheen)" stroke-width="3.2" stroke-linejoin="round" />
+
+    <!-- Corner Star Rivets / Golden Constellation -->
+    <circle cx="256" cy="101" r="3.8" fill="#ffffff" />
+    <circle cx="388" cy="181" r="3.8" fill="#fef3c7" />
+    <circle cx="388" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="256" cy="411" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="331" r="3.8" fill="#fef3c7" />
+    <circle cx="124" cy="181" r="3.8" fill="#fef3c7" />
+
+    <!-- ================= THE "M" MONOLITHIC SCULPTURE ================= -->
+    <!-- Left Wing Outer Wall -->
+    <path d="M 140,194 L 186,168 L 186,328 L 140,302 Z"
+          fill="url(#cir_artFacetLeft)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 186,168 Q 206,154 226,144 L 226,196 Q 206,206 186,220 Z"
+          fill="url(#cir_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
+
+    <!-- Left Valley (Deep Patina Fold) -->
+    <path d="M 226,144 Q 242,172 256,196 L 256,248 Q 242,222 226,196 Z"
+          fill="url(#cir_artFacetCenter)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Valley -->
+    <path d="M 256,196 Q 270,172 286,144 L 286,196 Q 270,222 256,248 Z"
+          fill="url(#cir_artFacetRight)" stroke="#fef08a" stroke-width="1" stroke-opacity="0.5" />
+
+    <!-- Right Peak Crest (Liquid Mirror Champagne) -->
+    <path d="M 286,144 Q 306,154 326,168 L 326,220 Q 306,206 286,196 Z"
+          fill="url(#cir_artLiquidGold)" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.9" />
+
+    <!-- Right Wing Outer Wall (Forged Cognac Bronze) -->
+    <path d="M 326,168 L 372,194 L 372,302 L 326,328 Z"
+          fill="url(#cir_artFacetRight)" stroke="#fffbeb" stroke-width="1.2" stroke-opacity="0.6" />
+
+    <!-- Left Base Flange -->
+    <path d="M 186,220 L 226,196 L 226,348 L 186,328 Z"
+          fill="url(#cir_artFacetLeft)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- Right Base Flange -->
+    <path d="M 286,196 L 326,220 L 326,328 L 286,348 Z"
+          fill="url(#cir_artFacetRight)" stroke="#fef3c7" stroke-width="1" stroke-opacity="0.4" />
+
+    <!-- ================= THE "I" RADIANT SPIRE ================= -->
+    <path d="M 248,128 L 256,120 L 256,366 L 248,360 Z"
+          fill="url(#cir_artPlatinumSpire)" stroke="#ffffff" stroke-width="0.8" />
+    <path d="M 256,120 L 264,128 L 264,360 L 256,366 Z"
+          fill="url(#cir_artFacetRight)" stroke="#ffffff" stroke-width="0.8" />
+
+    <!-- Crown Brilliant Diamond Jewel -->
+    <polygon points="256,104 268,116 256,128 244,116"
+             fill="#ffffff" stroke="url(#cir_artBevelSheen)" stroke-width="1.6" />
+    <circle cx="256" cy="116" r="2.5" fill="#f59e0b" />
+
+    <!-- Bottom Plumb Jewel of Pacioli Invariant -->
+    <polygon points="256,360 267,371 256,382 245,371"
+             fill="url(#cir_artFacetLeft)" stroke="#ffffff" stroke-width="1.2" />
+
+    <!-- Optical Core Lens Flare Spark -->
+    <circle cx="256" cy="196" r="4.2" fill="#ffffff" />
+    <line x1="234" y1="196" x2="278" y2="196" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
+    <line x1="256" y1="174" x2="256" y2="218" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.95" />
+
+  </g>
+
+  <!-- Perimeter Top & Bottom Inscription -->
+  <text x="256" y="86" text-anchor="middle" fill="#fbbf24" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="8.5" font-weight="700" letter-spacing="3" opacity="0.85">
+    ARS ET SCIENTIA · DE DIVINA PROPORTIONE
+  </text>
+  <text x="256" y="432" text-anchor="middle" fill="#fbbf24" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="8.5" font-weight="700" letter-spacing="3" opacity="0.85">
+    ESCULTURA DE DATOS · CRITERIO HUMANO
+  </text>
+  <text x="256" y="462" text-anchor="middle" fill="#fef3c7" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="4">
+    EKC · MIKEL IRASTORZA · EFA
+  </text>
+</svg>
