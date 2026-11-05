@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "main", email = "contacto.iosoi.oro@gmail.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "faker>=40.44.0",
     "google-antigravity>=0.1.22",
@@ -25,3 +25,7 @@ note-agent = "note_agent:main"
 [build-system]
 requires = ["uv_build>=0.12.9,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv]
+# Pillow 13 fixes decoder vulnerabilities and requires Python 3.11 or newer.
+constraint-dependencies = ["pillow>=13.0.0"]

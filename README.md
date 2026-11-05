@@ -79,6 +79,19 @@ El proyecto está rigurosamente ordenado para que cualquier ingeniero, revisor o
 
 ## 4. Guía de Ejecución Rápida (Multi-Plataforma)
 
+La aplicación web usa Node 24 y npm como instalación principal: `npm ci`,
+`npm run lint` y `npm run build`. `package-lock.json` fija ese entorno.
+También se conserva `bun.lock` para Bun 1.4.4: `bun install --frozen-lockfile`.
+La CI instala, audita y comprueba ambos árboles de dependencias por separado;
+un audit de npm no cubre las versiones de Bun. Al actualizar dependencias,
+revisa ambos locks y ejecuta `npm audit --include=dev --audit-level=low`
+y `bun audit --audit-level=low`.
+
+Los laboratorios Python mantienen entornos separados: PySpark usa Python 3.10
+y Java 17; la plataforma de `CV/` se comprueba con Python 3.12. La CI audita
+los requirements y los dos locks de uv, e incluye una prueba del cliente Kafka
+con datos sintéticos, sin broker ni acceso a la base de datos local.
+
 ### En macOS y Linux
 
 ```bash

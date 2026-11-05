@@ -19,8 +19,73 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - run: npm audit --include=dev --audit-level=low
       - run: npm run lint
       - run: npm run build
+  bun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - run: npm exec --yes --package=bun@1.4.4 -- bun install --frozen-lockfile
+      - run: npm exec --yes --package=bun@1.4.4 -- bun audit --audit-level=low
+      - run: npm run lint
+      - run: npm run build
+  python-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.10'
+      - run: python -m pip install pip-audit==2.10.1
+      - run: python -m pip_audit --strict -r tests/requirements-pyspark.txt
+  python-platform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pip-audit==2.10.1 uv==0.12.9
+      - run: python -m pip_audit --strict -r CV/requirements.txt
+      - run: python -m pip_audit --strict -r CV/02_streaming_platform/producers/requirements.txt
+      - name: Audit all dependencies from both uv locks
+        run: |
+          python -m uv export --project CV --frozen --all-groups --all-extras --no-emit-project --no-hashes -o "$RUNNER_TEMP/cv-requirements.txt"
+          python -m pip_audit --strict -r "$RUNNER_TEMP/cv-requirements.txt"
+          python -m uv export --project CV/06_ai_note_agent --frozen --all-groups --all-extras --no-emit-project --no-hashes -o "$RUNNER_TEMP/note-agent-requirements.txt"
+          python -m pip_audit --strict -r "$RUNNER_TEMP/note-agent-requirements.txt"
+      - name: Audit every locked version, including other Python and OS variants
+        run: |
+          python tests/export_locked_audit.py CV/uv.lock "$RUNNER_TEMP/cv-audit"
+          python tests/export_locked_audit.py CV/06_ai_note_agent/uv.lock "$RUNNER_TEMP/note-agent-audit"
+          for requirements in "$RUNNER_TEMP/cv-audit/"*.txt "$RUNNER_TEMP/note-agent-audit/"*.txt; do
+            python -m pip_audit --strict --require-hashes --disable-pip -r "$requirements"
+          done
+      - run: python -m pip install -r CV/02_streaming_platform/producers/requirements.txt
+      - run: python -m unittest discover -s tests -p test_kafka_producer_compatibility.py -v
+  note-agent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        python: ['3.11', '3.12']
+    env:
+      UV_PROJECT_ENVIRONMENT: ${{ runner.temp }}/note-agent-venv
+      MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install uv==0.12.9
+      - run: python -m uv sync --project CV/06_ai_note_agent --python '${{ matrix.python }}' --frozen --all-groups --all-extras
+      - run: '"$UV_PROJECT_ENVIRONMENT/bin/python" -m unittest discover -s tests -p test_note_agent_environment.py -v'
   pyspark:
     runs-on: ubuntu-latest
     env:
@@ -38,8 +103,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - run: python -m pip install -r tests/requirements-pyspark.txt
-      - run: ruff check public/train_rf_bigquery.py tests/test_pyspark_example.py tests/test_verification_contract.py
-      - run: ruff format --check public/train_rf_bigquery.py tests/test_pyspark_example.py tests/test_verification_contract.py
+      - run: ruff check public/train_rf_bigquery.py tests/test_pyspark_example.py tests/test_verification_contract.py tests/test_kafka_producer_compatibility.py tests/test_note_agent_environment.py tests/export_locked_audit.py
+      - run: ruff format --check public/train_rf_bigquery.py tests/test_pyspark_example.py tests/test_verification_contract.py tests/test_kafka_producer_compatibility.py tests/test_note_agent_environment.py tests/export_locked_audit.py
       - run: python -m unittest discover -s tests -p test_pyspark_example.py -v
       - run: python -m unittest discover -s tests -p test_verification_contract.py -v
       - name: Validate notebook

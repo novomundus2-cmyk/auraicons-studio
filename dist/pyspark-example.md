@@ -2,10 +2,10 @@
 
 Descarga juntos `pyspark_random_forest.ipynb` y `train_rf_bigquery.py`. El notebook usa el script compartido y parte de datos sintéticos locales. El diagrama representa una arquitectura propuesta; los servicios cloud no se despliegan al abrirlo.
 
-Entorno comprobado: Python 3.10, Java 17 y PySpark 3.5.7. Instala las dependencias en un entorno virtual:
+Entorno comprobado: Python 3.10, Java 17 y PySpark 3.5.8. Instala las dependencias en un entorno virtual:
 
 ```sh
-python -m pip install 'pyspark[ml,sql]==3.5.7' 'numpy<2'
+python -m pip install 'pyspark[ml,sql]==3.5.8' 'numpy<2'
 python train_rf_bigquery.py --demo
 ```
 
