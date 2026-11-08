@@ -10,7 +10,7 @@
     "amount_eur": 11978.87,
     "classic_z": 18.43,
     "robust_mad_z": 273.35,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_109237",
@@ -23,7 +23,7 @@
     "amount_eur": 11421.25,
     "classic_z": 16.17,
     "robust_mad_z": 272.53,
-    "kafka_partition": 6
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_118723",
@@ -36,7 +36,7 @@
     "amount_eur": 11419.33,
     "classic_z": 16.17,
     "robust_mad_z": 272.49,
-    "kafka_partition": 1
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_104270",
@@ -49,7 +49,7 @@
     "amount_eur": 11863.79,
     "classic_z": 18.25,
     "robust_mad_z": 270.71,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_123814",
@@ -62,7 +62,7 @@
     "amount_eur": 11915.82,
     "classic_z": 19.46,
     "robust_mad_z": 270.61,
-    "kafka_partition": 1
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_101238",
@@ -75,7 +75,7 @@
     "amount_eur": 11214.07,
     "classic_z": 15.87,
     "robust_mad_z": 267.56,
-    "kafka_partition": 4
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_103823",
@@ -88,7 +88,7 @@
     "amount_eur": 11172.77,
     "classic_z": 15.81,
     "robust_mad_z": 266.57,
-    "kafka_partition": 1
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_109538",
@@ -101,7 +101,7 @@
     "amount_eur": 11670.95,
     "classic_z": 17.95,
     "robust_mad_z": 266.29,
-    "kafka_partition": 7
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_123910",
@@ -114,7 +114,7 @@
     "amount_eur": 11616.03,
     "classic_z": 17.86,
     "robust_mad_z": 265.03,
-    "kafka_partition": 3
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_118064",
@@ -127,7 +127,7 @@
     "amount_eur": 11745.28,
     "classic_z": 18.52,
     "robust_mad_z": 264.86,
-    "kafka_partition": 2
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_104468",
@@ -140,7 +140,7 @@
     "amount_eur": 11085.08,
     "classic_z": 15.69,
     "robust_mad_z": 264.46,
-    "kafka_partition": 2
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_119522",
@@ -153,7 +153,7 @@
     "amount_eur": 11573.25,
     "classic_z": 17.8,
     "robust_mad_z": 264.05,
-    "kafka_partition": 7
+    "kafka_partition": 0
   },
   {
     "transaction_id": "txn_120577",
@@ -166,7 +166,7 @@
     "amount_eur": 11615.76,
     "classic_z": 18.96,
     "robust_mad_z": 263.76,
-    "kafka_partition": 0
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_122355",
@@ -179,7 +179,7 @@
     "amount_eur": 11772.35,
     "classic_z": 23.39,
     "robust_mad_z": 263.45,
-    "kafka_partition": 5
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_109651",
@@ -192,7 +192,7 @@
     "amount_eur": 10981.11,
     "classic_z": 15.54,
     "robust_mad_z": 261.97,
-    "kafka_partition": 2
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_119405",
@@ -205,7 +205,7 @@
     "amount_eur": 11452.8,
     "classic_z": 17.61,
     "robust_mad_z": 261.28,
-    "kafka_partition": 3
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_115861",
@@ -218,7 +218,7 @@
     "amount_eur": 11582.93,
     "classic_z": 18.27,
     "robust_mad_z": 261.18,
-    "kafka_partition": 1
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_102063",
@@ -231,7 +231,7 @@
     "amount_eur": 11471.11,
     "classic_z": 18.72,
     "robust_mad_z": 260.46,
-    "kafka_partition": 6
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_116692",
@@ -244,7 +244,7 @@
     "amount_eur": 10734.09,
     "classic_z": 15.18,
     "robust_mad_z": 256.04,
-    "kafka_partition": 0
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_114948",
@@ -270,7 +270,7 @@
     "amount_eur": 11206.85,
     "classic_z": 17.67,
     "robust_mad_z": 252.65,
-    "kafka_partition": 5
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_115813",
@@ -283,7 +283,7 @@
     "amount_eur": 11135.57,
     "classic_z": 17.55,
     "robust_mad_z": 251.04,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_107598",
@@ -296,7 +296,7 @@
     "amount_eur": 10518.5,
     "classic_z": 14.88,
     "robust_mad_z": 250.87,
-    "kafka_partition": 4
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_113838",
@@ -309,7 +309,7 @@
     "amount_eur": 11116.02,
     "classic_z": 22.08,
     "robust_mad_z": 248.68,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_118119",
@@ -322,7 +322,7 @@
     "amount_eur": 10981.43,
     "classic_z": 17.31,
     "robust_mad_z": 247.54,
-    "kafka_partition": 3
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_107191",
@@ -335,7 +335,7 @@
     "amount_eur": 10863.1,
     "classic_z": 17.72,
     "robust_mad_z": 246.58,
-    "kafka_partition": 4
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_105598",
@@ -348,7 +348,7 @@
     "amount_eur": 10220.93,
     "classic_z": 14.45,
     "robust_mad_z": 243.73,
-    "kafka_partition": 5
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_103180",
@@ -361,7 +361,7 @@
     "amount_eur": 10080.55,
     "classic_z": 14.25,
     "robust_mad_z": 240.36,
-    "kafka_partition": 0
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_119562",
@@ -374,7 +374,7 @@
     "amount_eur": 10074.72,
     "classic_z": 14.24,
     "robust_mad_z": 240.22,
-    "kafka_partition": 3
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_110952",
@@ -387,7 +387,7 @@
     "amount_eur": 10501.51,
     "classic_z": 16.13,
     "robust_mad_z": 239.46,
-    "kafka_partition": 7
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_108013",
@@ -400,7 +400,7 @@
     "amount_eur": 10687.08,
     "classic_z": 21.22,
     "robust_mad_z": 239.03,
-    "kafka_partition": 7
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_107466",
@@ -413,7 +413,7 @@
     "amount_eur": 10337.31,
     "classic_z": 16.85,
     "robust_mad_z": 234.57,
-    "kafka_partition": 2
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_120718",
@@ -426,7 +426,7 @@
     "amount_eur": 10222.0,
     "classic_z": 16.66,
     "robust_mad_z": 231.94,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_101162",
@@ -439,7 +439,7 @@
     "amount_eur": 10079.3,
     "classic_z": 15.47,
     "robust_mad_z": 229.77,
-    "kafka_partition": 7
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_123719",
@@ -452,7 +452,7 @@
     "amount_eur": 9565.19,
     "classic_z": 13.51,
     "robust_mad_z": 228.0,
-    "kafka_partition": 4
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_103686",
@@ -465,7 +465,7 @@
     "amount_eur": 9935.29,
     "classic_z": 15.25,
     "robust_mad_z": 226.47,
-    "kafka_partition": 1
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_110756",
@@ -478,7 +478,7 @@
     "amount_eur": 9835.64,
     "classic_z": 15.09,
     "robust_mad_z": 224.18,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_110007",
@@ -491,7 +491,7 @@
     "amount_eur": 10024.45,
     "classic_z": 19.89,
     "robust_mad_z": 224.12,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_121378",
@@ -504,7 +504,7 @@
     "amount_eur": 9803.58,
     "classic_z": 15.04,
     "robust_mad_z": 223.44,
-    "kafka_partition": 1
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_118672",
@@ -517,7 +517,7 @@
     "amount_eur": 9871.13,
     "classic_z": 15.54,
     "robust_mad_z": 222.37,
-    "kafka_partition": 3
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_120262",
@@ -530,7 +530,7 @@
     "amount_eur": 9678.18,
     "classic_z": 19.19,
     "robust_mad_z": 216.33,
-    "kafka_partition": 2
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_114780",
@@ -543,7 +543,7 @@
     "amount_eur": 9473.4,
     "classic_z": 14.53,
     "robust_mad_z": 215.87,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_121157",
@@ -569,7 +569,7 @@
     "amount_eur": 9493.21,
     "classic_z": 14.93,
     "robust_mad_z": 213.79,
-    "kafka_partition": 2
+    "kafka_partition": 0
   },
   {
     "transaction_id": "txn_116976",
@@ -582,7 +582,7 @@
     "amount_eur": 9490.78,
     "classic_z": 14.93,
     "robust_mad_z": 213.74,
-    "kafka_partition": 7
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_105611",
@@ -595,7 +595,7 @@
     "amount_eur": 9533.14,
     "classic_z": 18.9,
     "robust_mad_z": 213.06,
-    "kafka_partition": 3
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_104143",
@@ -608,7 +608,7 @@
     "amount_eur": 9377.47,
     "classic_z": 15.27,
     "robust_mad_z": 212.65,
-    "kafka_partition": 7
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_102100",
@@ -621,7 +621,7 @@
     "amount_eur": 8910.48,
     "classic_z": 12.57,
     "robust_mad_z": 212.29,
-    "kafka_partition": 6
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_116809",
@@ -634,7 +634,7 @@
     "amount_eur": 9353.84,
     "classic_z": 15.23,
     "robust_mad_z": 212.12,
-    "kafka_partition": 4
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_101758",
@@ -647,7 +647,7 @@
     "amount_eur": 8878.74,
     "classic_z": 12.53,
     "robust_mad_z": 211.53,
-    "kafka_partition": 2
+    "kafka_partition": 0
   },
   {
     "transaction_id": "txn_103352",
@@ -660,7 +660,7 @@
     "amount_eur": 8854.44,
     "classic_z": 12.49,
     "robust_mad_z": 210.94,
-    "kafka_partition": 0
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_100889",
@@ -673,7 +673,7 @@
     "amount_eur": 9291.78,
     "classic_z": 15.13,
     "robust_mad_z": 210.7,
-    "kafka_partition": 7
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_113656",
@@ -686,7 +686,7 @@
     "amount_eur": 9110.0,
     "classic_z": 13.97,
     "robust_mad_z": 207.53,
-    "kafka_partition": 2
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_101206",
@@ -699,7 +699,7 @@
     "amount_eur": 9266.87,
     "classic_z": 18.37,
     "robust_mad_z": 207.07,
-    "kafka_partition": 0
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_102748",
@@ -712,7 +712,7 @@
     "amount_eur": 9093.41,
     "classic_z": 14.3,
     "robust_mad_z": 204.73,
-    "kafka_partition": 1
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_100181",
@@ -725,7 +725,7 @@
     "amount_eur": 8974.55,
     "classic_z": 13.76,
     "robust_mad_z": 204.43,
-    "kafka_partition": 4
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_114458",
@@ -738,7 +738,7 @@
     "amount_eur": 8946.95,
     "classic_z": 13.71,
     "robust_mad_z": 203.79,
-    "kafka_partition": 2
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_100154",
@@ -751,7 +751,7 @@
     "amount_eur": 9045.75,
     "classic_z": 17.92,
     "robust_mad_z": 202.09,
-    "kafka_partition": 3
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_116334",
@@ -764,7 +764,7 @@
     "amount_eur": 8480.04,
     "classic_z": 11.95,
     "robust_mad_z": 201.96,
-    "kafka_partition": 6
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_107622",
@@ -777,7 +777,7 @@
     "amount_eur": 8957.92,
     "classic_z": 17.75,
     "robust_mad_z": 200.12,
-    "kafka_partition": 0
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_100939",
@@ -790,7 +790,7 @@
     "amount_eur": 8786.75,
     "classic_z": 13.81,
     "robust_mad_z": 197.78,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_123571",
@@ -803,7 +803,7 @@
     "amount_eur": 8713.01,
     "classic_z": 13.69,
     "robust_mad_z": 196.1,
-    "kafka_partition": 1
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_108700",
@@ -816,7 +816,7 @@
     "amount_eur": 8605.14,
     "classic_z": 13.99,
     "robust_mad_z": 195.02,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_118568",
@@ -829,7 +829,7 @@
     "amount_eur": 8624.84,
     "classic_z": 13.55,
     "robust_mad_z": 194.1,
-    "kafka_partition": 5
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_110956",
@@ -842,7 +842,7 @@
     "amount_eur": 8510.77,
     "classic_z": 13.03,
     "robust_mad_z": 193.79,
-    "kafka_partition": 7
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_108029",
@@ -855,7 +855,7 @@
     "amount_eur": 8416.46,
     "classic_z": 13.68,
     "robust_mad_z": 190.71,
-    "kafka_partition": 3
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_106705",
@@ -868,7 +868,7 @@
     "amount_eur": 8317.47,
     "classic_z": 12.73,
     "robust_mad_z": 189.35,
-    "kafka_partition": 0
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_120637",
@@ -881,7 +881,7 @@
     "amount_eur": 8194.81,
     "classic_z": 12.86,
     "robust_mad_z": 184.35,
-    "kafka_partition": 4
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_108128",
@@ -907,7 +907,7 @@
     "amount_eur": 7659.12,
     "classic_z": 10.78,
     "robust_mad_z": 182.26,
-    "kafka_partition": 3
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_122600",
@@ -920,7 +920,7 @@
     "amount_eur": 8094.47,
     "classic_z": 12.7,
     "robust_mad_z": 182.08,
-    "kafka_partition": 2
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_120736",
@@ -933,7 +933,7 @@
     "amount_eur": 8002.66,
     "classic_z": 13.0,
     "robust_mad_z": 181.26,
-    "kafka_partition": 6
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_101985",
@@ -959,7 +959,7 @@
     "amount_eur": 7754.27,
     "classic_z": 12.16,
     "robust_mad_z": 174.36,
-    "kafka_partition": 7
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_108373",
@@ -972,7 +972,7 @@
     "amount_eur": 7783.97,
     "classic_z": 15.39,
     "robust_mad_z": 173.7,
-    "kafka_partition": 3
+    "kafka_partition": 2
   },
   {
     "transaction_id": "txn_107249",
@@ -985,7 +985,7 @@
     "amount_eur": 7590.61,
     "classic_z": 12.32,
     "robust_mad_z": 171.85,
-    "kafka_partition": 0
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_120565",
@@ -998,7 +998,7 @@
     "amount_eur": 7154.12,
     "classic_z": 10.05,
     "robust_mad_z": 170.14,
-    "kafka_partition": 2
+    "kafka_partition": 0
   },
   {
     "transaction_id": "txn_111348",
@@ -1011,7 +1011,7 @@
     "amount_eur": 7526.6,
     "classic_z": 11.8,
     "robust_mad_z": 169.2,
-    "kafka_partition": 6
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_121532",
@@ -1024,7 +1024,7 @@
     "amount_eur": 7363.31,
     "classic_z": 11.54,
     "robust_mad_z": 165.5,
-    "kafka_partition": 5
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_112775",
@@ -1063,7 +1063,7 @@
     "amount_eur": 7178.14,
     "classic_z": 11.24,
     "robust_mad_z": 161.3,
-    "kafka_partition": 2
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_124565",
@@ -1076,7 +1076,7 @@
     "amount_eur": 7111.12,
     "classic_z": 11.13,
     "robust_mad_z": 159.78,
-    "kafka_partition": 3
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_123255",
@@ -1089,7 +1089,7 @@
     "amount_eur": 6680.49,
     "classic_z": 9.38,
     "robust_mad_z": 158.78,
-    "kafka_partition": 6
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_104299",
@@ -1102,7 +1102,7 @@
     "amount_eur": 6567.57,
     "classic_z": 9.21,
     "robust_mad_z": 156.07,
-    "kafka_partition": 4
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_120306",
@@ -1115,7 +1115,7 @@
     "amount_eur": 6929.01,
     "classic_z": 10.85,
     "robust_mad_z": 155.65,
-    "kafka_partition": 0
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_116815",
@@ -1154,7 +1154,7 @@
     "amount_eur": 6461.51,
     "classic_z": 9.06,
     "robust_mad_z": 153.53,
-    "kafka_partition": 6
+    "kafka_partition": 3
   },
   {
     "transaction_id": "txn_104068",
@@ -1167,7 +1167,7 @@
     "amount_eur": 6853.66,
     "classic_z": 13.52,
     "robust_mad_z": 152.77,
-    "kafka_partition": 5
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_111100",
@@ -1180,7 +1180,7 @@
     "amount_eur": 6790.4,
     "classic_z": 10.62,
     "robust_mad_z": 152.51,
-    "kafka_partition": 6
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_109242",
@@ -1193,7 +1193,7 @@
     "amount_eur": 6395.26,
     "classic_z": 8.97,
     "robust_mad_z": 151.94,
-    "kafka_partition": 6
+    "kafka_partition": 7
   },
   {
     "transaction_id": "txn_120951",
@@ -1206,7 +1206,7 @@
     "amount_eur": 6668.69,
     "classic_z": 10.17,
     "robust_mad_z": 151.53,
-    "kafka_partition": 4
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_110867",
@@ -1219,7 +1219,7 @@
     "amount_eur": 6654.16,
     "classic_z": 10.41,
     "robust_mad_z": 149.42,
-    "kafka_partition": 6
+    "kafka_partition": 1
   },
   {
     "transaction_id": "txn_114940",
@@ -1232,7 +1232,7 @@
     "amount_eur": 6503.27,
     "classic_z": 10.52,
     "robust_mad_z": 147.03,
-    "kafka_partition": 5
+    "kafka_partition": 6
   },
   {
     "transaction_id": "txn_118241",
@@ -1245,7 +1245,7 @@
     "amount_eur": 6516.75,
     "classic_z": 10.19,
     "robust_mad_z": 146.3,
-    "kafka_partition": 7
+    "kafka_partition": 0
   },
   {
     "transaction_id": "txn_118565",
@@ -1271,7 +1271,7 @@
     "amount_eur": 6439.48,
     "classic_z": 10.42,
     "robust_mad_z": 145.57,
-    "kafka_partition": 0
+    "kafka_partition": 5
   },
   {
     "transaction_id": "txn_112846",
@@ -1284,7 +1284,7 @@
     "amount_eur": 6431.31,
     "classic_z": 10.4,
     "robust_mad_z": 145.38,
-    "kafka_partition": 3
+    "kafka_partition": 4
   },
   {
     "transaction_id": "txn_116805",
@@ -1297,6 +1297,6 @@
     "amount_eur": 6426.24,
     "classic_z": 10.4,
     "robust_mad_z": 145.27,
-    "kafka_partition": 4
+    "kafka_partition": 6
   }
 ]

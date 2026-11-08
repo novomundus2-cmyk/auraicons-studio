@@ -1024,7 +1024,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11978.87,
       "classic_z": 18.43,
       "robust_mad_z": 273.35,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_109237",
@@ -1037,7 +1037,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11421.25,
       "classic_z": 16.17,
       "robust_mad_z": 272.53,
-      "kafka_partition": 6
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_118723",
@@ -1050,7 +1050,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11419.33,
       "classic_z": 16.17,
       "robust_mad_z": 272.49,
-      "kafka_partition": 1
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_104270",
@@ -1063,7 +1063,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11863.79,
       "classic_z": 18.25,
       "robust_mad_z": 270.71,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_123814",
@@ -1076,7 +1076,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11915.82,
       "classic_z": 19.46,
       "robust_mad_z": 270.61,
-      "kafka_partition": 1
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_101238",
@@ -1089,7 +1089,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11214.07,
       "classic_z": 15.87,
       "robust_mad_z": 267.56,
-      "kafka_partition": 4
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_103823",
@@ -1102,7 +1102,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11172.77,
       "classic_z": 15.81,
       "robust_mad_z": 266.57,
-      "kafka_partition": 1
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_109538",
@@ -1115,7 +1115,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11670.95,
       "classic_z": 17.95,
       "robust_mad_z": 266.29,
-      "kafka_partition": 7
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_123910",
@@ -1128,7 +1128,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11616.03,
       "classic_z": 17.86,
       "robust_mad_z": 265.03,
-      "kafka_partition": 3
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_118064",
@@ -1141,7 +1141,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11745.28,
       "classic_z": 18.52,
       "robust_mad_z": 264.86,
-      "kafka_partition": 2
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_104468",
@@ -1154,7 +1154,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11085.08,
       "classic_z": 15.69,
       "robust_mad_z": 264.46,
-      "kafka_partition": 2
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_119522",
@@ -1167,7 +1167,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11573.25,
       "classic_z": 17.8,
       "robust_mad_z": 264.05,
-      "kafka_partition": 7
+      "kafka_partition": 0
     },
     {
       "transaction_id": "txn_120577",
@@ -1180,7 +1180,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11615.76,
       "classic_z": 18.96,
       "robust_mad_z": 263.76,
-      "kafka_partition": 0
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_122355",
@@ -1193,7 +1193,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11772.35,
       "classic_z": 23.39,
       "robust_mad_z": 263.45,
-      "kafka_partition": 5
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_109651",
@@ -1206,7 +1206,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10981.11,
       "classic_z": 15.54,
       "robust_mad_z": 261.97,
-      "kafka_partition": 2
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_119405",
@@ -1219,7 +1219,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11452.8,
       "classic_z": 17.61,
       "robust_mad_z": 261.28,
-      "kafka_partition": 3
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_115861",
@@ -1232,7 +1232,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11582.93,
       "classic_z": 18.27,
       "robust_mad_z": 261.18,
-      "kafka_partition": 1
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_102063",
@@ -1245,7 +1245,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11471.11,
       "classic_z": 18.72,
       "robust_mad_z": 260.46,
-      "kafka_partition": 6
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_116692",
@@ -1258,7 +1258,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10734.09,
       "classic_z": 15.18,
       "robust_mad_z": 256.04,
-      "kafka_partition": 0
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_114948",
@@ -1284,7 +1284,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11206.85,
       "classic_z": 17.67,
       "robust_mad_z": 252.65,
-      "kafka_partition": 5
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_115813",
@@ -1297,7 +1297,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11135.57,
       "classic_z": 17.55,
       "robust_mad_z": 251.04,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_107598",
@@ -1310,7 +1310,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10518.5,
       "classic_z": 14.88,
       "robust_mad_z": 250.87,
-      "kafka_partition": 4
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_113838",
@@ -1323,7 +1323,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 11116.02,
       "classic_z": 22.08,
       "robust_mad_z": 248.68,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_118119",
@@ -1336,7 +1336,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10981.43,
       "classic_z": 17.31,
       "robust_mad_z": 247.54,
-      "kafka_partition": 3
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_107191",
@@ -1349,7 +1349,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10863.1,
       "classic_z": 17.72,
       "robust_mad_z": 246.58,
-      "kafka_partition": 4
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_105598",
@@ -1362,7 +1362,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10220.93,
       "classic_z": 14.45,
       "robust_mad_z": 243.73,
-      "kafka_partition": 5
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_103180",
@@ -1375,7 +1375,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10080.55,
       "classic_z": 14.25,
       "robust_mad_z": 240.36,
-      "kafka_partition": 0
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_119562",
@@ -1388,7 +1388,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10074.72,
       "classic_z": 14.24,
       "robust_mad_z": 240.22,
-      "kafka_partition": 3
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_110952",
@@ -1401,7 +1401,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10501.51,
       "classic_z": 16.13,
       "robust_mad_z": 239.46,
-      "kafka_partition": 7
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_108013",
@@ -1414,7 +1414,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10687.08,
       "classic_z": 21.22,
       "robust_mad_z": 239.03,
-      "kafka_partition": 7
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_107466",
@@ -1427,7 +1427,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10337.31,
       "classic_z": 16.85,
       "robust_mad_z": 234.57,
-      "kafka_partition": 2
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_120718",
@@ -1440,7 +1440,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10222.0,
       "classic_z": 16.66,
       "robust_mad_z": 231.94,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_101162",
@@ -1453,7 +1453,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10079.3,
       "classic_z": 15.47,
       "robust_mad_z": 229.77,
-      "kafka_partition": 7
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_123719",
@@ -1466,7 +1466,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9565.19,
       "classic_z": 13.51,
       "robust_mad_z": 228.0,
-      "kafka_partition": 4
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_103686",
@@ -1479,7 +1479,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9935.29,
       "classic_z": 15.25,
       "robust_mad_z": 226.47,
-      "kafka_partition": 1
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_110756",
@@ -1492,7 +1492,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9835.64,
       "classic_z": 15.09,
       "robust_mad_z": 224.18,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_110007",
@@ -1505,7 +1505,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 10024.45,
       "classic_z": 19.89,
       "robust_mad_z": 224.12,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_121378",
@@ -1518,7 +1518,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9803.58,
       "classic_z": 15.04,
       "robust_mad_z": 223.44,
-      "kafka_partition": 1
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_118672",
@@ -1531,7 +1531,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9871.13,
       "classic_z": 15.54,
       "robust_mad_z": 222.37,
-      "kafka_partition": 3
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_120262",
@@ -1544,7 +1544,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9678.18,
       "classic_z": 19.19,
       "robust_mad_z": 216.33,
-      "kafka_partition": 2
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_114780",
@@ -1557,7 +1557,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9473.4,
       "classic_z": 14.53,
       "robust_mad_z": 215.87,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_121157",
@@ -1583,7 +1583,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9493.21,
       "classic_z": 14.93,
       "robust_mad_z": 213.79,
-      "kafka_partition": 2
+      "kafka_partition": 0
     },
     {
       "transaction_id": "txn_116976",
@@ -1596,7 +1596,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9490.78,
       "classic_z": 14.93,
       "robust_mad_z": 213.74,
-      "kafka_partition": 7
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_105611",
@@ -1609,7 +1609,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9533.14,
       "classic_z": 18.9,
       "robust_mad_z": 213.06,
-      "kafka_partition": 3
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_104143",
@@ -1622,7 +1622,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9377.47,
       "classic_z": 15.27,
       "robust_mad_z": 212.65,
-      "kafka_partition": 7
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_102100",
@@ -1635,7 +1635,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8910.48,
       "classic_z": 12.57,
       "robust_mad_z": 212.29,
-      "kafka_partition": 6
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_116809",
@@ -1648,7 +1648,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9353.84,
       "classic_z": 15.23,
       "robust_mad_z": 212.12,
-      "kafka_partition": 4
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_101758",
@@ -1661,7 +1661,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8878.74,
       "classic_z": 12.53,
       "robust_mad_z": 211.53,
-      "kafka_partition": 2
+      "kafka_partition": 0
     },
     {
       "transaction_id": "txn_103352",
@@ -1674,7 +1674,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8854.44,
       "classic_z": 12.49,
       "robust_mad_z": 210.94,
-      "kafka_partition": 0
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_100889",
@@ -1687,7 +1687,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9291.78,
       "classic_z": 15.13,
       "robust_mad_z": 210.7,
-      "kafka_partition": 7
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_113656",
@@ -1700,7 +1700,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9110.0,
       "classic_z": 13.97,
       "robust_mad_z": 207.53,
-      "kafka_partition": 2
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_101206",
@@ -1713,7 +1713,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9266.87,
       "classic_z": 18.37,
       "robust_mad_z": 207.07,
-      "kafka_partition": 0
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_102748",
@@ -1726,7 +1726,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9093.41,
       "classic_z": 14.3,
       "robust_mad_z": 204.73,
-      "kafka_partition": 1
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_100181",
@@ -1739,7 +1739,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8974.55,
       "classic_z": 13.76,
       "robust_mad_z": 204.43,
-      "kafka_partition": 4
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_114458",
@@ -1752,7 +1752,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8946.95,
       "classic_z": 13.71,
       "robust_mad_z": 203.79,
-      "kafka_partition": 2
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_100154",
@@ -1765,7 +1765,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 9045.75,
       "classic_z": 17.92,
       "robust_mad_z": 202.09,
-      "kafka_partition": 3
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_116334",
@@ -1778,7 +1778,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8480.04,
       "classic_z": 11.95,
       "robust_mad_z": 201.96,
-      "kafka_partition": 6
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_107622",
@@ -1791,7 +1791,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8957.92,
       "classic_z": 17.75,
       "robust_mad_z": 200.12,
-      "kafka_partition": 0
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_100939",
@@ -1804,7 +1804,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8786.75,
       "classic_z": 13.81,
       "robust_mad_z": 197.78,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_123571",
@@ -1817,7 +1817,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8713.01,
       "classic_z": 13.69,
       "robust_mad_z": 196.1,
-      "kafka_partition": 1
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_108700",
@@ -1830,7 +1830,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8605.14,
       "classic_z": 13.99,
       "robust_mad_z": 195.02,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_118568",
@@ -1843,7 +1843,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8624.84,
       "classic_z": 13.55,
       "robust_mad_z": 194.1,
-      "kafka_partition": 5
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_110956",
@@ -1856,7 +1856,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8510.77,
       "classic_z": 13.03,
       "robust_mad_z": 193.79,
-      "kafka_partition": 7
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_108029",
@@ -1869,7 +1869,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8416.46,
       "classic_z": 13.68,
       "robust_mad_z": 190.71,
-      "kafka_partition": 3
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_106705",
@@ -1882,7 +1882,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8317.47,
       "classic_z": 12.73,
       "robust_mad_z": 189.35,
-      "kafka_partition": 0
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_120637",
@@ -1895,7 +1895,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8194.81,
       "classic_z": 12.86,
       "robust_mad_z": 184.35,
-      "kafka_partition": 4
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_108128",
@@ -1921,7 +1921,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7659.12,
       "classic_z": 10.78,
       "robust_mad_z": 182.26,
-      "kafka_partition": 3
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_122600",
@@ -1934,7 +1934,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8094.47,
       "classic_z": 12.7,
       "robust_mad_z": 182.08,
-      "kafka_partition": 2
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_120736",
@@ -1947,7 +1947,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 8002.66,
       "classic_z": 13.0,
       "robust_mad_z": 181.26,
-      "kafka_partition": 6
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_101985",
@@ -1973,7 +1973,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7754.27,
       "classic_z": 12.16,
       "robust_mad_z": 174.36,
-      "kafka_partition": 7
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_108373",
@@ -1986,7 +1986,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7783.97,
       "classic_z": 15.39,
       "robust_mad_z": 173.7,
-      "kafka_partition": 3
+      "kafka_partition": 2
     },
     {
       "transaction_id": "txn_107249",
@@ -1999,7 +1999,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7590.61,
       "classic_z": 12.32,
       "robust_mad_z": 171.85,
-      "kafka_partition": 0
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_120565",
@@ -2012,7 +2012,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7154.12,
       "classic_z": 10.05,
       "robust_mad_z": 170.14,
-      "kafka_partition": 2
+      "kafka_partition": 0
     },
     {
       "transaction_id": "txn_111348",
@@ -2025,7 +2025,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7526.6,
       "classic_z": 11.8,
       "robust_mad_z": 169.2,
-      "kafka_partition": 6
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_121532",
@@ -2038,7 +2038,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7363.31,
       "classic_z": 11.54,
       "robust_mad_z": 165.5,
-      "kafka_partition": 5
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_112775",
@@ -2077,7 +2077,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7178.14,
       "classic_z": 11.24,
       "robust_mad_z": 161.3,
-      "kafka_partition": 2
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_124565",
@@ -2090,7 +2090,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 7111.12,
       "classic_z": 11.13,
       "robust_mad_z": 159.78,
-      "kafka_partition": 3
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_123255",
@@ -2103,7 +2103,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6680.49,
       "classic_z": 9.38,
       "robust_mad_z": 158.78,
-      "kafka_partition": 6
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_104299",
@@ -2116,7 +2116,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6567.57,
       "classic_z": 9.21,
       "robust_mad_z": 156.07,
-      "kafka_partition": 4
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_120306",
@@ -2129,7 +2129,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6929.01,
       "classic_z": 10.85,
       "robust_mad_z": 155.65,
-      "kafka_partition": 0
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_116815",
@@ -2168,7 +2168,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6461.51,
       "classic_z": 9.06,
       "robust_mad_z": 153.53,
-      "kafka_partition": 6
+      "kafka_partition": 3
     },
     {
       "transaction_id": "txn_104068",
@@ -2181,7 +2181,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6853.66,
       "classic_z": 13.52,
       "robust_mad_z": 152.77,
-      "kafka_partition": 5
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_111100",
@@ -2194,7 +2194,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6790.4,
       "classic_z": 10.62,
       "robust_mad_z": 152.51,
-      "kafka_partition": 6
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_109242",
@@ -2207,7 +2207,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6395.26,
       "classic_z": 8.97,
       "robust_mad_z": 151.94,
-      "kafka_partition": 6
+      "kafka_partition": 7
     },
     {
       "transaction_id": "txn_120951",
@@ -2220,7 +2220,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6668.69,
       "classic_z": 10.17,
       "robust_mad_z": 151.53,
-      "kafka_partition": 4
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_110867",
@@ -2233,7 +2233,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6654.16,
       "classic_z": 10.41,
       "robust_mad_z": 149.42,
-      "kafka_partition": 6
+      "kafka_partition": 1
     },
     {
       "transaction_id": "txn_114940",
@@ -2246,7 +2246,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6503.27,
       "classic_z": 10.52,
       "robust_mad_z": 147.03,
-      "kafka_partition": 5
+      "kafka_partition": 6
     },
     {
       "transaction_id": "txn_118241",
@@ -2259,7 +2259,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6516.75,
       "classic_z": 10.19,
       "robust_mad_z": 146.3,
-      "kafka_partition": 7
+      "kafka_partition": 0
     },
     {
       "transaction_id": "txn_118565",
@@ -2285,7 +2285,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6439.48,
       "classic_z": 10.42,
       "robust_mad_z": 145.57,
-      "kafka_partition": 0
+      "kafka_partition": 5
     },
     {
       "transaction_id": "txn_112846",
@@ -2298,7 +2298,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6431.31,
       "classic_z": 10.4,
       "robust_mad_z": 145.38,
-      "kafka_partition": 3
+      "kafka_partition": 4
     },
     {
       "transaction_id": "txn_116805",
@@ -2311,59 +2311,59 @@ window.LAKEHOUSE_LIVE_DATA = {
       "amount_eur": 6426.24,
       "classic_z": 10.4,
       "robust_mad_z": 145.27,
-      "kafka_partition": 4
+      "kafka_partition": 6
     }
   ],
   "streaming_window_sinks": [
     {
-      "window_start": "2026-10-30T03:06:00Z",
-      "window_end": "2026-10-30T03:06:00Z",
+      "window_start": "2026-11-08T11:42:00Z",
+      "window_end": "2026-11-08T11:42:00Z",
       "merchant_category": "travel",
-      "txn_count": 498,
-      "total_volume_eur": 95308.89,
-      "avg_txn_amount": 191.38,
-      "suspicious_txn_count": 12,
-      "saved_at": "2026-10-30T03:06:00Z"
-    },
-    {
-      "window_start": "2026-10-30T03:06:00Z",
-      "window_end": "2026-10-30T03:06:00Z",
-      "merchant_category": "luxury",
-      "txn_count": 481,
-      "total_volume_eur": 102799.2,
-      "avg_txn_amount": 213.72,
+      "txn_count": 468,
+      "total_volume_eur": 66895.7,
+      "avg_txn_amount": 142.94,
       "suspicious_txn_count": 9,
-      "saved_at": "2026-10-30T03:06:00Z"
+      "saved_at": "2026-11-08T11:42:00Z"
     },
     {
-      "window_start": "2026-10-30T03:06:00Z",
-      "window_end": "2026-10-30T03:06:00Z",
+      "window_start": "2026-11-08T11:42:00Z",
+      "window_end": "2026-11-08T11:42:00Z",
+      "merchant_category": "luxury",
+      "txn_count": 476,
+      "total_volume_eur": 60261.29,
+      "avg_txn_amount": 126.6,
+      "suspicious_txn_count": 5,
+      "saved_at": "2026-11-08T11:42:00Z"
+    },
+    {
+      "window_start": "2026-11-08T11:42:00Z",
+      "window_end": "2026-11-08T11:42:00Z",
       "merchant_category": "groceries",
-      "txn_count": 454,
-      "total_volume_eur": 83923.93,
-      "avg_txn_amount": 184.85,
+      "txn_count": 477,
+      "total_volume_eur": 79636.94,
+      "avg_txn_amount": 166.95,
       "suspicious_txn_count": 7,
-      "saved_at": "2026-10-30T03:06:00Z"
+      "saved_at": "2026-11-08T11:42:00Z"
     },
     {
-      "window_start": "2026-10-30T03:06:00Z",
-      "window_end": "2026-10-30T03:06:00Z",
+      "window_start": "2026-11-08T11:42:00Z",
+      "window_end": "2026-11-08T11:42:00Z",
       "merchant_category": "fashion",
-      "txn_count": 485,
-      "total_volume_eur": 68156.07,
-      "avg_txn_amount": 140.53,
-      "suspicious_txn_count": 8,
-      "saved_at": "2026-10-30T03:06:00Z"
+      "txn_count": 486,
+      "total_volume_eur": 66451.4,
+      "avg_txn_amount": 136.73,
+      "suspicious_txn_count": 5,
+      "saved_at": "2026-11-08T11:42:00Z"
     },
     {
-      "window_start": "2026-10-30T03:06:00Z",
-      "window_end": "2026-10-30T03:06:00Z",
+      "window_start": "2026-11-08T11:42:00Z",
+      "window_end": "2026-11-08T11:42:00Z",
       "merchant_category": "electronics",
-      "txn_count": 482,
-      "total_volume_eur": 78752.0,
-      "avg_txn_amount": 163.39,
+      "txn_count": 493,
+      "total_volume_eur": 70409.09,
+      "avg_txn_amount": 142.82,
       "suspicious_txn_count": 7,
-      "saved_at": "2026-10-30T03:06:00Z"
+      "saved_at": "2026-11-08T11:42:00Z"
     },
     {
       "window_start": "2026-10-28T14:00:00Z",
@@ -2839,7 +2839,7 @@ window.LAKEHOUSE_LIVE_DATA = {
       "model_engine": "Google Antigravity SDK · Gemini 2.5 Flash / LiteRT",
       "current_status": "EJECUTANDO DIRECTIVAS PRESIDENCIALES",
       "tasks_queued": 1,
-      "tasks_completed": 572,
+      "tasks_completed": 542,
       "routing_efficiency_pct": 99.8,
       "created_at": "2026-01-15T00:00:00Z"
     },
@@ -3048,345 +3048,15 @@ window.LAKEHOUSE_LIVE_DATA = {
       "target_node": "Apache Iceberg Parquet ZSTD + SQLite WAL",
       "sla_target_ms": 50.0,
       "current_latency_ms": 46.8,
-      "optimized_latency_ms": 34.67,
-      "throughput_msg_sec": 958717.3,
+      "optimized_latency_ms": 19.4,
+      "throughput_msg_sec": 32000.0,
       "optimization_strategy": "Compactación a Bloques de 256MB contra Small Files + WAL Checkpointing",
-      "improvement_pct": 25.9,
+      "improvement_pct": 58.5,
       "status": "AUTOMEJORADA ⚡",
-      "last_optimized_at": "2026-10-29T22:28:16Z"
+      "last_optimized_at": "2026-10-29T10:25:00Z"
     }
   ],
   "corporate_executive_orders": [
-    {
-      "order_id": "ORD-20261029-222816",
-      "order_timestamp": "2026-10-29T22:28:16Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-221349",
-      "order_timestamp": "2026-10-29T22:13:49Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-220320",
-      "order_timestamp": "2026-10-29T22:03:20Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-214618",
-      "order_timestamp": "2026-10-29T21:46:18Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-213759",
-      "order_timestamp": "2026-10-29T21:37:59Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-213722",
-      "order_timestamp": "2026-10-29T21:37:22Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-212602",
-      "order_timestamp": "2026-10-29T21:26:02Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-211945",
-      "order_timestamp": "2026-10-29T21:19:45Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-211319",
-      "order_timestamp": "2026-10-29T21:13:19Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-210301",
-      "order_timestamp": "2026-10-29T21:03:01Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-210233",
-      "order_timestamp": "2026-10-29T21:02:33Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-210145",
-      "order_timestamp": "2026-10-29T21:01:45Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-210106",
-      "order_timestamp": "2026-10-29T21:01:06Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-200854",
-      "order_timestamp": "2026-10-29T20:08:54Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-194355",
-      "order_timestamp": "2026-10-29T19:43:55Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-193652",
-      "order_timestamp": "2026-10-29T19:36:52Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-193611",
-      "order_timestamp": "2026-10-29T19:36:11Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-193150",
-      "order_timestamp": "2026-10-29T19:31:50Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-192801",
-      "order_timestamp": "2026-10-29T19:28:01Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-192351",
-      "order_timestamp": "2026-10-29T19:23:51Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-191837",
-      "order_timestamp": "2026-10-29T19:18:37Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-190548",
-      "order_timestamp": "2026-10-29T19:05:48Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-185733",
-      "order_timestamp": "2026-10-29T18:57:33Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-185603",
-      "order_timestamp": "2026-10-29T18:56:03Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-185545",
-      "order_timestamp": "2026-10-29T18:55:45Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-184401",
-      "order_timestamp": "2026-10-29T18:44:01Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-144442",
-      "order_timestamp": "2026-10-29T14:44:42Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL & Supabase RLS completada: políticas Zero-Trust y esquemas DDL verificados.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-134122",
-      "order_timestamp": "2026-10-29T13:41:22Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-134101",
-      "order_timestamp": "2026-10-29T13:41:01Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
-    {
-      "order_id": "ORD-20261029-132622",
-      "order_timestamp": "2026-10-29T13:26:22Z",
-      "issuer": "Mikel Irastorza · Presidente",
-      "directive_text": "Auditar cero fallos y clean code",
-      "assigned_c_suite": "CISO Aegis",
-      "chatty_response": "¡A sus órdenes, Presidente Mikel! He recibido su directiva para NovusMundus: «Auditar cero fallos y clean code». He movilizado inmediatamente a CISO Aegis. Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings. Todas las rutas de datos han sido automejoradas con éxito. Índice de Eficiencia Corporativa actual: 100.0%. NovusMundus y el Lakehouse operan a máxima capacidad bajo su liderazgo.",
-      "resulting_action": "Auditoría de integridad SQLite WAL completada y suite de tests 100% compliant sin warnings.",
-      "efficiency_impact_pct": 100.0,
-      "status": "EJECUTADA EXITOSAMENTE ✅"
-    },
     {
       "order_id": "ORD-20261029-002",
       "order_timestamp": "2026-10-29T10:15:00Z",

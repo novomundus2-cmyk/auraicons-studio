@@ -172,7 +172,7 @@ service cloud.firestore {
     }
 
     match /bioscience_reference/{docId} {
-      allow read: if true;
+      allow read: if isAuthenticated() && isOwnerAdmin();
       allow write: if isOwnerAdmin();
     }
 

@@ -31,10 +31,10 @@ CREATE PROPERTY GRAPH `financial_lakehouse.financial_network_graph`
       PROPERTIES (
         transaction_id,
         amount_eur,
-        classic_z,
-        robust_mad_z,
-        is_fraud_injected,
+        classic_z_score,
+        robust_mad_z_score,
+        is_fraud_anomaly,
         kafka_partition,
-        event_timestamp
+        txn_timestamp
       )
   );

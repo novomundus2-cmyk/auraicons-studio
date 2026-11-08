@@ -1269,6 +1269,9 @@
       <a href="#tienda" class="btn-pill" style="border-color:#f59e0b; color:#fbbf24; font-weight:800; background:rgba(245,158,11,0.12);">🏛️ Tienda Novus</a>
       <button onclick="openCartModal()" id="dock-cart-btn" class="btn-pill btn-pill-gold" style="font-weight:800;">🛒 Carrito (<span id="cart-count-badge">0</span>)</button>
       <a href="#trading" class="nav-link">Trading Bot Core</a>
+      <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="btn-pill" style="border-color:#10b981;color:#34d399;font-weight:700;">📘 Guía Maestra PDF</a>
+      <a href="/pyspark_pipeline_archify.html" target="_blank" class="btn-pill" style="border-color:#38bdf8;color:#38bdf8;font-weight:700;">🔥 Pipeline PySpark &amp; BigQuery</a>
+      <a href="https://miky-vercel.vercel.app" target="_blank" class="btn-pill" style="border-color:#a855f7;color:#c084fc;font-weight:700;">🧠 Copiloto Miky (Vercel)</a>
       <a href="#molecula-oro" class="btn-pill btn-pill-gold">✨ Molécula de Oro (Au20)</a>
       <a href="/bot.html" class="btn-pill" style="border-color:var(--accent);color:var(--accent);">🤖 Trading Studio Pro</a>
       <a href="/cv_printable.html" class="btn-pill" style="border-color:#10b981;color:#10b981;font-weight:700;">📄 CV Imprimible</a>
@@ -1296,7 +1299,11 @@
       De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.
     </p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px;">
+      <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#10b981; color:#34d399; font-weight:800; background:rgba(16,185,129,0.18); box-shadow:0 0 16px rgba(16,185,129,0.25);">📘 Guía Maestra PDF (Qué Debo Saber)</a>
       <a href="/cv_printable.html" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#10b981; color:#34d399; font-weight:700; background:rgba(16,185,129,0.12);">📄 Ver CV Oficial Imprimible</a>
+      <a href="/pyspark_pipeline_archify.html" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#38bdf8; color:#38bdf8; font-weight:700; background:rgba(56,189,248,0.15); box-shadow:0 0 16px rgba(56,189,248,0.25);">🔥 Pipeline PySpark &amp; BigQuery</a>
+      <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#a855f7; color:#c084fc; font-weight:700; background:rgba(168,85,247,0.15); box-shadow:0 0 16px rgba(168,85,247,0.25);">🧠 Notebook Gemini &amp; BigQuery (.ipynb)</a>
+      <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#f59e0b; color:#fbbf24; font-weight:700; background:rgba(245,158,11,0.12);">📑 Doc PySpark (PDF)</a>
       <a href="#trading" class="btn-pill btn-pill-accent" style="padding: 10px 22px; font-size: 13.5px;">🚀 Probar Trading Bot</a>
       <a href="#proyectos" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px;">📂 Ver 10 Proyectos</a>
       <a href="mailto:mikel@novusmundus.com" class="btn-pill btn-pill-gold" style="padding: 10px 22px; font-size: 13.5px;">✉️ Contactar con Mikel</a>
@@ -1893,6 +1900,29 @@
           🛡️ PII: Enmascaramiento Pre-Gold
         </div>
         <button class="btn-pill btn-pill-gold" onclick="openPlaybookModal('PB-04')" style="width:100%; justify-content:center;">📖 Abrir Playbook &amp; Código</button>
+      </div>
+
+      <!-- Playbook 5 (Flagship Big Data) -->
+      <div class="arch-card" style="border-color: rgba(56, 189, 248, 0.45); background: linear-gradient(145deg, rgba(15,23,42,0.85), rgba(2,6,23,0.95)); position:relative; box-shadow:0 0 24px rgba(56,189,248,0.12);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <span style="font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:999px; background:rgba(56, 189, 248, 0.18); border:1px solid rgba(56, 189, 248, 0.4); color:var(--accent);">DISTRIBUTED DATA &amp; ML</span>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--accent);">PB-05 ⭐</span>
+        </div>
+        <h3 style="font-size:17px; font-weight:800; margin-bottom:8px; color:#fff;">Pipeline Distribuido PySpark en BigQuery &amp; Databricks Lakehouse</h3>
+        <p style="font-size:13px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
+          Entrenamiento distribuido de Random Forest sobre millones de transacciones: conector BigQuery con predicate pushdown (cero OOM), optimización PR-AUC para datos desbalanceados e IaC con DABs.
+        </p>
+        <div style="background:rgba(0,0,0,0.3); border-radius:10px; padding:10px 12px; margin-bottom:14px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:#38bdf8;">
+          ⚡ Conector: spark-bigquery (Pushdown)<br>
+          🎯 Métrica: PR-AUC en CrossValidator<br>
+          ☁️ Gobernanza: Databricks DABs + Unity Catalog
+        </div>
+        <button class="btn-pill btn-pill-accent" onclick="openPlaybookModal('PB-05')" style="width:100%; justify-content:center; margin-bottom:6px;">📖 Abrir Playbook &amp; Código</button>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <a href="/pyspark_pipeline_archify.html" target="_blank" class="btn-pill" style="border-color:#38bdf8; color:#38bdf8; flex:1; justify-content:center; text-decoration:none; font-size:11.5px; padding:6px;">🌌 Diagrama Archify</a>
+          <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="btn-pill" style="border-color:#a855f7; color:#c084fc; flex:1; justify-content:center; text-decoration:none; font-size:11.5px; padding:6px; background:rgba(168,85,247,0.12);">🧠 Notebook Gemini (.ipynb)</a>
+          <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="btn-pill" style="border-color:#f59e0b; color:#fbbf24; flex:1; justify-content:center; text-decoration:none; font-size:11.5px; padding:6px;">📑 Dossier PDF</a>
+        </div>
       </div>
     </div>
   </section>
@@ -4187,6 +4217,51 @@ class OrderContract(pa.DataFrameModel):
         'Credenciales fuera del código: inyección exclusiva por Secrets de Kubernetes o variables de entorno.',
         'Generación obligatoria de informe de auditoría Markdown por cada ejecución de pipeline.',
         'Idempotencia garantizada por hash del contenido y clave de negocio.'
+      ]
+    },
+    'PB-05': {
+      badge: 'DISTRIBUTED DATA & ML · PB-05',
+      title: 'Pipeline Distribuido PySpark en BigQuery & Databricks Lakehouse (DABs)',
+      subtitle: 'Scoring de Fraude y Riesgo a Gran Escala sin OOM con Predicate Pushdown y PR-AUC',
+      dilemma: '¿Cómo entrenar y evaluar modelos de Machine Learning sobre miles de millones de transacciones financieras en BigQuery sin desbordar la memoria del driver (OOM), minimizando costes de escaneo y asegurando despliegues declarativos reproducibles?',
+      framework: [
+        'Pushdown de Predicados y Proyecciones: Conector BigQuery-PySpark que filtra columnas y particiones directamente en el motor de almacenamiento de Google Cloud.',
+        'Mitigación Rigurosa de Desbalanceo: Ponderación inversa de clases (class_weight) y tuning con CrossValidator orientado a PR-AUC (areaUnderPR) en lugar de ROC-AUC.',
+        'Gobernanza Declarativa con DABs: Databricks Asset Bundles (databricks.yml) para orquestación CI/CD de pipelines Lakeflow (Spark Declarative Pipelines).',
+        'Interoperabilidad Abierta Delta UniForm: Formato Delta Lake con metadatos Iceberg expuestos sin duplicación de almacenamiento físico en Cloud Storage.'
+      ],
+      code: `# Pipeline Distribuido de Fraude en PySpark con BigQuery (Anti-OOM)
+from pyspark.sql import SparkSession
+from pyspark.ml.classification import RandomForestClassifier
+from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
+from pyspark.ml.evaluation import BinaryClassificationEvaluator
+
+# 1. Sesión Spark con conector optimizado de BigQuery
+spark = (
+    SparkSession.builder.appName("PySpark_BigQuery_RandomForest")
+    .config("spark.jars.packages", "com.google.cloud.spark:spark-bigquery-with-dependencies_2.12:0.36.1")
+    .config("temporaryGcsBucket", "staging-bucket-fraud-analytics")
+    .getOrCreate()
+)
+
+# 2. Lectura directa con Pushdown (cero OOM en driver)
+df = spark.read.format("bigquery").option("table", "analytics.my_transactions").load()
+
+# 3. Random Forest con balanceo y evaluación PR-AUC
+rf = RandomForestClassifier(featuresCol="features", labelCol="label", weightCol="class_weight", seed=42)
+evaluator_pr = BinaryClassificationEvaluator(labelCol="label", rawPredictionCol="rawPrediction", metricName="areaUnderPR")
+
+param_grid = ParamGridBuilder().addGrid(rf.maxDepth, [5, 10]).addGrid(rf.numTrees, [20, 50]).build()
+cv = CrossValidator(estimator=rf, estimatorParamMaps=param_grid, evaluator=evaluator_pr, numFolds=3)
+cv_model = cv.fit(train_df)
+
+# 4. Escritura atómica particionada a BigQuery
+predictions.select("transaction_id", "prediction", "probability").write.format("bigquery") \\
+    .option("table", "analytics.transactions_scored").mode("overwrite").save()`,
+      checklist: [
+        'Conector BigQuery con temporaryGcsBucket configurado para streaming de writes masivos.',
+        'Métrica PR-AUC obligatoria para datasets financieros con tasa de fraude < 1%.',
+        'Validación de pipeline declarativo con databricks bundle validate --target prod.'
       ]
     }
   };

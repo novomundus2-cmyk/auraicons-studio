@@ -482,6 +482,71 @@ const InteractiveIconComponent: React.FC<InteractiveIconProps> = ({
       );
     }
 
+    // 11. Custom: Cloud Upload Stream (Subir)
+    if (icon.id === 'upload-cloud') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <motion.path
+            d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"
+            animate={isTriggered ? { scale: [1, 1.04, 1] } : { scale: 1 }}
+            transition={{ duration: 0.4 }}
+          />
+          <motion.path
+            d="M12 21V10m0 0l-3.5 3.5M12 10l3.5 3.5"
+            stroke={isTriggered ? colors.secondary : colors.stroke}
+            animate={isTriggered ? { y: [-2, -6, -2] } : { y: 0 }}
+            transition={{ duration: 0.5, repeat: isTriggered ? Infinity : 0 }}
+          />
+        </g>
+      );
+    }
+
+    // 12. Custom: Vertical Level Shifter (Subir / Bajar)
+    if (icon.id === 'arrow-up-down') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <motion.path
+            d="M7 9l5-5 5 5"
+            stroke={isTriggered ? colors.secondary : colors.stroke}
+            animate={isTriggered ? { y: [-2, -5, -2] } : { y: 0 }}
+            transition={{ duration: 0.45, repeat: isTriggered ? Infinity : 0 }}
+          />
+          <path d="M12 4v16" strokeDasharray="2 2" strokeOpacity={0.4} />
+          <motion.path
+            d="M17 15l-5 5-5-5"
+            stroke={isTriggered ? colors.secondary : colors.stroke}
+            animate={isTriggered ? { y: [2, 5, 2] } : { y: 0 }}
+            transition={{ duration: 0.45, repeat: isTriggered ? Infinity : 0 }}
+          />
+        </g>
+      );
+    }
+
+    // 13. Custom: Progress Gauge (% Avance)
+    if (icon.id === 'percent-gauge-ring') {
+      return (
+        <g stroke={colors.stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <circle cx="12" cy="12" r="9" stroke={colors.secondary} strokeOpacity={0.25} />
+          <motion.circle
+            cx="12"
+            cy="12"
+            r="9"
+            stroke={colors.stroke}
+            strokeDasharray="56.5"
+            animate={isTriggered ? { strokeDashoffset: [56.5, 14.1] } : { strokeDashoffset: 18 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M8.5 15.5L15.5 8.5"
+            stroke={colors.secondary}
+            animate={isTriggered ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+          />
+          <circle cx="9" cy="9" r="1.5" fill={colors.stroke} />
+          <circle cx="15" cy="15" r="1.5" fill={colors.stroke} />
+        </g>
+      );
+    }
+
     // Default icon path renderer with enhanced animation styles
     return (
       <g stroke={colors.stroke} strokeWidth={strokeWidth} fill="none">

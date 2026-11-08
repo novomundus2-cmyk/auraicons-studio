@@ -22,6 +22,10 @@ const THEMES: { id: IconStyleTheme; name: string; color: string }[] = [
 ];
 
 const FEATURED_DOCK_IDS = [
+  'upload-cloud',
+  'download-cloud',
+  'arrow-up-down',
+  'percent-gauge-ring',
   'nas-server-cluster',
   'bigquery-graph-nodes',
   'firebase-cloud-flame',

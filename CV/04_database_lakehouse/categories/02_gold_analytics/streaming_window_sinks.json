@@ -1,53 +1,53 @@
 [
   {
-    "window_start": "2026-10-30T03:06:00Z",
-    "window_end": "2026-10-30T03:06:00Z",
+    "window_start": "2026-11-08T11:42:00Z",
+    "window_end": "2026-11-08T11:42:00Z",
     "merchant_category": "travel",
-    "txn_count": 498,
-    "total_volume_eur": 95308.89,
-    "avg_txn_amount": 191.38,
-    "suspicious_txn_count": 12,
-    "saved_at": "2026-10-30T03:06:00Z"
-  },
-  {
-    "window_start": "2026-10-30T03:06:00Z",
-    "window_end": "2026-10-30T03:06:00Z",
-    "merchant_category": "luxury",
-    "txn_count": 481,
-    "total_volume_eur": 102799.2,
-    "avg_txn_amount": 213.72,
+    "txn_count": 468,
+    "total_volume_eur": 66895.7,
+    "avg_txn_amount": 142.94,
     "suspicious_txn_count": 9,
-    "saved_at": "2026-10-30T03:06:00Z"
+    "saved_at": "2026-11-08T11:42:00Z"
   },
   {
-    "window_start": "2026-10-30T03:06:00Z",
-    "window_end": "2026-10-30T03:06:00Z",
+    "window_start": "2026-11-08T11:42:00Z",
+    "window_end": "2026-11-08T11:42:00Z",
+    "merchant_category": "luxury",
+    "txn_count": 476,
+    "total_volume_eur": 60261.29,
+    "avg_txn_amount": 126.6,
+    "suspicious_txn_count": 5,
+    "saved_at": "2026-11-08T11:42:00Z"
+  },
+  {
+    "window_start": "2026-11-08T11:42:00Z",
+    "window_end": "2026-11-08T11:42:00Z",
     "merchant_category": "groceries",
-    "txn_count": 454,
-    "total_volume_eur": 83923.93,
-    "avg_txn_amount": 184.85,
+    "txn_count": 477,
+    "total_volume_eur": 79636.94,
+    "avg_txn_amount": 166.95,
     "suspicious_txn_count": 7,
-    "saved_at": "2026-10-30T03:06:00Z"
+    "saved_at": "2026-11-08T11:42:00Z"
   },
   {
-    "window_start": "2026-10-30T03:06:00Z",
-    "window_end": "2026-10-30T03:06:00Z",
+    "window_start": "2026-11-08T11:42:00Z",
+    "window_end": "2026-11-08T11:42:00Z",
     "merchant_category": "fashion",
-    "txn_count": 485,
-    "total_volume_eur": 68156.07,
-    "avg_txn_amount": 140.53,
-    "suspicious_txn_count": 8,
-    "saved_at": "2026-10-30T03:06:00Z"
+    "txn_count": 486,
+    "total_volume_eur": 66451.4,
+    "avg_txn_amount": 136.73,
+    "suspicious_txn_count": 5,
+    "saved_at": "2026-11-08T11:42:00Z"
   },
   {
-    "window_start": "2026-10-30T03:06:00Z",
-    "window_end": "2026-10-30T03:06:00Z",
+    "window_start": "2026-11-08T11:42:00Z",
+    "window_end": "2026-11-08T11:42:00Z",
     "merchant_category": "electronics",
-    "txn_count": 482,
-    "total_volume_eur": 78752.0,
-    "avg_txn_amount": 163.39,
+    "txn_count": 493,
+    "total_volume_eur": 70409.09,
+    "avg_txn_amount": 142.82,
     "suspicious_txn_count": 7,
-    "saved_at": "2026-10-30T03:06:00Z"
+    "saved_at": "2026-11-08T11:42:00Z"
   },
   {
     "window_start": "2026-10-28T14:00:00Z",

@@ -39,6 +39,9 @@ math:
 ai:
 	/opt/homebrew/bin/uv run --directory 06_ai_note_agent python agent.py --audit
 
+swarm:
+	/opt/homebrew/bin/uv run --directory 06_ai_note_agent python financial_agent_swarm.py
+
 notes:
 	/opt/homebrew/bin/uv run --directory 06_ai_note_agent python agent.py
 

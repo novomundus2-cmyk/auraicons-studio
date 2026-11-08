@@ -6,11 +6,27 @@
   "installCommand": "npm install --legacy-peer-deps",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/cv", "destination": "/cv_printable.html" },
+    { "source": "/", "destination": "/equipo.html" },
+    { "source": "/equipo", "destination": "/equipo.html" },
+    { "source": "/cv", "destination": "/cv.html" },
+    { "source": "/cv_printable", "destination": "/cv_printable.html" },
     { "source": "/portfolio", "destination": "/portfolio.html" },
     { "source": "/bot", "destination": "/bot.html" },
     { "source": "/cockpit", "destination": "/cockpit.html" },
     { "source": "/visualizer", "destination": "/cockpit.html" },
-    { "source": "/dossier", "destination": "/dossier.md" }
+    { "source": "/salita", "destination": "/salita.html" },
+    { "source": "/salita_privada_mikel", "destination": "/salita.html" },
+    { "source": "/dossier", "destination": "/dossier.md" },
+    { "source": "/icons", "destination": "/icons.html" },
+    { "source": "/studio", "destination": "/studio.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    }
   ]
 }

@@ -76,11 +76,11 @@
     "target_node": "Apache Iceberg Parquet ZSTD + SQLite WAL",
     "sla_target_ms": 50.0,
     "current_latency_ms": 46.8,
-    "optimized_latency_ms": 34.67,
-    "throughput_msg_sec": 958717.3,
+    "optimized_latency_ms": 19.4,
+    "throughput_msg_sec": 32000.0,
     "optimization_strategy": "Compactación a Bloques de 256MB contra Small Files + WAL Checkpointing",
-    "improvement_pct": 25.9,
+    "improvement_pct": 58.5,
     "status": "AUTOMEJORADA ⚡",
-    "last_optimized_at": "2026-10-29T22:28:16Z"
+    "last_optimized_at": "2026-10-29T10:25:00Z"
   }
 ]
