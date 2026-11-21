@@ -42,6 +42,15 @@ ai:
 swarm:
 	/opt/homebrew/bin/uv run --directory 06_ai_note_agent python financial_agent_swarm.py
 
+equipo-a:
+	python3 06_ai_note_agent/equipo_a_swarm.py --lang es
+
+equipo-a-fr:
+	python3 06_ai_note_agent/equipo_a_swarm.py --lang fr
+
+equipo-a-en:
+	python3 06_ai_note_agent/equipo_a_swarm.py --lang en
+
 notes:
 	/opt/homebrew/bin/uv run --directory 06_ai_note_agent python agent.py
 

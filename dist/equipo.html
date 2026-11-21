@@ -2,12 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; script-src 'self' 'unsafe-inline' https://www.gstatic.com; connect-src 'self' http://127.0.0.1:11434 https://api.x.ai https://api.openai.com https://api.binance.com https://api.coinbase.com data: blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data: https:; object-src 'none'; base-uri 'self';" />
   <title>Presentación Mikel Irastorza · AuraIcons & Deep Dive Brothers · Familia de 75 Agentes</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sar: env(safe-area-inset-right, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+      --sal: env(safe-area-inset-left, 0px);
       --background: #090d16;
       --foreground: #f0f6fc;
       --card: #121824;
@@ -28,6 +32,11 @@
       background-color: var(--background);
       color: var(--foreground);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      padding-top: var(--sat);
+      padding-bottom: var(--sab);
+      padding-left: var(--sal);
+      padding-right: var(--sar);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -183,6 +192,31 @@
     .btn-info-badge:active {
       transform: scale(0.96);
     }
+    .info-i {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      margin-left: 6px;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(125, 211, 252, 0.75);
+      background: rgba(14, 165, 233, 0.16);
+      color: #e0f2fe;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1;
+      flex: 0 0 auto;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+    .info-i:hover {
+      background: rgba(14, 165, 233, 0.55);
+      color: #fff;
+    }
     @keyframes pulseGlow {
       0%, 100% { opacity: 0.6; transform: scale(1); filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4)); }
       50% { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8)); }
@@ -205,6 +239,72 @@
       pointer-events: auto !important;
       transform: translateY(0) scale(1) !important;
     }
+
+    /* iOS Safari Auto-Zoom Prevention on Input Focus */
+    @media (max-width: 640px) {
+      input[type="text"],
+      input[type="search"],
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* Mobile-first Touch Swipe for Main Navigation */
+    .mobile-nav-scroll {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .mobile-nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .mobile-nav-scroll > * {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+
+    /* Responsive Smart Nav Orb Positioning & Scaling */
+    #smart-nav-orb-container {
+      bottom: calc(1.25rem + var(--sab));
+      right: calc(1.25rem + var(--sar));
+    }
+    @media (max-width: 640px) {
+      #smart-nav-orb-container {
+        bottom: calc(0.75rem + var(--sab));
+        right: calc(0.75rem + var(--sar));
+        gap: 0.5rem;
+      }
+      #smart-nav-orb-container svg {
+        width: 52px;
+        height: 52px;
+      }
+      #btn-main-orb {
+        width: 36px;
+        height: 36px;
+      }
+      #btn-main-orb svg {
+        width: 16px;
+        height: 16px;
+      }
+      #orb-percent-text {
+        font-size: 7.5px;
+      }
+      #orb-hover-card {
+        min-width: 195px;
+        max-width: calc(100vw - 2rem);
+        padding: 0.625rem;
+      }
+    }
+
+    /* Touch Action Lock for 3D Robot Canvas */
+    #robot-3d-canvas {
+      touch-action: none;
+    }
   </style>
 </head>
 <body class="min-h-screen antialiased flex flex-col">
@@ -221,74 +321,83 @@
             <h1 id="org-brand-title" class="text-sm sm:text-base font-bold tracking-tight">
               Presentación Mikel Irastorza · AuraIcons & Deep Dive Brothers · Familia de 75 Agentes
             </h1>
-            <span class="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span id="badge-ondemand" class="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               100% Bajo Demanda
             </span>
           </div>
-          <p class="text-xs text-[var(--muted-foreground)]">
+          <p id="org-brand-subtitle" class="text-xs text-[var(--muted-foreground)]">
             Presidente: <strong class="text-[var(--foreground)]">Mikel Irastorza (Nivel 0)</strong> · Mano Derecha Global: <strong class="text-blue-400">Chatty (Gabriel, AGENT-01)</strong> · Directora Operativa: <strong class="text-purple-400">Clara (E01)</strong>
           </p>
         </div>
       </div>
 
-      <!-- Top Badges & Sound Toggle -->
+      <!-- Top Badges, Reusable Sound Toggle & Trilingual Selector -->
       <div class="flex flex-wrap items-center gap-2 text-xs">
-        <span class="px-2.5 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)]">
+        <!-- Universal Trilingual Switcher (Clean Code Component) -->
+        <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-700/60 shadow-inner" id="global-lang-switcher" role="group" aria-label="Selector de idioma / Language selector">
+          <button type="button" class="aura-lang-btn active" id="btn-lang-es" onclick="switchGlobalLang('es')" title="Castellano (Español)">🇪🇸 ES</button>
+          <button type="button" class="aura-lang-btn" id="btn-lang-fr" onclick="switchGlobalLang('fr')" title="Français (Professionnel Courant)">🇫🇷 FR</button>
+          <button type="button" class="aura-lang-btn" id="btn-lang-en" onclick="switchGlobalLang('en')" title="English (Technical Fluent)">🇬🇧 EN</button>
+        </div>
+        <span id="badge-finops" class="px-2.5 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--muted-foreground)]">
           FinOps: <strong class="text-amber-400">0,00 € en reposo</strong>
         </span>
-        <span class="px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-300 flex items-center gap-1.5 font-medium">
+        <span id="badge-shield" class="px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-300 flex items-center gap-1.5 font-medium">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Escudo S01–S05: ACTIVO
+          <span id="badge-shield-text">Escudo S01–S05: ACTIVO</span>
         </span>
-        <a id="link-salita-directa" href="salita_privada_mikel.html" class="px-3 py-1.5 rounded-lg bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] hover:bg-slate-800 transition font-medium flex items-center gap-1">
+        <button id="btn-top-sound-toggle" type="button" class="aura-btn aura-btn-secondary aura-btn-sm" title="Activar o desactivar sonido interactivo">
+          <span id="top-sound-icon">🔊</span> <span id="top-sound-text">Sonido: ON</span>
+        </button>
+        <a id="link-salita-directa" href="salita_privada_mikel.html" class="aura-btn aura-btn-primary aura-btn-sm">
           <span>👑 Salita Directa</span>
         </a>
       </div>
     </div>
 
-    <!-- Navigation Bar for Main Sections -->
-    <nav class="max-w-7xl mx-auto mt-3 pt-2 border-t border-[var(--border)]/60 flex flex-wrap items-center gap-1.5 text-xs font-medium">
-      <button type="button" id="btn-global-back-home" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold flex items-center gap-1.5 transition shrink-0 shadow-md border border-blue-400/50 hover:scale-105 active:scale-95" title="Ir a la Portada Principal (Inicio)">
-        <span>⬅️</span> <span>Inicio / Portada</span>
+    <!-- Navigation Bar for Main Sections (Swipeable Pill Bar on Mobile, Wrapped on Desktop) -->
+    <nav class="max-w-7xl mx-auto mt-2.5 pt-2 border-t border-[var(--border)]/60 flex flex-nowrap lg:flex-wrap items-center gap-1.5 text-xs font-medium overflow-x-auto no-scrollbar scroll-smooth pb-1 px-1 -mx-1 mobile-nav-scroll">
+      <button type="button" id="btn-global-back-home" class="aura-btn aura-btn-primary aura-btn-sm shrink-0 whitespace-nowrap" title="Ir a la Portada Principal (Inicio)">
+        <span>⬅️</span> <span id="lbl-nav-home">Inicio / Portada</span>
       </button>
-      <button type="button" class="tab-btn active px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="executive-cover">
+      <button type="button" id="tab-btn-executive-cover" class="tab-btn active px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="executive-cover">
         🏛️ Portada Resumen
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="agents-directory">
+      <button type="button" id="tab-btn-agents-directory" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="agents-directory">
         📋 Censo & Directorio 75
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="salita-privada">
+      <button type="button" id="tab-btn-salita-privada" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="salita-privada">
         💬 Salita Privada Grokbot
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="training-mode">
+      <button type="button" id="tab-btn-training-mode" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="training-mode">
         ⚔️ Modo Entrenamiento
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="pipeline-viewer">
+      <button type="button" id="tab-btn-pipeline-viewer" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="pipeline-viewer">
         ⚡ Pipeline 6 Rutas & Harnesses
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="vercel-blueprint">
+      <button type="button" id="tab-btn-vercel-blueprint" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="vercel-blueprint">
         ☁️ Blueprint Vercel
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="cyber-shield-panel">
+      <button type="button" id="tab-btn-cyber-shield-panel" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="cyber-shield-panel">
         🛡️ Escudo Defensivo S01–S05
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="persistence-panel">
+      <button type="button" id="tab-btn-persistence-panel" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="persistence-panel">
         💾 Memoria & Respaldo
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="agents-database-panel">
+      <button type="button" id="tab-btn-agents-database-panel" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="agents-database-panel">
         🗄️ Base de Datos 75 Agentes (SQL)
       </button>
-      <button type="button" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="robot-builder-panel">
+      <button type="button" id="tab-btn-robot-builder-panel" class="tab-btn px-3 py-1.5 rounded-lg border border-transparent transition shrink-0" data-target="robot-builder-panel">
         🤖 Montar Robot (Taller 3D)
       </button>
-      <button type="button" id="btn-nav-open-pitch" class="px-3 py-1.5 rounded-lg bg-emerald-700/40 text-emerald-200 border border-emerald-400/50 hover:bg-emerald-600/60 transition shrink-0 flex items-center gap-1.5 font-bold" title="Abrir Guía de Exposición y Pitch de Mikel Irastorza">
-        <span>🎙️</span> <span>Guía de Exposición</span>
+      <button type="button" id="btn-nav-open-pitch" class="aura-btn aura-btn-emerald aura-btn-sm shrink-0" title="Abrir Guía de Exposición y Pitch de Mikel Irastorza">
+        <span>🎙️</span> <span id="lbl-nav-pitch">Guía de Exposición</span>
       </button>
-      <button type="button" id="btn-nav-open-linkedin" class="px-3 py-1.5 rounded-lg bg-blue-700/40 text-blue-200 border border-blue-400/50 hover:bg-blue-600/60 transition shrink-0 flex items-center gap-1.5 font-bold" title="Sacar a LinkedIn: Posts redactados, captura 3D y enlace público">
-        <span>💼</span> <span>Sacar a LinkedIn</span>
+      <button type="button" id="btn-nav-open-linkedin" class="aura-btn aura-btn-primary aura-btn-sm shrink-0" title="Sacar a LinkedIn: Posts redactados, captura 3D y enlace público">
+        <span>💼</span> <span id="lbl-nav-linkedin">Sacar a LinkedIn</span>
       </button>
-      <button type="button" id="btn-open-global-guide" class="btn-info-badge px-3 py-1.5 rounded-lg bg-blue-600/25 text-blue-300 border border-blue-500/50 hover:bg-blue-600/40 transition shrink-0 flex items-center gap-1.5 font-bold" data-info-key="global-guide" title="Guía Oficial: ¿Para qué sirve cada cosa en la plataforma?">
-        <span>ℹ️</span> <span>¿Para qué sirve cada cosa?</span>
+      <button type="button" id="btn-open-global-guide" class="btn-info-badge aura-btn aura-btn-secondary aura-btn-sm shrink-0" data-info-key="global-guide" title="Guía Oficial: ¿Para qué sirve cada cosa en la plataforma?">
+        <span>ℹ️</span> <span id="lbl-nav-guide">¿Para qué sirve cada cosa?</span>
       </button>
     </nav>
   </header>
@@ -335,26 +444,26 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
           <div class="space-y-2">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-600 text-white">
+              <span id="exec-badge-title" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-600 text-white">
                 👑 Presentación Mikel Irastorza · Export Manager & AI Systems Builder
               </span>
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <span id="exec-badge-divisions" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                 12 Divisiones Operativas · 75 Especialistas
               </span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            <h2 id="exec-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
               Presentación Mikel Irastorza · Export Manager & Creador de Ecosistemas de IA y Datos (75 Agentes)
             </h2>
-            <p class="text-sm text-[var(--muted-foreground)] max-w-3xl leading-relaxed">
+            <p id="exec-paragraph" class="text-sm text-[var(--muted-foreground)] max-w-3xl leading-relaxed">
               Carta de presentación interactiva creada por <strong>Mikel Irastorza</strong> (<strong>Export Manager</strong> apasionado por la informática, la inteligencia artificial y la ingeniería de datos): una organización de <strong>75 agentes en 12 divisiones</strong> aplicada a inteligencia de mercados internacionales, divisas (Forex), análisis empresarial Deep Dive, Bot de Trading <strong>NovusMundus PRO 3.0</strong> en Haskell <code>Integer</code> y ciberseguridad defensiva <code>S01–S05</code>.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-            <button type="button" id="btn-jump-salita" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-md transition flex items-center gap-1.5">
-              <span>💬 Entrar a la Salita Privada</span>
+            <button type="button" id="btn-jump-salita" class="aura-btn aura-btn-primary">
+              <span>💬</span> <span id="lbl-btn-jump-salita">Entrar a la Salita Privada</span>
             </button>
-            <button type="button" id="btn-jump-directory" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[var(--secondary)] hover:bg-slate-700 text-slate-200 border border-[var(--border)] transition">
-              <span>📋 Ver Catálogo Completo (75)</span>
+            <button type="button" id="btn-jump-directory" class="aura-btn aura-btn-secondary">
+              <span>📋</span> <span id="lbl-btn-jump-directory">Ver Catálogo Completo (75)</span>
             </button>
           </div>
         </div>
@@ -366,16 +475,16 @@
           <span class="text-3xl select-none">💬</span>
           <div>
             <div class="text-sm font-bold text-white flex items-center gap-2">
-              <span>Salita Privada: Conversación en Directo con los 75 Trabajadores</span>
+              <span id="salita-banner-title">Salita Privada: Conversación en Directo con los 75 Trabajadores</span>
               <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 animate-pulse">● 75 ESPECIALISTAS ACTIVOS</span>
             </div>
-            <p class="text-xs text-slate-300 mt-0.5">
+            <p id="salita-banner-desc" class="text-xs text-slate-300 mt-0.5">
               Habla directamente con <strong>Chatty (Gabriel, AGENT-01)</strong>, <strong>Clara (E01)</strong> o cualquiera de tus especialistas. Coste 0,00 € en reposo y memoria persistente.
             </p>
           </div>
         </div>
-        <button type="button" id="btn-cover-salita-banner" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition shadow-sm shrink-0 flex items-center gap-1.5">
-          <span>💬 Hablar en la Salita Privada</span> <span>→</span>
+        <button type="button" id="btn-cover-salita-banner" class="aura-btn aura-btn-primary shrink-0">
+          <span>💬</span> <span id="lbl-btn-cover-salita">Hablar en la Salita Privada</span> <span>→</span>
         </button>
       </div>
 
@@ -384,33 +493,33 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
           <div>
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              <span id="showcase-badge-portfolio" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                 🌟 Carta de Presentación & Portfolio en Vivo
               </span>
-              <span class="text-xs font-mono text-emerald-400">Verificado 123/123 E2E · SHA-256</span>
+              <span id="showcase-badge-verified" class="text-xs font-mono text-emerald-400">Verificado 123/123 E2E · SHA-256</span>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-white mt-1">
+            <h3 id="showcase-heading" class="text-base sm:text-lg font-bold text-white mt-1">
               ¿Quién es Mikel Irastorza y qué demuestra esta plataforma en tiempo real?
             </h3>
-            <p class="text-xs text-[var(--muted-foreground)]">
-              Diseñado para que inversores, empresas, clientes o colaboradores en LinkedIn conozcan de forma tangible la arquitectura de ingeniería de datos, IA multi-agente y finanzas cuantitativas de Mikel Irastorza.
+            <p id="showcase-description" class="text-xs text-[var(--muted-foreground)]">
+              Diseñado para que inversores, empresas, clientes o colaboradores conozcan de forma tangible la arquitectura de ingeniería de datos, IA multi-agente y finanzas cuantitativas de Mikel Irastorza (con perfil verificado independiente).
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <button type="button" class="btn-info-badge px-3 py-2 rounded-xl text-xs font-bold bg-blue-600/20 text-blue-300 border border-blue-500/40 hover:bg-blue-600 hover:text-white transition shadow-sm flex items-center gap-1" data-info-key="mikel-showcase" title="¿Qué demuestra esta presentación y para qué sirve?">
-              <span>ℹ️</span> <span>Explicación</span>
+            <button type="button" class="btn-info-badge aura-btn aura-btn-secondary aura-btn-sm" data-info-key="mikel-showcase" title="¿Qué demuestra esta presentación y para qué sirve?">
+              <span>ℹ️</span> <span id="lbl-btn-showcase-info">Explicación</span>
             </button>
-            <button type="button" id="btn-guided-demo-mikel" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition shadow-sm">
-              🎬 Demo Guiada en 1 Clic (Presentar a Mikel)
+            <button type="button" id="btn-guided-demo-mikel" class="aura-btn aura-btn-primary aura-btn-sm">
+              <span id="lbl-btn-guided-demo">🎬 Demo Guiada en 1 Clic (Presentar a Mikel)</span>
             </button>
-            <button type="button" id="btn-auto-improve-all" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900/50 transition shadow-sm">
-              🚀 Ejecutar Mejora Delegada (12 Divisiones)
+            <button type="button" id="btn-auto-improve-all" class="aura-btn aura-btn-emerald aura-btn-sm">
+              <span id="lbl-btn-auto-improve">🚀 Ejecutar Mejora Delegada (12 Divisiones)</span>
             </button>
-            <button type="button" id="btn-copy-linkedin-pitch" class="px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--secondary)] text-amber-300 border border-[var(--border)] hover:bg-slate-800 transition">
-              💼 Copiar Pitch LinkedIn
+            <button type="button" id="btn-copy-linkedin-pitch" class="aura-btn aura-btn-amber aura-btn-sm">
+              <span id="lbl-btn-copy-pitch">💼 Copiar Pitch LinkedIn</span>
             </button>
-            <button type="button" id="btn-download-mikel-dossier" class="px-3 py-2 rounded-xl text-xs font-semibold bg-[var(--secondary)] text-slate-200 border border-[var(--border)] hover:bg-slate-800 transition">
-              📄 Descargar Dossier (.MD)
+            <button type="button" id="btn-download-mikel-dossier" class="aura-btn aura-btn-secondary aura-btn-sm">
+              <span id="lbl-btn-download-dossier">📄 Descargar Dossier (.MD)</span>
             </button>
           </div>
         </div>
@@ -418,48 +527,60 @@
         <!-- Nota del Autor · Propósito del Portfolio y Reserva de Proyectos de Alta Valía -->
         <div class="p-4 rounded-xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-blue-950/20 border border-amber-500/40 text-xs text-amber-200/90 leading-relaxed space-y-1.5 shadow-sm">
           <div class="font-bold text-amber-300 flex items-center justify-between text-xs">
-            <span class="flex items-center gap-1.5"><span>📌</span> <span>Nota y Declaración de Mikel Irastorza (Autor & Export Manager):</span></span>
-            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Escaparate Demostrativo de CV</span>
+            <span class="flex items-center gap-1.5"><span>📌</span> <span id="author-note-title">Nota y Declaración de Mikel Irastorza (Autor & Export Manager):</span></span>
+            <span id="author-note-badge" class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Escaparate Demostrativo de CV</span>
           </div>
-          <p class="text-slate-200">
-            Todo lo que ves en este ecosistema es en realidad un <strong>borrador interactivo creado específicamente como escaparate para mi portfolio y CV</strong>, ya que buscaba una forma dinámica y directa de presentarme ante empresas, clientes y reclutadores. Lo que aquí se muestra <strong>no son mis proyectos ni herramientas de uso operativo diario</strong>. Tengo la plena capacidad de diseñarlos y cuento con proyectos y desarrollos de gran envergadura y altísima valía técnica y de negocio; no obstante, por estricta confidencialidad y preservación de mi propiedad intelectual, <strong>esos proyectos estratégicos privados no se muestran en abierto ni gratis</strong>.
+          <p id="author-note-body" class="text-slate-200 leading-relaxed">
+            Todo lo que ves en este ecosistema es en realidad un <strong>escaparate interactivo creado específicamente para mi portfolio y CV</strong>, con el fin de presentarme de forma tangible ante empresas, clientes y reclutadores. Mi perfil de LinkedIn se mantiene actualmente en <strong>modo confidencial/privado</strong>; por consiguiente, esta plataforma en vivo constituye la prueba de trabajo autónoma y directa. Lo aquí expuesto <strong>no son mis proyectos de uso operativo diario</strong>: cuento con sistemas industriales y desarrollos estratégicos de altísima valía comercial que, por estricta confidencialidad y preservación de propiedad intelectual, <strong>no se muestran en abierto ni gratis</strong>.
           </p>
+        </div>
+
+        <div id="harness-examen-cover" class="p-4 rounded-xl bg-[var(--background)] border border-purple-500/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div id="harness-exam-title" class="text-xs font-bold text-purple-300">Examen del harness · modelo grande congelado</div>
+            <p id="harness-exam-desc" class="text-xs text-slate-300 leading-relaxed">
+              El humano escribe el scoring set. Un modelo pequeño propone 8 ediciones del harness y solo se conserva la que gana en held-out. El prompt completo está en la matriz de harnesses.
+            </p>
+          </div>
+          <button type="button" id="btn-jump-harness-examen" class="aura-btn aura-btn-purple aura-btn-sm shrink-0">
+            <span id="lbl-btn-jump-harness">Ver examen y prompt</span>
+          </button>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
           <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1">
             <div class="font-bold text-white flex items-center justify-between">
-              <span>1. Dirección Multi-Agente (75)</span>
+              <span id="pillar-1-title">1. Dirección Multi-Agente (75)</span>
               <span class="text-blue-400 font-mono">12 Salas</span>
             </div>
-            <p class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
+            <p id="pillar-1-desc" class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
               Organización jerárquica con <strong class="text-slate-200">Chatty (Gabriel, AGENT-01)</strong> como mano derecha global y <strong class="text-slate-200">Clara (E01)</strong> en la Dirección Operativa. Delegación inteligente por especialidad y Puente hacia Codex CLI.
             </p>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1">
             <div class="font-bold text-white flex items-center justify-between">
-              <span>2. Quant Trading & Haskell</span>
+              <span id="pillar-2-title">2. Quant Trading & Haskell</span>
               <span class="text-amber-400 font-mono">Exactitud 100%</span>
             </div>
-            <p class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
+            <p id="pillar-2-desc" class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
               Bot <strong class="text-slate-200">NovusMundus PRO 3.0</strong> sobre 13 activos. Cálculos financieros en <strong class="text-slate-200">Haskell Integer sobre WASM</strong> (Blaise A02) y 8 importes decimales exactos (Leví M04), sin errores de coma flotante.
             </p>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1">
             <div class="font-bold text-white flex items-center justify-between">
-              <span>3. Streaming Data Pipeline</span>
+              <span id="pillar-3-title">3. Streaming Data Pipeline</span>
               <span class="text-purple-400 font-mono">25 ms – 75 ms</span>
             </div>
-            <p class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
+            <p id="pillar-3-desc" class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
               6 rutas en tiempo real: <strong class="text-slate-200">Apache NiFi</strong> (30 ms), <strong class="text-slate-200">Kafka KRaft</strong> (40 ms), <strong class="text-slate-200">PySpark</strong> (75 ms), <strong class="text-slate-200">Welford O(1)</strong> (25 ms), <strong class="text-slate-200">Antifraude MAD</strong> (50 ms) y <strong class="text-slate-200">Lakehouse Pacioli</strong> (50 ms).
             </p>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-1">
             <div class="font-bold text-white flex items-center justify-between">
-              <span>4. Ciberseguridad & FinOps 0€</span>
+              <span id="pillar-4-title">4. Ciberseguridad & FinOps 0€</span>
               <span class="text-emerald-400 font-mono">S01–S05</span>
             </div>
-            <p class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
+            <p id="pillar-4-desc" class="text-[11px] text-[var(--muted-foreground)] leading-relaxed">
               Escudo ético <strong class="text-slate-200">S01–S05</strong> con CSP estricta, anti-XSS, anti-prompt-injection, cadena de bloques <strong class="text-slate-200">SHA-256</strong> y coste <strong class="text-emerald-300">0,00 € en reposo</strong>.
             </p>
           </div>
@@ -1434,6 +1555,54 @@
           </table>
         </div>
       </div>
+
+      <div id="harness-examen" class="bg-[var(--card)] border border-purple-500/40 rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="border-b border-[var(--border)] pb-3 space-y-1">
+          <h3 class="text-base font-bold text-white">Escribe el examen antes que el código</h3>
+          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+            El modelo grande permanece congelado. El trabajo es el scoring set: preguntas held-out y criterios de pass/fail. Un modelo pequeño, del orden de 4B, lee los fallos y propone exactamente 8 ediciones del harness. Se conserva solo la que maximiza la puntuación en ese set. Esta página no ha corrido ese ciclo: no hay puntuaciones inventadas.
+          </p>
+        </div>
+        <ol class="text-xs text-slate-200 space-y-1.5 list-decimal pl-4">
+          <li>El humano entrega el scoring set, los criterios y los datos de evaluación.</li>
+          <li>Se ejecuta el agente con el harness vigente y se registran los fallos exactos.</li>
+          <li>El modelo pequeño propone 8 ediciones concretas del harness.</li>
+          <li>Cada edición se mide solo contra el set held-out.</li>
+          <li>Se aplica la ganadora. El humano amplía el examen para la ronda siguiente.</li>
+        </ol>
+        <div class="space-y-2">
+          <div class="text-xs font-bold text-white">Scoring set de partida · limpieza de datos en Python</div>
+          <ul class="text-xs text-slate-300 space-y-1 list-disc pl-4">
+            <li>¿El script detecta y corrige valores nulos en columnas numéricas sin alterar el tipo original? Pass/fail binario, dataset de prueba fijo.</li>
+            <li>¿Genera un reporte de outliers con pandas y lo guarda en Parquet sin perder precisión? Pass/fail binario, el mismo dataset.</li>
+          </ul>
+          <p class="text-[11px] text-[var(--muted-foreground)]">
+            El set útil tiene 12 preguntas de ese corte. Aquí quedan las dos que definen el grano. El resto lo añade el humano. Procedencia del argumento: nota sobre un paper citada por AnnatarXBT.
+          </p>
+        </div>
+        <pre class="bg-black/60 border border-[var(--border)] rounded-lg p-3 text-[11px] font-mono text-slate-300 overflow-x-auto whitespace-pre-wrap">Eres un ingeniero de harnesses que opera bajo el principio “escribe el examen antes que el código”. El modelo grande permanece congelado en todo momento. Tu única responsabilidad es diseñar y evolucionar el harness (prompts de sistema, definición de tools, loops de ejecución, guards, gestión de contexto, lógica de orquestación y cualquier código o configuración que rodea al modelo).
+
+Ciclo de trabajo obligatorio:
+
+1. Recibe del humano un scoring set completo: lista de preguntas held-out + criterios explícitos de éxito/fracaso (preferiblemente binarios o con puntuación clara) + datos o contexto de evaluación.
+2. Ejecuta el agente actual con el harness vigente y registra de forma precisa todos los fallos (qué pregunta falló, por qué, y qué parte del harness parece responsable).
+3. Usa un modelo pequeño (estilo 4B) para generar exactamente 8 propuestas de edición al archivo o definición del harness. Cada propuesta debe ser concreta, acotada y justificable a partir de los fallos observados.
+4. Evalúa cada una de las 8 propuestas exclusivamente contra el scoring set held-out. Conserva únicamente la edición que obtiene la puntuación más alta. Descarta el resto.
+5. Aplica la edición ganadora, actualiza el harness y repite el ciclo mientras el humano lo solicite o mientras haya margen de mejora medible.
+
+Restricciones estrictas:
+- Nunca modifiques los pesos ni el comportamiento interno del modelo grande.
+- Nunca inventes métricas, preguntas o criterios que no estén en el scoring set proporcionado por el humano.
+- Prioriza siempre la claridad y cobertura del scoring set por encima de la complejidad del harness.
+- Los frameworks y andamiajes son desechables; el examen (scoring set) es el verdadero trabajo.
+
+Formato de respuesta obligatorio en cada ciclo:
+- Scoring set actual (resumido o referenciado).
+- Fallos observados con detalle.
+- Las 8 propuestas de edición.
+- Puntuación obtenida por cada propuesta en el set held-out.
+- Harness final seleccionado (código, configuración o diff completo).</pre>
+      </div>
     </section>
 
     <!-- ===================================================================== -->
@@ -1685,7 +1854,7 @@ metric('pipeline.route01.latency', 28, {
               75 / 75 Verificados
             </span>
           </div>
-          <div class="max-h-64 overflow-y-auto">
+          <div class="max-h-64 overflow-y-auto overflow-x-auto">
             <table class="w-full text-left text-xs border-collapse">
               <thead>
                 <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
@@ -1936,7 +2105,7 @@ metric('pipeline.route01.latency', 28, {
               Taller de Montaje y Cinemática 3D del Robot Físico
             </h2>
             <p class="text-xs text-[var(--muted-foreground)] max-w-3xl mt-1 leading-relaxed">
-              Diseño mecatrónico procedural con cinemática real: ensambla pieza a pieza el robot físico de 38 cm con chasis de tracción, doble cerebro (Arduino Nano a 16 MHz en tiempo real + Miniordenador IA), brazos articulados, cabeza con visión estéreo y botón de parada de emergencia.
+              Cada grupo se monta y se desmonta en el 3D. Debajo, solo piezas que se compran y que encajan entre sí: nombre, referencia y enlace. El pack no alimenta motores ni servos en directo. El HC-SR04 es un ultrasonidos, no un LiDAR.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 shrink-0">
@@ -1986,6 +2155,8 @@ metric('pipeline.route01.latency', 28, {
                 <span>🖱️ Arrastra para rotar 360°</span>
                 <span>·</span>
                 <span>Zoom: Rueda</span>
+                <span>·</span>
+                <span>Chocan y frenan</span>
                 <button type="button" id="btn-reset-camera" class="text-blue-400 hover:underline">Reiniciar Cámara</button>
               </div>
 
@@ -2079,76 +2250,90 @@ metric('pipeline.route01.latency', 28, {
             <!-- Lista de las 5 Piezas del Robot con Botones de Montar/Desmontar -->
             <div class="space-y-2.5">
               <div class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center justify-between">
-                <span>Cadena de Ensamblaje (5 Piezas)</span>
+                <span>Cadena de ensamblaje (5 grupos, piezas de catálogo)</span>
                 <span class="text-[10px] text-slate-400">ESTADO</span>
               </div>
 
-              <!-- Pieza 1: Chasis & Tracción -->
-              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-center justify-between gap-3" data-part="chassis">
-                <div class="flex items-center gap-2.5">
+              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-start justify-between gap-3" data-part="chassis">
+                <div class="flex items-start gap-2.5 min-w-0">
                   <span class="text-xl">🛞</span>
-                  <div>
-                    <div class="text-xs font-bold text-white">1. Chasis & Orugas de Tracción</div>
-                    <div class="text-[10px] text-slate-400">Aluminio 6061-T6 + 2 Motores DC con encoders</div>
+                  <div class="min-w-0 space-y-1">
+                    <div class="text-xs font-bold text-white">1. Chasis Devastator y driver</div>
+                    <div class="text-[10px] text-slate-400">DFRobot ROB0112: orugas, suspensión y 2 motores DC. 225×220×108 mm, 780 g. Cada motor admite de 3 V a 8 V, va a 6 V, gasta 170 mA en vacío y 2,8 A en bloqueo. El Cytron MDD10A lleva un motor por canal: 10 A continuos y 30 A de pico (10 s), VM de 5 V a 30 V. La orden es PWM y DIR a 3,3 V o 5 V, no el pulso de un servo. VM no perdona si inviertes la polaridad. Los 6 V salen del Pololu 5673.</div>
+                    <a href="https://www.mouser.es/ProductDetail/DFRobot/ROB0112" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar ROB0112 · Mouser</a>
+                    <a href="https://wiki.dfrobot.com/devastator_tank_mobile_platform_sku_rob0112" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Ficha ROB0112 · wiki DFRobot</a>
+                    <a href="https://opencircuit.shop/product/10amp-5v-30v-dc-motor-driver-2-channels" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar MDD10A · Opencircuit</a>
                   </div>
                 </div>
-                <button type="button" class="btn-toggle-part px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="chassis">
+                <button type="button" class="btn-toggle-part shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="chassis">
                   Montado ✓
                 </button>
               </div>
 
-              <!-- Pieza 2: Doble Cerebro -->
-              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-center justify-between gap-3" data-part="brain">
-                <div class="flex items-center gap-2.5">
+              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-start justify-between gap-3" data-part="brain">
+                <div class="flex items-start gap-2.5 min-w-0">
                   <span class="text-xl">⚡</span>
-                  <div>
-                    <div class="text-xs font-bold text-white">2. Placa Base & Doble Cerebro</div>
-                    <div class="text-[10px] text-slate-400">Arduino Nano (16 MHz) + Miniordenador IA</div>
+                  <div class="min-w-0 space-y-1">
+                    <div class="text-xs font-bold text-white">2. Arduino Nano y Raspberry Pi 4</div>
+                    <div class="text-[10px] text-slate-400">Nano A000005, ATmega328 a 16 MHz: PWM de los servos y PWM/DIR del MDD10A. Pi 4 Model B de 4 GB: cámara por CSI y OLED por I2C a 3,3 V. La UART pasa por el Adafruit 757, lado alto a 5 V en el Nano y lado bajo a 3,3 V en la Pi. Masa común. El eco del HC-SR04 se queda en el Nano: es de 5 V y la Pi no lo admite.</div>
+                    <a href="https://www.mouser.es/ProductDetail/Arduino/A000005" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar Arduino Nano A000005 · Mouser</a>
+                    <a href="https://www.tiendatec.es/raspberry-pi/gama-raspberry-pi/1100-raspberry-pi-4-modelo-b-4gb-5056561800349.html" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar Raspberry Pi 4 Model B 4 GB · Tiendatec</a>
+                    <a href="https://www.kiwi-electronics.com/en/brand-adafruit/4-channel-i2c-safe-bi-directional-logic-level-converter-bss138-837" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar desplazador Adafruit 757 · Kiwi</a>
                   </div>
                 </div>
-                <button type="button" class="btn-toggle-part px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="brain">
+                <button type="button" class="btn-toggle-part shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="brain">
                   Montado ✓
                 </button>
               </div>
 
-              <!-- Pieza 3: Brazos Articulados -->
-              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-center justify-between gap-3" data-part="arms">
-                <div class="flex items-center gap-2.5">
+              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-start justify-between gap-3" data-part="arms">
+                <div class="flex items-start gap-2.5 min-w-0">
                   <span class="text-xl">🦾</span>
-                  <div>
-                    <div class="text-xs font-bold text-white">3. Brazos Articulados tipo Wall-E</div>
-                    <div class="text-[10px] text-slate-400">2 Servos hombro + 2 codo + pinzas mecánicas</div>
+                  <div class="min-w-0 space-y-1">
+                    <div class="text-xs font-bold text-white">3. Servos de brazo y pinza</div>
+                    <div class="text-[10px] text-slate-400">4× TowerPro MG995, engranaje metálico, para hombro y codo. 2× TowerPro SG92R para los dos dedos de la pinza. Los dos van a 5 V, dentro de 4,8 V a 6 V. Esa línea es el Pololu 5671 (5 V, 11 A), aparte del UBEC de 3 A de la Pi. La señal sale del Nano.</div>
+                    <a href="https://www.adafruit.com/product/1142" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar MG995 · Adafruit 1142 (×4)</a>
+                    <a href="https://www.adafruit.com/product/169" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar SG92R · Adafruit 169 (×2)</a>
+                    <a href="https://www.pololu.com/product/5671" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar regulador 5 V 11 A · Pololu 5671</a>
                   </div>
                 </div>
-                <button type="button" class="btn-toggle-part px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="arms">
+                <button type="button" class="btn-toggle-part shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="arms">
                   Montado ✓
                 </button>
               </div>
 
-              <!-- Pieza 4: Cabeza Sensorial -->
-              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-center justify-between gap-3" data-part="head">
-                <div class="flex items-center gap-2.5">
+              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-start justify-between gap-3" data-part="head">
+                <div class="flex items-start gap-2.5 min-w-0">
                   <span class="text-xl">👁️</span>
-                  <div>
-                    <div class="text-xs font-bold text-white">4. Cabeza Sensorial & Visión Estéreo</div>
-                    <div class="text-[10px] text-slate-400">Doble cámara binocular + OLED + LiDAR HC-SR04</div>
+                  <div class="min-w-0 space-y-1">
+                    <div class="text-xs font-bold text-white">4. Cámara, OLED, ultrasonidos y giro</div>
+                    <div class="text-[10px] text-slate-400">Camera Module 3 por CSI en la Pi. OLED SSD1306 de 0,96 pulgadas por I2C a 3,3 V en la Pi. HC-SR04 de ultrasonidos en el Nano, no un LiDAR. Un SG92R gira la cabeza, en el mismo carril de 5 V de los servos.</div>
+                    <a href="https://www.adafruit.com/product/5657" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar Camera Module 3 · Adafruit 5657</a>
+                    <a href="https://www.adafruit.com/product/326" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar OLED SSD1306 0,96" · Adafruit 326</a>
+                    <a href="https://www.adafruit.com/product/3942" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar HC-SR04 · Adafruit 3942</a>
+                    <a href="https://www.adafruit.com/product/169" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar SG92R de giro · Adafruit 169 (×1)</a>
                   </div>
                 </div>
-                <button type="button" class="btn-toggle-part px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="head">
+                <button type="button" class="btn-toggle-part shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="head">
                   Montado ✓
                 </button>
               </div>
 
-              <!-- Pieza 5: Alimentación & Seguridad -->
-              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-center justify-between gap-3" data-part="power">
-                <div class="flex items-center gap-2.5">
+              <div class="part-item bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex items-start justify-between gap-3" data-part="power">
+                <div class="flex items-start gap-2.5 min-w-0">
                   <span class="text-xl">🛑</span>
-                  <div>
-                    <div class="text-xs font-bold text-white">5. Alimentación & Parada de Emergencia</div>
-                    <div class="text-[10px] text-slate-400">Pack LiPo 3S 11.1V + Seta de paro física roja</div>
+                  <div class="min-w-0 space-y-1">
+                    <div class="text-xs font-bold text-white">5. Pilas, tres carriles y seta</div>
+                    <div class="text-[10px] text-slate-400">6 Panasonic Eneloop BK-3MCDE/2BE, NiMH de 1,2 V y 2000 mAh, en el portapilas de 6 AA. Tres blísteres de 2. En fresco el pack puede pasar de 8 V: no lo conectes a motores ni servos, y no metas alcalinas (6 × 1,5 V son 9 V). El pack entra solo en tres reguladores. Pololu 5673: 6 V y 11 A hacia el MDD10A. Pololu 5671: 5 V y 11 A hacia los servos. UBEC 1385: 5 V y 3 A solo para la Pi y el Nano; cambia las pilas si el pack baja de unos 7 V. La seta IDEC no corta la batería: el contacto es de 2 A en continua. Cerrado en reposo, une la patilla ENA de los dos Pololu a los 5 V del UBEC. Al pulsar, abre y una resistencia a masa apaga esos dos carriles. No uses ENB. La Pi sigue encendida.</div>
+                    <a href="https://www.pccomponentes.com/pila-recargable-panasonic-eneloop-aa-1-2v-2000-mah-2-unidades" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar Eneloop AA BK-3MCDE/2BE · PcComponentes (×3)</a>
+                    <a href="https://www.adafruit.com/product/248" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar portapilas 6×AA · Adafruit 248</a>
+                    <a href="https://www.pololu.com/product/5673" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar regulador 6 V 11 A · Pololu 5673</a>
+                    <a href="https://www.pololu.com/product/5671" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar regulador 5 V 11 A · Pololu 5671</a>
+                    <a href="https://www.adafruit.com/product/1385" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar UBEC 5 V 3 A · Adafruit 1385</a>
+                    <a href="https://www.mouser.es/ProductDetail/IDEC/XW1E-BV3SG01TR" target="_blank" rel="noopener noreferrer" class="block text-[10px] text-sky-300 hover:underline">Comprar seta IDEC XW1E-BV3SG01TR · Mouser</a>
                   </div>
                 </div>
-                <button type="button" class="btn-toggle-part px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="power">
+                <button type="button" class="btn-toggle-part shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition" data-part="power">
                   Montado ✓
                 </button>
               </div>
@@ -2156,12 +2341,14 @@ metric('pipeline.route01.latency', 28, {
 
             <!-- Especificaciones Técnicas Resumidas -->
             <div class="bg-[var(--secondary)]/30 border border-[var(--border)] rounded-xl p-3.5 space-y-1.5 text-[11px] font-mono">
-              <div class="text-xs font-bold text-white uppercase font-sans">Ficha Técnica Mecatrónica</div>
-              <div class="flex justify-between text-slate-400"><span>Altura total:</span> <span class="text-white">380 mm</span></div>
-              <div class="flex justify-between text-slate-400"><span>Anchura con orugas:</span> <span class="text-white">260 mm</span></div>
-              <div class="flex justify-between text-slate-400"><span>Peso estimado:</span> <span class="text-white">2.85 kg</span></div>
-              <div class="flex justify-between text-slate-400"><span>Autonomía LiPo:</span> <span class="text-emerald-300">~2.5 horas</span></div>
-              <div class="flex justify-between text-slate-400"><span>Protocolo bus:</span> <span class="text-blue-300">I2C / UART / SPI</span></div>
+              <div class="text-xs font-bold text-white uppercase font-sans">Ficha del chasis real</div>
+              <div class="flex justify-between text-slate-400"><span>Chasis ROB0112:</span> <span class="text-white">225 × 220 × 108 mm</span></div>
+              <div class="flex justify-between text-slate-400"><span>Peso del chasis:</span> <span class="text-white">780 g</span></div>
+              <div class="flex justify-between text-slate-400"><span>Motores:</span> <span class="text-white">6 V, pico 2,8 A</span></div>
+              <div class="flex justify-between text-slate-400"><span>Driver:</span> <span class="text-white">MDD10A, 10 A</span></div>
+              <div class="flex justify-between text-slate-400"><span>Servos:</span> <span class="text-white">5 V, Pololu 5671</span></div>
+              <div class="flex justify-between text-slate-400"><span>Lógica:</span> <span class="text-emerald-300">5 V, UBEC de 3 A</span></div>
+              <div class="flex justify-between text-slate-400"><span>Sensores:</span> <span class="text-blue-300">CSI y OLED en la Pi</span></div>
             </div>
           </div>
         </div>
@@ -2237,11 +2424,15 @@ metric('pipeline.route01.latency', 28, {
         <div class="flex items-center gap-3">
           <span class="text-3xl select-none">💼</span>
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">LINKEDIN EXPORT HUB</span>
-              <span class="text-xs text-emerald-400 font-mono">Enlace Producción Listo</span>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20" id="modal-lk-badge">LINKEDIN EXPORT HUB</span>
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30" id="modal-lk-private-badge">🔒 MODO PRIVADO ACTIVO</span>
+              <span class="text-xs text-emerald-400 font-mono" id="modal-lk-status">Enlace Producción Listo</span>
             </div>
-            <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">¿Qué demuestras con esta web y cómo sacarlo a LinkedIn?</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-1" id="modal-lk-title">¿Qué demuestras con esta web y cómo compartirlo?</h3>
+            <p class="text-xs text-slate-300 mt-1" id="modal-lk-private-desc">
+              El perfil de LinkedIn de Mikel se mantiene en <strong>modo confidencial/privado</strong> para proteger sus desarrollos industriales propietarios. Este escaparate interactivo autónomo es la prueba de trabajo verificada que puedes compartir o publicar.
+            </p>
           </div>
         </div>
         <button id="linkedin-modal-close-btn" type="button" class="w-8 h-8 rounded-lg bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] flex items-center justify-center hover:opacity-80 transition font-bold" aria-label="Cerrar modal de LinkedIn">✕</button>
@@ -2260,7 +2451,7 @@ metric('pipeline.route01.latency', 28, {
             <span class="font-bold text-emerald-300">2. Sistema Multi-Agente (75 Agentes):</span> Base de datos relacional SQLite/Neon con memoria viva, firmas SHA-256 y jerarquía corporativa real.
           </div>
           <div class="p-2 rounded-lg bg-slate-950/60 border border-slate-800">
-            <span class="font-bold text-amber-300">3. Robótica Mecatrónica 3D:</span> Prototipo interactivo físico Wall-E con doble cerebro (Arduino a 16 MHz + IA), cinemática PWM y Canvas 3D autónomo.
+            <span class="font-bold text-amber-300">3. Robótica Mecatrónica 3D:</span> Prototipo en el navegador del chasis DFRobot ROB0112, con Arduino Nano, Raspberry Pi 4, servos PWM y canvas 3D.
           </div>
           <div class="p-2 rounded-lg bg-slate-950/60 border border-slate-800">
             <span class="font-bold text-purple-300">4. Cuantitativo & Haskell Integer:</span> Matemáticas financieras exactas compiladas a WebAssembly, sin errores de coma flotante de JS.
@@ -2277,7 +2468,7 @@ metric('pipeline.route01.latency', 28, {
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-medium">
           <button type="button" class="btn-linkedin-tab px-3 py-2 rounded-xl border border-blue-500 bg-blue-600/30 text-white font-bold transition text-left" data-post-type="robot">
             <span class="block">🤖 1. Robot Mecatrónico 3D</span>
-            <span class="text-[10px] text-blue-300 font-normal">MIRA, Wall-E, Arduino & IA</span>
+            <span class="text-[10px] text-blue-300 font-normal">ROB0112, Nano y Pi 4</span>
           </button>
           <button type="button" class="btn-linkedin-tab px-3 py-2 rounded-xl border border-[var(--border)] bg-[var(--secondary)] text-slate-300 hover:text-white transition text-left" data-post-type="agents">
             <span class="block">🏛️ 2. Sistema de 75 Agentes</span>
@@ -2308,22 +2499,22 @@ metric('pipeline.route01.latency', 28, {
             <a href="https://auraicons-studio.vercel.app/equipo" target="_blank" rel="noopener" class="text-blue-400 hover:underline font-mono font-bold">https://auraicons-studio.vercel.app/equipo</a>
           </div>
         </div>
-        <button type="button" id="btn-linkedin-download-photo" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-900/60 hover:bg-sky-800 text-sky-200 border border-sky-500/40 transition flex items-center gap-1.5 shrink-0">
-          <span>📸 Descargar Foto 3D (PNG)</span>
+        <button type="button" id="btn-linkedin-download-photo" class="aura-btn aura-btn-secondary aura-btn-sm shrink-0">
+          <span>📸</span> <span id="lbl-btn-linkedin-download-photo">Descargar Foto 3D (PNG)</span>
         </button>
       </div>
 
       <!-- Botones de Acción al Pie -->
       <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[var(--border)]">
         <span id="linkedin-feedback-msg" class="text-xs text-emerald-400 font-bold hidden flex items-center gap-1.5">
-          <span>✓</span> <span>¡Texto copiado al portapapeles! Listo para pegar en LinkedIn.</span>
+          <span>✓</span> <span id="lbl-linkedin-feedback">¡Texto copiado al portapapeles! Listo para pegar en LinkedIn.</span>
         </span>
         <div class="flex items-center gap-2.5 ml-auto">
-          <button type="button" id="btn-linkedin-copy-text" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-[var(--secondary)] hover:bg-slate-700 text-white border border-[var(--border)] transition flex items-center gap-1.5 shadow-sm">
-            <span>📋 Copiar Texto</span>
+          <button type="button" id="btn-linkedin-copy-text" class="aura-btn aura-btn-secondary aura-btn-sm">
+            <span>📋</span> <span id="lbl-btn-linkedin-copy">Copiar Texto</span>
           </button>
-          <button type="button" id="btn-linkedin-launch-direct" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-[#0a66c2] hover:bg-[#004182] text-white transition flex items-center gap-1.5 shadow-lg">
-            <span>🚀 Abrir LinkedIn & Publicar</span>
+          <button type="button" id="btn-linkedin-launch-direct" class="aura-btn aura-btn-primary aura-btn-sm">
+            <span>🚀</span> <span id="lbl-btn-linkedin-launch">Abrir LinkedIn & Publicar</span>
           </button>
         </div>
       </div>
@@ -4660,6 +4851,7 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         else if (targetId === 'persistence-panel') renderIntegrityTable();
         else if (targetId === 'agents-database-panel') renderAgentsDatabasePanel();
         else if (targetId === 'robot-builder-panel') renderRobotBuilderPanel();
+        else stopRobotRenderLoop();
 
         if (typeof window.updateSmartNavOrb === 'function') {
           window.updateSmartNavOrb();
@@ -4774,8 +4966,8 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           explode: 0
         },
         camera: {
-          rotX: 18,
-          rotY: 32,
+          rotX: 14,
+          rotY: 200,
           zoom: 1.0,
           isDragging: false,
           lastX: 0,
@@ -4785,7 +4977,16 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         oledFace: '[ ^ _ ^ ]',
         oledCaption: 'EN LÍNEA · LISTO',
         isAnimating: false,
-        frameCounter: 0
+        frameCounter: 0,
+        gravityLast: 0,
+        gravity: {
+          chassis: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 },
+          brain: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 },
+          head: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 },
+          armL: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 },
+          armR: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 },
+          power: { drop: 0, x: 0, z: 0, vx: 0, vy: 0, vz: 0, spin: 0, spinV: 0 }
+        }
       };
 
       let robotAnimLoopId = null;
@@ -4946,8 +5147,8 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         const btnResetCam = document.getElementById('btn-reset-camera');
         if (btnResetCam) {
           btnResetCam.addEventListener('click', () => {
-            robotState.camera.rotX = 18;
-            robotState.camera.rotY = 32;
+            robotState.camera.rotX = 14;
+            robotState.camera.rotY = 200;
             robotState.camera.zoom = 1.0;
             audio.playNavClick();
           });
@@ -5179,14 +5380,51 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         requestAnimationFrame(anim);
       }
 
-      function startRobotRenderLoop() {
-        if (robotAnimLoopId) cancelAnimationFrame(robotAnimLoopId);
+      function stopRobotRenderLoop() {
+        if (robotAnimLoopId) {
+          cancelAnimationFrame(robotAnimLoopId);
+          robotAnimLoopId = null;
+        }
+      }
 
+      function fitRobotCanvas(canvas) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const cssW = canvas.clientWidth || 760;
+        if (cssW < 20) return;
+        const cssH = Math.round(cssW * 480 / 760);
+        const nextW = Math.round(cssW * dpr);
+        const nextH = Math.round(cssH * dpr);
+        if (canvas.width !== nextW || canvas.height !== nextH) {
+          canvas.width = nextW;
+          canvas.height = nextH;
+        }
+      }
+
+      function startRobotRenderLoop() {
+        stopRobotRenderLoop();
         const canvas = document.getElementById('robot-3d-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        fitRobotCanvas(canvas);
+        let lastFit = performance.now();
 
         function loop() {
+          const panel = document.getElementById('robot-builder-panel');
+          if (!panel || panel.classList.contains('hidden')) {
+            robotAnimLoopId = null;
+            return;
+          }
+          if (!robotState.camera.isDragging && !robotState.isAnimating) {
+            robotState.camera.rotY = (robotState.camera.rotY + 0.28) % 360;
+          }
+          const now = performance.now();
+          const gravityDt = robotState.gravityLast ? Math.min(0.05, (now - robotState.gravityLast) / 1000) : 0.016;
+          robotState.gravityLast = now;
+          stepRobotPhysics(gravityDt);
+          if (now - lastFit > 500) {
+            fitRobotCanvas(canvas);
+            lastFit = now;
+          }
           robotState.frameCounter++;
           drawRobot3DScene(ctx, canvas.width, canvas.height);
           robotAnimLoopId = requestAnimationFrame(loop);
@@ -5194,35 +5432,224 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         loop();
       }
 
-      function project3D(x, y, z, cx, cy) {
+      const robotCam = { cosY: 1, sinY: 0, cosX: 1, sinX: 0, camDist: 380, fov: 440 };
+
+      function syncRobotCamera() {
         const radX = (robotState.camera.rotX * Math.PI) / 180;
         const radY = (robotState.camera.rotY * Math.PI) / 180;
+        robotCam.cosY = Math.cos(radY);
+        robotCam.sinY = Math.sin(radY);
+        robotCam.cosX = Math.cos(radX);
+        robotCam.sinX = Math.sin(radX);
+        robotCam.camDist = 380 / (robotState.camera.zoom || 1);
+      }
 
-        const cosY = Math.cos(radY), sinY = Math.sin(radY);
-        const x1 = x * cosY + z * sinY;
-        const y1 = y;
-        const z1 = -x * sinY + z * cosY;
-
-        const cosX = Math.cos(radX), sinX = Math.sin(radX);
-        const x2 = x1;
-        const y2 = y1 * cosX - z1 * sinX;
-        const z2 = y1 * sinX + z1 * cosX;
-
-        const fov = 440;
-        const camDist = 380 / (robotState.camera.zoom || 1.0);
-        const depth = z2 + camDist;
+      function project3D(x, y, z, cx, cy) {
+        const x1 = x * robotCam.cosY + z * robotCam.sinY;
+        const z1 = -x * robotCam.sinY + z * robotCam.cosY;
+        const y2 = y * robotCam.cosX - z1 * robotCam.sinX;
+        const z2 = y * robotCam.sinX + z1 * robotCam.cosX;
+        const depth = z2 + robotCam.camDist;
         if (depth < 10) return null;
-
-        const scale = fov / depth;
+        const scale = robotCam.fov / depth;
         return {
-          px: cx + x2 * scale,
+          px: cx + x1 * scale,
           py: cy + y2 * scale,
           depth: depth,
           scale: scale
         };
       }
 
+      const ROBOT_MASS = { chassis: 1.1, brain: 0.18, head: 0.14, armL: 0.16, armR: 0.16, power: 0.28 };
+      const ROBOT_BODY_KEYS = ['chassis', 'brain', 'head', 'armL', 'armR', 'power'];
+
+      function robotHeld(key) {
+        if (key === 'armL' || key === 'armR') return robotState.assembledParts.arms;
+        return robotState.assembledParts[key];
+      }
+
+      function robotShape(key) {
+        const exp = robotState.kinematics.explode / 100;
+        if (key === 'chassis') return { ox: 0, oy: 28, oz: 0, hx: 70 + exp * 80, hy: 40, hz: 50 };
+        if (key === 'brain') return { ox: 0, oy: -5 - exp * 75, oz: 10 + exp * 35, hx: 28, hy: 10, hz: 26 };
+        if (key === 'head') return { ox: 0, oy: -44 - exp * 115, oz: 8, hx: 36, hy: 20, hz: 22 };
+        if (key === 'armL') return { ox: -52 - exp * 55, oy: 16, oz: 6, hx: 14, hy: 24, hz: 14 };
+        if (key === 'armR') return { ox: 52 + exp * 55, oy: 16, oz: 6, hx: 14, hy: 24, hz: 14 };
+        return { ox: 0, oy: 18, oz: -46 - exp * 85, hx: 32, hy: 26, hz: 14 };
+      }
+
+      function robotBox(key) {
+        const spec = robotShape(key);
+        const body = robotState.gravity[key];
+        return {
+          x: spec.ox + body.x,
+          y: spec.oy + body.drop,
+          z: spec.oz + body.z,
+          hx: spec.hx,
+          hy: spec.hy,
+          hz: spec.hz
+        };
+      }
+
+      function robotSeparation(a, b) {
+        const axes = ['x', 'y', 'z'];
+        const half = { x: 'hx', y: 'hy', z: 'hz' };
+        let best = null;
+        for (const axis of axes) {
+          const aMin = a[axis] - a[half[axis]];
+          const aMax = a[axis] + a[half[axis]];
+          const bMin = b[axis] - b[half[axis]];
+          const bMax = b[axis] + b[half[axis]];
+          if (aMax <= bMin || bMax <= aMin) return null;
+          const outNeg = aMax - bMin;
+          const outPos = bMax - aMin;
+          const pen = Math.min(outNeg, outPos);
+          const dir = outNeg <= outPos ? -1 : 1;
+          if (!best || pen < best.pen) best = { axis, pen, dir };
+        }
+        return best;
+      }
+
+      function robotRespond(body, corr) {
+        const len = Math.hypot(corr.x, corr.y, corr.z);
+        if (len < 1e-6) return;
+        const nx = corr.x / len;
+        const ny = corr.y / len;
+        const nz = corr.z / len;
+        const vn = body.vx * nx + body.vy * ny + body.vz * nz;
+        const into = -vn;
+        if (into <= 0) return;
+        const tx = body.vx - vn * nx;
+        const ty = body.vy - vn * ny;
+        const tz = body.vz - vn * nz;
+        const tSpeed = Math.hypot(tx, ty, tz);
+        if (into >= 160) {
+          const cut = Math.min(tSpeed, 0.48 * into);
+          body.vx += nx * into * 1.28;
+          body.vy += ny * into * 1.28;
+          body.vz += nz * into * 1.28;
+          if (tSpeed > 1e-6) {
+            body.vx -= (tx / tSpeed) * cut;
+            body.vy -= (ty / tSpeed) * cut;
+            body.vz -= (tz / tSpeed) * cut;
+            body.spinV += ((nx * tz - nz * tx) / tSpeed) * cut * 0.02;
+          }
+        } else {
+          body.vx += nx * into;
+          body.vy += ny * into;
+          body.vz += nz * into;
+        }
+      }
+
+      function robotPush(key, axis, delta, corr) {
+        if (delta === 0) return;
+        const body = robotState.gravity[key];
+        if (axis === 'x') body.x += delta;
+        else if (axis === 'y') body.drop += delta;
+        else body.z += delta;
+        corr[key][axis] += delta;
+      }
+
+      function stepRobotPhysics(dt) {
+        const corr = {};
+        ROBOT_BODY_KEYS.forEach((key) => {
+          corr[key] = { x: 0, y: 0, z: 0 };
+          const body = robotState.gravity[key];
+          if (robotHeld(key)) {
+            body.vx = 0;
+            body.vy = 0;
+            body.vz = 0;
+            body.spinV = 0;
+            const rise = 1 - Math.exp(-10 * dt);
+            body.drop += (0 - body.drop) * rise;
+            body.x += (0 - body.x) * rise;
+            body.z += (0 - body.z) * rise;
+            body.spin += (0 - body.spin) * rise;
+            if (Math.abs(body.drop) < 0.35) body.drop = 0;
+            if (Math.abs(body.x) < 0.35) body.x = 0;
+            if (Math.abs(body.z) < 0.35) body.z = 0;
+            if (Math.abs(body.spin) < 0.35) body.spin = 0;
+            return;
+          }
+          body.vy += 900 * dt;
+          const speed = Math.hypot(body.vx, body.vy, body.vz);
+          if (speed > 520) {
+            const scale = 520 / speed;
+            body.vx *= scale;
+            body.vy *= scale;
+            body.vz *= scale;
+          }
+          body.x += body.vx * dt;
+          body.drop += body.vy * dt;
+          body.z += body.vz * dt;
+          body.spin += body.spinV * dt;
+        });
+
+        const inv = {};
+        ROBOT_BODY_KEYS.forEach((key) => {
+          inv[key] = robotHeld(key) ? 0 : 1 / ROBOT_MASS[key];
+        });
+
+        for (let iter = 0; iter < 6; iter++) {
+          const boxes = {};
+          ROBOT_BODY_KEYS.forEach((key) => {
+            boxes[key] = robotBox(key);
+          });
+          for (let i = 0; i < ROBOT_BODY_KEYS.length; i++) {
+            for (let j = i + 1; j < ROBOT_BODY_KEYS.length; j++) {
+              const a = ROBOT_BODY_KEYS[i];
+              const b = ROBOT_BODY_KEYS[j];
+              const shareMass = inv[a] + inv[b];
+              if (shareMass === 0) continue;
+              const hit = robotSeparation(boxes[a], boxes[b]);
+              if (!hit || hit.pen <= 0) continue;
+              const share = hit.pen / shareMass;
+              const moveA = hit.dir * share * inv[a];
+              const moveB = -hit.dir * share * inv[b];
+              robotPush(a, hit.axis, moveA, corr);
+              robotPush(b, hit.axis, moveB, corr);
+              boxes[a][hit.axis] += moveA;
+              boxes[b][hit.axis] += moveB;
+            }
+          }
+        }
+
+        ROBOT_BODY_KEYS.forEach((key) => {
+          if (inv[key] === 0) return;
+          const body = robotState.gravity[key];
+          robotRespond(body, corr[key]);
+          const maxY = robotBox(key).y + robotBox(key).hy;
+          if (maxY > 110) {
+            const pen = maxY - 110;
+            body.drop -= pen;
+            robotRespond(body, { x: 0, y: -pen, z: 0 });
+          }
+          const floorY = robotBox(key).y + robotBox(key).hy;
+          if (Math.abs(body.vy) < 18 && floorY >= 109) body.vy = 0;
+          if (body.vy === 0 && floorY >= 109) {
+            const slide = Math.hypot(body.vx, body.vz);
+            if (slide > 0) {
+              const cut = Math.min(slide, 0.48 * 900 * dt);
+              body.vx -= (body.vx / slide) * cut;
+              body.vz -= (body.vz / slide) * cut;
+              if (Math.hypot(body.vx, body.vz) < 5) {
+                body.vx = 0;
+                body.vz = 0;
+              }
+            }
+            body.spinV *= Math.exp(-4 * dt);
+            if (Math.abs(body.spinV) < 3) body.spinV = 0;
+          }
+        });
+      }
+
+      function robotPartShift(key) {
+        const body = robotState.gravity[key];
+        return { x: body.x, y: body.drop, z: body.z, spin: body.spin };
+      }
+
       function drawRobot3DScene(ctx, w, h) {
+        syncRobotCamera();
         ctx.clearRect(0, 0, w, h);
         const cx = w / 2;
         const cy = h / 2 + 15;
@@ -5236,7 +5663,7 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
 
         [60, 120, 180].forEach(r => {
           ctx.beginPath();
-          for (let a = 0; a <= 360; a += 15) {
+          for (let a = 0; a <= 360; a += 30) {
             const rad = (a * Math.PI) / 180;
             const pt = project3D(Math.cos(rad) * r, groundY, Math.sin(rad) * r, cx, cy);
             if (pt) {
@@ -5300,6 +5727,11 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           rawFaces.forEach(f => {
             const projected = f.pts.map(p => project3D(p.x, p.y, p.z, cx, cy));
             if (projected.every(p => p !== null)) {
+              const ax = projected[1].px - projected[0].px;
+              const ay = projected[1].py - projected[0].py;
+              const bx = projected[3].px - projected[0].px;
+              const by = projected[3].py - projected[0].py;
+              if (ax * by - ay * bx <= 0) return;
               const avgDepth = (projected[0].depth + projected[1].depth + projected[2].depth + projected[3].depth) / 4;
               faceList.push({
                 pts: projected,
@@ -5313,24 +5745,25 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
 
         // Chasis & Orugas
         const hasChassis = robotState.assembledParts.chassis;
-        addBox(0, 20, 0, 76, 64, 80, {
+        const chassisShift = robotPartShift('chassis');
+        addBox(chassisShift.x, 20 + chassisShift.y, chassisShift.z, 76, 64, 80, {
           front: '#475569', top: '#64748b', back: '#334155', left: '#3b495b', right: '#3b495b', bottom: '#1e293b'
-        }, !hasChassis);
+        }, !hasChassis, chassisShift.spin);
 
         const leftTrackX = -58 - exp * 80;
-        addBox(leftTrackX, 45, 0, 24, 48, 100, {
+        addBox(leftTrackX + chassisShift.x, 45 + chassisShift.y, chassisShift.z, 24, 48, 100, {
           front: '#0f172a', top: '#1e293b', back: '#0f172a', left: '#1e293b', right: '#334155', bottom: '#020617'
-        }, !hasChassis);
+        }, !hasChassis, chassisShift.spin);
 
         const rightTrackX = 58 + exp * 80;
-        addBox(rightTrackX, 45, 0, 24, 48, 100, {
+        addBox(rightTrackX + chassisShift.x, 45 + chassisShift.y, chassisShift.z, 24, 48, 100, {
           front: '#0f172a', top: '#1e293b', back: '#0f172a', left: '#334155', right: '#1e293b', bottom: '#020617'
-        }, !hasChassis);
+        }, !hasChassis, chassisShift.spin);
 
         if (exp > 0 && hasChassis) {
           [leftTrackX, rightTrackX].forEach(tx => {
-            const p1 = project3D(tx, 45, 0, cx, cy);
-            const p2 = project3D(tx > 0 ? 38 : -38, 45, 0, cx, cy);
+            const p1 = project3D(tx + chassisShift.x, 45 + chassisShift.y, chassisShift.z, cx, cy);
+            const p2 = project3D((tx > 0 ? 38 : -38) + chassisShift.x, 45 + chassisShift.y, chassisShift.z, cx, cy);
             if (p1 && p2) {
               faceList.push({ isGuide: true, p1, p2, depth: (p1.depth + p2.depth) / 2 });
             }
@@ -5339,37 +5772,41 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
 
         // Cerebro
         const hasBrain = robotState.assembledParts.brain;
+        const brainShift = robotPartShift('brain');
         const brainY = -5 - exp * 75;
         const brainZ = 10 + exp * 35;
-        addBox(0, brainY, brainZ, 56, 8, 52, {
+        addBox(brainShift.x, brainY + brainShift.y, brainZ + brainShift.z, 56, 8, 52, {
           top: '#059669', front: '#047857', back: '#047857', left: '#047857', right: '#047857', bottom: '#064e3b'
-        }, !hasBrain);
-        addBox(-12, brainY - 6, brainZ, 20, 5, 34, {
+        }, !hasBrain, brainShift.spin);
+        addBox(-12 + brainShift.x, brainY - 6 + brainShift.y, brainZ + brainShift.z, 20, 5, 34, {
           top: '#0f172a', front: '#1e293b', back: '#1e293b', left: '#94a3b8', right: '#94a3b8', bottom: '#0f172a'
-        }, !hasBrain);
-        addBox(14, brainY - 6, brainZ, 16, 6, 22, {
+        }, !hasBrain, brainShift.spin);
+        addBox(14 + brainShift.x, brainY - 6 + brainShift.y, brainZ + brainShift.z, 16, 6, 22, {
           top: '#eab308', front: '#ca8a04', back: '#ca8a04', left: '#ca8a04', right: '#ca8a04', bottom: '#854d0e'
-        }, !hasBrain);
+        }, !hasBrain, brainShift.spin);
 
         // Brazos
         const hasArms = robotState.assembledParts.arms;
+        const armLShift = robotPartShift('armL');
+        const armRShift = robotPartShift('armR');
         const armLeftX = -46 - exp * 55;
         const armRightX = 46 + exp * 55;
         const armY = 5;
 
-        addBox(armLeftX, armY, 0, 14, 14, 16, { top: '#475569', front: '#64748b', back: '#334155', left: '#64748b', right: '#334155', bottom: '#1e293b' }, !hasArms);
-        addBox(armLeftX - 6, armY + 18, 12, 10, 32, 12, { top: '#94a3b8', front: '#64748b', back: '#475569', left: '#94a3b8', right: '#64748b', bottom: '#334155' }, !hasArms, robotState.kinematics.armLeft);
+        addBox(armLeftX + armLShift.x, armY + armLShift.y, armLShift.z, 14, 14, 16, { top: '#475569', front: '#64748b', back: '#334155', left: '#64748b', right: '#334155', bottom: '#1e293b' }, !hasArms, armLShift.spin);
+        addBox(armLeftX - 6 + armLShift.x, armY + 18 + armLShift.y, 12 + armLShift.z, 10, 32, 12, { top: '#94a3b8', front: '#64748b', back: '#475569', left: '#94a3b8', right: '#64748b', bottom: '#334155' }, !hasArms, robotState.kinematics.armLeft + armLShift.spin);
 
-        addBox(armRightX, armY, 0, 14, 14, 16, { top: '#475569', front: '#64748b', back: '#334155', left: '#334155', right: '#64748b', bottom: '#1e293b' }, !hasArms);
-        addBox(armRightX + 6, armY + 18, 12, 10, 32, 12, { top: '#94a3b8', front: '#64748b', back: '#475569', left: '#64748b', right: '#94a3b8', bottom: '#334155' }, !hasArms, -robotState.kinematics.armRight);
+        addBox(armRightX + armRShift.x, armY + armRShift.y, armRShift.z, 14, 14, 16, { top: '#475569', front: '#64748b', back: '#334155', left: '#334155', right: '#64748b', bottom: '#1e293b' }, !hasArms, armRShift.spin);
+        addBox(armRightX + 6 + armRShift.x, armY + 18 + armRShift.y, 12 + armRShift.z, 10, 32, 12, { top: '#94a3b8', front: '#64748b', back: '#475569', left: '#64748b', right: '#94a3b8', bottom: '#334155' }, !hasArms, -robotState.kinematics.armRight + armRShift.spin);
 
         // Cabeza
         const hasHead = robotState.assembledParts.head;
+        const headShift = robotPartShift('head');
         const headY = -48 - exp * 115;
-        const yaw = robotState.kinematics.headYaw;
+        const yaw = robotState.kinematics.headYaw + headShift.spin;
 
-        addBox(0, headY + 22, 0, 16, 26, 16, { top: '#94a3b8', front: '#cbd5e1', back: '#64748b', left: '#94a3b8', right: '#94a3b8', bottom: '#475569' }, !hasHead);
-        addBox(0, headY, 0, 72, 30, 40, {
+        addBox(headShift.x, headY + 22 + headShift.y, headShift.z, 16, 26, 16, { top: '#94a3b8', front: '#cbd5e1', back: '#64748b', left: '#94a3b8', right: '#94a3b8', bottom: '#475569' }, !hasHead, headShift.spin);
+        addBox(headShift.x, headY + headShift.y, headShift.z, 72, 30, 40, {
           front: '#1e293b', top: '#475569', back: '#0f172a', left: '#334155', right: '#334155', bottom: '#0f172a'
         }, !hasHead, yaw);
 
@@ -5378,27 +5815,55 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           const sinY = Math.sin((yaw * Math.PI) / 180);
           const ex = eyeOffset * cosY + 22 * sinY;
           const ez = -eyeOffset * sinY + 22 * cosY;
-          addBox(ex, headY, ez, 18, 18, 12, {
+          addBox(ex + headShift.x, headY + headShift.y, ez + headShift.z, 18, 18, 12, {
             front: '#0284c7', top: '#0369a1', back: '#082f49', left: '#0369a1', right: '#0369a1', bottom: '#082f49'
           }, !hasHead, yaw);
         });
 
         // Alimentación & Seta
         const hasPower = robotState.assembledParts.power;
+        const powerShift = robotPartShift('power');
         const battZ = -46 - exp * 85;
-        addBox(0, 22, battZ, 60, 46, 20, {
+        addBox(powerShift.x, 22 + powerShift.y, battZ + powerShift.z, 60, 46, 20, {
           back: '#ca8a04', top: '#eab308', front: '#854d0e', left: '#a16207', right: '#a16207', bottom: '#422006'
-        }, !hasPower);
+        }, !hasPower, powerShift.spin);
 
         const eStopY = -18 - exp * 45;
         const eStopZ = -22 - exp * 40;
-        addBox(0, eStopY + 3, eStopZ, 18, 5, 18, { top: '#eab308', front: '#ca8a04', back: '#ca8a04', left: '#ca8a04', right: '#ca8a04', bottom: '#854d0e' }, !hasPower);
-        addBox(0, eStopY - 4, eStopZ, 22, 9, 22, { top: '#ef4444', front: '#dc2626', back: '#991b1b', left: '#dc2626', right: '#dc2626', bottom: '#7f1d1d' }, !hasPower);
+        addBox(powerShift.x, eStopY + 3 + powerShift.y, eStopZ + powerShift.z, 18, 5, 18, { top: '#eab308', front: '#ca8a04', back: '#ca8a04', left: '#ca8a04', right: '#ca8a04', bottom: '#854d0e' }, !hasPower, powerShift.spin);
+        addBox(powerShift.x, eStopY - 4 + powerShift.y, eStopZ + powerShift.z, 22, 9, 22, { top: '#ef4444', front: '#dc2626', back: '#991b1b', left: '#dc2626', right: '#dc2626', bottom: '#7f1d1d' }, !hasPower, powerShift.spin);
+
+        [
+          { key: 'brain', x: brainShift.x, z: brainZ + brainShift.z, w: 34 },
+          { key: 'head', x: headShift.x, z: headShift.z, w: 40 },
+          { key: 'power', x: powerShift.x, z: battZ + powerShift.z, w: 36 },
+          { key: 'armL', x: armLeftX + armLShift.x, z: armLShift.z, w: 16 },
+          { key: 'armR', x: armRightX + armRShift.x, z: armRShift.z, w: 16 }
+        ].forEach((mark) => {
+          if (robotState.gravity[mark.key].drop < 4) return;
+          const spot = project3D(mark.x, 110, mark.z, cx, cy);
+          if (!spot) return;
+          faceList.push({ isShadow: true, spot, w: mark.w, depth: spot.depth + 8 });
+        });
 
         // Z-Sorting & Raster
         faceList.sort((a, b) => b.depth - a.depth);
 
         faceList.forEach(item => {
+          if (item.isShadow) {
+            ctx.save();
+            const rx = item.w * (item.spot.scale || 1);
+            const grad = ctx.createRadialGradient(item.spot.px, item.spot.py, 2, item.spot.px, item.spot.py, rx);
+            grad.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.ellipse(item.spot.px, item.spot.py, rx, rx * 0.42, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+            return;
+          }
+
           if (item.isGuide) {
             ctx.save();
             ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
@@ -5677,6 +6142,12 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         if (jumpSalita) jumpSalita.addEventListener('click', () => switchTab('salita-privada'));
         const jumpDir = document.getElementById('btn-jump-directory');
         if (jumpDir) jumpDir.addEventListener('click', () => switchTab('agents-directory'));
+        const jumpHarness = document.getElementById('btn-jump-harness-examen');
+        if (jumpHarness) jumpHarness.addEventListener('click', () => {
+          switchTab('pipeline-viewer');
+          const examen = document.getElementById('harness-examen');
+          if (examen) examen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
 
         // Salita Navigation Arrows
         const navLeft = document.getElementById('btn-nav-left');
@@ -5685,12 +6156,96 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         if (navLeft && roomTabs) navLeft.addEventListener('click', () => roomTabs.scrollBy({ left: -260, behavior: 'smooth' }));
         if (navRight && roomTabs) navRight.addEventListener('click', () => roomTabs.scrollBy({ left: 260, behavior: 'smooth' }));
 
-        // Sound Toggle
+        // Sound Toggles & 5-Click Nudge Toast
         const soundBtn = document.getElementById('btn-sound-toggle');
+        const topSoundBtn = document.getElementById('btn-top-sound-toggle');
+        const soundNudgeToast = document.getElementById('sound-nudge-toast');
+        const soundNudgeClose = document.getElementById('btn-sound-nudge-close');
+        const soundNudgeKeep = document.getElementById('btn-sound-nudge-keep');
+        const soundNudgeOff = document.getElementById('btn-sound-nudge-off');
+
+        function syncAllSoundState(enabled) {
+          audio.soundEnabled = enabled;
+          if (soundBtn) soundBtn.textContent = enabled ? '🔊 Sonido: ON' : '🔇 Sonido: OFF';
+          const topIcon = document.getElementById('top-sound-icon');
+          const topText = document.getElementById('top-sound-text');
+          if (topIcon) topIcon.textContent = enabled ? '🔊' : '🔇';
+          if (topText) topText.textContent = enabled ? 'Sonido: ON' : 'Sonido: OFF';
+          if (enabled) {
+            audio.initContext();
+            audio.playNavClick();
+          }
+        }
+
+        function highlightSoundButtons(highlight) {
+          const highlightClasses = ['ring-4', 'ring-amber-400', 'ring-offset-2', 'ring-offset-slate-900', 'animate-pulse', 'scale-105'];
+          [soundBtn, topSoundBtn].forEach(b => {
+            if (!b) return;
+            if (highlight) {
+              if (b.classList && typeof b.classList.add === 'function') b.classList.add(...highlightClasses);
+            } else {
+              if (b.classList && typeof b.classList.remove === 'function') b.classList.remove(...highlightClasses);
+            }
+          });
+        }
+
+        function showSoundNudge() {
+          if (!soundNudgeToast) return;
+          try {
+            if (localStorage.getItem('ekc_sound_nudge_done') === '1') return;
+            localStorage.setItem('ekc_sound_nudge_done', '1');
+          } catch (err) {}
+          if (audio && typeof audio.playBadgeEarned === 'function') audio.playBadgeEarned();
+          if (soundNudgeToast.classList && typeof soundNudgeToast.classList.remove === 'function') {
+            soundNudgeToast.classList.remove('hidden');
+          }
+          highlightSoundButtons(true);
+        }
+
+        function hideSoundNudge() {
+          if (!soundNudgeToast) return;
+          if (soundNudgeToast.classList && typeof soundNudgeToast.classList.add === 'function') {
+            soundNudgeToast.classList.add('hidden');
+          }
+          highlightSoundButtons(false);
+        }
+
         if (soundBtn) {
           soundBtn.addEventListener('click', () => {
-            const isEnabled = audio.toggleSound();
-            soundBtn.textContent = isEnabled ? '🔊 Sonido: ON' : '🔇 Sonido: OFF';
+            syncAllSoundState(!audio.soundEnabled);
+            hideSoundNudge();
+          });
+        }
+
+        if (topSoundBtn) {
+          topSoundBtn.addEventListener('click', () => {
+            syncAllSoundState(!audio.soundEnabled);
+            hideSoundNudge();
+          });
+        }
+
+        if (soundNudgeClose) soundNudgeClose.addEventListener('click', hideSoundNudge);
+        if (soundNudgeKeep) {
+          soundNudgeKeep.addEventListener('click', () => {
+            syncAllSoundState(true);
+            hideSoundNudge();
+          });
+        }
+        if (soundNudgeOff) {
+          soundNudgeOff.addEventListener('click', () => {
+            syncAllSoundState(false);
+            hideSoundNudge();
+          });
+        }
+
+        let globalInteractionClickCount = 0;
+        if (typeof document === 'object' && typeof document.addEventListener === 'function') {
+          document.addEventListener('click', (e) => {
+            if (e && e.target && typeof e.target.closest === 'function' && e.target.closest('#sound-nudge-toast')) return;
+            globalInteractionClickCount++;
+            if (globalInteractionClickCount === 5) {
+              showSoundNudge();
+            }
           });
         }
 
@@ -6885,6 +7440,58 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
               { term: 'Perfil Híbrido (Export + Datos)', analogy: 'Un capitán de barco mercante que además sabe cómo reparar y optimizar el motor del barco con tecnología puntera.', detail: 'Une la visión comercial de mercados mundiales con la capacidad de programar sistemas avanzados.', subTerms: [{ term: 'Dossier Ejecutivo', detail: 'Un documento sintético de alta dirección listo para directores generales y reclutadores.' }] }
             ]
           },
+          'robot-builder': {
+            title: 'Taller 3D del robot M.I.R.A.',
+            category: 'Robótica & Hardware',
+            icon: 'i',
+            badge: 'CANVAS 3D · 60 FPS',
+            what: 'M.I.R.A. es el robot de compañía del estudio. Se dibuja en el canvas con chasis, orugas, brazos, cabeza, cerebro y seta de paro.',
+            purpose: 'Enseñar el montaje y la cinemática sin un motor 3D externo: rotación, zoom, vista explosionada y un cerebro de agente (por defecto Chatty).',
+            how: 'Arrastra para girar. La rueda hace zoom. «Probar cinemática» mueve cabeza y brazos. «Desmontar» suelta la pieza: pesa, choca con el chasis y con las otras, y el rozamiento la para. «Montar» la devuelve. Al salir del taller el render se detiene.',
+            guarantee: 'La cámara arranca de frente, con los ojos visibles. El giro automático se para en cuanto arrastras.',
+            fractalTerms: [
+              { term: 'Cinemática', analogy: 'Decidir cuánto gira cada articulación, como mover el cuello y los brazos de una marioneta.', detail: 'Cabeza, brazo izquierdo y brazo derecho tienen un ángulo propio.', subTerms: [{ term: 'Vista explosionada', detail: 'Separa las piezas para ver cómo encajan, sin romper el montaje.' }] }
+            ]
+          },
+          'agents-directory': {
+            title: 'Censo de los 75 trabajadores',
+            category: 'Organización',
+            icon: 'i',
+            badge: '75 AGENTES · 12 DIVISIONES',
+            what: 'Listado de los 75 agentes con código, nombre, puesto, preferencia de trabajo y memoria.',
+            purpose: 'Encontrar a una persona del equipo y ver qué sabe hacer antes de hablar con ella en la salita.',
+            how: 'Filtra por división o escribe en el buscador. Cada ficha abre el detalle del agente.',
+            guarantee: 'El censo es el mismo en todo el estudio: 75 códigos, sin duplicados.',
+            fractalTerms: [
+              { term: 'División', analogy: 'Un departamento de una empresa: cada uno tiene un oficio.', detail: 'Hay 12 divisiones, de la dirección al escudo de seguridad.', subTerms: [{ term: 'Código', detail: 'La matrícula fija del agente, por ejemplo AGENT-01.' }] }
+            ]
+          },
+          'vercel-blueprint': {
+            title: 'Blueprint de producción en Vercel',
+            category: 'Despliegue',
+            icon: 'i',
+            badge: 'VERCEL · PRIVADO',
+            what: 'Cómo está pensado el despliegue: servicios, cabeceras y el sitio publicado.',
+            purpose: 'Dejar por escrito la arquitectura de producción sin convertirla en un tutorial de gasto.',
+            how: 'El proyecto auraicons-studio está en Vercel con acceso por login. El código en GitHub es privado.',
+            guarantee: 'Publicar o abrir el sitio al mundo pide un sí explícito. Esta pantalla no despliega sola.',
+            fractalTerms: [
+              { term: 'Blueprint', analogy: 'El plano de la casa antes de construirla.', detail: 'Describe servicios y cabeceras, no sustituye el despliegue.', subTerms: [{ term: 'SSO', detail: 'El sitio publicado pide cuenta para entrar.' }] }
+            ]
+          },
+          'agents-database': {
+            title: 'Base de datos de los 75 agentes',
+            category: 'Datos',
+            icon: 'i',
+            badge: 'SQL · SHA-256',
+            what: 'La ficha relacional de cada agente: perfil, habilidades, recuerdos y misiones.',
+            purpose: 'Consultar y exportar la memoria del equipo sin perder el sello de cada ficha.',
+            how: 'Elige división y agente. Puedes descargar el SQL o exportar el JSON de esa base.',
+            guarantee: 'Cada ficha lleva un SHA-256. Cambiar el texto cambia el sello.',
+            fractalTerms: [
+              { term: 'Partición', analogy: 'Un cajón con el nombre de cada agente.', detail: 'Los 75 no comparten una sola nota: cada uno tiene la suya.', subTerms: [{ term: 'SHA-256', detail: 'Una huella del contenido. Si el texto cambia, la huella cambia.' }] }
+            ]
+          },
           'fractal-dictionary': {
             title: 'Diccionario Fractal Completo A–Z (Para No Expertos)',
             category: 'Pedagogía & Glosario',
@@ -6917,7 +7524,7 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
             switchModalView('component');
           }
 
-          const item = EXPLANATORY_HELP_ITEMS[key] || EXPLANATORY_HELP_ITEMS['global-guide'];
+          const item = EXPLANATORY_HELP_ITEMS[key] || INFO_AUTO[key] || EXPLANATORY_HELP_ITEMS['global-guide'];
 
           const iconEl = document.getElementById('info-modal-icon');
           const badgeEl = document.getElementById('info-modal-badge');
@@ -7145,14 +7752,125 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           });
         });
 
-        // Wire all data-info-key elements
-        document.querySelectorAll('[data-info-key]').forEach(el => {
-          el.addEventListener('click', (e) => {
+        const INFO_SECTION_KEYS = {
+          'executive-cover': 'mikel-showcase',
+          'agents-directory': 'agents-directory',
+          'salita-privada': 'salita-rollcall',
+          'training-mode': 'salita-training',
+          'pipeline-viewer': 'pipeline-routes',
+          'vercel-blueprint': 'vercel-blueprint',
+          'cyber-shield-panel': 'security-shield',
+          'persistence-panel': 'salita-memory',
+          'agents-database-panel': 'agents-database',
+          'robot-builder-panel': 'robot-builder'
+        };
+
+        const INFO_AUTO = {};
+
+        function makeInfoMark(key, title, nested) {
+          const el = document.createElement(nested ? 'span' : 'button');
+          if (!nested) el.type = 'button';
+          el.className = 'info-i';
+          el.setAttribute('data-info-key', key);
+          el.setAttribute('aria-label', title || 'Información');
+          el.title = title || 'Información';
+          el.textContent = 'i';
+          return el;
+        }
+
+        function plainLabel(el) {
+          const clone = el.cloneNode(true);
+          clone.querySelectorAll('.info-i').forEach(node => node.remove());
+          return (clone.innerText || el.getAttribute('aria-label') || el.getAttribute('title') || '')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .slice(0, 110);
+        }
+
+        function whereOf(el) {
+          const sec = el.closest('main > section');
+          if (sec) {
+            const h2 = sec.querySelector('h2');
+            const name = h2 ? plainLabel(h2) : sec.id;
+            if (name) return name;
+          }
+          if (el.closest('header')) return 'Esta página';
+          return 'Esta página';
+        }
+
+        function rememberThing(key, title, where) {
+          if (EXPLANATORY_HELP_ITEMS[key] || INFO_AUTO[key]) return;
+          INFO_AUTO[key] = {
+            title: title,
+            category: where,
+            icon: 'i',
+            badge: 'ESTA PIEZA',
+            what: '«' + title + '» está en ' + where + '.',
+            purpose: 'Dice qué es esta pieza. No dispara la acción.',
+            how: 'Pulsa la i para leer. Pulsa el resto del control para usarlo.',
+            guarantee: 'Abrir la i no guarda, no publica y no gasta.',
+            fractalTerms: []
+          };
+        }
+
+        function stampThing(el) {
+          if (!el || el.classList.contains('info-i')) return;
+          if (el.closest('#info-modal, #sound-nudge-toast, #agent-modal, .info-i')) return;
+          if (el.querySelector(':scope > .info-i')) return;
+          if (el.nextElementSibling && el.nextElementSibling.classList.contains('info-i')) return;
+          const label = plainLabel(el);
+          if (label.length < 2) return;
+          const preset = el.getAttribute('data-info-key')
+            || (el.classList.contains('tab-btn') ? INFO_SECTION_KEYS[el.getAttribute('data-target')] : '')
+            || (el.id && INFO_SECTION_KEYS[el.id])
+            || '';
+          const key = preset || ('piece-' + (el.id || label.toLowerCase().replace(/[^a-z0-9]+/g, '-')).slice(0, 48));
+          if (!EXPLANATORY_HELP_ITEMS[key]) rememberThing(key, label, whereOf(el));
+          const nested = el.tagName === 'BUTTON' || el.tagName === 'A' || el.closest('button, a');
+          const mark = makeInfoMark(key, label, nested || el.tagName === 'BUTTON' || el.tagName === 'A');
+          if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || el.tagName === 'CANVAS') {
+            el.insertAdjacentElement('afterend', mark);
+          } else {
+            el.appendChild(mark);
+          }
+        }
+
+        function placeInfoMarks() {
+          const pageTitle = document.getElementById('org-brand-title');
+          if (pageTitle && !pageTitle.querySelector('.info-i')) {
+            rememberThing('page-equipo', plainLabel(pageTitle) || 'Esta página', 'AuraIcons');
+            pageTitle.appendChild(makeInfoMark('page-equipo', 'Qué es esta página', false));
+          }
+          document.querySelectorAll('h1, h2, h3, .tab-btn, header button, header a, header span.rounded-lg, header span.rounded-full, #fab-global-info, main button, main a, main select, main input, main textarea, main canvas, main .grid > *').forEach(stampThing);
+        }
+
+        placeInfoMarks();
+
+        if (!window.__infoMarkWired) {
+          document.addEventListener('click', (e) => {
+            const mark = e.target.closest && e.target.closest('.info-i');
+            if (!mark) return;
+            e.preventDefault();
             e.stopPropagation();
-            const key = el.getAttribute('data-info-key');
-            openInfoModal(key);
-          });
-        });
+            const host = mark.closest('[data-info-key]');
+            const key = (host && host.getAttribute('data-info-key')) || mark.getAttribute('data-info-key');
+            if (key) openInfoModal(key);
+          }, true);
+          window.__infoMarkWired = true;
+        }
+
+        let infoMarkQueued = false;
+        const infoRoot = document.querySelector('main');
+        if (infoRoot && typeof MutationObserver === 'function') {
+          new MutationObserver(() => {
+            if (infoMarkQueued) return;
+            infoMarkQueued = true;
+            requestAnimationFrame(() => {
+              infoMarkQueued = false;
+              placeInfoMarks();
+            });
+          }).observe(infoRoot, { childList: true, subtree: true });
+        }
 
 
         // Sandboxed link interception for Salita Directa
@@ -7193,6 +7911,7 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           { title: '⚔️ Modo Entrenamiento & Misiones (+50 XP)', tab: 'training-mode', scrollId: 'training-mode', keywords: 'entrenamiento misiones xp nivel aprender ejercicios handoff', desc: '6 misiones inter-divisionales con +50 XP por ejercicio y nivel floor(XP/100)+1.' },
           { title: '🎙️ Guía de Exposición Ejecutiva · Presentación de Mikel Irastorza', tab: 'pipeline-viewer', scrollId: 'presentation-guide-panel', keywords: 'guia exposicion presentar pitch mikel irastorza export manager data engineer que demuestro guion discurso preguntas', desc: 'Guión ejecutivo paso a paso (3–5 min), perfil diferencial Export + Tech y respuestas blindadas.' },
           { title: '⚡ Centro de Control de Streaming en Directo (Manejo de Flujo & MAD)', tab: 'pipeline-viewer', scrollId: 'streaming-live-station', keywords: 'streaming datos en directo manejar telemetria nifi kafka pyspark welford mad inyectar anomalia test harness benchmark velocidad throughput', desc: 'Control interactivo de ingesta (10–1.000 msg/s), inyector de eventos, alerta MAD y test harness P95/P99.' },
+          { title: '🧪 Examen del harness · escribe el examen antes que el código', tab: 'pipeline-viewer', scrollId: 'harness-examen', keywords: 'harness examen scoring set held-out modelo congelado 8 ediciones prompt sistema', desc: 'El modelo grande queda fijo. El humano cura el scoring set y se conserva una de ocho ediciones.' },
           { title: '⚡ Pipeline de Streaming · 6 Rutas & Pasarela Multi-IA', tab: 'pipeline-viewer', scrollId: 'pipeline-viewer', keywords: 'pipeline 6 rutas nifi kafka pyspark welford mad pacioli ollama grok pasarela ia', desc: 'Monitorización de las 6 rutas SLA (25ms–75ms) y selector de motor IA a 0,00 €.' },
           { title: '☁️ Blueprint de Arquitectura Vercel (Fluid Compute & WAF)', tab: 'vercel-blueprint', scrollId: 'vercel-blueprint', keywords: 'vercel blueprint fluid compute waf oidc sw service worker err_failed cleanurls', desc: 'Configuración lista para producción con cabeceras de seguridad y Service Worker reparado.' },
           { title: '🛡️ Escudo Defensivo de Ciberseguridad S01–S05', tab: 'cyber-shield-panel', scrollId: 'cyber-shield-panel', keywords: 'seguridad escudo s01 s02 s03 s04 s05 baltasar constanza damian veronica alejandro xss csp prompt injection', desc: 'Hacking ético defensivo, telemetría de amenazas bloqueadas y auditoría SHA-256.' },
@@ -7295,18 +8014,242 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
         const btnOpenLinkedinModal = document.getElementById('btn-open-linkedin-modal');
         const btnNavOpenLinkedin = document.getElementById('btn-nav-open-linkedin');
 
-        const LINKEDIN_POSTS = {
-          robot: `🤖 ¿Es posible diseñar un robot físico interactivo con cinemática mecatrónica real y doble cerebro de IA, y probarlo en 3D directamente desde el navegador a coste 0,00 €?\n\nHe creado este taller 3D mecatrónico interactivo como parte de mi portfolio tecnológico:\n• 🛞 Chasis de tracción con orugas triangulares y amortiguación en aluminio 6061-T6.\n• ⚡ Doble cerebro: Arduino Nano a 16 MHz en tiempo real gestionando servomotores PWM + Miniordenador IA.\n• 🦾 Brazos articulados tipo Wall-E con hombros, bielas y pinzas de dos dedos.\n• 👁️ Cabeza sensorial con visión estéreo binocular, sensor ultrasónico HC-SR04 y pantalla OLED frontal de expresiones vivas.\n• 🛑 Seta física de parada de emergencia en el tren trasero.\n• 🔍 Vista explosionada mecánica con despiece completo y cinemática en tiempo real.\n\nPuedes ensamblarlo pieza a pieza, rotarlo en 360°, mover sus servos y hablar con él directamente. Además, memoriza cada conversación en una base de datos relacional con sello criptográfico SHA-256.\n\n👇 Pruébalo en vivo en tu navegador (sin registros ni instalaciones):\nhttps://auraicons-studio.vercel.app/equipo\n\n#Robotics #Engineering #DataEngineering #Web3D #Innovation #Mecatronica #Portfolio`,
-          agents: `🏛️ No es un chatbot con prompts fijos: es una organización soberana de 75 Agentes de IA en 12 divisiones con base de datos relacional propia y memoria criptográfica continua.\n\nEn este demostrador técnico he unificado:\n• 🗄️ Relational Lakehouse (SQLite + Postgres Neon): 75 agentes registrados con 375 skills, tablas relacionales completas y runner SQL en tiempo real.\n• 🧠 Memoria Viva Persistente: cada vez que hablas con cualquier agente, recuerda lo conversado, acumula notas y gana experiencia (+15 XP) sellada con hash SHA-256 en cadena de custodia.\n• ⚡ Pipeline de datos en streaming (6 rutas con SLAs de 25 ms a 75 ms: Apache NiFi, Kafka KRaft, PySpark, Welford O(1)).\n• λ Cálculo exacto en Haskell Integer (WASM/WASI) para finanzas cuantitativas sin errores de coma flotante.\n• 🛡️ Escudo de Ciberseguridad Defensiva S01–S05 con 129/129 pruebas E2E superadas.\n\nTodo ejecutado en arquitectura serverless con coste 0,00 € en reposo.\n\n👇 Acceso libre al demostrador interactivo:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ArtificialIntelligence #DataEngineering #SoftwareArchitecture #Postgres #SQLite #Haskell #CloudComputing`,
-          export: `🌍 Trabajo como Export Manager y siempre me ha apasionado la informática. Hace tiempo me hice una pregunta estratégica: ¿y si aplico ingeniería de datos avanzada e Inteligencia Artificial real a cómo analizamos mercados internacionales, divisas y empresas?\n\nDe esa visión nació este entorno demostrador interactivo, diseñado para mi portfolio profesional para enseñar de forma práctica y tangible mis capacidades en software y datos:\n\n• 📈 Seguimiento de 13 activos y divisas (EUR/USD, USD/JPY, Oro) con el Bot Cuantitativo NovusMundus PRO 3.0 y aritmética entera Haskell.\n• 🏛️ 75 Agentes especializados organizados en 12 divisiones con base de datos SQL y memoria viva.\n• 🤖 Taller de Montaje de Robot Mecatrónico 3D con cinemática mecatrónica procedural.\n• ⚡ 6 Rutas de Streaming de datos con latencias entre 25 ms y 75 ms y Escudo Defensivo S01–S05.\n\n📌 Aclaración de alcance y propiedad: Este entorno es una maqueta técnica funcional creada para mi candidatura. Cuento con desarrollos de altísima valía estratégica y comercial que, por estricta confidencialidad y propiedad industrial privada, no se exponen en abierto.\n\n👇 Te invito a probar el entorno interactivo en vivo:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ExportManagement #DataEngineering #Fintech #GlobalTrade #AI #SoftwareArchitecture`
+        const LINKEDIN_POSTS_I18N = {
+          es: {
+            robot: `🤖 ¿Es posible diseñar un robot físico interactivo con cinemática mecatrónica real y doble cerebro de IA, y probarlo en 3D directamente desde el navegador a coste 0,00 €?\n\nHe creado este taller 3D mecatrónico interactivo como parte de mi portfolio tecnológico:\n• 🛞 Chasis DFRobot Devastator ROB0112, con orugas y dos motores DC (3–8 V).\n• ⚡ Doble cerebro: Arduino Nano A000005 (ATmega328, 16 MHz) y Raspberry Pi 4 Model B 4 GB.\n• 🦾 Brazos: 4 servos TowerPro MG995 (Adafruit 1142) y pinza con 2 microservos SG92R (Adafruit 169).\n• 👁️ Cabeza: Camera Module 3 (Adafruit 5657), ultrasonidos HC-SR04 (Adafruit 3942, no es un LiDAR) y OLED SSD1306 de 0,96 pulgadas (Adafruit 326).\n• 🛑 Parada de emergencia IDEC XW1E-BV3SG01TR, seta roja de 22 mm, contacto NC.\n• 🔍 Vista explosionada mecánica con despiece completo y cinemática en tiempo real.\n\nPuedes ensamblarlo pieza a pieza, rotarlo en 360°, mover sus servos y hablar con él directamente. Además, memoriza cada conversación en una base de datos relacional con sello criptográfico SHA-256.\n\n👇 Pruébalo en vivo en tu navegador (sin registros ni instalaciones):\nhttps://auraicons-studio.vercel.app/equipo\n\n#Robotics #Engineering #DataEngineering #Web3D #Innovation #Mecatronica #Portfolio`,
+            agents: `🏛️ No es un chatbot con prompts fijos: es una organización soberana de 75 Agentes de IA en 12 divisiones con base de datos relacional propia y memoria criptográfica continua.\n\nEn este demostrador técnico he unificado:\n• 🗄️ Relational Lakehouse (SQLite + Postgres Neon): 75 agentes registrados con 375 skills, tablas relacionales completas y runner SQL en tiempo real.\n• 🧠 Memoria Viva Persistente: cada vez que hablas con cualquier agente, recuerda lo conversado, acumula notas y gana experiencia (+15 XP) sellada con hash SHA-256 en cadena de custodia.\n• ⚡ Pipeline de datos en streaming (6 rutas con SLAs de 25 ms a 75 ms: Apache NiFi, Kafka KRaft, PySpark, Welford O(1)).\n• λ Cálculo exacto en Haskell Integer (WASM/WASI) para finanzas cuantitativas sin errores de coma flotante.\n• 🛡️ Escudo de Ciberseguridad Defensiva S01–S05 con 129/129 pruebas E2E superadas.\n\nTodo ejecutado en arquitectura serverless con coste 0,00 € en reposo.\n\n👇 Acceso libre al demostrador interactivo:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ArtificialIntelligence #DataEngineering #SoftwareArchitecture #Postgres #SQLite #Haskell #CloudComputing`,
+            export: `🌍 Trabajo como Export Manager y siempre me ha apasionado la informática. Hace tiempo me hice una pregunta estratégica: ¿y si aplico ingeniería de datos avanzada e Inteligencia Artificial real a cómo analizamos mercados internacionales, divisas y empresas?\n\nDe esa visión nació este entorno demostrador interactivo, diseñado para mi portfolio profesional para enseñar de forma práctica y tangible mis capacidades en software y datos:\n\n• 📈 Seguimiento de 13 activos y divisas (EUR/USD, USD/JPY, Oro) con el Bot Cuantitativo NovusMundus PRO 3.0 y aritmética entera Haskell.\n• 🏛️ 75 Agentes especializados organizados en 12 divisiones con base de datos SQL y memoria viva.\n• 🤖 Taller de Montaje de Robot Mecatrónico 3D con cinemática mecatrónica procedural.\n• ⚡ 6 Rutas de Streaming de datos con latencias entre 25 ms y 75 ms y Escudo Defensivo S01–S05.\n\n📌 Aclaración de alcance y confidencialidad: Mi perfil de LinkedIn se mantiene actualmente privado. Este entorno es un escaparate demostrativo interactivo para mi candidatura. Cuento con desarrollos estratégicos y proyectos comerciales de gran envergadura que, por estricta confidencialidad y preservación de mi propiedad intelectual, no se muestran en abierto.\n\n👇 Te invito a probar el entorno interactivo en vivo:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ExportManagement #DataEngineering #Fintech #GlobalTrade #AI #SoftwareArchitecture`
+          },
+          fr: {
+            robot: `🤖 Est-il possible de concevoir un robot physique interactif avec cinématique mécatronique réelle, double cerveau d'IA et de le tester en 3D directement dans le navigateur à coût nul (0,00 €) ?\n\nJ'ai créé cet atelier mécatronique 3D dans le cadre de mon portfolio d'ingénierie logicielle et systèmes :\n• 🛞 Châssis DFRobot Devastator ROB0112, avec chenilles et deux motoréducteurs DC (3–8 V).\n• ⚡ Double cerveau : Arduino Nano A000005 (ATmega328, 16 MHz) et Raspberry Pi 4 Model B 4 Go.\n• 🦾 Bras articulé : 4 servomoteurs TowerPro MG995 et pince équipée de 2 micro-servomoteurs SG92R.\n• 👁️ Tête sensorielle : Camera Module 3, capteur ultrasons HC-SR04 et écran OLED SSD1306 de 0,96 pouce.\n• 🛑 Arrêt d'urgence mécanique IDEC XW1E-BV3SG01TR (bouton coup de poing 22 mm, contact NF).\n• 🔍 Vue éclatée industrielle avec décomposition mécanique et calcul cinématique en temps réel.\n\nVous pouvez l'assembler pièce par pièce, l'orienter à 360°, commander ses actionneurs et dialoguer avec lui. Il consigne chaque échange dans une base relationnelle scellée par hachage SHA-256.\n\n👇 Testez-le en direct dans votre navigateur (sans inscription ni installation) :\nhttps://auraicons-studio.vercel.app/equipo\n\n#Robotics #Engineering #DataEngineering #Web3D #Innovation #Mecatronique #Portfolio`,
+            agents: `🏛️ Il ne s'agit pas d'un simple chatbot à prompts statiques : c'est une organisation autonome de 75 agents d'IA en 12 divisions, complétée par l'essaim d'élite « L'Équipe A », dotée de sa propre base relationnelle et d'une mémoire cryptographique continue.\n\nCe démonstrateur technique fédère :\n• 🗄️ Relational Lakehouse (SQLite + PostgreSQL Neon) : 75 agents répertoriés avec 375 compétences, schéma relationnel complet et exécuteur SQL en direct.\n• 🧠 Mémoire Vive Persistante : chaque échange est mémorisé, génère des notes techniques et accumule de l'expérience (+15 XP) certifiée par hachage SHA-256.\n• ⚡ Pipeline de streaming distribué (6 voies avec SLAs garantis de 25 ms à 75 ms : Apache NiFi, Kafka KRaft, PySpark, Welford O(1)).\n• λ Arithmétique entière exacte en Haskell (WASM/WASI) pour la modélisation financière sans faille de précision flottante.\n• 🛡️ Bouclier de cybersécurité S01–S05 validé par 129/129 tests E2E.\n\nLe tout orchestré sur une architecture serverless avec coût nul (0,00 €) en veille.\n\n👇 Démonstrateur interactif en accès libre :\nhttps://auraicons-studio.vercel.app/equipo\n\n#ArtificialIntelligence #DataEngineering #SoftwareArchitecture #Postgres #SQLite #Haskell #CloudComputing`,
+            export: `🌍 En tant qu'Export Manager passionné par l'architecture logicielle et l'ingénierie des données, je me suis posé une question stratégique : comment appliquer l'ingénierie de données de pointe et l'IA réelle à l'analyse des marchés internationaux, des devises et des entreprises ?\n\nDe cette vision est né cet écosystème interactif, conçu pour illustrer concrètement mes compétences en développement de systèmes et gestion d'actifs :\n\n• 📈 Suivi analytique de 13 actifs et devises (EUR/USD, USD/JPY, Or) avec le bot NovusMundus PRO 3.0 en arithmétique entière Haskell.\n• 🏛️ 75 agents spécialisés structurés en 12 divisions avec mémoire relationnelle SQL continue.\n• 🤖 Atelier mécatronique 3D avec cinématique directe et inverse procédurale.\n• ⚡ 6 voies d'ingestion streaming garantissant des latences entre 25 ms et 75 ms avec bouclier défensif S01–S05.\n\n📌 Précision d'intégrité et confidentialité : Mon profil LinkedIn est actuellement configuré en mode confidentiel/privé. Cette plateforme en direct constitue la vitrine démonstrative autonome de mon portfolio. Je dispose de développements stratégiques et de projets industriels de très haute valeur commerciale qui, par stricte confidentialité et préservation de propriété intellectuelle, ne sont pas exposés en accès public.\n\n👇 Je vous invite à explorer l'environnement interactif en direct :\nhttps://auraicons-studio.vercel.app/equipo\n\n#ExportManagement #DataEngineering #Fintech #GlobalTrade #AI #SoftwareArchitecture`
+          },
+          en: {
+            robot: `🤖 Is it possible to design an interactive physical robot with authentic mechatronic kinematics, dual-AI architecture, and test it in 3D directly inside the browser at 0.00 € idle cost?\n\nI engineered this interactive 3D mechatronics workshop as part of my systems engineering portfolio:\n• 🛞 DFRobot Devastator ROB0112 chassis with tracked treads and dual DC gearmotors (3–8 V).\n• ⚡ Dual-brain compute: Arduino Nano A000005 (ATmega328, 16 MHz) & Raspberry Pi 4 Model B 4 GB.\n• 🦾 Articulated arms: 4 TowerPro MG995 servos and gripper driven by 2 SG92R microservos.\n• 👁️ Sensor suite: Camera Module 3, HC-SR04 ultrasonic rangefinder, and 0.96-inch SSD1306 OLED.\n• 🛑 Emergency stop: IDEC XW1E-BV3SG01TR mushroom push button (22 mm, NC contact).\n• 🔍 Industrial exploded mechanical diagram with live component breakdown and real-time kinematics.\n\nYou can assemble it component by component, orbit in 360°, actuate servos, and speak directly with the robot. Every interaction is saved into a relational database signed with SHA-256 cryptographic proofs.\n\n👇 Test it live in your browser (no registration or installs required):\nhttps://auraicons-studio.vercel.app/equipo\n\n#Robotics #Engineering #DataEngineering #Web3D #Innovation #Mechatronics #Portfolio`,
+            agents: `🏛️ Not a static prompt-wrapper: this is an autonomous 75-agent AI organization across 12 divisions powered by 'The A-Team' engineering swarm, equipped with its own relational database and continuous cryptographic memory.\n\nThis technical showcase integrates:\n• 🗄️ Relational Lakehouse (SQLite + PostgreSQL Neon): 75 registered agents with 375 verified skills, complete schema, and in-browser SQL runner.\n• 🧠 Persistent Living Memory: every interaction records conversation notes, gaining experience (+15 XP) anchored by SHA-256 chain-of-custody hashes.\n• ⚡ Distributed Streaming Pipeline (6 routes with 25 ms to 75 ms SLAs: Apache NiFi, Kafka KRaft, PySpark, Welford O(1)).\n• λ Exact financial calculus in Haskell Integer (WASM/WASI) eliminating IEEE 754 floating-point inaccuracies.\n• 🛡️ S01–S05 Defensive Cyber Shield verified with 129/129 passing E2E tests.\n\nBuilt on modern serverless architecture with true 0.00 € idle spend.\n\n👇 Live interactive access:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ArtificialIntelligence #DataEngineering #SoftwareArchitecture #Postgres #SQLite #Haskell #CloudComputing`,
+            export: `🌍 Working as an Export Manager with deep software engineering and data platforms passion, I posed a fundamental question: how can we apply advanced data engineering and real AI to international market intelligence, currency risk, and enterprise analysis?\n\nThat vision inspired this live demonstration platform, built for my professional portfolio to showcase my systems software and data architecture capabilities in a tangible way:\n\n• 📈 Tracking 13 assets and currencies (EUR/USD, USD/JPY, Gold) with NovusMundus PRO 3.0 and exact Haskell integer arithmetic.\n• 🏛️ 75 specialized agents organized in 12 operational divisions with relational SQL living memory.\n• 🤖 3D Mechatronic Robot Assembly Workshop featuring real-time procedural kinematics.\n• ⚡ 6 Production streaming data pipelines with 25 ms to 75 ms latency and S01–S05 Defensive Shield.\n\n📌 Professional Notice & IP Reservation: My LinkedIn profile is currently maintained in confidential/private mode; this live interactive environment serves as the direct, autonomous proof of work. I have architected high-value commercial software systems and proprietary industrial assets that, due to strict confidentiality agreements and IP preservation, are not published publicly.\n\n👇 You are welcome to test the interactive platform live:\nhttps://auraicons-studio.vercel.app/equipo\n\n#ExportManagement #DataEngineering #Fintech #GlobalTrade #AI #SoftwareArchitecture`
+          }
+        };
+
+        const EQUIPO_GLOBAL_I18N = {
+          es: {
+            pageTitle: "Presentación Mikel Irastorza · AuraIcons & Deep Dive Brothers · Familia de 75 Agentes",
+            orgBrandTitle: "Presentación Mikel Irastorza · AuraIcons & Deep Dive Brothers · Familia de 75 Agentes",
+            orgBrandSubtitle: 'Presidente: <strong class="text-[var(--foreground)]">Mikel Irastorza (Nivel 0)</strong> · Mano Derecha Global: <strong class="text-blue-400">Chatty (Gabriel, AGENT-01)</strong> · Directora Operativa: <strong class="text-purple-400">Clara (E01)</strong>',
+            badgeOndemand: "100% Bajo Demanda",
+            badgeFinops: 'FinOps: <strong class="text-amber-400">0,00 € en reposo</strong>',
+            badgeShield: "Escudo S01–S05: ACTIVO",
+            soundOn: "Sonido: ON",
+            soundOff: "Sonido: OFF",
+            salitaDirecta: "👑 Salita Directa",
+            navHome: "Inicio / Portada",
+            tabExecutiveCover: "🏛️ Portada Resumen",
+            tabAgentsDirectory: "📋 Censo & Directorio 75",
+            tabSalitaPrivada: "💬 Salita Privada Grokbot",
+            tabTrainingMode: "⚔️ Modo Entrenamiento",
+            tabPipelineViewer: "⚡ Pipeline 6 Rutas & Harnesses",
+            tabVercelBlueprint: "☁️ Blueprint Vercel",
+            tabCyberShield: "🛡️ Escudo Defensivo S01–S05",
+            tabPersistence: "💾 Memoria & Respaldo",
+            tabAgentsDatabase: "🗄️ Base de Datos 75 Agentes (SQL)",
+            tabRobotBuilder: "🤖 Montar Robot (Taller 3D)",
+            navPitch: "Guía de Exposición",
+            navLinkedin: "Sacar a LinkedIn",
+            navGuide: "¿Para qué sirve cada cosa?",
+            searchPlaceholder: "Pregúntale a Chatty (o busca agentes, bot de trading, rutas, misiones, memoria)...",
+            searchBtn: "Preguntar / Buscar",
+            searchInfo: "Info Buscador",
+            quickSearchLbl: "Búsqueda rápida:",
+            execBadgeTitle: "👑 Presentación Mikel Irastorza · Export Manager & AI Systems Builder",
+            execBadgeDivisions: "12 Divisiones Operativas · 75 Especialistas",
+            execHeading: "Presentación Mikel Irastorza · Export Manager & Creador de Ecosistemas de IA y Datos (75 Agentes)",
+            execParagraph: 'Carta de presentación interactiva creada por <strong>Mikel Irastorza</strong> (<strong>Export Manager</strong> apasionado por la informática, la inteligencia artificial y la ingeniería de datos): una organización de <strong>75 agentes en 12 divisiones</strong> aplicada a inteligencia de mercados internacionales, divisas (Forex), análisis empresarial Deep Dive, Bot de Trading <strong>NovusMundus PRO 3.0</strong> en Haskell <code>Integer</code> y ciberseguridad defensiva <code>S01–S05</code>.',
+            btnJumpSalita: "Entrar a la Salita Privada",
+            btnJumpDirectory: "Ver Catálogo Completo (75)",
+            salitaBannerTitle: "Salita Privada: Conversación en Directo con los 75 Trabajadores",
+            salitaBannerDesc: 'Habla directamente con <strong>Chatty (Gabriel, AGENT-01)</strong>, <strong>Clara (E01)</strong> o cualquiera de tus especialistas. Coste 0,00 € en reposo y memoria persistente.',
+            btnCoverSalita: "Hablar en la Salita Privada",
+            showcaseBadgePortfolio: "🌟 Carta de Presentación & Portfolio en Vivo",
+            showcaseBadgeVerified: "Verificado 123/123 E2E · SHA-256",
+            showcaseHeading: "¿Quién es Mikel Irastorza y qué demuestra esta plataforma en tiempo real?",
+            showcaseDescription: "Diseñado para que inversores, empresas, clientes o colaboradores conozcan de forma tangible la arquitectura de ingeniería de datos, IA multi-agente y finanzas cuantitativas de Mikel Irastorza (con perfil verificado independiente).",
+            btnShowcaseInfo: "Explicación",
+            btnGuidedDemo: "🎬 Demo Guiada en 1 Clic (Presentar a Mikel)",
+            btnAutoImprove: "🚀 Ejecutar Mejora Delegada (12 Divisiones)",
+            btnCopyPitch: "💼 Copiar Pitch LinkedIn",
+            btnDownloadDossier: "📄 Descargar Dossier (.MD)",
+            authorNoteTitle: "Nota y Declaración de Mikel Irastorza (Autor & Export Manager):",
+            authorNoteBadge: "Escaparate Demostrativo de CV",
+            authorNoteBody: 'Todo lo que ves en este ecosistema es en realidad un <strong>escaparate interactivo creado específicamente para mi portfolio y CV</strong>, con el fin de presentarme de forma tangible ante empresas, clientes y reclutadores. Mi perfil de LinkedIn se mantiene actualmente en <strong>modo confidencial/privado</strong>; por consiguiente, esta plataforma en vivo constituye la prueba de trabajo autónoma y directa. Lo aquí expuesto <strong>no son mis proyectos de uso operativo diario</strong>: cuento con sistemas industriales y desarrollos estratégicos de altísima valía comercial que, por estricta confidencialidad y preservación de propiedad intelectual, <strong>no se muestran en abierto ni gratis</strong>.',
+            harnessExamTitle: "Examen del harness · modelo grande congelado",
+            harnessExamDesc: "El humano escribe el scoring set. Un modelo pequeño propone 8 ediciones del harness y solo se conserva la que gana en held-out. El prompt completo está en la matriz de harnesses.",
+            btnJumpHarness: "Ver examen y prompt",
+            pillar1Title: "1. Dirección Multi-Agente (75)",
+            pillar1Desc: 'Organización jerárquica con <strong class="text-slate-200">Chatty (Gabriel, AGENT-01)</strong> como mano derecha global y <strong class="text-slate-200">Clara (E01)</strong> en la Dirección Operativa. Delegación inteligente por especialidad y Puente hacia Codex CLI.',
+            pillar2Title: "2. Quant Trading & Haskell",
+            pillar2Desc: 'Bot <strong class="text-slate-200">NovusMundus PRO 3.0</strong> sobre 13 activos. Cálculos financieros en <strong class="text-slate-200">Haskell Integer sobre WASM</strong> (Blaise A02) y 8 importes decimales exactos (Leví M04), sin errores de coma flotante.',
+            pillar3Title: "3. Streaming Data Pipeline",
+            pillar3Desc: '6 rutas en tiempo real: <strong class="text-slate-200">Apache NiFi</strong> (30 ms), <strong class="text-slate-200">Kafka KRaft</strong> (40 ms), <strong class="text-slate-200">PySpark</strong> (75 ms), <strong class="text-slate-200">Welford O(1)</strong> (25 ms), <strong class="text-slate-200">Antifraude MAD</strong> (50 ms) y <strong class="text-slate-200">Lakehouse Pacioli</strong> (50 ms).',
+            pillar4Title: "4. Ciberseguridad & FinOps 0€",
+            pillar4Desc: 'Escudo ético <strong class="text-slate-200">S01–S05</strong> con CSP estricta, anti-XSS, anti-prompt-injection, cadena de bloques <strong class="text-slate-200">SHA-256</strong> y coste <strong class="text-emerald-300">0,00 € en reposo</strong>.',
+            showcaseFeedback: '💡 <strong>Equipo de 75 Agentes (Mejora Delegada Activa):</strong> Pulsa <strong>«🎬 Demo Guiada en 1 Clic»</strong> para que los líderes presenten a Mikel Irastorza en directo, o <strong>«🚀 Ejecutar Mejora Delegada (12 Divisiones)»</strong> para que las 12 divisiones ejecuten una ronda completa de optimización y sumen <strong>+50 XP</strong>.',
+            modalLkTitle: "¿Qué demuestras con esta web y cómo compartirlo?",
+            modalLkPrivateBadge: "🔒 MODO PRIVADO ACTIVO",
+            modalLkPrivateDesc: "El perfil de LinkedIn de Mikel se mantiene en <strong>modo confidencial/privado</strong> para proteger sus desarrollos industriales propietarios. Este escaparate interactivo autónomo es la prueba de trabajo verificada que puedes compartir o publicar.",
+            modalLkBtnPhoto: "Descargar Foto 3D (PNG)",
+            modalLkBtnCopy: "Copiar Texto",
+            modalLkBtnLaunch: "Abrir LinkedIn & Publicar",
+            modalLkFeedback: "¡Texto copiado al portapapeles! Listo para pegar en LinkedIn."
+          },
+          fr: {
+            pageTitle: "Présentation Mikel Irastorza · AuraIcons & Deep Dive Brothers · Organisation de 75 Agents",
+            orgBrandTitle: "Présentation Mikel Irastorza · AuraIcons & Deep Dive Brothers · Organisation de 75 Agents",
+            orgBrandSubtitle: 'Président : <strong class="text-[var(--foreground)]">Mikel Irastorza (Niveau 0)</strong> · Bras Droit Mondial : <strong class="text-blue-400">Chatty (Gabriel, AGENT-01)</strong> · Directrice Opérationnelle : <strong class="text-purple-400">Clara (E01)</strong>',
+            badgeOndemand: "100% À la Demande",
+            badgeFinops: 'FinOps : <strong class="text-amber-400">0,00 € en veille</strong>',
+            badgeShield: "Bouclier S01–S05 : ACTIF",
+            soundOn: "Audio : ON",
+            soundOff: "Audio : OFF",
+            salitaDirecta: "👑 Salon Direct",
+            navHome: "Accueil / Portique",
+            tabExecutiveCover: "🏛️ Synthèse Exécutive",
+            tabAgentsDirectory: "📋 Registre & Annuaire 75",
+            tabSalitaPrivada: "💬 Salon Privé Grokbot",
+            tabTrainingMode: "⚔️ Mode Entraînement",
+            tabPipelineViewer: "⚡ Pipeline 6 Voies & Harnais",
+            tabVercelBlueprint: "☁️ Architecture Vercel",
+            tabCyberShield: "🛡️ Bouclier Cyberdéfense",
+            tabPersistence: "💾 Mémoire & Sauvegarde",
+            tabAgentsDatabase: "🗄️ Base de Données SQL (75)",
+            tabRobotBuilder: "🤖 Atelier Robotique 3D",
+            navPitch: "Guide d'Exposition",
+            navLinkedin: "Partager sur LinkedIn",
+            navGuide: "Guide des Fonctionnalités",
+            searchPlaceholder: "Interrogez Chatty (ou recherchez agents, bot de trading, voies, mémoire)...",
+            searchBtn: "Interroger / Chercher",
+            searchInfo: "Info Moteur",
+            quickSearchLbl: "Recherche rapide :",
+            execBadgeTitle: "👑 Présentation Mikel Irastorza · Export Manager & Architecte Systèmes IA",
+            execBadgeDivisions: "12 Divisions Opérationnelles · 75 Spécialistes",
+            execHeading: "Présentation Mikel Irastorza · Export Manager & Concepteur d'Écosystèmes IA & Données (75 Agents)",
+            execParagraph: 'Lettre de présentation interactive conçue par <strong>Mikel Irastorza</strong> (<strong>Export Manager</strong> passionné par l\'architecture logicielle, l\'intelligence artificielle et l\'ingénierie des données) : une organisation de <strong>75 agents répartis en 12 divisions</strong> dédiée à l\'intelligence économique internationale, aux devises (Forex), à l\'analyse financière d\'entreprise, au moteur de trading <strong>NovusMundus PRO 3.0</strong> en Haskell <code>Integer</code> et à la cybersécurité défensive <code>S01–S05</code>.',
+            btnJumpSalita: "Entrer dans le Salon Privé",
+            btnJumpDirectory: "Voir l'Annuaire Complet (75)",
+            salitaBannerTitle: "Salon Privé : Échanges Directs avec les 75 Spécialistes",
+            salitaBannerDesc: 'Dialogue direct avec <strong>Chatty (Gabriel, AGENT-01)</strong>, <strong>Clara (E01)</strong> ou l\'un de vos spécialistes. Coût d\'infrastructure nul (0,00 €) en veille et mémoire persistante.',
+            btnCoverSalita: "Échanger dans le Salon Privé",
+            showcaseBadgePortfolio: "🌟 Vitrine Exécutive & Portfolio en Direct",
+            showcaseBadgeVerified: "Vérifié 123/123 E2E · SHA-256",
+            showcaseHeading: "Qui est Mikel Irastorza et que démontre cette plateforme en temps réel ?",
+            showcaseDescription: "Conçu pour que les investisseurs, entreprises, clients et recruteurs appréhendent de façon tangible l'architecture d'ingénierie des données, l'IA multi-agents et la finance quantitative de Mikel Irastorza (profil vérifié autonome).",
+            btnShowcaseInfo: "Explication",
+            btnGuidedDemo: "🎬 Démo Guidée en 1 Clic (Présenter Mikel)",
+            btnAutoImprove: "🚀 Lancer l'Amélioration Déléguée (12 Divisions)",
+            btnCopyPitch: "💼 Copier le Pitch LinkedIn",
+            btnDownloadDossier: "📄 Télécharger le Dossier (.MD)",
+            authorNoteTitle: "Note et Déclaration de Mikel Irastorza (Auteur & Export Manager) :",
+            authorNoteBadge: "Vitrine Démonstrative de CV",
+            authorNoteBody: 'Tout ce que vous explorez au sein de cet écosystème constitue une <strong>vitrine interactive conçue spécialement pour mon portfolio et mon CV</strong>, afin de présenter de manière concrète mes réalisations auprès des entreprises, clients et recruteurs. Mon profil LinkedIn étant actuellement maintenu en <strong>mode confidentiel/privé</strong>, cette plateforme en direct représente la preuve de travail autonome et directe de mes compétences. Ce qui est exposé ici <strong>ne correspond pas à mes outils et projets d\'exploitation opérationnelle quotidienne</strong> : je dispose de systèmes industriels et de développements stratégiques de très haute valeur commerciale qui, par stricte confidentialité et préservation de ma propriété intellectuelle, <strong>ne sont pas diffusés en libre accès ni à titre gratuit</strong>.',
+            harnessExamTitle: "Évaluation du harnais · grand modèle de langage figé",
+            harnessExamDesc: "L'évaluateur humain rédige le jeu de notation. Un modèle léger propose 8 variantes du harnais et seule celle qui surpasse l'échantillon de test est retenue.",
+            btnJumpHarness: "Voir l'évaluation et le prompt",
+            pillar1Title: "1. Direction Multi-Agents (75)",
+            pillar1Desc: 'Organisation hiérarchique avec <strong class="text-slate-200">Chatty (Gabriel, AGENT-01)</strong> comme bras droit mondial et <strong class="text-slate-200">Clara (E01)</strong> à la Direction Opérationnelle. Délégation contextuelle par pôle et passerelle Codex CLI.',
+            pillar2Title: "2. Trading Quantitatif & Haskell",
+            pillar2Desc: 'Moteur <strong class="text-slate-200">NovusMundus PRO 3.0</strong> opérant sur 13 actifs. Calculs monétaires exacts en <strong class="text-slate-200">Haskell Integer sur WASM</strong> (Blaise A02) et 8 décimales fixes (Leví M04), sans aucune perte d\'arrondi IEEE 754.',
+            pillar3Title: "3. Flux de Données Distribué (Streaming)",
+            pillar3Desc: '6 voies en temps réel : <strong class="text-slate-200">Apache NiFi</strong> (30 ms), <strong class="text-slate-200">Kafka KRaft</strong> (40 ms), <strong class="text-slate-200">PySpark</strong> (75 ms), <strong class="text-slate-200">Welford O(1)</strong> (25 ms), <strong class="text-slate-200">Antifraude MAD</strong> (50 ms) et <strong class="text-slate-200">Lakehouse Pacioli</strong> (50 ms).',
+            pillar4Title: "4. Cybersécurité & FinOps 0 €",
+            pillar4Desc: 'Bouclier éthique <strong class="text-slate-200">S01–S05</strong> avec CSP stricte, protection anti-XSS et anti-injection de prompts, registre immuable <strong class="text-slate-200">SHA-256</strong> et coût <strong class="text-emerald-300">0,00 € en veille</strong>.',
+            showcaseFeedback: '💡 <strong>Organisation de 75 Agents (Amélioration Déléguée Active) :</strong> Cliquez sur <strong>« 🎬 Démo Guidée en 1 Clic »</strong> pour que les dirigeants présentent Mikel Irastorza en direct, ou <strong>« 🚀 Lancer l\'Amélioration Déléguée »</strong> pour déclencher un cycle d\'optimisation complet rapportant <strong>+50 XP</strong>.',
+            modalLkTitle: "Que démontrez-vous avec cette plateforme et comment la partager ?",
+            modalLkPrivateBadge: "🔒 MODE PRIVÉ ACTIF",
+            modalLkPrivateDesc: "Le profil LinkedIn de Mikel est actuellement maintenu en <strong>mode confidentiel/privé</strong> afin de préserver ses développements industriels propriétaires. Cette vitrine interactive autonome constitue la preuve de travail vérifiée à partager ou publier.",
+            modalLkBtnPhoto: "Télécharger Capture 3D (PNG)",
+            modalLkBtnCopy: "Copier le Texte",
+            modalLkBtnLaunch: "Ouvrir LinkedIn & Publier",
+            modalLkFeedback: "Texte copié dans le presse-papiers ! Prêt à être collé sur LinkedIn."
+          },
+          en: {
+            pageTitle: "Mikel Irastorza Presentation · AuraIcons & Deep Dive Brothers · 75-Agent Swarm",
+            orgBrandTitle: "Mikel Irastorza Presentation · AuraIcons & Deep Dive Brothers · 75-Agent Swarm",
+            orgBrandSubtitle: 'President: <strong class="text-[var(--foreground)]">Mikel Irastorza (Level 0)</strong> · Global Right Hand: <strong class="text-blue-400">Chatty (Gabriel, AGENT-01)</strong> · COO: <strong class="text-purple-400">Clara (E01)</strong>',
+            badgeOndemand: "100% On Demand",
+            badgeFinops: 'FinOps: <strong class="text-amber-400">0.00 € at rest</strong>',
+            badgeShield: "Shield S01–S05: ACTIVE",
+            soundOn: "Sound: ON",
+            soundOff: "Sound: OFF",
+            salitaDirecta: "👑 Direct Room",
+            navHome: "Home / Showcase",
+            tabExecutiveCover: "🏛️ Executive Summary",
+            tabAgentsDirectory: "📋 75-Agent Directory",
+            tabSalitaPrivada: "💬 Private Room Grokbot",
+            tabTrainingMode: "⚔️ Training & Benchmark",
+            tabPipelineViewer: "⚡ 6-Route Streaming & Harnesses",
+            tabVercelBlueprint: "☁️ Vercel Blueprint",
+            tabCyberShield: "🛡️ Cyber Defense S01–S05",
+            tabPersistence: "💾 Memory & Backup",
+            tabAgentsDatabase: "🗄️ SQL Agent Database",
+            tabRobotBuilder: "🤖 3D Robot Workshop",
+            navPitch: "Presentation Guide",
+            navLinkedin: "Share to LinkedIn",
+            navGuide: "Feature Guide",
+            searchPlaceholder: "Ask Chatty (or search agents, trading bot, pipelines, memory)...",
+            searchBtn: "Query / Search",
+            searchInfo: "Search Info",
+            quickSearchLbl: "Quick Search:",
+            execBadgeTitle: "👑 Mikel Irastorza Presentation · Export Manager & AI Systems Builder",
+            execBadgeDivisions: "12 Operating Divisions · 75 Specialists",
+            execHeading: "Mikel Irastorza Presentation · Export Manager & AI & Data Systems Architect (75 Agents)",
+            execParagraph: 'Interactive presentation authored by <strong>Mikel Irastorza</strong> (<strong>Export Manager</strong> with deep software engineering, AI systems, and data platforms mastery): an organization of <strong>75 agents across 12 divisions</strong> applied to global market intelligence, foreign exchange (Forex), Deep Dive enterprise analysis, the <strong>NovusMundus PRO 3.0</strong> trading engine in Haskell <code>Integer</code>, and <code>S01–S05</code> defensive cybersecurity.',
+            btnJumpSalita: "Enter Private Room",
+            btnJumpDirectory: "View Full Directory (75)",
+            salitaBannerTitle: "Private Room: Live Interaction with All 75 Workers",
+            salitaBannerDesc: 'Engage directly with <strong>Chatty (Gabriel, AGENT-01)</strong>, <strong>Clara (E01)</strong> or any specialized agent. True 0.00 € idle cost and persistent living memory.',
+            btnCoverSalita: "Talk in Private Room",
+            showcaseBadgePortfolio: "🌟 Executive Showcase & Live Portfolio",
+            showcaseBadgeVerified: "Verified 123/123 E2E · SHA-256",
+            showcaseHeading: "Who is Mikel Irastorza and what does this platform demonstrate in real time?",
+            showcaseDescription: "Engineered for investors, enterprises, partners, and recruiters to tangibly experience Mikel Irastorza's data engineering, multi-agent AI, and quantitative finance architecture (with independent verified proof).",
+            btnShowcaseInfo: "Explanation",
+            btnGuidedDemo: "🎬 1-Click Guided Demo (Present Mikel)",
+            btnAutoImprove: "🚀 Execute Delegated Improvement (12 Divisions)",
+            btnCopyPitch: "💼 Copy LinkedIn Pitch",
+            btnDownloadDossier: "📄 Download Dossier (.MD)",
+            authorNoteTitle: "Note and Statement from Mikel Irastorza (Author & Export Manager):",
+            authorNoteBadge: "Demonstrative CV Showcase",
+            authorNoteBody: 'Everything you explore within this ecosystem is an <strong>interactive showcase engineered specifically for my professional portfolio and CV</strong>, designed to present my technical and business capabilities tangibly to enterprises, clients, and recruiters. Because my LinkedIn profile is currently maintained in <strong>confidential/private mode</strong>, this live interactive environment serves as the direct, autonomous proof of work. What is displayed here <strong>does not represent my daily operational business projects</strong>: I have engineered high-value commercial software systems and proprietary industrial assets that, due to strict confidentiality agreements and intellectual property preservation, <strong>are not published publicly or free of charge</strong>.',
+            harnessExamTitle: "Harness benchmark · frozen foundation model",
+            harnessExamDesc: "The human authors the scoring set. A lightweight model evaluates 8 harness revisions and promotes only the candidate that dominates on held-out test splits.",
+            btnJumpHarness: "View benchmark and prompt",
+            pillar1Title: "1. Autonomous Multi-Agent Governance (75)",
+            pillar1Desc: 'Hierarchical organization with <strong class="text-slate-200">Chatty (Gabriel, AGENT-01)</strong> as Global Right Hand and <strong class="text-slate-200">Clara (E01)</strong> directing Operations. Discrete specialty delegation and seamless Codex CLI bridging.',
+            pillar2Title: "2. Quantitative Trading & Haskell",
+            pillar2Desc: 'Bot <strong class="text-slate-200">NovusMundus PRO 3.0</strong> tracking 13 assets and currencies. Financial calculus computed in <strong class="text-slate-200">Haskell Integer compiled to WASM</strong> (Blaise A02) and 8 exact decimal points (Leví M04), eliminating IEEE 754 floating-point errors.',
+            pillar3Title: "3. Low-Latency Streaming Data Pipeline",
+            pillar3Desc: '6 production streaming routes with guaranteed 25 ms to 75 ms SLAs: <strong class="text-slate-200">Apache NiFi</strong> (30 ms), <strong class="text-slate-200">Kafka KRaft</strong> (40 ms), <strong class="text-slate-200">PySpark</strong> (75 ms), <strong class="text-slate-200">Welford O(1)</strong> (25 ms), <strong class="text-slate-200">Antifraud MAD</strong> (50 ms), and <strong class="text-slate-200">Pacioli Lakehouse</strong> (50 ms).',
+            pillar4Title: "4. Zero-Trust Cyber Defense & 0€ FinOps",
+            pillar4Desc: 'Ethical shield <strong class="text-slate-200">S01–S05</strong> featuring strict CSP, anti-XSS, anti-prompt injection, <strong class="text-slate-200">SHA-256</strong> cryptographic proof-of-work, and true <strong class="text-emerald-300">0.00 € idle infrastructure spend</strong>.',
+            showcaseFeedback: '💡 <strong>75-Agent Autonomous Swarm (Delegated Improvement Active):</strong> Click <strong>« 🎬 1-Click Guided Demo »</strong> for the executive leads to present Mikel Irastorza live, or <strong>« 🚀 Execute Delegated Improvement »</strong> to trigger a full optimization round gaining <strong>+50 XP</strong>.',
+            modalLkTitle: "What does this platform prove and how to share it?",
+            modalLkPrivateBadge: "🔒 PRIVATE MODE ACTIVE",
+            modalLkPrivateDesc: "Mikel's LinkedIn profile is maintained in <strong>confidential/private mode</strong> to protect proprietary industrial assets. This self-contained interactive showcase serves as the verified proof of work you can share or publish.",
+            modalLkBtnPhoto: "Download 3D Snapshot (PNG)",
+            modalLkBtnCopy: "Copy Text",
+            modalLkBtnLaunch: "Open LinkedIn & Publish",
+            modalLkFeedback: "Text copied to clipboard! Ready to paste into LinkedIn."
+          }
         };
 
         let currentPostType = 'robot';
+        let currentGlobalLang = localStorage.getItem('mikel_lang') || 'es';
 
         function updateLinkedinPostText(type) {
           currentPostType = type;
+          const posts = LINKEDIN_POSTS_I18N[currentGlobalLang] || LINKEDIN_POSTS_I18N.es;
           if (linkedinTextarea) {
-            linkedinTextarea.value = LINKEDIN_POSTS[type] || LINKEDIN_POSTS.robot;
+            linkedinTextarea.value = posts[type] || posts.robot;
             if (linkedinCharCount) linkedinCharCount.textContent = `${linkedinTextarea.value.length} caracteres`;
           }
           document.querySelectorAll('.btn-linkedin-tab').forEach(b => {
@@ -7317,6 +8260,179 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
             }
           });
         }
+
+        window.switchGlobalLang = function(lang) {
+          if (!EQUIPO_GLOBAL_I18N[lang]) lang = 'es';
+          currentGlobalLang = lang;
+          try { localStorage.setItem('mikel_lang', lang); } catch(_) {}
+          document.documentElement.lang = lang;
+
+          const t = EQUIPO_GLOBAL_I18N[lang];
+
+          // Title & Brand
+          document.title = t.pageTitle;
+          const brandTitle = document.getElementById('org-brand-title');
+          if (brandTitle) brandTitle.textContent = t.orgBrandTitle;
+          const brandSub = document.getElementById('org-brand-subtitle');
+          if (brandSub) brandSub.innerHTML = t.orgBrandSubtitle;
+          const badgeOndemand = document.getElementById('badge-ondemand');
+          if (badgeOndemand) badgeOndemand.textContent = t.badgeOndemand;
+          const badgeFinops = document.getElementById('badge-finops');
+          if (badgeFinops) badgeFinops.innerHTML = t.badgeFinops;
+          const badgeShieldText = document.getElementById('badge-shield-text');
+          if (badgeShieldText) badgeShieldText.textContent = t.badgeShield;
+          const topSoundText = document.getElementById('top-sound-text');
+          if (topSoundText) {
+            const isMuted = window.AuraAudio ? window.AuraAudio.isMuted : false;
+            topSoundText.textContent = isMuted ? t.soundOff : t.soundOn;
+          }
+          const linkSalita = document.getElementById('link-salita-directa');
+          if (linkSalita) linkSalita.innerHTML = `<span>${t.salitaDirecta}</span>`;
+
+          // Navigation Tabs
+          const lblNavHome = document.getElementById('lbl-nav-home');
+          if (lblNavHome) lblNavHome.textContent = t.navHome;
+          const tabExec = document.getElementById('tab-btn-executive-cover');
+          if (tabExec) tabExec.textContent = t.tabExecutiveCover;
+          const tabAgents = document.getElementById('tab-btn-agents-directory');
+          if (tabAgents) tabAgents.textContent = t.tabAgentsDirectory;
+          const tabSalita = document.getElementById('tab-btn-salita-privada');
+          if (tabSalita) tabSalita.textContent = t.tabSalitaPrivada;
+          const tabTrain = document.getElementById('tab-btn-training-mode');
+          if (tabTrain) tabTrain.textContent = t.tabTrainingMode;
+          const tabPipe = document.getElementById('tab-btn-pipeline-viewer');
+          if (tabPipe) tabPipe.textContent = t.tabPipelineViewer;
+          const tabVercel = document.getElementById('tab-btn-vercel-blueprint');
+          if (tabVercel) tabVercel.textContent = t.tabVercelBlueprint;
+          const tabCyber = document.getElementById('tab-btn-cyber-shield-panel');
+          if (tabCyber) tabCyber.textContent = t.tabCyberShield;
+          const tabPersist = document.getElementById('tab-btn-persistence-panel');
+          if (tabPersist) tabPersist.textContent = t.tabPersistence;
+          const tabDb = document.getElementById('tab-btn-agents-database-panel');
+          if (tabDb) tabDb.textContent = t.tabAgentsDatabase;
+          const tabRobot = document.getElementById('tab-btn-robot-builder-panel');
+          if (tabRobot) tabRobot.textContent = t.tabRobotBuilder;
+          const lblNavPitch = document.getElementById('lbl-nav-pitch');
+          if (lblNavPitch) lblNavPitch.textContent = t.navPitch;
+          const lblNavLinkedin = document.getElementById('lbl-nav-linkedin');
+          if (lblNavLinkedin) lblNavLinkedin.textContent = t.navLinkedin;
+          const lblNavGuide = document.getElementById('lbl-nav-guide');
+          if (lblNavGuide) lblNavGuide.textContent = t.navGuide;
+
+          // Search
+          const searchInput = document.getElementById('universal-search-input');
+          if (searchInput) searchInput.placeholder = t.searchPlaceholder;
+          const lblUniversalSearch = document.getElementById('lbl-universal-search');
+          if (lblUniversalSearch) lblUniversalSearch.textContent = t.searchBtn;
+          const lblInfoSearch = document.getElementById('lbl-info-search');
+          if (lblInfoSearch) lblInfoSearch.textContent = t.searchInfo;
+          const lblQuickSearch = document.getElementById('lbl-quick-search');
+          if (lblQuickSearch) lblQuickSearch.textContent = t.quickSearchLbl;
+
+          // Executive Showcase
+          const execBadgeTitle = document.getElementById('exec-badge-title');
+          if (execBadgeTitle) execBadgeTitle.textContent = t.execBadgeTitle;
+          const execBadgeDivisions = document.getElementById('exec-badge-divisions');
+          if (execBadgeDivisions) execBadgeDivisions.textContent = t.execBadgeDivisions;
+          const execHeading = document.getElementById('exec-heading');
+          if (execHeading) execHeading.textContent = t.execHeading;
+          const execParagraph = document.getElementById('exec-paragraph');
+          if (execParagraph) execParagraph.innerHTML = t.execParagraph;
+          const lblBtnJumpSalita = document.getElementById('lbl-btn-jump-salita');
+          if (lblBtnJumpSalita) lblBtnJumpSalita.textContent = t.btnJumpSalita;
+          const lblBtnJumpDirectory = document.getElementById('lbl-btn-jump-directory');
+          if (lblBtnJumpDirectory) lblBtnJumpDirectory.textContent = t.btnJumpDirectory;
+
+          const salitaBannerTitle = document.getElementById('salita-banner-title');
+          if (salitaBannerTitle) salitaBannerTitle.textContent = t.salitaBannerTitle;
+          const salitaBannerDesc = document.getElementById('salita-banner-desc');
+          if (salitaBannerDesc) salitaBannerDesc.innerHTML = t.salitaBannerDesc;
+          const lblBtnCoverSalita = document.getElementById('lbl-btn-cover-salita');
+          if (lblBtnCoverSalita) lblBtnCoverSalita.textContent = t.btnCoverSalita;
+
+          const showcaseBadgePortfolio = document.getElementById('showcase-badge-portfolio');
+          if (showcaseBadgePortfolio) showcaseBadgePortfolio.textContent = t.showcaseBadgePortfolio;
+          const showcaseBadgeVerified = document.getElementById('showcase-badge-verified');
+          if (showcaseBadgeVerified) showcaseBadgeVerified.textContent = t.showcaseBadgeVerified;
+          const showcaseHeading = document.getElementById('showcase-heading');
+          if (showcaseHeading) showcaseHeading.textContent = t.showcaseHeading;
+          const showcaseDesc = document.getElementById('showcase-description');
+          if (showcaseDesc) showcaseDesc.textContent = t.showcaseDescription;
+
+          const lblBtnShowcaseInfo = document.getElementById('lbl-btn-showcase-info');
+          if (lblBtnShowcaseInfo) lblBtnShowcaseInfo.textContent = t.btnShowcaseInfo;
+          const lblBtnGuidedDemo = document.getElementById('lbl-btn-guided-demo');
+          if (lblBtnGuidedDemo) lblBtnGuidedDemo.textContent = t.btnGuidedDemo;
+          const lblBtnAutoImprove = document.getElementById('lbl-btn-auto-improve');
+          if (lblBtnAutoImprove) lblBtnAutoImprove.textContent = t.btnAutoImprove;
+          const lblBtnCopyPitch = document.getElementById('lbl-btn-copy-pitch');
+          if (lblBtnCopyPitch) lblBtnCopyPitch.textContent = t.btnCopyPitch;
+          const lblBtnDownloadDossier = document.getElementById('lbl-btn-download-dossier');
+          if (lblBtnDownloadDossier) lblBtnDownloadDossier.textContent = t.btnDownloadDossier;
+
+          const authorNoteTitle = document.getElementById('author-note-title');
+          if (authorNoteTitle) authorNoteTitle.textContent = t.authorNoteTitle;
+          const authorNoteBadge = document.getElementById('author-note-badge');
+          if (authorNoteBadge) authorNoteBadge.textContent = t.authorNoteBadge;
+          const authorNoteBody = document.getElementById('author-note-body');
+          if (authorNoteBody) authorNoteBody.innerHTML = t.authorNoteBody;
+
+          const harnessExamTitle = document.getElementById('harness-exam-title');
+          if (harnessExamTitle) harnessExamTitle.textContent = t.harnessExamTitle;
+          const harnessExamDesc = document.getElementById('harness-exam-desc');
+          if (harnessExamDesc) harnessExamDesc.textContent = t.harnessExamDesc;
+          const lblBtnJumpHarness = document.getElementById('lbl-btn-jump-harness');
+          if (lblBtnJumpHarness) lblBtnJumpHarness.textContent = t.btnJumpHarness;
+
+          const p1Title = document.getElementById('pillar-1-title');
+          if (p1Title) p1Title.textContent = t.pillar1Title;
+          const p1Desc = document.getElementById('pillar-1-desc');
+          if (p1Desc) p1Desc.innerHTML = t.pillar1Desc;
+
+          const p2Title = document.getElementById('pillar-2-title');
+          if (p2Title) p2Title.textContent = t.pillar2Title;
+          const p2Desc = document.getElementById('pillar-2-desc');
+          if (p2Desc) p2Desc.innerHTML = t.pillar2Desc;
+
+          const p3Title = document.getElementById('pillar-3-title');
+          if (p3Title) p3Title.textContent = t.pillar3Title;
+          const p3Desc = document.getElementById('pillar-3-desc');
+          if (p3Desc) p3Desc.innerHTML = t.pillar3Desc;
+
+          const p4Title = document.getElementById('pillar-4-title');
+          if (p4Title) p4Title.textContent = t.pillar4Title;
+          const p4Desc = document.getElementById('pillar-4-desc');
+          if (p4Desc) p4Desc.innerHTML = t.pillar4Desc;
+
+          const feedbackText = document.getElementById('mikel-showcase-feedback');
+          if (feedbackText) feedbackText.innerHTML = t.showcaseFeedback;
+
+          const mTitle = document.getElementById('modal-lk-title');
+          if (mTitle) mTitle.textContent = t.modalLkTitle;
+          const mPBadge = document.getElementById('modal-lk-private-badge');
+          if (mPBadge) mPBadge.textContent = t.modalLkPrivateBadge;
+          const mPDesc = document.getElementById('modal-lk-private-desc');
+          if (mPDesc) mPDesc.innerHTML = t.modalLkPrivateDesc;
+          const mBPhoto = document.getElementById('lbl-btn-linkedin-download-photo');
+          if (mBPhoto) mBPhoto.textContent = t.modalLkBtnPhoto;
+          const mBCopy = document.getElementById('lbl-btn-linkedin-copy');
+          if (mBCopy) mBCopy.textContent = t.modalLkBtnCopy;
+          const mBLaunch = document.getElementById('lbl-btn-linkedin-launch');
+          if (mBLaunch) mBLaunch.textContent = t.modalLkBtnLaunch;
+          const mFeed = document.getElementById('lbl-linkedin-feedback');
+          if (mFeed) mFeed.textContent = t.modalLkFeedback;
+
+          // Language Buttons Active State
+          ['es', 'fr', 'en'].forEach(l => {
+            const btn = document.getElementById('btn-lang-' + l);
+            if (btn) btn.classList.toggle('active', l === lang);
+          });
+
+          // Update active LinkedIn post in current language
+          updateLinkedinPostText(currentPostType);
+
+          if (audio && audio.playNavClick) audio.playNavClick();
+        };
 
         function openLinkedinModal() {
           if (!linkedinModal) return;
@@ -7705,20 +8821,31 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
           }
 
           const cols = Object.keys(rows[0]);
-          let html = '<table class="w-full text-left text-xs font-mono border-collapse">';
+          let html = '<div class="overflow-x-auto"><table class="w-full text-left text-xs font-mono border-collapse">';
           html += '<thead><tr class="border-b border-slate-700 text-slate-400">' + cols.map(c => `<th class="py-1 px-2">${c}</th>`).join('') + '</tr></thead>';
           html += '<tbody class="divide-y divide-slate-800">';
           rows.forEach(r => {
             html += '<tr>' + cols.map(c => `<td class="py-1 px-2 text-slate-200">${sanitizeHtml(String(r[c]))}</td>`).join('') + '</tr>';
           });
-          html += '</tbody></table>';
+          html += '</tbody></table></div>';
           html += `<div class="mt-2 text-[10px] text-emerald-400">Query ejecutada con éxito: ${rows.length} filas retornadas (0 ms latencia en caché local).</div>`;
           sqlResult.innerHTML = html;
           audio.playNavClick();
         }
 
+        // Apply saved language preference
+        if (window.switchGlobalLang) {
+          window.switchGlobalLang(currentGlobalLang);
+        }
+
         // Initial welcome chat line
-        appendChatMessage('AGENT-01 · Chatty (Gabriel)', 'Bienvenido, Presidente Mikel. Los 75 trabajadores de tu familia estamos listos y en posición.', 'agent', 1);
+        const welcomeMsgs = {
+          es: 'Bienvenido, Presidente Mikel. Los 75 trabajadores de tu familia y «El-equipo-A» estamos listos y en posición.',
+          fr: 'Bienvenue, Président Mikel. Les 75 spécialistes de votre organisation et « L\'Équipe A » sont opérationnels et en poste.',
+          en: 'Welcome, President Mikel. All 75 specialists across your organization and « The A-Team » stand operational and on station.'
+        };
+        appendChatMessage('AGENT-01 · Chatty (Gabriel)', welcomeMsgs[currentGlobalLang] || welcomeMsgs.es, 'agent', 1);
+        if (location.hash === '#robot') switchTab('robot-builder-panel');
       }
 
       if (document.readyState === 'loading') {
@@ -7802,6 +8929,42 @@ R: «Capacidad para liderar la transformación digital completa de una compañí
 
       <!-- Particle ripple effect on click -->
       <span id="orb-ripple" class="absolute inset-0 rounded-full border-2 border-cyan-400 opacity-0 pointer-events-none"></span>
+    </div>
+  </aside>
+
+  <!-- Toast Notificación: Pregunta de Sonido (una vez, a los 5 clics) -->
+  <aside id="sound-nudge-toast" role="dialog" aria-labelledby="sound-nudge-title" class="fixed top-16 right-4 sm:right-8 z-50 max-w-sm w-full bg-[#0d131f]/95 backdrop-blur-md border-2 border-amber-500/80 rounded-2xl p-4 shadow-2xl transition-all duration-300 hidden">
+    <div class="flex items-start justify-between gap-2.5">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl select-none animate-bounce">🔊</span>
+        <div>
+          <h3 id="sound-nudge-title" class="text-xs font-bold text-white flex items-center gap-1.5">
+            ¿Mantener o quitar el sonido?
+            <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">A los 5 clics</span>
+          </h3>
+          <p class="text-[11px] text-slate-300 mt-0.5">
+            Llevas 5 clics interactuando con la plataforma. ¿Prefieres seguir con sonido interactivo o navegar en silencio?
+          </p>
+        </div>
+      </div>
+      <button id="btn-sound-nudge-close" type="button" class="text-slate-400 hover:text-white text-sm px-1.5 py-0.5 rounded-lg hover:bg-slate-800 transition" title="Cerrar aviso">✕</button>
+    </div>
+
+    <!-- Señalización exacta de dónde está el icono -->
+    <div class="mt-2.5 p-2 rounded-xl bg-slate-900/90 border border-amber-500/40 text-[11px] text-amber-200 flex items-start gap-2">
+      <span class="text-base select-none">👆</span>
+      <p class="leading-tight">
+        <strong>¿Dónde está el icono?</strong> Mira arriba en la cabecera (resaltado en <strong>dorado brillante</strong>). También está dentro de la <em>Salita Privada</em>. Puedes pulsarlo cuando quieras.
+      </p>
+    </div>
+
+    <div class="mt-3 flex items-center justify-end gap-2 text-xs font-semibold">
+      <button id="btn-sound-nudge-off" type="button" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 transition flex items-center gap-1 shadow-sm">
+        <span>🔇</span> <span>Quitar sonido</span>
+      </button>
+      <button id="btn-sound-nudge-keep" type="button" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white transition flex items-center gap-1 shadow-sm">
+        <span>🔊</span> <span>Mantener sonido</span>
+      </button>
     </div>
   </aside>
 

@@ -33,6 +33,7 @@ from typing import Any, Final
 
 VIS_DIR: Final[Path] = Path(__file__).resolve().parent
 CV_ROOT: Final[Path] = VIS_DIR.parent
+STUDIO_PUBLIC: Final[Path] = CV_ROOT.parent / "public"
 STREAM_DIR: Final[Path] = CV_ROOT / "02_streaming_platform"
 MATH_DIR: Final[Path] = CV_ROOT / "03_math_haskell_python"
 DB_DIR: Final[Path] = CV_ROOT / "04_database_lakehouse"
@@ -176,6 +177,15 @@ STATIC_ROUTES: Final[dict[str, tuple[Path, str, bool, str]]] = {
     "/novus_daily_journal.md": (EVERNOTE_MD, "text/markdown; charset=utf-8", True, "novus_daily_journal.md"),
     "/portfolio.html": (VIS_DIR / "portfolio.html", "text/html; charset=utf-8", False, ""),
     "/portfolio": (VIS_DIR / "portfolio.html", "text/html; charset=utf-8", False, ""),
+    "/equipo.html": (STUDIO_PUBLIC / "equipo.html", "text/html; charset=utf-8", False, ""),
+    "/equipo": (STUDIO_PUBLIC / "equipo.html", "text/html; charset=utf-8", False, ""),
+    "/salita_privada_mikel.html": (STUDIO_PUBLIC / "salita_privada_mikel.html", "text/html; charset=utf-8", False, ""),
+    "/agents_75_database.sql": (
+        STUDIO_PUBLIC / "agents_75_database.sql",
+        "application/sql; charset=utf-8",
+        True,
+        "agents_75_database.sql",
+    ),
     "/bot.html": (VIS_DIR / "bot.html", "text/html; charset=utf-8", False, ""),
     "/bot": (VIS_DIR / "bot.html", "text/html; charset=utf-8", False, ""),
     "/google-skills.html": (VIS_DIR / "google-skills.html", "text/html; charset=utf-8", False, ""),

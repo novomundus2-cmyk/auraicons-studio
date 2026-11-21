@@ -1289,24 +1289,31 @@
 
   <!-- Hero Header -->
   <header class="hero">
-    <div class="hero-eyebrow">
+    <div style="display:flex; justify-content:center; margin-bottom:14px;">
+      <div id="portfolio-lang-switcher" style="display:inline-flex; align-items:center; gap:4px; padding:3px 8px; background:rgba(15,23,42,0.85); border:1px solid rgba(255,255,255,0.18); border-radius:999px;">
+        <button type="button" class="aura-lang-btn active" id="btn-port-es" onclick="switchPortLang('es')" style="padding:2px 8px; font-size:11px;">🇪🇸 ES</button>
+        <button type="button" class="aura-lang-btn" id="btn-port-fr" onclick="switchPortLang('fr')" style="padding:2px 8px; font-size:11px;">🇫🇷 FR</button>
+        <button type="button" class="aura-lang-btn" id="btn-port-en" onclick="switchPortLang('en')" style="padding:2px 8px; font-size:11px;">🇬🇧 EN</button>
+      </div>
+    </div>
+    <div class="hero-eyebrow" id="port-eyebrow">
       ⚡ Data Engineer &amp; Quantitative Systems Architect
     </div>
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="port-title">
       Datos en los que <em>se puede confiar</em>.
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" id="port-sub">
       De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.
     </p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px;">
-      <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#10b981; color:#34d399; font-weight:800; background:rgba(16,185,129,0.18); box-shadow:0 0 16px rgba(16,185,129,0.25);">📘 Guía Maestra PDF (Qué Debo Saber)</a>
-      <a href="/cv_printable.html" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#10b981; color:#34d399; font-weight:700; background:rgba(16,185,129,0.12);">📄 Ver CV Oficial Imprimible</a>
-      <a href="/pyspark_pipeline_archify.html" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#38bdf8; color:#38bdf8; font-weight:700; background:rgba(56,189,248,0.15); box-shadow:0 0 16px rgba(56,189,248,0.25);">🔥 Pipeline PySpark &amp; BigQuery</a>
-      <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#a855f7; color:#c084fc; font-weight:700; background:rgba(168,85,247,0.15); box-shadow:0 0 16px rgba(168,85,247,0.25);">🧠 Notebook Gemini &amp; BigQuery (.ipynb)</a>
-      <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px; border-color:#f59e0b; color:#fbbf24; font-weight:700; background:rgba(245,158,11,0.12);">📑 Doc PySpark (PDF)</a>
-      <a href="#trading" class="btn-pill btn-pill-accent" style="padding: 10px 22px; font-size: 13.5px;">🚀 Probar Trading Bot</a>
-      <a href="#proyectos" class="btn-pill" style="padding: 10px 22px; font-size: 13.5px;">📂 Ver 10 Proyectos</a>
-      <a href="mailto:mikel@novusmundus.com" class="btn-pill btn-pill-gold" style="padding: 10px 22px; font-size: 13.5px;">✉️ Contactar con Mikel</a>
+      <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="aura-btn aura-btn-emerald aura-btn-pill aura-btn-lg" id="port-btn-guide">📘 Guía Maestra PDF (Qué Debo Saber)</a>
+      <a href="/cv_printable.html" class="aura-btn aura-btn-secondary aura-btn-pill aura-btn-lg" id="port-btn-cv">📄 Ver CV Oficial Imprimible</a>
+      <a href="/pyspark_pipeline_archify.html" target="_blank" class="aura-btn aura-btn-primary aura-btn-pill aura-btn-lg" id="port-btn-pyspark">🔥 Pipeline PySpark &amp; BigQuery</a>
+      <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="aura-btn aura-btn-purple aura-btn-pill aura-btn-lg">🧠 Notebook Gemini &amp; BigQuery (.ipynb)</a>
+      <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="aura-btn aura-btn-amber aura-btn-pill aura-btn-lg">📑 Doc PySpark (PDF)</a>
+      <a href="#trading" class="aura-btn aura-btn-primary aura-btn-pill aura-btn-lg" id="port-btn-bot">🚀 Probar Trading Bot</a>
+      <a href="#proyectos" class="aura-btn aura-btn-secondary aura-btn-pill aura-btn-lg" id="port-btn-projects">📂 Ver 10 Proyectos</a>
+      <a href="mailto:mikel@novusmundus.com" class="aura-btn aura-btn-amber aura-btn-pill aura-btn-lg" id="port-btn-contact">✉️ Contactar con Mikel</a>
     </div>
   </header>
 
@@ -2725,23 +2732,57 @@
   animateCanvas();
 
   /* ========================================================================
-     2. 10 PROJECTS DATA & RENDERING
+     2. 10 PROJECTS DATA & RENDERING (TRILINGUAL ES / FR / EN)
      ======================================================================== */
-  const PROJECTS_DATA = [
-    { code: 'P01', area: 'ingesta', areaName: 'Ingesta', title: 'Catálogo de materiales en SQLite', simple: 'Convierte una hoja de materiales en una base de datos con buscador, y no guarda nada si un dato está mal.', what: 'CSV y JSON pasan un contrato de 33 columnas y llegan a SQLite STRICT con búsqueda FTS5 y exportación JSON v1. Huellas SHA-256 de contrato, esquema y contenido.', stack: ['Python', 'SQLite', 'FTS5'], proof: '9 tests en verde.', limit: 'Datos inventados para la demo. El índice se reconstruye entero en cada carga.' },
-    { code: 'P02', area: 'calidad', areaName: 'Calidad', title: 'Contrato, calidad y linaje', simple: 'Un inspector que revisa los datos antes de usarlos y dice qué fila y qué columna fallan.', what: 'Auditoría reproducible: tipos, rangos, fechas, URLs y referencias rotas. Un vacío y un «no comparable» nunca se convierten en cero.', stack: ['Python', 'Contratos', 'CI'], proof: '7 tests en verde. Mismo informe byte a byte.', limit: 'El linaje llega al material completo, no a cada propiedad por separado.' },
-    { code: 'P03', area: 'modelado', areaName: 'Modelado', title: 'Warehouse dimensional con dbt', simple: 'Un almacén ordenado para responder preguntas de negocio: qué proyecto va bien y qué material falla más.', what: 'Eventos CAD en modelo estrella sobre PostgreSQL: staging, dimensiones, hechos y dos marts de KPIs, con roles de mínimo privilegio y laboratorio AWS Glue 5.', stack: ['dbt', 'PostgreSQL', 'AWS Glue'], proof: '10 tests en verde y fixtures verificadas. 68 pruebas dbt.', limit: 'dbt seed sirve para fixtures pequeñas, no para producción.' },
-    { code: 'P04', area: 'plataforma', areaName: 'Plataforma', title: 'Batch diario con Airflow', simple: 'Cada día recoge los datos del día anterior. Si falla, lo reintenta sin duplicar nada.', what: 'DAG validate → publish → verify por partición UTC, con reintentos, reejecución y backfill. Escritura atómica idempotente: reprocesar da los mismos bytes.', stack: ['Airflow 3', 'Python'], proof: '6 tests en verde con fallo inyectado autorecuperable.', limit: 'Probado en Airflow local con eventos de red sintéticos.' },
-    { code: 'P05', area: 'streaming', areaName: 'Streaming', title: 'Ventanas de tiempo de evento', simple: 'Cuenta eventos que llegan en directo, minuto a minuto, aunque lleguen tarde o repetidos.', what: 'CLI en C++20 con ventanas, duplicados y tardanza, más laboratorios con Kafka, Spark Structured Streaming y Flink SQL.', stack: ['C++20', 'Kafka', 'Spark', 'Flink'], proof: '12 tests en verde. Compila con avisos como errores (-Werror).', limit: 'No demuestra entrega exactamente una vez de extremo a extremo.' },
-    { code: 'P06', area: 'streaming', areaName: 'Streaming', title: 'Telemetría de interfaces Cisco', simple: 'Lee los contadores de tráfico de un router y calcula la velocidad real de cada puerto.', what: 'Muestras con forma YANG y RFC 7951 a SQLite, con informe de calidad y contadores de 32 y 64 bits. Procedencia del modelo YANG trazada hasta su commit.', stack: ['Python', 'YANG', 'SQLite'], proof: '23 tests en verde.', limit: 'Datos de telemetría sintéticos calibrados.' },
-    { code: 'P07', area: 'ingesta', areaName: 'Ingesta', title: 'Ingesta binaria defensiva', simple: 'Lee ficheros binarios sin dejarse romper. Si llega uno corrupto o cortado, lo rechaza.', what: 'Lector C11 de formato binario versionado con CRC-32 y límites estrictos. Pasa fuzzing continuo y memory sanitizers (ASan/UBSan).', stack: ['C11', 'Fuzzing', 'Sanitizers'], proof: '8 tests en verde. Salida idéntica byte a byte.', limit: 'Formato de prueba binario propietario.' },
-    { code: 'P08', area: 'calidad', areaName: 'Calidad', title: 'Contratos y linaje en Haskell', simple: 'Avisa cuando alguien cambia la forma de un dato de una manera que rompería a quien lo usa.', what: 'Validador funcional puro de versiones de esquema y grafo de linaje acíclico: ciclos, referencias rotas y cambios incompatibles.', stack: ['Haskell', 'GHC', 'Type-Level'], proof: '15 comprobaciones en verde. Compila con -Werror.', limit: 'Detecta cambios de estructura, no de semántica.' },
-    { code: 'P09', area: 'plataforma', areaName: 'Plataforma', title: 'Job seguro en Kubernetes', simple: 'Ejecuta un trabajo de datos en Kubernetes con los mínimos permisos posibles.', what: 'Pod restringido sin RBAC propio, NetworkPolicy estricta, imagen fijada por digest con SBOM y un CronJob probado en kind.', stack: ['Kubernetes', 'Docker', 'Calico'], proof: '39 tests en verde y 2 turnos de CronJob verificados.', limit: 'Probado en clúster kind mononodo, no en producción multi-región.' },
-    { code: 'P10', area: 'integracion', areaName: 'Integración', title: 'Scorecard Capstone con procedencia', simple: 'El examen final: ejecuta seis proyectos y comprueba que todos dicen la verdad.', what: 'Concilia las salidas de P03 y P05 a P09, firmando el resultado con hashes SHA-256 en SQLite y JSON verificable.', stack: ['Python', 'SQLite', 'CI'], proof: '14 tests en verde integrando los 6 proyectos.', limit: 'Verifica las salidas producidas por dbt y Kubernetes, no sus runtimes.' }
-  ];
+  const PROJECTS_DATA_I18N = {
+    es: [
+      { code: 'P01', area: 'ingesta', areaName: 'Ingesta', title: 'Catálogo de materiales en SQLite', simple: 'Convierte una hoja de materiales en una base de datos con buscador, y no guarda nada si un dato está mal.', what: 'CSV y JSON pasan un contrato de 33 columnas y llegan a SQLite STRICT con búsqueda FTS5 y exportación JSON v1. Huellas SHA-256 de contrato, esquema y contenido.', stack: ['Python', 'SQLite', 'FTS5'], proof: '9 tests en verde.', limit: 'Datos inventados para la demo. El índice se reconstruye entero en cada carga.' },
+      { code: 'P02', area: 'calidad', areaName: 'Calidad', title: 'Contrato, calidad y linaje', simple: 'Un inspector que revisa los datos antes de usarlos y dice qué fila y qué columna fallan.', what: 'Auditoría reproducible: tipos, rangos, fechas, URLs y referencias rotas. Un vacío y un «no comparable» nunca se convierten en cero.', stack: ['Python', 'Contratos', 'CI'], proof: '7 tests en verde. Mismo informe byte a byte.', limit: 'El linaje llega al material completo, no a cada propiedad por separado.' },
+      { code: 'P03', area: 'modelado', areaName: 'Modelado', title: 'Warehouse dimensional con dbt', simple: 'Un almacén ordenado para responder preguntas de negocio: qué proyecto va bien y qué material falla más.', what: 'Eventos CAD en modelo estrella sobre PostgreSQL: staging, dimensiones, hechos y dos marts de KPIs, con roles de mínimo privilegio y laboratorio AWS Glue 5.', stack: ['dbt', 'PostgreSQL', 'AWS Glue'], proof: '10 tests en verde y fixtures verificadas. 68 pruebas dbt.', limit: 'dbt seed sirve para fixtures pequeñas, no para producción.' },
+      { code: 'P04', area: 'plataforma', areaName: 'Plataforma', title: 'Batch diario con Airflow', simple: 'Cada día recoge los datos del día anterior. Si falla, lo reintenta sin duplicar nada.', what: 'DAG validate → publish → verify por partición UTC, con reintentos, reejecución y backfill. Escritura atómica idempotente: reprocesar da los mismos bytes.', stack: ['Airflow 3', 'Python'], proof: '6 tests en verde con fallo inyectado autorecuperable.', limit: 'Probado en Airflow local con eventos de red sintéticos.' },
+      { code: 'P05', area: 'streaming', areaName: 'Streaming', title: 'Ventanas de tiempo de evento', simple: 'Cuenta eventos que llegan en directo, minuto a minuto, aunque lleguen tarde o repetidos.', what: 'CLI en C++20 con ventanas, duplicados y tardanza, más laboratorios con Kafka, Spark Structured Streaming y Flink SQL.', stack: ['C++20', 'Kafka', 'Spark', 'Flink'], proof: '12 tests en verde. Compila con avisos como errores (-Werror).', limit: 'No demuestra entrega exactamente una vez de extremo a extremo.' },
+      { code: 'P06', area: 'streaming', areaName: 'Streaming', title: 'Telemetría de interfaces Cisco', simple: 'Lee los contadores de tráfico de un router y calcula la velocidad real de cada puerto.', what: 'Muestras con forma YANG y RFC 7951 a SQLite, con informe de calidad y contadores de 32 y 64 bits. Procedencia del modelo YANG trazada hasta su commit.', stack: ['Python', 'YANG', 'SQLite'], proof: '23 tests en verde.', limit: 'Datos de telemetría sintéticos calibrados.' },
+      { code: 'P07', area: 'ingesta', areaName: 'Ingesta', title: 'Ingesta binaria defensiva', simple: 'Lee ficheros binarios sin dejarse romper. Si llega uno corrupto o cortado, lo rechaza.', what: 'Lector C11 de formato binario versionado con CRC-32 y límites estrictos. Pasa fuzzing continuo y memory sanitizers (ASan/UBSan).', stack: ['C11', 'Fuzzing', 'Sanitizers'], proof: '8 tests en verde. Salida idéntica byte a byte.', limit: 'Formato de prueba binario propietario.' },
+      { code: 'P08', area: 'calidad', areaName: 'Calidad', title: 'Contratos y linaje en Haskell', simple: 'Avisa cuando alguien cambia la forma de un dato de una manera que rompería a quien lo usa.', what: 'Validador funcional puro de versiones de esquema y grafo de linaje acíclico: ciclos, referencias rotas y cambios incompatibles.', stack: ['Haskell', 'GHC', 'Type-Level'], proof: '15 comprobaciones en verde. Compila con -Werror.', limit: 'Detecta cambios de estructura, no de semántica.' },
+      { code: 'P09', area: 'plataforma', areaName: 'Plataforma', title: 'Job seguro en Kubernetes', simple: 'Ejecuta un trabajo de datos en Kubernetes con los mínimos permisos posibles.', what: 'Pod restringido sin RBAC propio, NetworkPolicy estricta, imagen fijada por digest con SBOM y un CronJob probado en kind.', stack: ['Kubernetes', 'Docker', 'Calico'], proof: '39 tests en verde y 2 turnos de CronJob verificados.', limit: 'Probado en clúster kind mononodo, no en producción multi-región.' },
+      { code: 'P10', area: 'integracion', areaName: 'Integración', title: 'Scorecard Capstone con procedencia', simple: 'El examen final: ejecuta seis proyectos y comprueba que todos dicen la verdad.', what: 'Concilia las salidas de P03 y P05 a P09, firmando el resultado con hashes SHA-256 en SQLite y JSON verificable.', stack: ['Python', 'SQLite', 'CI'], proof: '14 tests en verde integrando los 6 proyectos.', limit: 'Verifica las salidas producidas por dbt y Kubernetes, no sus runtimes.' }
+    ],
+    fr: [
+      { code: 'P01', area: 'ingesta', areaName: 'Ingestion', title: 'Catalogue de matériaux sous SQLite', simple: 'Convertit une nomenclature industrielle en base SQL stricte avec moteur de recherche, rejetant toute donnée erronée.', what: 'CSV et JSON validés par contrat strict de 33 colonnes vers SQLite STRICT, recherche FTS5 et export JSON v1. Empreintes SHA-256 de contrat et schéma.', stack: ['Python', 'SQLite', 'FTS5'], proof: '9 tests validés en vert.', limit: 'Données démonstratives calibrées. Index reconstruit à chaque chargement.' },
+      { code: 'P02', area: 'calidad', areaName: 'Qualité', title: 'Contrats de données, audit et lignage', simple: 'Inspecteur automatisé qui valide les données avant consommation et isole la ligne et la colonne défaillantes.', what: 'Audit reproductible au bit près : typage, bornes, dates et références intègres. Aucune coercition silencieuse de valeurs nulles.', stack: ['Python', 'Contrats', 'CI'], proof: '7 tests validés en vert. Rapport byte-à-byte identique.', limit: 'Lignage granulaire au niveau du matériau.' },
+      { code: 'P03', area: 'modelado', areaName: 'Modélisation', title: 'Entrepôt dimensionnel sous dbt', simple: 'Entrepôt structuré en étoile pour répondre aux questions métier : performance projet et criticité matière.', what: 'Modèle en étoile dbt sur PostgreSQL : staging, dimensions, faits et marts de KPIs avec rôles à moindre privilège.', stack: ['dbt', 'PostgreSQL', 'AWS Glue'], proof: '10 tests unitaires et 68 assertions dbt validées.', limit: 'dbt seed réservé aux tables de référence de test.' },
+      { code: 'P04', area: 'plataforma', areaName: 'Plateforme', title: 'Orchestration Batch sous Airflow 3', simple: 'Traite les données de la veille chaque nuit. En cas d\'incident, reprend sans doublonner les enregistrements.', what: 'DAG validate → publish → verify par partition UTC avec idempotence stricte et protection contre le rejeu.', stack: ['Airflow 3', 'Python'], proof: '6 tests validés avec injection de panne autoréparable.', limit: 'Testé sur Airflow local avec événements synthétiques.' },
+      { code: 'P05', area: 'streaming', areaName: 'Streaming', title: 'Fenêtrage temporel d\'événements', simple: 'Agrège les événements en direct minute par minute, gérant les retards et les doublons sans perte.', what: 'Moteur CLI en C++20 avec fenêtres glissantes et retard d\'arrivée, complété de labs Kafka et Spark Streaming.', stack: ['C++20', 'Kafka', 'Spark', 'Flink'], proof: '12 tests validés en vert. Compilé avec -Werror.', limit: 'Garantie exactly-once bornée au périmètre du moteur.' },
+      { code: 'P06', area: 'streaming', areaName: 'Streaming', title: 'Télémétrie d\'interfaces Cisco & YANG', simple: 'Interroge les compteurs réseau d\'un routeur et calcule le débit effectif de chaque port.', what: 'Télémétrie structurée YANG (RFC 7951) vers SQLite avec compteurs 32/64 bits et traçabilité de modèle.', stack: ['Python', 'YANG', 'SQLite'], proof: '23 tests validés en vert.', limit: 'Flux de télémétrie synthétique calibré.' },
+      { code: 'P07', area: 'ingesta', areaName: 'Ingestion', title: 'Ingestion binaire défensive en C11', simple: 'Lit des fichiers binaires avec tolérance aux pannes. Rejette toute trame corrompue ou tronquée.', what: 'Parseur C11 sécurisé avec contrôle CRC-32 et vérification de limites strictes. Validé par fuzzing et ASan.', stack: ['C11', 'Fuzzing', 'Sanitizers'], proof: '8 tests validés en vert. Sortie byte-à-byte rigoureusement identique.', limit: 'Format binaire propriétaire de banc de test.' },
+      { code: 'P08', area: 'calidad', areaName: 'Qualité', title: 'Contrats fonctionnels en Haskell', simple: 'Détecte à la compilation toute altération de schéma susceptible de casser les consommateurs en aval.', what: 'Vérificateur purement fonctionnel de graphes de lignage et compatibilité de schémas au niveau des types.', stack: ['Haskell', 'GHC', 'Type-Level'], proof: '15 vérifications réussies. Compilé sous -Werror.', limit: 'Vérifie la syntaxe structurelle et le sous-typage.' },
+      { code: 'P09', area: 'plataforma', areaName: 'Plateforme', title: 'Conteneurisation durcie sous Kubernetes', simple: 'Exécute des traitements de données sous Kubernetes avec le strict minimum de privilèges système.', what: 'Pod verrouillé sans RBAC superflu, NetworkPolicy Calico étanche, images identifiées par digest SBOM.', stack: ['Kubernetes', 'Docker', 'Calico'], proof: '39 tests validés et 2 cycles CronJob confirmés.', limit: 'Validé sur cluster mononœud kind de test.' },
+      { code: 'P10', area: 'integracion', areaName: 'Intégration', title: 'Bilan Capstone & Provenance Scellée', simple: 'Validation d\'ensemble : orchestre six projets et garantit l\'intégrité absolue des résultats.', what: 'Rapprochement des sorties de P03 et P05 à P09, scellées par hachages cryptographiques SHA-256.', stack: ['Python', 'SQLite', 'CI'], proof: '14 tests d\'intégration validés sur les 6 briques.', limit: 'Vérifie les artefacts produits par les jobs.' }
+    ],
+    en: [
+      { code: 'P01', area: 'ingesta', areaName: 'Ingestion', title: 'Material Catalog in SQLite with FTS5', simple: 'Converts industrial bill-of-materials into a searchable SQL database, rejecting invalid rows at the gate.', what: 'CSV and JSON validated against a 33-column strict contract into SQLite STRICT with FTS5 search and JSON v1 exports. SHA-256 schema fingerprints.', stack: ['Python', 'SQLite', 'FTS5'], proof: '9 passing tests.', limit: 'Synthetic test data. Index reconstructed on each load.' },
+      { code: 'P02', area: 'calidad', areaName: 'Quality', title: 'Data Contracts, Quality & Lineage', simple: 'An automated gatekeeper inspecting records before ingestion, pinpointing exact failing rows and columns.', what: 'Byte-for-byte reproducible audits: types, boundaries, timestamps, and foreign keys. Null values never coerced to zeros.', stack: ['Python', 'Contracts', 'CI'], proof: '7 passing tests. Byte-identical output.', limit: 'Lineage tracked at entity level.' },
+      { code: 'P03', area: 'modelado', areaName: 'Modeling', title: 'Dimensional Warehouse with dbt', simple: 'Clean star-schema warehouse answering core business queries: project velocity and material defect rates.', what: 'CAD event lakehouse in star schema on PostgreSQL: staging, dimensions, facts, and KPI marts under least-privilege RBAC.', stack: ['dbt', 'PostgreSQL', 'AWS Glue'], proof: '10 unit tests and 68 passing dbt assertions.', limit: 'dbt seed used for small reference fixtures.' },
+      { code: 'P04', area: 'plataforma', areaName: 'Platform', title: 'Daily Batch Pipelines with Airflow 3', simple: 'Collects and aggregates yesterday\'s data nightly. Automatically retries upon failure with zero duplicate writes.', what: 'UTC partition DAG: validate → publish → verify with idempotent atomic staging and backfill support.', stack: ['Airflow 3', 'Python'], proof: '6 passing tests with injected self-healing faults.', limit: 'Validated in local Airflow cluster.' },
+      { code: 'P05', area: 'streaming', areaName: 'Streaming', title: 'Event-Time Streaming Windowing', simple: 'Aggregates real-time event streams minute-by-minute, managing late arrivals and duplicate payloads.', what: 'High-performance C++20 windowing engine with out-of-order event handling, Kafka, and Spark Streaming labs.', stack: ['C++20', 'Kafka', 'Spark', 'Flink'], proof: '12 passing tests. Built with -Werror flags.', limit: 'Exactly-once semantics within bounded stream scope.' },
+      { code: 'P06', area: 'streaming', areaName: 'Streaming', title: 'Cisco Router Interface Telemetry', simple: 'Reads physical router interface counters and calculates live throughput per port.', what: 'RFC 7951 YANG telemetry ingestion into SQLite with 32/64-bit counters and commit-level lineage.', stack: ['Python', 'YANG', 'SQLite'], proof: '23 passing tests.', limit: 'Calibrated synthetic router telemetry.' },
+      { code: 'P07', area: 'ingesta', areaName: 'Ingestion', title: 'Defensive Binary Ingestion in C11', simple: 'Reads binary data safely without crashes. Discards corrupt or truncated frames immediately.', what: 'Hardened C11 binary parser with CRC-32 integrity and boundary guards, verified with ASan and fuzz testing.', stack: ['C11', 'Fuzzing', 'Sanitizers'], proof: '8 passing tests. Byte-for-byte identical output.', limit: 'Proprietary binary benchmark specification.' },
+      { code: 'P08', area: 'calidad', areaName: 'Quality', title: 'Functional Contracts in Haskell', simple: 'Detects schema alterations that would break downstream consumer pipelines at compile time.', what: 'Purely functional type-level validator for acyclic lineage graphs and backward schema compatibility.', stack: ['Haskell', 'GHC', 'Type-Level'], proof: '15 verified type checks. Compiled with -Werror.', limit: 'Validates structural schema invariance.' },
+      { code: 'P09', area: 'plataforma', areaName: 'Platform', title: 'Hardened Kubernetes Workloads', simple: 'Runs containerized data processing on Kubernetes with least-privilege security postures.', what: 'Restricted pod without cluster RBAC, strict Calico NetworkPolicies, and SBOM container digests.', stack: ['Kubernetes', 'Docker', 'Calico'], proof: '39 passing tests and 2 verified CronJob runs.', limit: 'Evaluated in isolated single-node kind cluster.' },
+      { code: 'P10', area: 'integracion', areaName: 'Integration', title: 'Capstone Scorecard & Cryptographic Provenance', simple: 'Final end-to-end milestone: runs six pipelines and mathematically verifies cross-project integrity.', what: 'Reconciliation of outputs from P03 and P05-P09, signing results with SHA-256 hashes in SQLite.', stack: ['Python', 'SQLite', 'CI'], proof: '14 passing integration tests across all 6 modules.', limit: 'Validates generated output artifacts.' }
+    ]
+  };
+
+  let currentPortLang = localStorage.getItem('mikel_lang') || 'es';
+  let currentPortFilter = 'all';
+
+  function getActiveProjects() {
+    return PROJECTS_DATA_I18N[currentPortLang] || PROJECTS_DATA_I18N.es;
+  }
 
   function renderProjects(list) {
     const container = document.getElementById('projects-grid-container');
+    if (!container) return;
     container.innerHTML = list.map(p => `
       <div class="project-card">
         <div class="card-top">
@@ -2763,16 +2804,18 @@
   }
 
   function filterProjects(area, btn) {
+    currentPortFilter = area;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+    const all = getActiveProjects();
     if (area === 'all') {
-      renderProjects(PROJECTS_DATA);
+      renderProjects(all);
     } else {
-      renderProjects(PROJECTS_DATA.filter(p => p.area === area));
+      renderProjects(all.filter(p => p.area === area));
     }
   }
 
-  renderProjects(PROJECTS_DATA);
+  renderProjects(getActiveProjects());
 
   /* ========================================================================
      3. TRADING BOT LOGIC & REAL-TIME INTERACTIVE CHARTS
@@ -5393,6 +5436,91 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
     const targetAction = daemonIsRunning ? 'pause' : 'resume';
     controlPipelineDaemon(targetAction);
   }
+
+  const PORT_I18N = {
+    es: {
+      eyebrow: "⚡ Data Engineer & Quantitative Systems Architect",
+      title: "Datos en los que <em>se puede confiar</em>.",
+      sub: "De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.",
+      btnGuide: "📘 Guía Maestra PDF (Qué Debo Saber)",
+      btnCv: "📄 Ver CV Oficial Imprimible",
+      btnPyspark: "🔥 Pipeline PySpark & BigQuery",
+      btnBot: "🚀 Probar Trading Bot",
+      btnProjects: "📂 Ver 10 Proyectos",
+      btnContact: "✉️ Contactar con Mikel"
+    },
+    fr: {
+      eyebrow: "⚡ Ingénieur Données & Architecte Systèmes Quantitatifs",
+      title: "Des données auxquelles on peut <em>faire confiance</em>.",
+      sub: "De la précision de la robotique industrielle chez EPTA France à l'architecture financière à grande échelle. Dix projets d'ingénierie qui extraient, auditent avec rigueur mathématique et déploient une valeur mesurable.",
+      btnGuide: "📘 Guide Essentiel PDF (Notions Clés)",
+      btnCv: "📄 Consulter le CV Imprimable",
+      btnPyspark: "🔥 Pipeline PySpark & BigQuery",
+      btnBot: "🚀 Tester le Bot de Trading",
+      btnProjects: "📂 Explorer les 10 Projets",
+      btnContact: "✉️ Contacter Mikel"
+    },
+    en: {
+      eyebrow: "⚡ Data Engineer & Quantitative Systems Architect",
+      title: "Data you can <em>genuinely trust</em>.",
+      sub: "From industrial sheet-metal robotics precision at EPTA France to large-scale financial data systems. Ten production-tested projects that extract, mathematically audit, and deploy reproducible engineering value.",
+      btnGuide: "📘 Master Guide PDF (Key Concepts)",
+      btnCv: "📄 Official Printable CV",
+      btnPyspark: "🔥 PySpark & BigQuery Pipeline",
+      btnBot: "🚀 Launch Trading Bot",
+      btnProjects: "📂 View 10 Projects",
+      btnContact: "✉️ Contact Mikel"
+    }
+  };
+
+  function switchPortLang(lang) {
+    if (!PORT_I18N[lang]) lang = 'es';
+    try { localStorage.setItem('mikel_lang', lang); } catch(_) {}
+    const t = PORT_I18N[lang];
+
+    const eb = document.getElementById('port-eyebrow');
+    if (eb) eb.innerHTML = t.eyebrow;
+    const ti = document.getElementById('port-title');
+    if (ti) ti.innerHTML = t.title;
+    const su = document.getElementById('port-sub');
+    if (su) su.innerHTML = t.sub;
+
+    const bg = document.getElementById('port-btn-guide');
+    if (bg) bg.textContent = t.btnGuide;
+    const bc = document.getElementById('port-btn-cv');
+    if (bc) bc.textContent = t.btnCv;
+    const bp = document.getElementById('port-btn-pyspark');
+    if (bp) bp.textContent = t.btnPyspark;
+    const bb = document.getElementById('port-btn-bot');
+    if (bb) bb.textContent = t.btnBot;
+    const bj = document.getElementById('port-btn-projects');
+    if (bj) bj.textContent = t.btnProjects;
+    const bct = document.getElementById('port-btn-contact');
+    if (bct) bct.textContent = t.btnContact;
+
+    ['es', 'fr', 'en'].forEach(l => {
+      const btn = document.getElementById('btn-port-' + l);
+      if (btn) btn.classList.toggle('active', l === lang);
+    });
+
+    currentPortLang = lang;
+    if (typeof getActiveProjects === 'function' && typeof renderProjects === 'function') {
+      const all = getActiveProjects();
+      if (currentPortFilter === 'all') {
+        renderProjects(all);
+      } else {
+        renderProjects(all.filter(p => p.area === currentPortFilter));
+      }
+    }
+    if (window.AuraAudio && window.AuraAudio.playNavClick) window.AuraAudio.playNavClick();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('mikel_lang') || 'es';
+    if (savedLang !== 'es') {
+      switchPortLang(savedLang);
+    }
+  });
 </script>
 
   <!-- AuraIcons Interactive Engine & Navigation Dock -->

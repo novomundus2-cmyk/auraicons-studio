@@ -791,7 +791,11 @@
       '.segmented-btn',
       '.btn-pill',
       '.aura-header-btn',
-      '.proj-action-btn'
+      '.proj-action-btn',
+      '.aura-btn',
+      '.aura-lang-btn',
+      '.tab-btn',
+      '.room-tab-btn'
     ];
 
     document.querySelectorAll(interactiveSelectors.join(',')).forEach((btn) => {

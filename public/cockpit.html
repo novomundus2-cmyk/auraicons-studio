@@ -1674,12 +1674,12 @@
       <div>
         <div class="brand-title-row">
           <h1>Mikel Irastorza</h1>
-          <span class="apple-status-pill">
+          <span class="apple-status-pill" id="cockpit-status-pill">
             <span class="apple-status-dot"></span>
             DISPONIBLE
           </span>
         </div>
-        <p class="subtitle">Software Engineer · Sistemas Distribuidos, Matemáticas &amp; IA Aplicada</p>
+        <p class="subtitle" id="cockpit-subtitle">Software Engineer · Sistemas Distribuidos, Matemáticas &amp; IA Aplicada</p>
       </div>
     </div>
 
@@ -1687,24 +1687,35 @@
     <div class="segmented-control" role="tablist" aria-label="Selector de Modo">
       <button class="segmented-btn active" id="seg-btn-simple" onclick="setMode('simple'); goPage('home');" title="Vista humana y comprensible para todos">
         <span class="seg-icon">✦</span>
-        <span>Modo Esencial</span>
+        <span id="seg-lbl-simple">Modo Esencial</span>
       </button>
       <button class="segmented-btn" id="seg-btn-tech" onclick="setMode('tech'); switchPage('all');" title="Vista avanzada con simulador y streaming en directo">
         <span class="seg-icon">⚡</span>
-        <span>Studio Big Data</span>
+        <span id="seg-lbl-tech">Studio Big Data</span>
       </button>
     </div>
 
-    <!-- HEADER ACTIONS (APPLE PILLS) -->
+    <!-- HEADER ACTIONS (APPLE PILLS & TRILINGUAL SWITCHER) -->
     <div class="header-badges">
+      <!-- Universal Trilingual Switcher (Clean Code Component) -->
+      <div id="cockpit-lang-switcher" style="display:inline-flex; align-items:center; gap:4px; padding:3px 6px; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.15); border-radius:10px;">
+        <button type="button" class="aura-lang-btn active" id="btn-cockpit-es" onclick="switchCockpitGlobalLang('es')" title="Castellano (Español)">🇪🇸 ES</button>
+        <button type="button" class="aura-lang-btn" id="btn-cockpit-fr" onclick="switchCockpitGlobalLang('fr')" title="Français (Professionnel Courant)">🇫🇷 FR</button>
+        <button type="button" class="aura-lang-btn" id="btn-cockpit-en" onclick="switchCockpitGlobalLang('en')" title="English (Technical Fluent)">🇬🇧 EN</button>
+      </div>
+      <!-- 🔒 Confidential LinkedIn Mode Pill -->
+      <div class="apple-status-pill" id="cockpit-linkedin-pill" style="background:rgba(30,41,59,0.7); border:1px solid rgba(255,255,255,0.18); font-size:11px; padding:4px 10px; border-radius:999px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;" onclick="openHelp('concept_linkedin_private')" title="Perfil de LinkedIn en Modo Privado / Confidencial">
+        <span style="font-size:12px;">🔒</span>
+        <span id="lbl-cockpit-linkedin">LinkedIn Privado</span>
+      </div>
       <!-- 🧭 AuraIcons Interactive Fast Return to CV -->
       <a href="/cv_printable.html" class="aura-header-btn" id="aura-header-cv-btn" title="Volver al CV Oficial Imprimible de Mikel Irastorza">
         <svg class="aura-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M19 12H5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Volver al CV</span>
-        <span class="aura-header-badge">Oficial</span>
+        <span id="lbl-header-cv">Volver al CV</span>
+        <span class="aura-header-badge" id="lbl-header-cv-badge">Oficial</span>
       </a>
       <a href="/api/generate-pdf?doc=cv" download="CV_Mikel_Irastorza.pdf" class="apple-pill-btn apple-pill-primary" title="Descargar CV Ejecutivo en PDF en 1 clic">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -2025,32 +2036,32 @@
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
           <div style="display:flex; align-items:center; gap:8px;">
             <span style="font-size:20px;">⚡</span>
-            <span style="font-size:16px; font-weight:800; color:#38bdf8; letter-spacing:-0.01em;">Los 4 Pilares de Mi Código: Artesanía Técnica, Matemáticas y Rendimiento</span>
+            <span id="cockpit-pillars-title" style="font-size:16px; font-weight:800; color:#38bdf8; letter-spacing:-0.01em;">Los 4 Pilares de Mi Código: Artesanía Técnica, Matemáticas y Rendimiento</span>
           </div>
-          <span style="font-size:11px; font-weight:800; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:3px 10px; border-radius:999px;">FILOSOFÍA DE ARQUITECTURA</span>
+          <span id="cockpit-pillars-badge" style="font-size:11px; font-weight:800; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:3px 10px; border-radius:999px;">FILOSOFÍA DE ARQUITECTURA</span>
         </div>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
           <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px 14px;">
-            <div style="font-weight:800; color:#34d399; font-size:13.5px; margin-bottom:4px;">1. 🎯 Rigor Matemático y Determinismo</div>
-            <div style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
+            <div id="pilar-1-title" style="font-weight:800; color:#34d399; font-size:13.5px; margin-bottom:4px;">1. 🎯 Rigor Matemático y Determinismo</div>
+            <div id="pilar-1-desc" style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
               Cero números flotantes para dinero (céntimos enteros <code>BIGINT</code> bajo partida doble de Luca Pacioli). Varianza online en un solo paso con <strong>Monoides de Welford</strong> ($O(1)$ memoria, sin cancelación catastrófica) y estadísticos robustos (Mediana y MAD con $Z_{\text{MAD}} > 3.0$) inmunes al enmascaramiento.
             </div>
           </div>
           <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px 14px;">
-            <div style="font-weight:800; color:#38bdf8; font-size:13.5px; margin-bottom:4px;">2. 🚀 Zero-OOM &amp; Concurrencia Pura</div>
-            <div style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
+            <div id="pilar-2-title" style="font-weight:800; color:#38bdf8; font-size:13.5px; margin-bottom:4px;">2. 🚀 Zero-OOM &amp; Concurrencia Pura</div>
+            <div id="pilar-2-desc" style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
               Ingesta binaria gRPC mediante <strong>BigQuery Storage Read API</strong> y Parquet ZSTD en <strong>Apache Iceberg</strong> sin cuellos de botella. Enjambres con balanceo dinámico <strong>Work-Stealing</strong> ($Q_{\max} - Q_{\min} \le 1$), reduciendo la contención de colas a latencia $O(1/M)$ bajo la Ley de Little ($L = \lambda \cdot W$).
             </div>
           </div>
           <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px 14px;">
-            <div style="font-weight:800; color:#f43f5e; font-size:13.5px; margin-bottom:4px;">3. 🛡️ Seguridad Zero-Trust &amp; Soberanía Local</div>
-            <div style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
+            <div id="pilar-3-title" style="font-weight:800; color:#f43f5e; font-size:13.5px; margin-bottom:4px;">3. 🛡️ Seguridad Zero-Trust &amp; Soberanía Local</div>
+            <div id="pilar-3-desc" style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
               Enfoque <strong>Default Deny</strong> absoluto. Patrón Validator Function en <code>create</code> y <code>update</code> eliminando el bypass de mutaciones. Autoridad desacoplada del payload del cliente (basada en claims criptográficos <code>request.auth.token</code>) y ejecución 100% offline y reproducible en disco local.
             </div>
           </div>
           <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px 14px;">
-            <div style="font-weight:800; color:#a78bfa; font-size:13.5px; margin-bottom:4px;">4. 🧩 Fraccionamiento Cognitivo &amp; 60 FPS</div>
-            <div style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
+            <div id="pilar-4-title" style="font-weight:800; color:#a78bfa; font-size:13.5px; margin-bottom:4px;">4. 🧩 Fraccionamiento Cognitivo &amp; 60 FPS</div>
+            <div id="pilar-4-desc" style="font-size:12.5px; color:#cbd5e1; line-height:1.55;">
               Arquitecturas autodocumentadas donde cada concepto complejo se desglosa en 5 niveles (desde cero hasta entrevista ejecutiva). Interfaces táctiles a 60 FPS con física de resortes (*spring dynamics*), estricta separación de capas y cero dependencias parasitarias.
             </div>
           </div>
@@ -3085,9 +3096,25 @@ WHERE is_anomaly = TRUE;</pre>
         </div>
         <div class="qa-math">Comando Local: <code>make swarm</code> · Umbral óptimo: <code>t* = 0.32</code></div>
       </div>
+
+      <div class="qa-card" style="border-color: rgba(56, 189, 248, 0.4); background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(12,74,110,0.25));">
+        <div class="qa-top">
+          <div class="qa-question" id="qa-eq-title">7. 🚀 «El-equipo-A»: Enjambre de 11 Especialistas &amp; Kubernetes / Cisco</div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button class="lang-pill" id="btn-eq-es" onclick="switchEquipoALang('es')" style="cursor:pointer; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:700; border:1px solid #38bdf8; background:rgba(56,189,248,0.2); color:#fff;">🇪🇸 ES</button>
+            <button class="lang-pill" id="btn-eq-fr" onclick="switchEquipoALang('fr')" style="cursor:pointer; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,0.2); background:transparent; color:#94a3b8;">🇫🇷 FR</button>
+            <button class="lang-pill" id="btn-eq-en" onclick="switchEquipoALang('en')" style="cursor:pointer; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,0.2); background:transparent; color:#94a3b8;">🇬🇧 EN</button>
+            <button class="info-btn" onclick="openHelp('concept_equipo_a')">i</button>
+          </div>
+        </div>
+        <div class="qa-answer" id="qa-eq-desc">
+          Unidad de élite multidisciplinar de 11 agentes (Robótica Asimov, Big Data Codd, Mates Gauss, Física Newton, 3D DaVinci, Clean Code Dijkstra, Plugin Harness Murdock, Curador Alexandria, Kubernetes Heptapod, Redes Cisco Cerf y Lead Hannibal). Operan mediante <strong>Work-Stealing</strong>, pasarela abierta para hablar con cualquier IA (Claude, GPT-4, Gemini, Ollama), y preparan a Mikel para la maestría en <strong>Kubernetes (CKA)</strong> y <strong>Cisco (CCNA/CCNP)</strong>.
+        </div>
+        <div class="qa-math" id="qa-eq-math">Comando Local: <code>make equipo-a</code> · Roster: <code>11/11 Agentes en SQLite</code></div>
+      </div>
     </div>
 
-    <!-- Code Tabs for DTS YAML, BigQuery Property Graph SQL, Multi-PC NAS Commands, Databricks DABs, GQL Queries & Financial Swarm -->
+    <!-- Code Tabs for DTS YAML, BigQuery Property Graph SQL, Multi-PC NAS Commands, Databricks DABs, GQL Queries, Financial Swarm & El-equipo-A -->
     <div class="tabs">
       <button class="tab-btn active" onclick="showClusterTab('graph_ddl', this)">1. BigQuery Property Graph (lakehouse_property_graph.sql)</button>
       <button class="tab-btn" onclick="showClusterTab('dts_yaml', this)">2. BigQuery DTS Declarativo (deployment_dts.yaml)</button>
@@ -3095,6 +3122,7 @@ WHERE is_anomaly = TRUE;</pre>
       <button class="tab-btn" onclick="showClusterTab('databricks_bundle', this)">4. Databricks Lakehouse &amp; Unity Catalog (databricks.yml)</button>
       <button class="tab-btn" onclick="showClusterTab('gql_fraud_queries', this)">5. BigQuery GQL Consultas Antifraude (lakehouse_gql_queries.sql)</button>
       <button class="tab-btn" onclick="showClusterTab('financial_swarm', this)">6. Enjambre Multi-Agente Financiero (financial_agent_swarm.py)</button>
+      <button class="tab-btn" onclick="showClusterTab('equipo_a', this)">7. 🚀 «El-equipo-A» (11 Agentes · K8s · Cisco · Cursos)</button>
     </div>
 
     <pre id="cluster-code-graph_ddl">-- 04_database_lakehouse/lakehouse_property_graph.sql (Verificado 100%: 25.000/25.000 aristas resueltas)
@@ -3265,6 +3293,28 @@ if __name__ == "__main__":
     orchestrator = LeadFinancialInvestigator()
     report = orchestrator.run_investigation()
     print(report)</pre>
+
+    <pre id="cluster-code-equipo_a" style="display:none;"># CV/06_ai_note_agent/equipo_a_swarm.py (Enjambre Autónomo «El-equipo-A»)
+# Ejecución 100% Local / Privada: make equipo-a
+from equipo_a_swarm import EquipoASwarm
+
+# Los 11 Especialistas de «El-equipo-A»:
+#   1. 👑 Hannibal   - Swarm Lead & Work-Stealing Orchestrator
+#   2. 🤖 Asimov     - Robotics & Spatial Kinematics (MuJoCo, Mink IK, Sim2Real)
+#   3. 🗄️ Codd       - Big Data & Lakehouse (BigQuery Storage API, PySpark, Iceberg, GQL)
+#   4. 📐 Gauss      - Applied Mathematics (Pacioli Cents, Welford O(1), MAD Z > 3.0)
+#   5. ⚙️ Newton     - Computational Physics (Dinámica Continua, Resortes 60 FPS)
+#   6. 🎨 DaVinci    - 3D Graphics & Rendering Engine (WebGL, Shaders PBR)
+#   7. 🛡️ Dijkstra   - Clean Code & Security Architect (Default Deny, Zero Bypass)
+#   8. 🧰 Murdock    - Skill, Plugin & Tool Harness Master (MCP, CLIs, Catalog)
+#   9. 📚 Alexandria - Knowledge Curator & Course Publisher (PDF, PPTX, XLSX, DOCX)
+#  10. ☸️ Heptapod   - Kubernetes & Cloud-Native Platforms (K8s, Pods, Helm, GitOps)
+#  11. 🌐 Cerf       - Cisco Network & Server Infrastructure (IOS, BGP, OSPF, VLANs)
+
+if __name__ == "__main__":
+    swarm = EquipoASwarm()
+    swarm.run_all()
+    swarm.print_markdown_summary()</pre>
 
     <!-- LIVE EXECUTIVE SWARM AUDIT REPORT CARD -->
     <div style="margin-top:20px; background:rgba(15,23,42,0.85); border:1px solid rgba(56,189,248,0.3); border-radius:16px; padding:18px;">
@@ -3958,6 +4008,24 @@ if __name__ == "__main__":
         math: "$$\\text{font-size} = \\text{clamp}(0.95\\text{rem},\\; 1.8\\text{vw},\\; 1.18\\text{rem})$$",
         interview: "«Diseñé la interfaz de observabilidad con CSS Grid fluido, funciones matemáticas clamp() y cuatro breakpoints adaptativos para operar tanto en monitores ultrawide de NOC como en pantalla dividida o dispositivos móviles.»",
         subconcepts: ["concept_clean_code", "concept_welford", "concept_teoria_colas"]
+      },
+      concept_equipo_a: {
+        shortLabel: "El-equipo-A (11 Agentes)",
+        title: "🚀 «El-equipo-A» · Enjambre Multidisciplinar Trilingüe (11 Agentes · K8s · Cisco)",
+        what: "<strong>Unidad de Élite de 11 Agentes Autónomos</strong> creada por Mikel Irastorza: 👑 Hannibal (Lead Work-Stealing), 🤖 Asimov (Robótica MuJoCo/Mink), 🗄️ Codd (BigQuery Storage API gRPC/Iceberg), 📐 Gauss (Pacioli Cents/Welford/MAD), ⚙️ Newton (Física 60 FPS), 🎨 DaVinci (WebGL/Shaders), 🛡️ Dijkstra (Zero-Trust/Clean Code), 🧰 Murdock (MCP Tools/Skills), 📚 Alexandria (Cursos PDF/PPTX/XLSX/DOCX), ☸️ Heptapod (Kubernetes CKA/CKAD) y 🌐 Cerf (Cisco CCNA/CCNP).<br><br>🌍 <strong>Estándar Trilingüe (Mikel):</strong> Diseñado y documentado en 🇪🇸 Castellano, 🇫🇷 Français y 🇬🇧 English sin traducciones mecánicas.",
+        how: "Operación local y sin nube de pago:<br>• <code>make audit</code> (ES) · <code>make audit-fr</code> (FR) · <code>make audit-en</code> (EN)<br>• <code>make brain-pulse</code>: Envía impulsos al Cerebro Neuronal en Obsidian (11 lóbulos corticales).<br>• <code>make cursos</code>: Compila manuales en PDF, diapositivas PPTX, modelos XLSX y guías DOCX.",
+        math: "Garantías matemáticas invariantes:<br>$$Q_{\\max} - Q_{\\min} \\le 1 \\quad (\\text{Work-Stealing}), \\quad \\text{Activo} = \\text{Pasivo} + \\text{Patrimonio} \\; (\\text{Pacioli BIGINT}), \\quad Z_{\\text{MAD}} > 3.0, \\quad \\text{IK: } \\min \\frac{1}{2}\\|J\\dot{q} - v\\|^2$$",
+        interview: "«Diseñé El-equipo-A como un enjambre de 11 especialistas interconectados con memoria viva SQLite y grafo de Obsidian. Es 100% trilingüe (español nativo, francés profesional bilingüe e inglés de sistemas distribuidos), desacoplado mediante Work-Stealing y listo para colaborar con Claude, GPT-4 o Gemini vía Model Context Protocol (MCP).»",
+        subconcepts: ["concept_clean_code", "concept_welford", "concept_teoria_colas", "concept_bq_graph", "concept_nas_cluster"]
+      },
+      concept_linkedin_private: {
+        shortLabel: "LinkedIn en Modo Privado",
+        title: "🔒 Modo Confidencial / Privado del Perfil de LinkedIn de Mikel Irastorza",
+        what: "<strong>Declaración de Soberanía Técnica y Confidencialidad:</strong> Mikel Irastorza mantiene su perfil de LinkedIn en modo privado/confidencial. En lugar de un perfil indexable en redes sociales comerciales, Mikel ofrece esta plataforma interactiva en vivo, código abierto auditable en GitHub, cuadernos reproducibles (.ipynb) y contacto directo verificado como prueba de trabajo autónoma.",
+        how: "<strong>¿Cómo verificar las credenciales de Mikel?</strong><br>• <strong>Suite Automatizada:</strong> 44 tests unitarios y de integración continuos en verde.<br>• <strong>Plataforma en Producción:</strong> Servidor Big Data, trading bot NovusMundus con cálculo exacto en Haskell y taller mecatrónico 3D a 60 FPS.<br>• <strong>Contacto Directo:</strong> Email verificado <code>mikel@novusmundus.com</code> y sesión privada en la Salita de 75 Agentes.<br>• <strong>Proyectos Industriales:</strong> Desarrollos estratégicos de alta escala protegidos bajo acuerdos estrictos de confidencialidad (NDA).",
+        math: "$$\\text{Prueba de Trabajo} = \\text{Código Ejecutable} + \\text{Tests en Verde} + \\text{Cálculo Determinista} \\; (\\text{SHA-256})$$",
+        interview: "«Decidí mantener LinkedIn en modo privado porque para un arquitecto de sistemas y software de misión crítica, la verdadera validación no reside en métricas de vanidad o algoritmos de red social, sino en código que compila, contratos que no fallan y arquitecturas que resisten en producción.»",
+        subconcepts: ["concept_clean_code", "concept_equipo_a"]
       }
     };
 
@@ -4999,13 +5067,252 @@ if __name__ == "__main__":
     }
 
     function showClusterTab(tab, btn) {
-      ['graph_ddl', 'dts_yaml', 'firebase_lan', 'databricks_bundle', 'gql_fraud_queries', 'financial_swarm'].forEach(t => {
+      ['graph_ddl', 'dts_yaml', 'firebase_lan', 'databricks_bundle', 'gql_fraud_queries', 'financial_swarm', 'equipo_a'].forEach(t => {
         const el = getEl('cluster-code-' + t);
         if (el) el.style.display = (t === tab) ? 'block' : 'none';
       });
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
+
+    const EQUIPO_A_I18N = {
+      es: {
+        title: "7. 🚀 «El-equipo-A»: Enjambre de 11 Especialistas &amp; Kubernetes / Cisco",
+        desc: "Unidad de élite multidisciplinar de 11 agentes (Robótica Asimov, Big Data Codd, Mates Gauss, Física Newton, 3D DaVinci, Clean Code Dijkstra, Plugin Harness Murdock, Curador Alexandria, Kubernetes Heptapod, Redes Cisco Cerf y Lead Hannibal). Operan mediante <strong>Work-Stealing</strong>, pasarela abierta para hablar con cualquier IA (Claude, GPT-4, Gemini, Ollama), y preparan a Mikel para la maestría en <strong>Kubernetes (CKA)</strong> y <strong>Cisco (CCNA/CCNP)</strong>.",
+        math: "Comando Local: <code>make equipo-a</code> · Roster: <code>11/11 Agentes en SQLite</code>",
+        code: `# CV/06_ai_note_agent/equipo_a_swarm.py (Enjambre Autónomo «El-equipo-A»)
+# Ejecución 100% Local / Privada: make equipo-a
+from equipo_a_swarm import EquipoASwarm
+
+# Los 11 Especialistas de «El-equipo-A»:
+#   1. 👑 Hannibal   - Swarm Lead & Work-Stealing Orchestrator
+#   2. 🤖 Asimov     - Robotics & Spatial Kinematics (MuJoCo, Mink IK, Sim2Real)
+#   3. 🗄️ Codd       - Big Data & Lakehouse (BigQuery Storage API, PySpark, Iceberg, GQL)
+#   4. 📐 Gauss      - Applied Mathematics (Pacioli Cents, Welford O(1), MAD Z > 3.0)
+#   5. ⚙️ Newton     - Computational Physics (Dinámica Continua, Resortes 60 FPS)
+#   6. 🎨 DaVinci    - 3D Graphics & Rendering Engine (WebGL, Shaders PBR)
+#   7. 🛡️ Dijkstra   - Clean Code & Security Architect (Default Deny, Zero Bypass)
+#   8. 🧰 Murdock    - Skill, Plugin & Tool Harness Master (MCP, CLIs, Catalog)
+#   9. 📚 Alexandria - Knowledge Curator & Course Publisher (PDF, PPTX, XLSX, DOCX)
+#  10. ☸️ Heptapod   - Kubernetes & Cloud-Native Platforms (K8s, Pods, Helm, GitOps)
+#  11. 🌐 Cerf       - Cisco Network & Server Infrastructure (IOS, BGP, OSPF, VLANs)
+
+if __name__ == "__main__":
+    swarm = EquipoASwarm()
+    swarm.run_all()
+    swarm.print_markdown_summary()`
+      },
+      fr: {
+        title: "7. 🚀 « L'Équipe A » : Essaim de 11 Spécialistes &amp; Kubernetes / Cisco",
+        desc: "Unité d'élite multidisciplinaire articulée autour de 11 agents spécialisés (Robotique Asimov, Big Data Codd, Mathématiques Gauss, Physique Newton, Rendu 3D DaVinci, Architecture Propre Dijkstra, Harnais MCP Murdock, Édition Pédagogique Alexandria, Kubernetes Heptapod, Réseaux Cisco Cerf et Direction Hannibal). Ils appliquent un ordonnancement par <strong>vol de travail</strong> (*Work-Stealing*), une passerelle d'interopérabilité multi-IA (Claude, GPT-4, Gemini, Ollama local), et structurent la préparation de Mikel aux certifications <strong>Kubernetes (CKA)</strong> et <strong>Cisco (CCNA/CCNP)</strong>.",
+        math: "Commande Locale : <code>make equipo-a-fr</code> · Effectif : <code>11/11 Agents synchronisés en SQLite</code>",
+        code: `# CV/06_ai_note_agent/equipo_a_swarm.py (Essaim Autonome « L'Équipe A »)
+# Exécution 100% Locale / Zéro-Confiance : make equipo-a-fr
+from equipo_a_swarm import EquipoASwarm
+
+# Les 11 Spécialistes de « L'Équipe A » :
+#   1. 👑 Hannibal   - Direction de l'Essaim & Ordonnancement par Vol de Travail
+#   2. 🤖 Asimov     - Robotique & Cinématique Inverse (MuJoCo, Mink QP, Sim2Real)
+#   3. 🗄️ Codd       - Big Data & Lac de Données (BigQuery Storage API gRPC, Iceberg, GQL)
+#   4. 📐 Gauss      - Mathématiques Appliquées (Centimes Pacioli, Monoïde Welford O(1), MAD)
+#   5. ⚙️ Newton     - Physique Numérique & Dynamique Continue (Oscillateurs 60 FPS)
+#   6. 🎨 DaVinci    - Moteur Graphique 3D & Shaders PBR (WebGL, Accélération GPU)
+#   7. 🛡️ Dijkstra   - Architecture Propre & Sécurité Zéro-Confiance (Rejet par Défaut)
+#   8. 🧰 Murdock    - Registre d'Outils, Plugins & Protocole MCP
+#   9. 📚 Alexandria - Conservation du Savoir & Édition de Cursus (PDF, PPTX, XLSX, DOCX)
+#  10. ☸️ Heptapod   - Architecte Cloud-Native & Kubernetes (Pods, Helm, KEDA, GitOps)
+#  11. 🌐 Cerf       - Ingénieur Réseaux Cisco & Infrastructure Serveurs (IOS, BGP, OSPF)
+
+if __name__ == "__main__":
+    swarm = EquipoASwarm()
+    swarm.run_all()
+    swarm.print_markdown_summary()`
+      },
+      en: {
+        title: "7. 🚀 « The A-Team »: 11-Specialist Autonomous Swarm &amp; Kubernetes / Cisco",
+        desc: "Multidisciplinary 11-agent elite engineering swarm (Robotics Asimov, Big Data Codd, Mathematics Gauss, Physics Newton, 3D DaVinci, Clean Code Dijkstra, Plugin Harness Murdock, Curator Alexandria, Kubernetes Heptapod, Cisco Networks Cerf, and Lead Hannibal). Operating via <strong>work-stealing scheduling</strong>, model-agnostic cross-AI interoperability (Claude, GPT-4, Gemini, local Ollama), and engineering Mikel's mastery for <strong>Kubernetes (CKA)</strong> and <strong>Cisco (CCNA/CCNP)</strong> certifications.",
+        math: "Local Directive: <code>make equipo-a-en</code> · Swarm Roster: <code>11/11 Active Agents in SQLite</code>",
+        code: `# CV/06_ai_note_agent/equipo_a_swarm.py (Autonomous Swarm « The A-Team »)
+# 100% Local / Zero-Trust Execution: make equipo-a-en
+from equipo_a_swarm import EquipoASwarm
+
+# The 11 Autonomous Specialists of « The A-Team »:
+#   1. 👑 Hannibal   - Swarm Lead & Work-Stealing Orchestrator
+#   2. 🤖 Asimov     - Robotics & Spatial Kinematics (MuJoCo, Mink IK, Sim2Real)
+#   3. 🗄️ Codd       - Big Data & Lakehouse (BigQuery Storage API gRPC, Iceberg, GQL)
+#   4. 📐 Gauss      - Applied Mathematics (Pacioli Cents, Welford O(1), MAD Z > 3.0)
+#   5. ⚙️ Newton     - Computational Physics (Continuous Dynamics, 60 FPS Springs)
+#   6. 🎨 DaVinci    - 3D Graphics & Rendering Engine (WebGL, PBR Shaders)
+#   7. 🛡️ Dijkstra   - Clean Architecture & Zero-Trust Security (Default Deny)
+#   8. 🧰 Murdock    - Tool Harness Master & MCP Plugin Registry
+#   9. 📚 Alexandria - Knowledge Curator & Course Publisher (PDF, PPTX, XLSX, DOCX)
+#  10. ☸️ Heptapod   - Cloud-Native & Kubernetes Platforms (Pods, Helm, KEDA, GitOps)
+#  11. 🌐 Cerf       - Cisco Network & Server Infrastructure (IOS, BGP, OSPF, VLANs)
+
+if __name__ == "__main__":
+    swarm = EquipoASwarm()
+    swarm.run_all()
+    swarm.print_markdown_summary()`
+      }
+    };
+
+    function switchEquipoALang(lang) {
+      const d = EQUIPO_A_I18N[lang] || EQUIPO_A_I18N.es;
+      const title = getEl('qa-eq-title');
+      const desc = getEl('qa-eq-desc');
+      const math = getEl('qa-eq-math');
+      const code = getEl('cluster-code-equipo_a');
+
+      if (title) title.innerHTML = d.title;
+      if (desc) desc.innerHTML = d.desc;
+      if (math) math.innerHTML = d.math;
+      if (code) code.textContent = d.code;
+
+      ['es', 'fr', 'en'].forEach(l => {
+        const btn = getEl('btn-eq-' + l);
+        if (btn) {
+          if (l === lang) {
+            btn.style.borderColor = '#38bdf8';
+            btn.style.background = 'rgba(56,189,248,0.2)';
+            btn.style.color = '#fff';
+          } else {
+            btn.style.borderColor = 'rgba(255,255,255,0.2)';
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+          }
+        }
+      });
+      if (typeof playAppleHaptic === 'function') playAppleHaptic('click');
+    }
+
+    const COCKPIT_GLOBAL_I18N = {
+      es: {
+        subtitle: "Software Engineer · Sistemas Distribuidos, Matemáticas & IA Aplicada",
+        status: "DISPONIBLE",
+        segSimple: "Modo Esencial",
+        segTech: "Studio Big Data",
+        btnCv: "Volver al CV",
+        btnCvBadge: "Oficial",
+        lblLinkedin: "LinkedIn Privado",
+        btnWebSwarm: "Ejecutar Auditoría Web Completa (11 Agentes)",
+        pillarsTitle: "Los 4 Pilares de Mi Código: Artesanía Técnica, Matemáticas y Rendimiento",
+        pillarsBadge: "FILOSOFÍA DE ARQUITECTURA",
+        p1Title: "1. 🎯 Rigor Matemático y Determinismo",
+        p1Desc: "Cero números flotantes para dinero (céntimos enteros <code>BIGINT</code> bajo partida doble de Luca Pacioli). Varianza online en un solo paso con <strong>Monoides de Welford</strong> ($O(1)$ memoria, sin cancelación catastrófica) y estadísticos robustos (Mediana y MAD con $Z_{\\text{MAD}} > 3.0$) inmunes al enmascaramiento.",
+        p2Title: "2. 🚀 Zero-OOM & Concurrencia Pura",
+        p2Desc: "Ingesta binaria gRPC mediante <strong>BigQuery Storage Read API</strong> y Parquet ZSTD en <strong>Apache Iceberg</strong> sin cuellos de botella. Enjambres con balanceo dinámico <strong>Work-Stealing</strong> ($Q_{\\max} - Q_{\\min} \\le 1$), reduciendo la contención de colas a latencia $O(1/M)$ bajo la Ley de Little ($L = \\lambda \\cdot W$).",
+        p3Title: "3. 🛡️ Seguridad Zero-Trust & Soberanía Local",
+        p3Desc: "Enfoque <strong>Default Deny</strong> absoluto. Patrón Validator Function en <code>create</code> y <code>update</code> eliminando el bypass de mutaciones. Autoridad desacoplada del payload del cliente (basada en claims criptográficos <code>request.auth.token</code>) y ejecución 100% offline y reproducible en disco local.",
+        p4Title: "4. 🧩 Fraccionamiento Cognitivo & 60 FPS",
+        p4Desc: "Arquitecturas autodocumentadas donde cada concepto complejo se desglosa en 5 niveles (desde cero hasta entrevista ejecutiva). Interfaces táctiles a 60 FPS con física de resortes (*spring dynamics*), estricta separación de capas y cero dependencias parasitarias."
+      },
+      fr: {
+        subtitle: "Ingénieur Logiciel & Architecte Systèmes · Systèmes Distribués, Mathématiques & IA Appliquée",
+        status: "DISPONIBLE",
+        segSimple: "Mode Essentiel",
+        segTech: "Studio Big Data",
+        btnCv: "Retour au CV",
+        btnCvBadge: "Officiel",
+        lblLinkedin: "LinkedIn Privé",
+        btnWebSwarm: "Lancer l'Audit Web Complet (11 Agents)",
+        pillarsTitle: "Les 4 Piliers de Mon Code : Rigueur Algébrique, Systèmes & Performance",
+        pillarsBadge: "PHILOSOPHIE D'ARCHITECTURE",
+        p1Title: "1. 🎯 Rigueur Mathématique & Déterminisme",
+        p1Desc: "Tolérance zéro pour les nombres à virgule flottante sur les flux financiers (comptabilité en centimes entiers <code>BIGINT</code> en partie double inspirée de Luca Pacioli). Calcul de variance incrémentale en un seul passage par <strong>Monoïdes de Welford</strong> ($O(1)$ mémoire, immunisé contre l'annulation catastrophique) et estimateurs robustes (Médiane et MAD avec $Z_{\\text{MAD}} > 3{,}0$) insensibles au masquage statistique.",
+        p2Title: "2. 🚀 Zéro Surchauffe Mémoire & Concurrence Pure",
+        p2Desc: "Ingestion binaire native gRPC via <strong>BigQuery Storage Read API</strong> et partitionnement compressé Parquet ZSTD sur <strong>Apache Iceberg</strong> sans asphyxie du pilote. Essaims coopératifs à ordonnancement par <strong>vol de travail</strong> (*Work-Stealing* $Q_{\\max} - Q_{\\min} \\le 1$), réduisant la contention des files à une latence $O(1/M)$ sous la Loi de Little ($L = \\lambda \\cdot W$).",
+        p3Title: "3. 🛡️ Sécurité Zéro-Confiance & Souveraineté Locale",
+        p3Desc: "Politique stricte de <strong>rejet par défaut</strong> (*Default Deny*). Modèle de fonction de validation à la création et à la mise à jour éradiquant les failles de contournement. Autorité dérivée exclusivement des jetons cryptographiques (<code>request.auth.token</code>) et exécution 100% hors-ligne vérifiable localement.",
+        p4Title: "4. 🧩 Fractionnement Cognitif & Rendu 60 FPS",
+        p4Desc: "Architectures auto-documentées structurées en 5 paliers cognitifs (de l'intuition première à la soutenance d'architecture). Interfaces utilisateur réactives à 60 images/seconde avec dynamique masse-ressort, séparation nette des responsabilités et zéro dépendance superflue."
+      },
+      en: {
+        subtitle: "Lead Software Engineer · Distributed Systems, Mathematics & Applied AI",
+        status: "AVAILABLE",
+        segSimple: "Essential View",
+        segTech: "Big Data Studio",
+        btnCv: "Back to CV",
+        btnCvBadge: "Official",
+        lblLinkedin: "LinkedIn Private",
+        btnWebSwarm: "Run Complete Web Swarm Audit (11 Agents)",
+        pillarsTitle: "The 4 Engineering Pillars of My Code: Rigor, Concurrency & Performance",
+        pillarsBadge: "ARCHITECTURE PHILOSOPHY",
+        p1Title: "1. 🎯 Mathematical Rigor & Determinism",
+        p1Desc: "Zero floating-point numbers for money (double-entry ledger fixed in <code>BIGINT</code> cents honoring Luca Pacioli 1494). Single-pass streaming variance via <strong>Welford's associative monoids</strong> ($O(1)$ memory without catastrophic cancellation) and robust statistics (Median & MAD with $Z_{\\text{MAD}} > 3.0$) immune to masking effects.",
+        p2Title: "2. 🚀 Zero-OOM & Pure Concurrency",
+        p2Desc: "Binary gRPC pushdown ingestion via <strong>BigQuery Storage Read API</strong> and Parquet ZSTD on <strong>Apache Iceberg</strong> eliminating Driver heap exhaustion. Swarms balanced via <strong>Work-Stealing</strong> ($Q_{\\max} - Q_{\\min} \\le 1$), scaling contention down to $O(1/M)$ latency bounded by Little's Law ($L = \\lambda \\cdot W$).",
+        p3Title: "3. 🛡️ Zero-Trust Security & Local Sovereignty",
+        p3Desc: "Strict <strong>Default Deny</strong> security posture. Validator Function Pattern applied across both <code>create</code> and <code>update</code> rules, eliminating update bypass attack vectors. Identity derived from cryptographic claims (<code>request.auth.token</code>) and 100% local, offline-verifiable execution.",
+        p4Title: "4. 🧩 5-Tier Cognitive Splitting & 60 FPS UI",
+        p4Desc: "Self-documenting architectures decomposed across 5 cognitive levels (from first principles to Staff systems defense). Fluid 60 FPS haptic interfaces powered by spring dynamics, strict layer separation, and zero parasitic dependencies."
+      }
+    };
+
+    function switchCockpitGlobalLang(lang) {
+      if (!COCKPIT_GLOBAL_I18N[lang]) lang = 'es';
+      try { localStorage.setItem('mikel_lang', lang); } catch(_) {}
+      const t = COCKPIT_GLOBAL_I18N[lang];
+
+      const sub = getEl('cockpit-subtitle');
+      if (sub) sub.textContent = t.subtitle;
+      const status = getEl('cockpit-status-pill');
+      if (status) status.innerHTML = `<span class="apple-status-dot"></span>${t.status}`;
+      const segSimple = getEl('seg-lbl-simple');
+      if (segSimple) segSimple.textContent = t.segSimple;
+      const segTech = getEl('seg-lbl-tech');
+      if (segTech) segTech.textContent = t.segTech;
+      const lblCv = getEl('lbl-header-cv');
+      if (lblCv) lblCv.textContent = t.btnCv;
+      const lblCvBadge = getEl('lbl-header-cv-badge');
+      if (lblCvBadge) lblCvBadge.textContent = t.btnCvBadge;
+      const lk = getEl('lbl-cockpit-linkedin');
+      if (lk) lk.textContent = t.lblLinkedin;
+      const bws = getEl('btn-web-swarm');
+      if (bws && bws.dataset.idle !== 'false') bws.innerHTML = `<span>⚡</span> ${t.btnWebSwarm}`;
+
+      const pTitle = getEl('cockpit-pillars-title');
+      if (pTitle) pTitle.textContent = t.pillarsTitle;
+      const pBadge = getEl('cockpit-pillars-badge');
+      if (pBadge) pBadge.textContent = t.pillarsBadge;
+
+      const p1T = getEl('pilar-1-title');
+      if (p1T) p1T.innerHTML = t.p1Title;
+      const p1D = getEl('pilar-1-desc');
+      if (p1D) p1D.innerHTML = t.p1Desc;
+
+      const p2T = getEl('pilar-2-title');
+      if (p2T) p2T.innerHTML = t.p2Title;
+      const p2D = getEl('pilar-2-desc');
+      if (p2D) p2D.innerHTML = t.p2Desc;
+
+      const p3T = getEl('pilar-3-title');
+      if (p3T) p3T.innerHTML = t.p3Title;
+      const p3D = getEl('pilar-3-desc');
+      if (p3D) p3D.innerHTML = t.p3Desc;
+
+      const p4T = getEl('pilar-4-title');
+      if (p4T) p4T.innerHTML = t.p4Title;
+      const p4D = getEl('pilar-4-desc');
+      if (p4D) p4D.innerHTML = t.p4Desc;
+
+      // Active button styling
+      ['es', 'fr', 'en'].forEach(l => {
+        const btn = getEl('btn-cockpit-' + l);
+        if (btn) btn.classList.toggle('active', l === lang);
+      });
+
+      // Synchronize Card 7
+      switchEquipoALang(lang);
+      if (typeof playAppleHaptic === 'function') playAppleHaptic('click');
+    }
+
+    // Initialize cockpit language on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('mikel_lang') || 'es';
+      if (savedLang !== 'es') {
+        switchCockpitGlobalLang(savedLang);
+      }
+    });
 
     async function runWebSwarmAudit() {
       playAppleHaptic('click');

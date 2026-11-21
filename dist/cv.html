@@ -694,32 +694,38 @@
         🔔
       </button>
       <div>
-        <span>👑 Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</span>
-        <span style="font-weight:400; color:#94a3b8; font-size:11.5px; display: block;">Perfil de Ingeniería · 44 Tests Automatizados Verificados</span>
+        <span id="cv-toolbar-title">👑 Mikel Irastorza · Lead Software Engineer &amp; Systems Architect</span>
+        <span id="cv-toolbar-sub" style="font-weight:400; color:#94a3b8; font-size:11.5px; display: block;">Perfil de Ingeniería · 44 Tests Automatizados Verificados</span>
       </div>
     </div>
     <div class="toolbar-actions">
-      <button class="btn-action btn-action-primary" onclick="window.print()" title="Imprimir o guardar en PDF (formato A4 sin toolbar)">
+      <!-- Universal Trilingual Switcher (Clean Code Component) -->
+      <div id="cv-lang-switcher" style="display:inline-flex; align-items:center; gap:3px; padding:2px 6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:999px;">
+        <button type="button" class="aura-lang-btn active" id="btn-cv-es" onclick="switchCvLang('es')" style="padding:2px 7px; font-size:10px;">🇪🇸 ES</button>
+        <button type="button" class="aura-lang-btn" id="btn-cv-fr" onclick="switchCvLang('fr')" style="padding:2px 7px; font-size:10px;">🇫🇷 FR</button>
+        <button type="button" class="aura-lang-btn" id="btn-cv-en" onclick="switchCvLang('en')" style="padding:2px 7px; font-size:10px;">🇬🇧 EN</button>
+      </div>
+      <button class="aura-btn aura-btn-primary aura-btn-sm btn-action btn-action-primary" onclick="window.print()" title="Imprimir o guardar en PDF (formato A4 sin toolbar)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-        <span>Imprimir / PDF</span>
+        <span id="lbl-cv-print">Imprimir / PDF</span>
       </button>
-      <a href="/cv.pdf" download class="btn-action" title="Descargar PDF Oficial Precompilado">
+      <a href="/cv.pdf" download class="aura-btn aura-btn-secondary aura-btn-sm btn-action" title="Descargar PDF Oficial Precompilado">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        <span>PDF Oficial</span>
+        <span id="lbl-cv-pdf">PDF Oficial</span>
       </a>
-      <button class="btn-action" onclick="if(window.auraOpenShareModal) window.auraOpenShareModal();" title="Abrir en Móvil (Código QR & PWA)">
-        <span>📲</span> <span>Móvil / QR</span>
+      <button class="aura-btn aura-btn-secondary aura-btn-sm btn-action" onclick="if(window.auraOpenShareModal) window.auraOpenShareModal();" title="Abrir en Móvil (Código QR & PWA)">
+        <span>📲</span> <span id="lbl-cv-qr">Móvil / QR</span>
       </button>
-      <a href="/portfolio.html" class="btn-action" title="Ver Portfolio Interactivo">
-        <span>🌐</span> <span>Portfolio</span>
+      <a href="/portfolio.html" class="aura-btn aura-btn-secondary aura-btn-sm btn-action" title="Ver Portfolio Interactivo">
+        <span>🌐</span> <span id="lbl-cv-portfolio">Portfolio</span>
       </a>
-      <a href="/bot.html" class="btn-action" title="Ver Trading Bot Cuantitativo en Directo">
-        <span>🤖</span> <span>Bot Cuantitativo</span>
+      <a href="/bot.html" class="aura-btn aura-btn-secondary aura-btn-sm btn-action" title="Ver Trading Bot Cuantitativo en Directo">
+        <span>🤖</span> <span id="lbl-cv-bot">Bot Cuantitativo</span>
       </a>
-      <a href="https://miky-vercel.vercel.app" target="_blank" rel="noopener" class="btn-action" title="Abrir Miky Copilot IA con Memoria Persistente">
+      <a href="https://miky-vercel.vercel.app" target="_blank" rel="noopener" class="aura-btn aura-btn-secondary aura-btn-sm btn-action" title="Abrir Miky Copilot IA con Memoria Persistente">
         <span>🧠</span> <span>Miky IA</span>
       </a>
-      <a href="/cockpit.html" class="btn-action aura-cockpit-link" style="border-color:#38bdf8; background:rgba(56,189,248,0.18); color:#38bdf8; font-weight:800; box-shadow:0 0 16px rgba(56,189,248,0.3);" title="Entrar al Cockpit Big Data">
+      <a href="/cockpit.html" class="aura-btn aura-btn-primary aura-btn-sm btn-action aura-cockpit-link" style="border-color:#38bdf8; background:rgba(56,189,248,0.18); color:#38bdf8; font-weight:800; box-shadow:0 0 16px rgba(56,189,248,0.3);" title="Entrar al Cockpit Big Data">
         <span>⚡</span> <span>Cockpit Big Data →</span>
       </a>
     </div>
@@ -735,33 +741,35 @@
     <header class="cv-header">
       <div class="header-main">
         <h1>MIKEL IRASTORZA</h1>
-        <div class="title">Lead Software Engineer &amp; Systems Architect · Concurrency, Backend &amp; Applied AI</div>
+        <div class="title" id="cv-header-title">Lead Software Engineer &amp; Systems Architect · Concurrency, Backend &amp; Applied AI</div>
         <div class="header-meta">
-          <span>📍 <strong>Donostia / Gipuzkoa, Spain</strong> (Movilidad Francia–España &amp; Remoto)</span>
+          <span id="cv-meta-loc">📍 <strong>Donostia / Gipuzkoa, Spain</strong> (Movilidad Francia–España &amp; Remoto)</span>
           <span>💻 GitHub: <a href="https://github.com/novomundus2-cmyk" target="_blank">github.com/novomundus2-cmyk</a></span>
           <span>✉️ <a href="mailto:mikel@novusmundus.com">mikel@novusmundus.com</a></span>
           <span>🌐 <a href="/portfolio.html">Live Production Portfolio</a></span>
+          <span id="cv-meta-linkedin">🔒 <strong>LinkedIn</strong>: Modo Privado / Confidencial (Prueba de trabajo en vivo en este ecosistema)</span>
         </div>
       </div>
       <div class="header-badges">
-        <div class="lang-pill">🇪🇸 <strong>Español</strong> (Nativo)</div>
-        <div class="lang-pill">🇫🇷 <strong>Français</strong> (C1 · Fluido profesional fábrica &amp; oficina en Francia)</div>
-        <div class="lang-pill">🇬🇧 <strong>English</strong> (B2/C1 · Fluido técnico en ingeniería de software e IA)</div>
+        <div class="lang-pill" id="cv-badge-es">🇪🇸 <strong>Español</strong> (Nativo)</div>
+        <div class="lang-pill" id="cv-badge-fr">🇫🇷 <strong>Français</strong> (C1 · Fluido profesional fábrica &amp; oficina en Francia)</div>
+        <div class="lang-pill" id="cv-badge-en">🇬🇧 <strong>English</strong> (B2/C1 · Fluido técnico en ingeniería de software e IA)</div>
       </div>
     </header>
 
     <!-- Resumen Profesional de Alto Impacto -->
-    <div class="summary-card">
+    <div class="summary-card" id="cv-summary-card">
       <strong>Ingeniero de software sénior y constructor de sistemas ("Project-First Builder")</strong>. Especializado en arquitectura de backend distribuido, motores de concurrencia y streaming de baja latencia, asentamiento contable ACID de doble entrada y enjambres jerárquicos de agentes IA. Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en <strong>EPTA France</strong>, Hendaye), trasladando esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y suites de tests automatizados (<strong>44 tests sin fallos en producción</strong>).
+    </div>
     </div>
 
     <!-- PROYECTOS INSIGNIA EN PRODUCCIÓN (PURO PROGRAMADOR) -->
     <section>
       <div class="section-title">
         <div class="section-title-left">
-          <span class="sec-icon">🚀</span> Proyectos Insignia en Producción (Software Engineering &amp; Architecture)
+          <span class="sec-icon">🚀</span> <span id="cv-sec-title-projects">Proyectos Insignia en Producción (Software Engineering &amp; Architecture)</span>
         </div>
-        <span class="section-title-tag">Code &amp; Systems First</span>
+        <span class="section-title-tag" id="cv-sec-tag-projects">Code &amp; Systems First</span>
       </div>
 
       <div class="projects-grid">
@@ -924,9 +932,9 @@
     <section>
       <div class="section-title">
         <div class="section-title-left">
-          <span class="sec-icon">💼</span> Trayectoria Profesional &amp; Experiencia Industrial
+          <span class="sec-icon">💼</span> <span id="cv-sec-title-experience">Trayectoria Profesional &amp; Experiencia Industrial</span>
         </div>
-        <span class="section-title-tag">2021 – 2026 (Cronología Coherente)</span>
+        <span class="section-title-tag" id="cv-sec-tag-experience">2021 – 2026 (Cronología Coherente)</span>
       </div>
 
       <div class="experience-list">
@@ -1018,9 +1026,9 @@
     <section>
       <div class="section-title">
         <div class="section-title-left">
-          <span class="sec-icon">🛠️</span> Stack Técnico &amp; Herramientas de Producción
+          <span class="sec-icon">🛠️</span> <span id="cv-sec-title-skills">Stack Técnico &amp; Herramientas de Producción</span>
         </div>
-        <span class="section-title-tag">Pure Programmer Stack</span>
+        <span class="section-title-tag" id="cv-sec-tag-skills">Pure Programmer Stack</span>
       </div>
 
       <div class="skills-grid">
@@ -1055,17 +1063,17 @@
     <section>
       <div class="section-title">
         <div class="section-title-left">
-          <span class="sec-icon">🎯</span> Principios de Ingeniería &amp; Defensa Técnica
+          <span class="sec-icon">🎯</span> <span id="cv-sec-title-interview">Principios de Ingeniería &amp; Defensa Técnica</span>
         </div>
-        <span class="section-title-tag">Engineering Rigor</span>
+        <span class="section-title-tag" id="cv-sec-tag-interview">Engineering Rigor</span>
       </div>
 
       <div class="interview-box">
-        <div class="interview-card">
+        <div class="interview-card" id="cv-interview-1">
           <b>De la Chapa y Células Robóticas (EPTA) a los Contratos de Software:</b>
           En robótica de chapa industrial, un error de 0.2 mm en un plano dobla mal la pieza o estrella la matriz CNC. Esa disciplina física la traslado a mis contratos de datos en software: si un tipo o payload viola el esquema estricto, es rechazado de inmediato antes de contaminar la memoria o la base de datos.
         </div>
-        <div class="interview-card">
+        <div class="interview-card" id="cv-interview-2">
           <b>Consistencia Contable ACID Inviolable en Trading:</b>
           Para evitar discrepancias de saldos o pérdidas de fondos bajo alta concurrencia, las cuentas se bloquean lexicográficamente con <code>SELECT ... FOR UPDATE</code> en orden min(A, B) → max(A, B), eliminando deadlocks por diseño, y se firma cada bloque con hash SHA-256 inmutable.
         </div>
@@ -1075,10 +1083,176 @@
     <!-- PIE DE PÁGINA -->
     <footer class="cv-footer">
       <div>Mikel Irastorza · Donostia / Gipuzkoa, Spain · <a href="https://github.com/novomundus2-cmyk" target="_blank">github.com/novomundus2-cmyk</a></div>
-      <div>CV Oficial Verificado · Suite de 50 Tests Automatizados en Producción (100% Pasados)</div>
+      <div id="cv-footer-tests">CV Oficial Verificado · Suite de 50 Tests Automatizados en Producción (100% Pasados)</div>
     </footer>
 
   </div>
+
+  <script>
+    const CV_I18N = {
+      es: {
+        toolbarTitle: "👑 Mikel Irastorza · Lead Software Engineer & Systems Architect",
+        toolbarSub: "Perfil de Ingeniería · 44 Tests Automatizados Verificados",
+        printLbl: "Imprimir / PDF",
+        pdfLbl: "PDF Oficial",
+        qrLbl: "Móvil / QR",
+        portLbl: "Portfolio",
+        botLbl: "Bot Cuantitativo",
+        headerTitle: "Lead Software Engineer & Systems Architect · Concurrency, Backend & Applied AI",
+        metaLoc: "📍 <strong>Donostia / Gipuzkoa, Spain</strong> (Movilidad Francia–España & Remoto)",
+        metaLinkedin: "🔒 <strong>LinkedIn</strong>: Modo Privado / Confidencial (Prueba de trabajo en vivo en este ecosistema)",
+        badgeEs: "🇪🇸 <strong>Español</strong> (Nativo)",
+        badgeFr: "🇫🇷 <strong>Français</strong> (C1 · Fluido profesional fábrica & oficina en Francia)",
+        badgeEn: "🇬🇧 <strong>English</strong> (B2/C1 · Fluido técnico en ingeniería de software e IA)",
+        summary: '<strong>Ingeniero de software sénior y constructor de sistemas ("Project-First Builder")</strong>. Especializado en arquitectura de backend distribuido, motores de concurrencia y streaming de baja latencia, asentamiento contable ACID de doble entrada y enjambres jerárquicos de agentes IA. Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en <strong>EPTA France</strong>, Hendaye), trasladando esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y suites de tests automatizados (<strong>44 tests sin fallos en producción</strong>).',
+        secProjectsTitle: "Proyectos Insignia en Producción (Software Engineering & Architecture)",
+        secProjectsTag: "Code & Systems First",
+        secExpTitle: "Trayectoria Profesional & Experiencia Industrial",
+        secExpTag: "2021 – 2026 (Cronología Coherente)",
+        secSkillsTitle: "Stack Técnico & Herramientas de Producción",
+        secSkillsTag: "Pure Programmer Stack",
+        secInterviewTitle: "Principios de Ingeniería & Defensa Técnica",
+        secInterviewTag: "Engineering Rigor",
+        interview1: '<b>De la Chapa y Células Robóticas (EPTA) a los Contratos de Software:</b> En robótica de chapa industrial, un error de 0.2 mm en un plano dobla mal la pieza o estrella la matriz CNC. Esa disciplina física la traslado a mis contratos de datos en software: si un tipo o payload viola el esquema estricto, es rechazado de inmediato antes de contaminar la memoria o la base de datos.',
+        interview2: '<b>Consistencia Contable ACID Inviolable en Trading:</b> Para evitar discrepancias de saldos o pérdidas de fondos bajo alta concurrencia, las cuentas se bloquean lexicográficamente con <code>SELECT ... FOR UPDATE</code> en orden min(A, B) → max(A, B), eliminando deadlocks por diseño, y se firma cada bloque con hash SHA-256 inmutable.',
+        footerTests: "CV Oficial Verificado · Suite de 50 Tests Automatizados en Producción (100% Pasados)"
+      },
+      fr: {
+        toolbarTitle: "👑 Mikel Irastorza · Ingénieur Principal Logiciel & Architecte Systèmes",
+        toolbarSub: "Profil d'Ingénierie · 44 Tests Automatisés Validés en Production",
+        printLbl: "Imprimer / PDF",
+        pdfLbl: "PDF Officiel",
+        qrLbl: "Mobile / QR",
+        portLbl: "Portfolio",
+        botLbl: "Bot Quantitatif",
+        headerTitle: "Ingénieur Principal Logiciel & Architecte Systèmes · Concurrence, Systèmes Distribués & IA Appliquée",
+        metaLoc: "📍 <strong>Donostia / Gipuzkoa, Espagne</strong> (Mobilité France–Espagne & Télétravail)",
+        metaLinkedin: "🔒 <strong>LinkedIn</strong> : Mode Privé / Confidentiel (Preuve de travail en direct sur cet écosystème)",
+        badgeEs: "🇪🇸 <strong>Espagnol</strong> (Langue Maternelle)",
+        badgeFr: "🇫🇷 <strong>Français</strong> (C1 · Pratique professionnelle courante en usine & bureau d'études)",
+        badgeEn: "🇬🇧 <strong>Anglais</strong> (B2/C1 · Fluide en ingénierie logicielle & systèmes d'IA)",
+        summary: '<strong>Ingénieur logiciel senior et bâtisseur de systèmes (« Project-First Builder »)</strong>. Spécialisé dans l\'architecture backend distribuée, les moteurs de streaming à faible latence, la comptabilité transactionnelle ACID en partie double et les essaims hiérarchiques d\'agents IA. Ma rigueur sans compromis est issue de la précision industrielle physique (pilotage de cellules robotisées de tôlerie et plans industriels CAD avec tolérances de ±0,2 mm chez <strong>EPTA France</strong>, Hendaye), transposant cette même exigence à la consistance mémoire, aux contrats de données stricts et aux suites de tests automatisés (<strong>44 tests vérifiés sans échec en production</strong>).',
+        secProjectsTitle: "Projets Phares en Production (Ingénierie Logicielle & Architecture)",
+        secProjectsTag: "Priorité au Code & aux Systèmes",
+        secExpTitle: "Parcours Professionnel & Expérience Industrielle",
+        secExpTag: "2021 – 2026 (Chronologie Cohérente)",
+        secSkillsTitle: "Stack Technique & Outils de Production",
+        secSkillsTag: "Socle Purement Développeur",
+        secInterviewTitle: "Principes d'Ingénierie & Soutenance Technique",
+        secInterviewTag: "Rigueur d'Ingénierie",
+        interview1: '<b>De la Tôlerie et Cellules Robotisées (EPTA) aux Contrats Logiciels :</b> En tôlerie industrielle, un écart de 0,2 mm sur un plan plie mal la tôle ou brise l\'outil de poinçonnage CNC. Cette exigence physique guide mes contrats de données logicielles : tout type ou charge utile non conforme au schéma strict est rejeté sur-le-champ avant de polluer la mémoire ou le stockage relationnel.',
+        interview2: '<b>Consistance Comptable Transactionnelle ACID en Trading :</b> Afin d\'éliminer toute discordance de solde ou perte de fonds sous haute concurrence, les comptes sont verrouillés lexicographiquement avec <code>SELECT ... FOR UPDATE</code> dans l\'ordre min(A, B) → max(A, B), prévenant les interblocages (deadlocks) par conception, et chaque bloc est scellé par un hachage SHA-256 immuable.',
+        footerTests: "CV Officiel Vérifié · Suite de 50 Tests Automatisés en Production (100% Validés)"
+      },
+      en: {
+        toolbarTitle: "👑 Mikel Irastorza · Lead Software Engineer & Systems Architect",
+        toolbarSub: "Engineering Profile · 44 Automated Production Tests Passing",
+        printLbl: "Print / PDF",
+        pdfLbl: "Official PDF",
+        qrLbl: "Mobile / QR",
+        portLbl: "Portfolio",
+        botLbl: "Quant Bot",
+        headerTitle: "Lead Software Engineer & Systems Architect · Concurrency, Backend & Applied AI",
+        metaLoc: "📍 <strong>Donostia / Gipuzkoa, Spain</strong> (Cross-Border France–Spain Mobility & Remote)",
+        metaLinkedin: "🔒 <strong>LinkedIn</strong>: Private / Confidential Mode (Live interactive proof of work on this platform)",
+        badgeEs: "🇪🇸 <strong>Spanish</strong> (Native)",
+        badgeFr: "🇫🇷 <strong>French</strong> (C1 · Full professional industrial & software engineering fluency)",
+        badgeEn: "🇬🇧 <strong>English</strong> (B2/C1 · Technical systems architecture & applied AI fluency)",
+        summary: '<strong>Senior software engineer and systems builder ("Project-First Builder")</strong>. Specialized in distributed backend architecture, low-latency concurrency and streaming engines, ACID double-entry transactional accounting, and hierarchical AI agent swarms. My unyielding technical rigor stems from physical industrial precision (operating robotic sheet-metal fabrication cells and CAD blueprints within ±0.2 mm tolerances at <strong>EPTA France</strong>, Hendaye), translating that same zero-defect standard into memory safety, deterministic data contracts, and automated testing (<strong>44 continuous production tests passing with zero errors</strong>).',
+        secProjectsTitle: "Flagship Production Projects (Software Engineering & Architecture)",
+        secProjectsTag: "Code & Systems First",
+        secExpTitle: "Professional Trajectory & Industrial Experience",
+        secExpTag: "2021 – 2026 (Verified Chronology)",
+        secSkillsTitle: "Production Technical Stack & Tooling",
+        secSkillsTag: "Pure Programmer Stack",
+        secInterviewTitle: "Engineering First Principles & Technical Defense",
+        secInterviewTag: "Engineering Rigor",
+        interview1: '<b>From Robotic Sheet-Metal Cells (EPTA) to Strict Software Contracts:</b> In industrial sheet-metal manufacturing, a 0.2 mm deviation in a CAD blueprint warps the piece or crashes the CNC punch tool. I translate that exact physical discipline into software data contracts: if an incoming type or payload violates the strict schema, it is rejected immediately before contaminating memory or the database.',
+        interview2: '<b>Inviolable ACID Double-Entry Accounting in Trading:</b> To eliminate balance discrepancies or loss of funds under peak concurrency, ledger accounts are locked lexicographically using <code>SELECT ... FOR UPDATE</code> in min(A, B) → max(A, B) order, provably eliminating deadlocks by design, and every block is sealed with an immutable SHA-256 hash chain.',
+        footerTests: "Official Verified CV · 50 Continuous Automated Production Tests Passing (100%)"
+      }
+    };
+
+    function switchCvLang(lang) {
+      if (!CV_I18N[lang]) lang = 'es';
+      try { localStorage.setItem('mikel_lang', lang); } catch(_) {}
+      const t = CV_I18N[lang];
+
+      const tt = document.getElementById('cv-toolbar-title');
+      if (tt) tt.textContent = t.toolbarTitle;
+      const ts = document.getElementById('cv-toolbar-sub');
+      if (ts) ts.textContent = t.toolbarSub;
+
+      const pLbl = document.getElementById('lbl-cv-print');
+      if (pLbl) pLbl.textContent = t.printLbl;
+      const pdfLbl = document.getElementById('lbl-cv-pdf');
+      if (pdfLbl) pdfLbl.textContent = t.pdfLbl;
+      const qrLbl = document.getElementById('lbl-cv-qr');
+      if (qrLbl) qrLbl.textContent = t.qrLbl;
+      const portLbl = document.getElementById('lbl-cv-portfolio');
+      if (portLbl) portLbl.textContent = t.portLbl;
+      const botLbl = document.getElementById('lbl-cv-bot');
+      if (botLbl) botLbl.textContent = t.botLbl;
+
+      const ht = document.getElementById('cv-header-title');
+      if (ht) ht.textContent = t.headerTitle;
+      const ml = document.getElementById('cv-meta-loc');
+      if (ml) ml.innerHTML = t.metaLoc;
+      const mli = document.getElementById('cv-meta-linkedin');
+      if (mli) mli.innerHTML = t.metaLinkedin;
+
+      const bEs = document.getElementById('cv-badge-es');
+      if (bEs) bEs.innerHTML = t.badgeEs;
+      const bFr = document.getElementById('cv-badge-fr');
+      if (bFr) bFr.innerHTML = t.badgeFr;
+      const bEn = document.getElementById('cv-badge-en');
+      if (bEn) bEn.innerHTML = t.badgeEn;
+
+      const sc = document.getElementById('cv-summary-card');
+      if (sc) sc.innerHTML = t.summary;
+
+      const spt = document.getElementById('cv-sec-title-projects');
+      if (spt) spt.textContent = t.secProjectsTitle;
+      const spg = document.getElementById('cv-sec-tag-projects');
+      if (spg) spg.textContent = t.secProjectsTag;
+
+      const set = document.getElementById('cv-sec-title-experience');
+      if (set) set.textContent = t.secExpTitle;
+      const seg = document.getElementById('cv-sec-tag-experience');
+      if (seg) seg.textContent = t.secExpTag;
+
+      const sst = document.getElementById('cv-sec-title-skills');
+      if (sst) sst.textContent = t.secSkillsTitle;
+      const ssg = document.getElementById('cv-sec-tag-skills');
+      if (ssg) ssg.textContent = t.secSkillsTag;
+
+      const sit = document.getElementById('cv-sec-title-interview');
+      if (sit) sit.textContent = t.secInterviewTitle;
+      const sig = document.getElementById('cv-sec-tag-interview');
+      if (sig) sig.textContent = t.secInterviewTag;
+
+      const iv1 = document.getElementById('cv-interview-1');
+      if (iv1) iv1.innerHTML = t.interview1;
+      const iv2 = document.getElementById('cv-interview-2');
+      if (iv2) iv2.innerHTML = t.interview2;
+
+      const ft = document.getElementById('cv-footer-tests');
+      if (ft) ft.textContent = t.footerTests;
+
+      ['es', 'fr', 'en'].forEach(l => {
+        const btn = document.getElementById('btn-cv-' + l);
+        if (btn) btn.classList.toggle('active', l === lang);
+      });
+      if (window.AuraAudio && window.AuraAudio.playNavClick) window.AuraAudio.playNavClick();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('mikel_lang') || 'es';
+      if (savedLang !== 'es') {
+        switchCvLang(savedLang);
+      }
+    });
+  </script>
 
   <!-- AuraIcons Interactive Engine & Navigation Dock -->
   <script src="/aura-nav-interactive.js"></script>
