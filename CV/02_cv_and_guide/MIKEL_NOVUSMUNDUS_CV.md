@@ -1,5 +1,5 @@
 # MIKEL IRASTORZA · DOSSIER CURRICULAR DE INGENIERÍA
-**Lead Software Engineer & Systems Architect · Concurrency, Backend & Applied AI**  
+**Junior Software & Data Engineer («Project-First Builder») · Concurrencia, Streaming & IA Aplicada**  
 📍 Donostia / Gipuzkoa, Spain | 💻 GitHub: [github.com/novomundus2-cmyk](https://github.com/novomundus2-cmyk) | ✉️ Email: mikel@novusmundus.com | 🌐 Portfolio: [http://127.0.0.1:8765/portfolio.html](http://127.0.0.1:8765/portfolio.html)  
 🌍 Idiomas: **Español (Nativo) · Français (C1 · Fluido profesional en fábrica y oficina en Francia) · English (B2/C1 · Fluido técnico en ingeniería de software e IA)**
 
@@ -7,9 +7,9 @@
 
 ## 1. PERFIL PROFESIONAL EJECUTIVO
 
-Ingeniero de software sénior y constructor de sistemas ("Project-First Builder") especializado en arquitectura de backend distribuido, motores de concurrencia y streaming de baja latencia, asentamiento contable ACID de doble entrada y enjambres jerárquicos de agentes IA.
+Ingeniero de software y datos junior («Project-First Builder») enfocado en pipelines de datos, streaming, backend distribuido y agentes de IA. Apenas he trabajado en empresas tecnológicas tradicionales; por eso me presento con total transparencia como Junior y dejo que mis proyectos de código real en producción hablen por mí.
 
-Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en **EPTA France**, Hendaye), trasladando esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y suites de tests automatizados (**44 tests sin fallos en producción**). Trayectoria real demostrable en Francia (**EPTA France** y desarrollo de software corporativo en **Bayonne**), consultoría técnica ferroviaria bilateral en **IRC** y banca comercial en **BBVA**.
+Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en **EPTA France**, Hendaye), trasladando esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y suites de tests automatizados (**44 tests sin fallos en producción**). Trayectoria real demostrable en Francia (**EPTA France** y desarrollo de software corporativo en **Bayonne**), banca comercial en **BBVA** y formación continua en la **Especialización Profesional en Data Engineering de Google Cloud (en curso / sin terminar)**.
 
 ---
 
@@ -65,12 +65,12 @@ Mi disciplina técnica y rigor sin concesiones nacen de la precisión industrial
 
 ---
 
-## 3. TRAYECTORIA LABORAL CRONOLÓGICA & RAÍCES INDUSTRIALES (100% VERÍDICA)
+## 3. ESTUDIOS, FORMACIÓN TÉCNICA Y TRAYECTORIA APLICADA
 
-- **Lead Software Engineer & Systems Architect — NovusMundus / Novus Capital (2025 – Actualidad):**
-  Dirección técnica y programación del motor institucional **Trading Core v3.0**, APIs de streaming y arquitectura de agentes con suite de **43 tests unitarios y de integración continuos** ejecutándose sin fallos. Implementación del sistema contable en doble entrada con firmas de bloque criptográficas SHA-256 en PostgreSQL 17 y Supabase RLS.
-- **Consultoría Comercial Técnica & Movilidad Ferroviaria PMR — IRC International Railway Consulting (España & Francia, 2026):**
-  Desarrollo de negocio técnico bilingüe (Francia–España) para proyectos de accesibilidad y movilidad para personas con movilidad reducida (PMR) en material rodante e infraestructuras. Negociación e interlocución técnica directa con oficinas de métodos, ingenieros de planta y fabricantes asegurando normativas técnicas europeas.
+- **Especialización Profesional en Data Engineering & Cloud Pipelines — Google Cloud & Coursera (Programa Online Oficial):**  
+  *2025 – Actualidad · En curso (Sin terminar / En progreso).* Formación online avanzada en BigQuery, Dataflow, Dataproc Serverless (Apache Spark), Cloud Composer (Airflow) y arquitecturas Lakehouse abiertas en GCP.
+- **Junior Software & Data Engineer («Project-First Builder») — NovusMundus / Novus Capital (Proyectos de Ingeniería Propios · 2025 – Actualidad):**  
+  Desarrollo y programación del motor **Trading Core v3.0**, APIs de streaming y arquitectura de agentes con suite de **44 tests unitarios y de integración continuos** ejecutándose sin fallos. Implementación del sistema contable en doble entrada con firmas de bloque criptográficas SHA-256 en PostgreSQL 17 y Supabase RLS.
 - **Desarrollador de Software y Aplicaciones Web — Empresa Tecnológica (Bayonne, Francia, 2023 – 2024 · ~2 años):**
   Desarrollo full-stack de arquitecturas web, integración de servicios backend, APIs REST y bases de datos relacionales en entorno corporativo francófono. Optimización de rendimiento en producción, resolución de incidencias en ciclo ágil y consolidación de fluidez técnica profesional en francés.
 - **Técnico de Fabricación, Células Robóticas & Conformado de Chapa (Tôlerie) — EPTA France (Hendaye, Francia, 2022 – 2023):**

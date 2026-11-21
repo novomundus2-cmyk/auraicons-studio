@@ -1,4 +1,4 @@
-# CURRICULUM VITAE — LEAD SOFTWARE ENGINEER & SYSTEMS ARCHITECT
+# CURRICULUM VITAE — JUNIOR SOFTWARE & DATA ENGINEER («PROJECT-FIRST BUILDER»)
 
 **MIKEL IRASTORZA**  
 📍 Donostia / Gipuzkoa, Spain • Movilidad transfronteriza España–Francia & Remoto  
@@ -9,9 +9,9 @@
 
 ## 1. RESUMEN PROFESIONAL EJECUTIVO (EXECUTIVE PROFILE)
 
-> **Lead Software Engineer & Systems Architect** con mentalidad de constructor técnico de principio a fin (*Project-First Builder*). Especializado en arquitectura backend distribuida, motores de concurrencia y streaming de baja latencia, asentamiento contable ACID en doble entrada y orquestación jerárquica de agentes de IA autónomos.
+> **Junior Software & Data Engineer («Project-First Builder»)**. Constructor técnico con honestidad absoluta en trayectoria profesional: apenas he trabajado en empresas tecnológicas tradicionales y dejo que mis proyectos de código real en producción hablen por mí.
 >
-> Mi disciplina y aversión al error nacen del entorno industrial físico (operación de células robotizadas de conformado de chapa e interpretación de planos CAD milimétricos con tolerancias de ±0.2 mm en **EPTA France**, Hendaye), trasladando esa misma tolerancia cero a la consistencia de memoria, contratos de datos deterministas y suites de testing automatizado (**44 tests unitarios y de integración continuos sin fallos en producción**). Trayectoria real contrastable en Francia (**EPTA France** y desarrollo de software corporativo en **Bayonne**), consultoría ferroviaria bilateral en **IRC** y banca comercial en **BBVA**.
+> Mi disciplina y aversión al error nacen del entorno industrial físico (operación de células robotizadas de conformado de chapa e interpretación de planos CAD milimétricos con tolerancias de ±0.2 mm en **EPTA France**, Hendaye), trasladando esa misma tolerancia cero a la consistencia de memoria, contratos de datos deterministas y suites de testing automatizado (**44 tests unitarios y de integración continuos sin fallos en producción**). Trayectoria real contrastable en Francia (**EPTA France** y desarrollo de software corporativo en **Bayonne**), banca comercial en **BBVA** y formación técnica continua en la **Especialización Profesional en Data Engineering de Google Cloud (en curso / sin terminar)**.
 
 ---
 
@@ -67,17 +67,17 @@
 
 ---
 
-## 3. EXPERIENCIA PROFESIONAL & RAÍCES INDUSTRIALES (100% VERÍDICA)
+## 3. ESTUDIOS, FORMACIÓN TÉCNICA Y TRAYECTORIA APLICADA
 
-### **Lead Software Engineer & Systems Architect** — NovusMundus / Novus Capital
+### **Especialización Profesional en Data Engineering & Cloud Pipelines** — Google Cloud & Coursera (Programa Online Oficial)
+*Periodo: 2025 – Actualidad · En curso (Sin terminar) | Formación Online Oficial*
+* Ingesta masiva de datos y procesamiento distribuido en Google Cloud: BigQuery, Dataflow, Dataproc Serverless (Apache Spark), Cloud Composer (Airflow) y Lakehouse abiertos con Apache Iceberg.
+* Optimización de costes, particionamiento y tolerancia a fallos en pipelines de datos cloud.
+
+### **Junior Software & Data Engineer («Project-First Builder»)** — NovusMundus / Novus Capital
 *Periodo: 2025 – Actualidad | Donostia / Gipuzkoa, España · Plataforma Propia*
-* Dirección técnica y programación del motor institucional **Trading Core v3.0**, APIs de streaming y arquitectura de agentes con suite de **44 tests unitarios y de integración continuos** ejecutándose sin fallos.
+* Programación y desarrollo del motor **Trading Core v3.0**, APIs de streaming y arquitectura de agentes con suite de **44 tests unitarios y de integración continuos** ejecutándose sin fallos.
 * Implementación del sistema contable en doble entrada con firmas de bloque criptográficas SHA-256 en PostgreSQL 17 y Supabase RLS.
-
-### **Consultoría Comercial Técnica & Movilidad Ferroviaria PMR** — IRC (International Railway Consulting)
-*Periodo: 2026 | España & Francia · Sector Ferroviario Industrial*
-* Desarrollo de negocio técnico bilingüe (Francia–España) para proyectos de accesibilidad y movilidad para personas con movilidad reducida (PMR) en material rodante e infraestructuras.
-* Negociación e interlocución técnica directa con oficinas de métodos, ingenieros de planta y fabricantes asegurando normativas técnicas europeas.
 
 ### **Desarrollador de Software y Aplicaciones Web** — Empresa Tecnológica
 *Periodo: 2023 – 2024 (~2 años) | Bayonne, Nouvelle-Aquitaine, Francia*

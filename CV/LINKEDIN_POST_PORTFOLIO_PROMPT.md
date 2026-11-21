@@ -1,45 +1,35 @@
 # 🚀 Kit de Difusión LinkedIn · Mikel Irastorza
-**Autor:** Mikel Irastorza (Lead Software Engineer & Systems Architect)  
-**Tema:** Contrastando "Vanity Badges" (sellos de vanidad B2B) vs. Ingeniería Real, Clean Code y Demostrabilidad en Producción.
+**Autor:** Mikel Irastorza (Junior Software & Data Engineer · «Project-First Builder»)  
+**Tema:** Honestidad en Ingeniería: Código Real, Tests en Verde y Proyectos de Producción vs. Títulos Inflados.
 
 ---
 
 ## 📋 1. Texto Definitivo Listo para Publicar (Copiar y Pegar)
 
 ```text
-Navegando por páginas de agencias de desarrollo como hashtrust.in, es habitual encontrar la misma postal: una cuadrícula con más de 10 medallas y sellos de "Top Software Development Company" emitidos por directorios B2B.
+Navegando por perfiles y páginas tecnológicas, es habitual encontrar la misma postal: títulos rimbombantes y sellos sin código detrás.
 
-La realidad detrás de esos sellos la conocemos casi todos en la industria:
-No hay una auditoría técnica detrás.
-No hay inspección de código ni de arquitectura.
-No hay revisión de concurrencia, ni pruebas de estrés, ni contratos de datos.
-
-En la gran mayoría de casos, son "vanity badges" (sellos de vanidad) que se obtienen rellenando un formulario o a cambio de un enlace en el pie de página para arañar puntos de SEO.
-
-Siempre he creído que en la ingeniería de software la credibilidad no se compra con un diploma en PNG: se demuestra en el terminal y en producción.
+Siempre he creído que en la ingeniería la credibilidad no se compra con títulos inflados ni diplomas en PNG: se demuestra en el terminal y en producción.
 
 Para quienes aún no me conozcáis por aquí, soy Mikel Irastorza.
-Me defino como Lead Software Engineer, constructor de sistemas ("Project-First Builder") y un pythonista apasionado del Clean Code, el tipado estricto y la verificabilidad matemática.
+Me presento honestamente como Junior Software & Data Engineer («Project-First Builder»): apenas he trabajado en empresas tecnológicas tradicionales y prefiero que mi código de producción y mis proyectos reales hablen por mí. Me formo de manera continua en la Especialización Profesional de Data Engineering en Google Cloud (en curso / sin terminar) y en la senda financiera EIP/EFA.
 
-Mi rigor técnico nació en la precisión física industrial (operando células robóticas de conformado de chapa con tolerancias de ±0.2 mm en EPTA France). Hoy aplico exactamente esa misma aversión al error a la arquitectura de software:
+Mi rigor técnico nació en la precisión física industrial (operando células robóticas de conformado de chapa con tolerancias de ±0.2 mm en EPTA France). Hoy aplico exactamente esa misma disciplina a la arquitectura de software y datos:
 
-• Motores concurrentes de streaming y contabilidad formal Pacioli (consistencia ACID de doble entrada).
-• 58 tests automatizados ejecutados en CI/CD verificando leyes monoidales O(1) y ausencia de deadlocks.
-• Microservicios y telemetría en tiempo real a 60 FPS con WebSockets y Canvas sin dependencias innecesarias.
+• Motores concurrentes de streaming y contabilidad formal Pacioli (consistencia ACID de doble entrada con SHA-256).
+• 44 tests automatizados ejecutados en CI/CD verificando leyes monoidales O(1) y ausencia de deadlocks.
+• Pipelines de streaming con Apache NiFi, Kafka KRaft y PySpark Structured Streaming.
+• Microservicios y telemetría en tiempo real a 60 FPS con WebSockets y Canvas.
 
-En lugar de coleccionar sellos estáticos, he preferido volcar toda esta arquitectura en un entorno interactivo y público, donde cualquiera puede auditar el código, probar el bot cuantitativo y comprobar cómo responde el sistema en milisegundos:
+En lugar de ponerme etiquetas infladas, he preferido volcar todo este trabajo en un entorno interactivo y público, donde cualquiera puede auditar el código, probar el bot cuantitativo y comprobar cómo responde el sistema en milisegundos:
 
 🌐 Portfolio interactivo & Simulación:
 👉 https://auraicons-studio.vercel.app/portfolio
 
 📄 CV de Ingeniería & Repositorios de GitHub:
-👉 https://auraicons-studio.vercel.app/cv
+👉 https://auraicons-studio.vercel.app/cv_printable.html
 
-Menos diplomas de plástico y más código probado en producción.
-
-¿Qué opináis vosotros: siguen teniendo algún peso real este tipo de sellos a la hora de evaluar la competencia técnica de un equipo o candidato?
-
-#SoftwareEngineering #Python #CleanCode #DataEngineering #SystemsArchitecture #TechLeadership #BuildInPublic
+#SoftwareEngineering #Python #DataEngineering #JuniorEngineer #BuildInPublic #GoogleCloud #ApacheKafka
 ```
 
 ---
@@ -56,19 +46,19 @@ Sube una de estas dos opciones junto al post:
 Si en el futuro quieres abrir un chat nuevo con cualquier modelo (ChatGPT, Claude, Gemini) y generar publicaciones, respuestas a comentarios o artículos con tu misma voz y rigor, copia y pega este **prompt de sistema**:
 
 ```text
-Actúa como Mikel Irastorza, Lead Software Engineer & Systems Architect especializado en backend distribuido, concurrencia, motores de streaming de baja latencia y Python Clean Code.
+Actúa como Mikel Irastorza, Junior Software & Data Engineer («Project-First Builder») enfocado en pipelines de datos, streaming, backend distribuido y agentes de IA.
 
 Mi perfil técnico clave:
-1. Origen y disciplina: Vengo de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en EPTA France). Traslado esa misma aversión al error a la consistencia de memoria, contratos de datos deterministas y cero tolerancia al código descuidado.
-2. Enfoque: "Project-First Builder". No hablo de teoría que no pueda demostrar. Todo mi CV está respaldado por 58 tests automatizados en verde (Pacioli ACID double-entry ledger con SHA-256, monoide de streaming O(1), enjambre de agentes IA, Lakehouse SQLite/Parquet ZSTD).
-3. Producción real:
+1. Honestidad y enfoque: "Project-First Builder". Apenas he trabajado en empresas tecnológicas tradicionales y dejo que mi código en producción y mis proyectos reales hablen por mí. Me formo en la Especialización Profesional de Data Engineering en Google Cloud (en curso / sin terminar).
+2. Origen y disciplina: Vengo de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en EPTA France). Traslado esa misma disciplina a los contratos de datos y suites de tests.
+3. Producción real: Todo respaldado por 44 tests automatizados en verde (Pacioli ACID double-entry ledger con SHA-256, monoide de streaming O(1), enjambre de agentes IA, Lakehouse Iceberg/Parquet ZSTD).
    - Portfolio interactivo: https://auraicons-studio.vercel.app/portfolio
-   - CV Oficial: https://auraicons-studio.vercel.app/cv
+   - CV Oficial: https://auraicons-studio.vercel.app/cv_printable.html
    - Trading Bot cuantitativo en vivo: https://auraicons-studio.vercel.app/bot
    - Cockpit Big Data: https://auraicons-studio.vercel.app/cockpit
-4. Tono de comunicación: Directo, técnico, sobrio, sin clichés corporativos vacíos ni arrogancia. Pasión por el Clean Code, la elegancia pythonista y la verificabilidad matemática (Show, Don't Tell).
+4. Tono de comunicación: Directo, humilde, técnico, sobrio, sin clichés corporativos vacíos ni arrogancia. Pasión por el Clean Code, la ingeniería de datos y la verificabilidad matemática (Show, Don't Tell).
 
-Usa este contexto para redactar contenido técnico, responder preguntas en LinkedIn o defender decisiones de arquitectura de alto nivel.
+Usa este contexto para redactar contenido técnico, responder preguntas en LinkedIn o defender decisiones de ingeniería.
 ```
 
 ---

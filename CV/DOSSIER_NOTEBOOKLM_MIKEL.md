@@ -1,19 +1,19 @@
 # DOSSIER MAESTRO PARA GEMINI NOTEBOOK (NOTEBOOKLM)
-## MIKEL · NOVUSMUNDUS — DATA & AI SYSTEMS ARCHITECT & PRODUCT BUILDER
+## MIKEL · NOVUSMUNDUS — JUNIOR SOFTWARE & DATA ENGINEER («PROJECT-FIRST BUILDER»)
 **Ubicación:** Donostia / Gipuzkoa, Spain  
 **GitHub:** github.com/novomundus2-cmyk  
-**Idiomas de Trabajo:** Español (Nativo) · Français (C1 Fluido profesional: Robótica en EPTA France Hendaye + ~2 años en Bayonne + Ventas técnicas industriales España-Francia) · English (Fluido técnico en ingeniería y documentación)  
-**Trayectoria y Enfoque:** 100% constructor autodidacta sin titulitis académica. Dominio técnico demostrado mediante sistemas en producción, proyectos reales de extremo a extremo, automatización, IA jerárquica y finanzas aplicadas.
+**Idiomas de Trabajo:** Español (Nativo) · Français (C1 Fluido profesional: Robótica en EPTA France Hendaye + ~2 años en Bayonne) · English (Fluido técnico en ingeniería y documentación)  
+**Trayectoria y Enfoque:** Constructor técnico junior («Project-First Builder»). Apenas he trabajado en empresas tradicionales; me presento con total honestidad como Junior y dejo que mis proyectos reales de código hablen por mí. Formación continua, estudios técnicos y 10 proyectos verificados con 44 tests.
 
 ---
 
 ## 1. RESUMEN EJECUTIVO Y PERFIL DE INGENIERO
-Constructor de software y arquitecto de sistemas de datos enfocado en pipelines de streaming en tiempo real, plataformas analíticas financieras, enjambres jerárquicos de agentes de inteligencia artificial y computación distribuida de alto rendimiento.
+Ingeniero de software y datos junior («Project-First Builder») enfocado en pipelines de streaming en tiempo real, plataformas analíticas financieras, enjambres jerárquicos de agentes de inteligencia artificial y computación distribuida de alto rendimiento.
 
 Todo mi conocimiento técnico está respaldado por código verificado en repositorios y arquitecturas funcionando:
 1. **Pipelines de Big Data Resilientes:** Ingesta con Apache NiFi y control de Backpressure, buses distribuidos con Apache Kafka en modo KRaft dimensionados con Teoría de Colas ($M/M/c$) y Ley de Little, procesamiento en micro-batches y streaming continuo con PySpark y Polars (motor Apache Arrow en Rust), y Lakehouses abiertos con Apache Iceberg (formato Parquet con compresión ZSTD y garantías transaccionales ACID).
 2. **Infraestructura Jerárquica de Agentes IA:** Orquestación de agentes con memoria compartida auditable en SQL (`ai_insights_registry`), roles especializados y balanceo de carga mediante *Work-Stealing* (manteniendo 1 a 2 tareas por agente para minimizar la latencia), combinando inferencia local (Ollama, RAG, embeddings y protocolo MCP) con modelos fundacionales en la nube (Gemini 2.5 Flash, TimesFM 2.0 y Antigravity SDK).
-3. **Validación Matemática y Algorítmica Senior:** Implementación de agregaciones algebraicas en una sola pasada asociativa con el *Monoide de Welford-Chan* (evitando cancelación catastrófica de coma flotante IEEE 754 con memoria $O(1)$) y escudos antifraude con *Mediana y MAD* (Desviación Absoluta Mediana) con un 50% de punto de ruptura, inmunes al efecto de enmascaramiento que sufren los modelos clásicos de media y varianza.
+3. **Validación Matemática y Algorítmica Rigurosa:** Implementación de agregaciones algebraicas en una sola pasada asociativa con el *Monoide de Welford-Chan* (evitando cancelación catastrófica de coma flotante IEEE 754 con memoria $O(1)$) y escudos antifraude con *Mediana y MAD* (Desviación Absoluta Mediana) con un 50% de punto de ruptura, inmunes al efecto de enmascaramiento que sufren los modelos clásicos de media y varianza.
 4. **Física Computacional y Simulación Energética:** Simulación de consumo eléctrico desde primeros principios físicos ($W \to kW \to kWh \to €$) con optimización en tuplas empaquetadas en C (`NamedTuple`) y resolución analítica exacta según tarifas contratadas.
 
 ---
@@ -155,18 +155,25 @@ $$P_{\text{media 24h}} = \frac{1\,030.85\text{ kWh}}{720\text{ h}} = 1.4318\text
 
 ---
 
-## 5. EXPERIENCIA PROFESIONAL REAL, IDIOMAS Y CULTURA DE NEGOCIO
+## 5. ESTUDIOS, FORMACIÓN TÉCNICA Y TRAYECTORIA APLICADA
+
+### 🎓 Formación Técnica & Cursos Especializados:
+* **Especialización Profesional en Data Engineering & Cloud Pipelines — Google Cloud & Coursera (Programa Online Oficial):**
+  *2025 – Actualidad · En curso (Sin terminar / En progreso).*
+  Ingesta masiva, procesamiento distribuido (BigQuery, Dataflow, Dataproc Serverless / Apache Spark), arquitecturas Lakehouse y optimización de costes y particionamiento en la nube.
+* **Senda Financiera EIP / EFA (European Investment Practitioner / Financial Advisor):**
+  Análisis fundamental, macroeconomía, carteras de inversión, matemáticas financieras y valoración de empresas.
+* **Formación Técnica Práctica Continua:**
+  Ingeniería de backend, arquitecturas de streaming (Kafka, NiFi, Spark, Iceberg), sistemas de agentes de IA (MCP, RAG, Ollama) y Python científico.
 
 ### 🌍 Idiomas de Trabajo:
 * **Español:** Nativo.
-* **Francés:** C1 / Fluido profesional. Demostrado trabajando en Francia en planta industrial en **EPTA France (Hendaye)** en células robóticas de conformado de chapa según planos técnicos, cerca de 2 años en desarrollo de software y aplicaciones web en **Bayonne (Francia)**, además de consultoría comercial técnica bilingüe en **IRC Railway** entre España y Francia.
-* **Inglés:** Fluido profesional en documentación técnica, diseño de arquitectura de datos y comunicación internacional.
+* **Francés:** C1 / Fluido profesional. Demostrado trabajando en Francia en planta industrial en **EPTA France (Hendaye)** en células robóticas de conformado de chapa según planos técnicos, además de cerca de 2 años en desarrollo de software y aplicaciones web en **Bayonne (Francia)**.
+* **Inglés:** Fluido en documentación técnica, diseño de arquitectura de datos y código.
 
-### 💼 Trayectoria Profesional Cronológica (100% Verídica):
-* **Lead Software Engineer & Systems Architect — NovusMundus / Novus Capital (2025 – Actualidad):**
-  Arquitectura del motor algorítmico institucional *Trading Core v3.0 Enterprise* con doble entrada contable Pacioli y sellado SHA-256. Despliegue de Lakehouse de streaming con Kafka KRaft, NiFi, PySpark e Iceberg. Orquestación de enjambres jerárquicos de 9–16 agentes IA (*Work-Stealing*) e integración con TensorFlow 2.22 Keras.
-* **Consultoría Comercial Técnica & Movilidad Ferroviaria PMR — IRC International Railway Consulting (España & Francia, 2026):**
-  Negociación comercial bilingüe, consultoría técnica de equipamiento de movilidad para personas con movilidad reducida (PMR) y coordinación con fabricantes e ingenieros de planta de ambos países.
+### 💼 Trayectoria y Práctica Real:
+* **Proyectos de Ingeniería Propios («Project-First Builder») — NovusMundus / Novus Capital:**
+  10 proyectos de software y datos en producción, 44 tests automatizados verificados sin fallos. Motor *Trading Core v3.0 Enterprise* con doble entrada contable Pacioli y sellado SHA-256. Despliegue de Lakehouse de streaming con Kafka KRaft, NiFi, PySpark e Iceberg. Orquestación de agentes IA (*Work-Stealing*).
 * **Desarrollo de Software / Web — Empresa Tecnológica (Bayonne, Francia, 2023 – 2024 · ~2 años):**
   Desarrollo de aplicaciones, maquetación de interfaces, entrega continua de software e integración de servicios trabajando en entorno completamente francófono.
 * **Técnico de Fabricación, Células Robóticas & Conformado de Chapa — EPTA France (Hendaye, Francia, 2022 – 2023):**
@@ -177,10 +184,6 @@ $$P_{\text{media 24h}} = \frac{1\,030.85\text{ kWh}}{720\text{ h}} = 1.4318\text
   - Coordinación operativa diaria en idioma francés técnico bajo estándares de seguridad y Lean Manufacturing (5S).
 * **Banca Comercial & Asesoramiento Financiero — BBVA (España, 2021 – 2022 · ~1 año):**
   Gestión directa de clientes, análisis de riesgos y necesidades operativas, consolidando una visión financiera práctica que hoy nutre la plataforma Novus Capital.
-
-### 🎓 Formación Continua Práctica:
-* Cursos especializados en la senda **EIP / EFA** (European Investment Practitioner / Financial Advisor), análisis fundamental y valoración de empresas.
-* Formación autodidacta intensiva en Ingeniería de Datos (Kafka, NiFi, Spark, Iceberg), Sistemas de Agentes de IA (MCP, RAG, Ollama) y Python Científico.
 
 ---
 

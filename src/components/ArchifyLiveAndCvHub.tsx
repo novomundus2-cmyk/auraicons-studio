@@ -903,13 +903,16 @@ Constructor técnico autodidacta enfocado en ingeniería backend, sistemas jerá
 - Proyecto 4 · Archify Streaming Lakehouse, Clúster Multi-PC LAN & AuraIcons Studio:
   Conocimiento aplicado -> Apache NiFi (Backpressure), Apache Kafka (KRaft), PySpark Structured Streaming, Apache Iceberg (Parquet ZSTD), BigQuery (DTS & Property Graph), Docker, Linux, Git/GitHub, Servidor Multi-PC LAN (0.0.0.0:8765) con espejo NAS RAID y UX/UI a 60 FPS con Fraccionamiento Cognitivo.
 
-## 3. IDIOMAS, CURSOS ESPECIALIZADOS Y TRAYECTORIA REAL
-- Idiomas: Español (Nativo) · Français (Fluido profesional: 2 años de desarrollo software/web en Bayonne, Francia + proyectos España-Francia) · English (Fluido en aprendizaje técnico, documentación e ingeniería).
-- Cursos y Formación Continua: Cursos especializados en Ingeniería de Software, IA/Agentes, Arquitectura de Datos y Finanzas/Mercados (senda EIP/EFA, valoración de activos y macroeconomía). Aprendizaje 100% práctico basado en proyectos.
-- Experiencia Real de Producto, Software y Negocio:
-  * Software / Web Development — Empresa tecnológica en Bayonne, Francia (~2 años)
-  * International Sales / PMR Mobility Equipment — IRC International Railway Consulting, España & Francia (2026)
-  * Commercial Banking — BBVA (~1 año)`;
+## 3. IDIOMAS, FORMACIÓN CONTINUA Y ESTUDIOS TÉCNICOS
+- Idiomas: Español (Nativo) · Français (Fluido profesional: 2 años en Bayonne, Francia + EPTA France) · English (Documentación técnica y código).
+- Formación Técnica & Cursos Especializados:
+  * Especialización Profesional en Data Engineering & Cloud Pipelines — Google Cloud & Coursera (2025 – Actualidad · En curso / Sin terminar)
+  * Cursos Prácticos de Ingeniería Backend, Sistemas de IA (Ollama, RAG, MCP), Python Científico y Mercados Financieros (senda EIP/EFA).
+- Trayectoria y Práctica:
+  * Proyectos de Ingeniería Propios («Project-First Builder») — NovusMundus / Novus Capital (10 proyectos en producción, 44 tests verificados)
+  * Software / Web Development — Bayonne, Francia (~2 años)
+  * Commercial Banking — BBVA (~1 año)
+  * Robótica Industrial de Chapa — EPTA France (Hendaye)`;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(md);
     }
@@ -2085,7 +2088,7 @@ Constructor técnico autodidacta enfocado en ingeniería backend, sistemas jerá
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                 MIKEL <span className="text-sky-400 font-light">·</span>{' '}
                 <span className="text-xl sm:text-2xl text-emerald-400 font-bold">
-                  Software Engineer · Backend &amp; AI Systems · Product Builder
+                  Junior Software &amp; Data Engineer («Project-First Builder»)
                 </span>
               </h2>
               <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-300 font-medium mt-2">
@@ -2101,7 +2104,7 @@ Constructor técnico autodidacta enfocado en ingeniería backend, sistemas jerá
                 </a>
                 <span>•</span>
                 <span className="text-amber-300 font-bold">
-                  🌍 Idiomas: Español (Nativo) · Français (Bayonne &amp; IRC) · English (Técnico)
+                  🌍 Idiomas: Español (Nativo) · Français (Bayonne &amp; EPTA) · English (Técnico)
                 </span>
               </div>
             </div>
@@ -2436,14 +2439,18 @@ Constructor técnico autodidacta enfocado en ingeniería backend, sistemas jerá
               <div className="border-l-2 border-emerald-500 pl-3.5">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-xs sm:text-sm font-extrabold text-white">
-                    International Sales / PMR Mobility Equipment — IRC International Railway Consulting
+                    {cvLang === 'en'
+                      ? 'Professional Data Engineering & Cloud Pipelines Specialization — Google Cloud & Coursera'
+                      : 'Especialización Profesional en Data Engineering & Cloud Pipelines — Google Cloud & Coursera'}
                   </span>
-                  <span className="text-[11px] font-mono text-emerald-400 shrink-0">España &amp; Francia · 2026</span>
+                  <span className="text-[11px] font-mono text-emerald-400 shrink-0">
+                    {cvLang === 'en' ? '2025 – Present · In Progress' : '2025 – Actualidad · En curso (Sin terminar)'}
+                  </span>
                 </div>
                 <p className="text-xs text-slate-300 mt-1">
                   {cvLang === 'en'
-                    ? 'Commercial development for Spain and France in technical railway mobility equipment (PMR) and components. Client analysis, account development, technical communication and coordination with industrial customers.'
-                    : 'Desarrollo comercial entre España y Francia en equipamiento técnico de movilidad ferroviaria (PMR) y componentes. Análisis de clientes, comunicación técnica bilingüe y coordinación con industria.'}
+                    ? 'Official online specialization in scalable data pipelines: BigQuery, Dataflow, Dataproc Serverless (Spark), Cloud Composer (Airflow) and open Lakehouse architectures on Google Cloud.'
+                    : 'Programa online oficial en ingeniería de datos: BigQuery, Dataflow, Dataproc Serverless (Spark), Cloud Composer (Airflow) y arquitecturas Lakehouse en Google Cloud.'}
                 </p>
               </div>
 

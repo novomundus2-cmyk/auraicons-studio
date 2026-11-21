@@ -1,5 +1,5 @@
 # Núcleo de Ingeniería BigQuery & Data Autocleaning
-### Mikel Irastorza · Lead Systems Architect & Big Data Engineer (EFA)
+### Mikel Irastorza · Junior Software & Data Engineer («Project-First Builder»)
 **Agente Especializado Asignado**: `EKC - Josué` (Cloud SQL, BigQuery & Databricks Lead)
 
 Este módulo implementa las tres directivas oficiales de Google Cloud Data Agent Kit:
