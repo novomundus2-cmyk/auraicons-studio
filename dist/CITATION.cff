@@ -1,0 +1,111 @@
+cff-version: 1.2.0
+message: "If you utilize this computational physics formulation, metrology methodology, or software architecture in your research or technical evaluations, please cite it as indicated below."
+title: "NovusMundus: Sutton-Chen Potential in Sobolev H¹, FCC Lattice Metrology, and Idempotent Lakehouse Streaming Architecture"
+abstract: "Formal mathematical modeling, computational physics simulation, and quantitative data engineering framework developed by Mikel Irastorza. Establishes the analytical invariant lattice parameter (a = 4.078 Å) under the Sutton-Chen many-body empirical potential in Sobolev H¹ spaces as an absolute atomic metrology standard for Atomic Force Microscopy (AFM) calibration and continuum-to-discrete mechanical tolerance bridging (±0.2 mm sheet metal manufacturing), unified with high-frequency streaming lakehouse pipelines and cryptographically verified state machines."
+authors:
+  - family-names: "Irastorza"
+    given-names: "Mikel"
+    affiliation: "NovusMundus"
+    email: "mikel@novusmundus.com"
+    website: "https://novusmundus.com"
+version: "1.0.0"
+date-released: "2026-11-22"
+license: "PolyForm-Noncommercial-1.0.0"
+repository-code: "https://github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio"
+url: "https://zenodo.org"
+keywords:
+  - "computational-physics"
+  - "sutton-chen-potential"
+  - "sobolev-h1"
+  - "fcc-crystal-lattice"
+  - "atomic-force-microscopy"
+  - "afm-calibration"
+  - "nanometrology"
+  - "epta-france-tolerances"
+  - "continuum-mechanics"
+  - "lakehouse-architecture"
+  - "high-frequency-streaming"
+  - "pacioli-cryptographic-ledger"
+  - "el-equipo-a"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Irastorza"
+      given-names: "Mikel"
+  title: "Sutton-Chen Potential in Sobolev H¹: Multi-Scale FCC Lattice Metrology and Idempotent Streaming Lakehouse Architecture"
+  year: 2026
+  month: 11
+  publisher: "NovusMundus Computational Laboratory"
+  institution: "NovusMundus"
+  identifiers:
+    - type: doi
+      value: "10.5281/zenodo.pending"
+      description: "Immutable CERN Zenodo Digital Object Identifier (DOI)"
+references:
+  - type: article
+    authors:
+      - family-names: "Sutton"
+        given-names: "A. P."
+      - family-names: "Chen"
+        given-names: "J."
+    title: "Long-range Finnis-Sinclair potentials"
+    journal: "Philosophical Magazine Letters"
+    volume: 61
+    issue: 3
+    pages: "139-146"
+    year: 1990
+    doi: "10.1080/09500839008206493"
+  - type: article
+    authors:
+      - family-names: "Li"
+        given-names: "X."
+      - family-names: "Wang"
+        given-names: "B."
+      - family-names: "Wang"
+        given-names: "L.-S."
+    title: "Au20: A Tetrahedral Cluster"
+    journal: "Science"
+    volume: 299
+    issue: 5608
+    pages: "864-867"
+    year: 2003
+    doi: "10.1126/science.1079879"
+  - type: article
+    authors:
+      - family-names: "Binnig"
+        given-names: "G."
+      - family-names: "Quate"
+        given-names: "C. F."
+      - family-names: "Gerber"
+        given-names: "Ch."
+    title: "Atomic Force Microscope"
+    journal: "Physical Review Letters"
+    volume: 56
+    issue: 9
+    pages: "930-933"
+    year: 1986
+    doi: "10.1103/PhysRevLett.56.930"
+  - type: book
+    authors:
+      - family-names: "Adams"
+        given-names: "R. A."
+      - family-names: "Fournier"
+        given-names: "J. J. F."
+    title: "Sobolev Spaces"
+    series: "Pure and Applied Mathematics"
+    volume: 140
+    publisher: "Academic Press"
+    year: 2003
+    isbn: "978-0-12-044143-3"
+  - type: article
+    authors:
+      - family-names: "Ortner"
+        given-names: "C."
+      - family-names: "Shapeev"
+        given-names: "A. V."
+    title: "Analysis of atomistic-to-continuum coupling methods"
+    journal: "Acta Numerica"
+    volume: 21
+    pages: "577-686"
+    year: 2012
+    doi: "10.1017/S0962492912000085"

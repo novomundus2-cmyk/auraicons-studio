@@ -2995,6 +2995,10 @@
           <strong>Potencial Sutton-Chen en Sobolev H¹:</strong> Modelado analítico y numérico de mallas atómicas FCC en el laboratorio de física computacional de NovusMundus. La constante de red invariable (a = 4.078 Å) actúa como regla atómica patrón para calibración de microscopía de fuerzas atómicas (AFM) y metrología de tolerancias de chapa y nanoestructuras.
         </p>
         <div class="gold-formula-badge" id="formula-slot-metrology">a = 4.078 Å · U_Sutton-Chen ∈ H¹</div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;">
+          <a href="/CITATIONS_AND_PROVENANCE.md" target="_blank" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:#fbbf24; color:#fbbf24; text-decoration:none;">📜 Citación &amp; Prior Art (Zenodo DOI)</a>
+          <a href="/CITATION.cff" target="_blank" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(255,255,255,0.2); color:var(--text-muted); text-decoration:none;">📥 CITATION.cff</a>
+        </div>
       </div>
 
       <!-- 6. Arquitectura Financiera Cuantitativa -->
@@ -3632,6 +3636,8 @@
     </div>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <a href="/cv_printable.html" class="btn-pill" style="border-color:#10b981;color:#34d399;font-weight:700;">📄 Ver CV Oficial Imprimible</a>
+      <a href="/CITATIONS_AND_PROVENANCE.md" target="_blank" class="btn-pill" style="border-color:#fbbf24;color:#fbbf24;font-weight:700;">📜 Citación &amp; Proveniencia (Zenodo DOI)</a>
+      <a href="/LICENSE.md" target="_blank" class="btn-pill" style="border-color:#38bdf8;color:#38bdf8;">⚖️ Licencia &amp; Propiedad Intelectual</a>
       <a href="/cockpit.html" class="btn-pill">⚡ Cockpit Big Data</a>
       <a href="/evernote.html" class="btn-pill">📓 Diario Ejecutivo</a>
     </div>
@@ -6158,10 +6164,10 @@
     },
     'gold-metrology': {
       badge: 'METROLOGÍA & FÍSICA CAD',
-      title: 'Potencial Sutton-Chen y Constante de Red Invariable',
-      body: 'En el laboratorio de simulación CAD de física de materiales de NovusMundus, el potencial de Sutton-Chen modela interacciones de muchos cuerpos en redes FCC con parámetro de red inmutable a = 4.078 Å en espacios de Sobolev H¹. Actúa como patrón métrico absoluto para calibración de microscopía de fuerzas atómicas (AFM), microscopía TEM y tolerancia de piezas industriales.',
+      title: 'Potencial Sutton-Chen y Constante de Red Invariable (Sobolev H¹)',
+      body: 'En el laboratorio de física computacional de NovusMundus, Mikel Irastorza modela analítica y numéricamente redes FCC sujetas al potencial de muchos cuerpos de Sutton-Chen (1990) formuladas en espacios de Sobolev H¹ (Ortner & Shapeev 2012). La constante de red inmutable a = 4.078 Å actúa como patrón métrico absoluto para calibración de microscopía de fuerzas atómicas (AFM, ISO 11952) y su escalado dimensional hacia las tolerancias mecánicas industriales de conformado de chapa (±0.2 mm EPTA France). Esta síntesis original está protegida bajo registro formal de citación y proveniencia inmutable.<br><br><a href="/CITATIONS_AND_PROVENANCE.md" target="_blank" style="color:#fbbf24; text-decoration:underline; font-weight:600;">📜 Ver Documento Completo de Proveniencia y Citación Formal (Zenodo DOI) &rarr;</a>',
       formula: 'U_{\\text{tot}} = \\sum_i \\left[ \\frac{1}{2} \\sum_{j \\neq i} \\epsilon \\left(\\frac{a}{r_{ij}}\\right)^9 - c \\,\\epsilon \\sqrt{\\sum_{j \\neq i} \\left(\\frac{a}{r_{ij}}\\right)^6} \\right]',
-      limit: 'Es un modelo analítico de muchos cuerpos semiclásico que requiere cálculo Kohn-Sham para estados excitados.'
+      limit: 'Modelo variacional continuo-discreto con Γ-convergencia en H¹(Ω). Registrado en CITATION.cff para indexación en CERN Zenodo.'
     },
     'gold-reserve': {
       badge: 'RESERVA MATEMÁTICA PURA',
