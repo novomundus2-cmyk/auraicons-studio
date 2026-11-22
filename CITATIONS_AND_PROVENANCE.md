@@ -3,7 +3,7 @@
 **Autor Principal e Investigador:** Mikel Irastorza  
 **Afiliación:** NovusMundus — Computational Physics & Quantitative Engineering Laboratory  
 **Fecha de Registro:** 22 de Noviembre de 2026  
-**Identificador DOI (CERN / Zenodo):** `10.5281/zenodo.pending`  
+**Identificador DOI (CERN / Zenodo):** `10.5281/zenodo.24440204`  
 **Repositorio Oficial:** [github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio](https://github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio)  
 **Licencia:** PolyForm Noncommercial 1.0.0 (Código) / CC BY-NC-ND 4.0 (Teoría y Documentación)
 
@@ -113,16 +113,16 @@ Mikel Irastorza reconoce y cita formalmente los siguientes trabajos seminales en
   volume    = {1},
   number    = {1},
   pages     = {1--18},
-  doi       = {10.5281/zenodo.pending},
+  doi       = {10.5281/zenodo.24440204},
   url       = {https://github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio}
 }
 ```
 
 ### Formato APA (7ª Edición)
-> Irastorza, M. (2026). *NovusMundus: Potencial Sutton-Chen en Sobolev H¹, Metrología de Redes FCC y Arquitectura Lakehouse Idempotente* (Versión 1.0.0) [Software y Documentación de Investigación]. NovusMundus / Zenodo. https://doi.org/10.5281/zenodo.pending
+> Irastorza, M. (2026). *NovusMundus: Potencial Sutton-Chen en Sobolev H¹, Metrología de Redes FCC y Arquitectura Lakehouse Idempotente* (Versión 1.0.0) [Software y Documentación de Investigación]. NovusMundus / Zenodo. https://doi.org/10.5281/zenodo.24440204
 
 ### Formato IEEE
-> M. Irastorza, "NovusMundus: Potencial Sutton-Chen en Sobolev H¹, Metrología de Redes FCC y Arquitectura Lakehouse Idempotente," NovusMundus Computational Laboratory, Repositorio de Investigación v1.0.0, Nov. 2026. DOI: 10.5281/zenodo.pending.
+> M. Irastorza, "NovusMundus: Potencial Sutton-Chen en Sobolev H¹, Metrología de Redes FCC y Arquitectura Lakehouse Idempotente," NovusMundus Computational Laboratory, Repositorio de Investigación v1.0.0, Nov. 2026. DOI: 10.5281/zenodo.24440204.
 
 ---
 
