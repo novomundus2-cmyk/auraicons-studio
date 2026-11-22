@@ -5,13 +5,13 @@ abstract: "Formal mathematical modeling, computational physics simulation, and q
 authors:
   - family-names: "Irastorza"
     given-names: "Mikel"
-    affiliation: "NovusMundus"
+    affiliation: "NovusLattice"
     email: "novomundus2@gmail.com"
     website: "https://novusmundus.com"
 version: "1.0.0"
 date-released: "2026-11-22"
 license: "PolyForm-Noncommercial-1.0.0"
-repository-code: "https://github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio"
+repository-code: "https://github.com/novomundus2-cmyk/portfolio-mikel"
 url: "https://zenodo.org"
 keywords:
   - "computational-physics"
