@@ -431,7 +431,7 @@
     <div class="cover-page">
       <div class="cover-header">
         <span class="cover-tag">Monografía Técnica Oficial</span>
-        <svg width="240" height="200" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="240" height="225" viewBox="0 0 320 295" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- Gradiente de Oro Metálico -->
     <linearGradient id="goldMesh" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -503,8 +503,12 @@
   <circle cx="160" cy="195" r="8.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="2"/>
 
   <!-- Texto descriptor del cubo -->
-  <text x="160" y="248" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" letter-spacing="1.5">
+  <text x="160" y="244" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" letter-spacing="1.5">
     FCC a₀ = 4.078 Å · Au₂₀ Td
+  </text>
+  <rect x="40" y="258" width="240" height="26" rx="4" fill="#2a2016" stroke="#d97706" stroke-width="1"/>
+  <text x="160" y="275" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#fef08a" letter-spacing="1">
+    E_NL = argmin ∫_Ω W_SC(∇u, a) dΩ
   </text>
 </svg>
         <h1 class="cover-title">NOVUSLATTICE</h1>
@@ -595,7 +599,7 @@
       <p>La cohesión energética de la red metálica se define mediante la combinación de un término repulsivo de corto alcance y un término atractivo de muchos cuerpos basado en la densidad electrónica local:</p>
       
       <div class="formula-display">
-U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
+E_NL = U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
 ρ_i = Σ_{j≠i} (a / r_ij)^m
       </div>
       <p class="formula-desc">Donde ε es el factor de energía cohesiva (eV), a es la constante de red de equilibrio (4.078 Å para oro Au; 4.049 Å para aluminio Al), n y m son exponentes de alcance (n=10, m=8 para Au; n=9, m=6 para Ni), c es el parámetro de acoplamiento de muchos cuerpos y r_ij es la distancia interatómica.</p>

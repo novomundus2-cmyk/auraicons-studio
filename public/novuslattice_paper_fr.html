@@ -431,7 +431,7 @@
     <div class="cover-page">
       <div class="cover-header">
         <span class="cover-tag">Monographie Technique Officielle</span>
-        <svg width="240" height="200" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="240" height="225" viewBox="0 0 320 295" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- Gradiente de Oro Metálico -->
     <linearGradient id="goldMesh" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -503,8 +503,12 @@
   <circle cx="160" cy="195" r="8.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="2"/>
 
   <!-- Texto descriptor del cubo -->
-  <text x="160" y="248" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" letter-spacing="1.5">
+  <text x="160" y="244" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" letter-spacing="1.5">
     FCC a₀ = 4.078 Å · Au₂₀ Td
+  </text>
+  <rect x="40" y="258" width="240" height="26" rx="4" fill="#2a2016" stroke="#d97706" stroke-width="1"/>
+  <text x="160" y="275" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#fef08a" letter-spacing="1">
+    E_NL = argmin ∫_Ω W_SC(∇u, a) dΩ
   </text>
 </svg>
         <h1 class="cover-title">NOVUSLATTICE</h1>
@@ -595,7 +599,7 @@
       <p>La cohésion énergétique du réseau métallique est établie en associant une répulsion de paire à courte portée et une attraction à plusieurs corps issue de la densité électronique locale :</p>
       
       <div class="formula-display">
-U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
+E_NL = U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
 ρ_i = Σ_{j≠i} (a / r_ij)^m
       </div>
       <p class="formula-desc">Où ε est le facteur d'échelle énergétique (eV), a est le paramètre réticulaire d'équilibre (4,078 Å pour Au ; 4,049 Å pour Al), n et m sont des exposants entiers de portée (n=10, m=8 pour Au ; n=9, m=6 pour Ni), c est le coefficient sans dimension de couplage à plusieurs corps, et r_ij est la distance interatomique.</p>
