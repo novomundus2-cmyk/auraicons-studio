@@ -2104,15 +2104,19 @@
         </ul>
       </div>
 
-      <div style="margin-bottom:18px;">
+      <div style="margin-bottom:18px; background:rgba(2,132,199,0.04); border:1px solid rgba(2,132,199,0.18); border-radius:12px; padding:12px 16px;">
         <div style="display:flex; justify-content:space-between; align-items:baseline; font-size:15px; font-weight:700; color:#0f172a; flex-wrap:wrap; gap:6px;">
           <span><strong style="color:#0369a1;">Especialización Profesional en Data Engineering &amp; Cloud Pipelines</strong> — Google Cloud &amp; Coursera</span>
-          <span style="font-size:13px; color:#d97706; font-weight:800;">2025 – Actualidad · En curso (Sin terminar)</span>
+          <span style="font-size:12px; color:#d97706; font-weight:800; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:999px;">2025 – Actualidad · En curso (Sin terminar)</span>
         </div>
-        <ul style="font-size:13.5px; color:#334155; margin:6px 0 0 0; padding-left:20px; line-height:1.6;">
-          <li>Formación intensiva online en arquitectura de datos moderna, streaming distribuido con <strong>PySpark</strong>, mensajería con <strong>Apache Kafka</strong> y almacenamiento analítico en <strong>BigQuery &amp; Apache Iceberg</strong>.</li>
-          <li>Enfoque práctico: todos los laboratorios y conceptos se implementan y testean directamente en el código de producción de este ecosistema.</li>
-        </ul>
+        <details style="margin-top:8px; cursor:pointer;" open>
+          <summary style="font-size:13px; font-weight:700; color:#0284c7; list-style:none;">📘 Ver Desglose de Módulos Cloud &amp; Código Práctico ▾</summary>
+          <ul style="font-size:13px; color:#334155; margin:8px 0 0 0; padding-left:18px; line-height:1.6;">
+            <li><strong>Módulos Oficiales Google Cloud:</strong> Data Warehousing con <em>BigQuery</em> (clustering &amp; particionamiento), streaming en tiempo real con <em>Dataflow &amp; Apache Beam</em>, procesamiento distribuido con <em>Dataproc Serverless (PySpark)</em> y orquestación con <em>Cloud Composer (Airflow)</em>.</li>
+            <li><strong>Lakehouses Abiertos:</strong> Almacenamiento analítico en <em>Apache Iceberg</em> con compresión Parquet ZSTD y garantías ACID.</li>
+            <li><strong>Código en Ejecución:</strong> Aplicación directa en los 10 proyectos de este ecosistema con 44 tests verificados sin caídas por OutOfMemory.</li>
+          </ul>
+        </details>
       </div>
 
       <div style="margin-bottom:18px;">

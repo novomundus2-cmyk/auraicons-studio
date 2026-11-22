@@ -427,6 +427,92 @@
       color: var(--slate-900);
     }
 
+    /* Interactive Dropdowns inside Experience / Education */
+    .exp-item-interactive {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3.5px solid var(--primary);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      transition: all 0.2s ease;
+    }
+    .exp-item-interactive:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .exp-details-block {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      margin-top: 6px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .exp-details-block[open] {
+      border-color: #38bdf8;
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.08);
+    }
+    .exp-details-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 10px;
+      background: #f1f5f9;
+      cursor: pointer;
+      user-select: none;
+      font-size: 8.2pt;
+      font-weight: 700;
+      color: #0f172a;
+      list-style: none;
+    }
+    .exp-details-summary::-webkit-details-marker {
+      display: none;
+    }
+    .exp-details-summary:hover {
+      background: #e2e8f0;
+      color: var(--primary);
+    }
+    .exp-details-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.2pt;
+      background: #e0f2fe;
+      color: #0284c7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .exp-details-body {
+      padding: 6px 10px 8px;
+      font-size: 8pt;
+      color: #334155;
+      line-height: 1.35;
+    }
+    .exp-modules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin-top: 3px;
+    }
+    .exp-mod-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 7.7pt;
+      line-height: 1.25;
+    }
+    .exp-mod-card strong {
+      color: #0284c7;
+    }
+    .exp-mod-card em {
+      font-style: normal;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
     /* Skills Grid */
     .skills-grid {
       display: grid;
@@ -675,6 +761,40 @@
         background: #f8fafc !important;
         border-color: #cbd5e1 !important;
       }
+      .exp-item-interactive {
+        background: transparent !important;
+        border: none !important;
+        border-left: 2.5px solid #0284c7 !important;
+        padding: 0 0 0 8px !important;
+        margin-bottom: 7px !important;
+      }
+      .exp-details-block {
+        border: none !important;
+        box-shadow: none !important;
+        margin-top: 2px !important;
+      }
+      .exp-details-summary {
+        background: transparent !important;
+        padding: 0 !important;
+        cursor: default !important;
+        font-size: 8.2pt !important;
+      }
+      .exp-details-tag {
+        display: none !important;
+      }
+      .exp-details-body {
+        padding: 2px 0 !important;
+      }
+      .exp-modules-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 3px !important;
+      }
+      .exp-mod-card {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+        font-size: 7.4pt !important;
+        padding: 3px 5px !important;
+      }
       .page-break {
         page-break-before: always;
         break-before: page;
@@ -761,7 +881,34 @@
     <div class="summary-card" id="cv-summary-card">
       <strong>Ingeniero de software y datos junior («Project-First Builder»)</strong>. Con trayectoria inicial en el mercado laboral formal («apenas he trabajado en empleos corporativos tradicionales; prefiero que mi código de producción demuestre lo que sé hacer»), compenso mi juventud profesional con una disciplina técnica implacable nacida de la precisión industrial física (operación de células robóticas de conformado de chapa y planos CAD con tolerancias de ±0.2 mm en <strong>EPTA France</strong>, Hendaye). He volcado esa misma aversión al error en la construcción de sistemas reales: motores concurrentes, pipelines de streaming, contabilidad ACID y agentes IA (<strong>44 tests verificados en producción</strong>).
     </div>
-    </div>
+
+    <!-- Desplegable Interactivo de Entrada: Guía de Competencias Junior & Hoja de Ruta -->
+    <details class="no-print" style="margin-top:6px; margin-bottom:12px; background:linear-gradient(135deg, rgba(2,132,199,0.06), rgba(16,185,129,0.05)); border:1px solid rgba(2,132,199,0.22); border-radius:8px; overflow:hidden;">
+      <summary style="display:flex; justify-content:space-between; align-items:center; padding:7px 12px; cursor:pointer; font-size:8.3pt; font-weight:700; color:#0284c7; list-style:none;">
+        <span style="display:flex; align-items:center; gap:6px;">
+          <span>💡</span> <span>Entrada Rápida: Desglose de Competencias, Cursos y Hoja de Ruta Junior</span>
+        </span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:7.5pt; background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:999px;">
+          Desplegar Hoja de Ruta ▾
+        </span>
+      </summary>
+      <div style="padding:10px 14px 12px; font-size:8pt; color:#334155; line-height:1.4; border-top:1px solid rgba(2,132,199,0.12); background:#fff;">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:7px 9px;">
+            <b style="color:#0284c7; display:block; margin-bottom:3px;">☁️ Estudios Data Engineer:</b>
+            Especialización online en Google Cloud (en curso / sin terminar): BigQuery, Dataproc Serverless (PySpark), Dataflow y Cloud Composer.
+          </div>
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:7px 9px;">
+            <b style="color:#059669; display:block; margin-bottom:3px;">🚀 Proyectos en Producción:</b>
+            10 proyectos probados de extremo a extremo con 44 tests unitarios y de integración continuos sin fallos.
+          </div>
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:7px 9px;">
+            <b style="color:#d97706; display:block; margin-bottom:3px;">🌍 Idiomas &amp; Precisión:</b>
+            Español nativo, Francés C1 profesional (Bayonne &amp; EPTA France robótica) e Inglés técnico fluido.
+          </div>
+        </div>
+      </div>
+    </details>
 
     <!-- PROYECTOS INSIGNIA EN PRODUCCIÓN (PURO PROGRAMADOR) -->
     <section>
@@ -955,20 +1102,60 @@
           </ul>
         </div>
 
-        <!-- 2. CURSO ONLINE DATA ENGINEER (EN CURSO / SIN TERMINAR) -->
-        <div class="exp-item">
+        <!-- 2. CURSO ONLINE DATA ENGINEER (EN CURSO / SIN TERMINAR) CON DESPLEGABLES -->
+        <div class="exp-item exp-item-interactive">
           <div class="exp-header">
             <div>
-              <span class="exp-role" style="color:var(--accent);">Especialización Profesional en Data Engineering &amp; Cloud Pipelines</span> —
+              <span class="exp-role" style="color:var(--primary-dark); font-weight:800;">Especialización Profesional en Data Engineering &amp; Cloud Pipelines</span> —
               <span class="exp-company">Google Cloud &amp; Coursera (Programa Online Oficial)</span>
             </div>
-            <div class="exp-date" style="color:#f59e0b; font-weight:800;">2025 – ACTUALIDAD · EN CURSO (SIN TERMINAR)</div>
+            <div class="exp-date" style="color:#d97706; font-weight:800; background:#fef3c7; border:1px solid #fde68a; padding:2px 8px; border-radius:999px;">
+              2025 – ACTUALIDAD · EN CURSO (SIN TERMINAR)
+            </div>
           </div>
-          <div class="exp-location">Online · Especialización Técnica en Ingeniería de Datos &amp; Big Data</div>
-          <ul class="exp-bullets">
-            <li><strong>Contenido en desarrollo:</strong> Arquitectura moderna de pipelines, procesamiento masivo con <strong>PySpark Structured Streaming</strong>, mensajería en tiempo real con <strong>Apache Kafka (KRaft)</strong>, y almacenamiento analítico en <strong>BigQuery &amp; Apache Iceberg</strong>.</li>
-            <li><strong>Enfoque práctico de código:</strong> Aplicación directa de los conceptos de streaming, ventanas temporales y backpressure en los proyectos ejecutables de este ecosistema.</li>
-          </ul>
+          <div class="exp-location" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>Online · Especialización Técnica en Ingeniería de Datos, Big Data &amp; Cloud Pipelines</span>
+            <span class="no-print" style="font-size:7.5pt; color:#0284c7; font-weight:700;">💡 Entrada desplegable: haz clic para ver temario</span>
+          </div>
+
+          <!-- Desplegable 1: Módulos Oficiales del Programa Google Cloud -->
+          <details class="exp-details-block" open>
+            <summary class="exp-details-summary">
+              <span>📘 Módulos Técnicos Oficiales del Programa Google Cloud</span>
+              <span class="exp-details-tag">4 Módulos Cloud</span>
+            </summary>
+            <div class="exp-details-body">
+              <div class="exp-modules-grid">
+                <div class="exp-mod-card">
+                  <strong>Módulo 1 · Big Data &amp; Batch:</strong> Data Warehousing con <em>Google BigQuery</em> (clustering, particionamiento diario y tuning de slots).
+                </div>
+                <div class="exp-mod-card">
+                  <strong>Módulo 2 · Streaming &amp; Event-Driven:</strong> Procesamiento en tiempo real con <em>Apache Beam &amp; Google Cloud Dataflow</em>, ventanas temporales y backpressure.
+                </div>
+                <div class="exp-mod-card">
+                  <strong>Módulo 3 · Serverless Spark &amp; Lakehouse:</strong> Cargas distribuidas con <em>Dataproc Serverless (PySpark)</em> y tablas abiertas <em>Apache Iceberg</em> (Parquet ZSTD).
+                </div>
+                <div class="exp-mod-card">
+                  <strong>Módulo 4 · Orquestación &amp; CI/CD:</strong> Pipelines automatizados tolerantes a fallos con <em>Cloud Composer (Managed Apache Airflow)</em>.
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Desplegable 2: Aplicación Práctica y Proyectos Desarrollados -->
+          <details class="exp-details-block" open>
+            <summary class="exp-details-summary">
+              <span>🛠️ Código y Aplicación Práctica en este Repositorio</span>
+              <span class="exp-details-tag">100% Práctica Real</span>
+            </summary>
+            <div class="exp-details-body">
+              <ul class="exp-bullets" style="margin-top:2px;">
+                <li><strong>Pipeline PySpark en Producción:</strong> Cuaderno interactivo y script de entrenamiento distribuido sobre millones de transacciones con predicate pushdown en BigQuery (cero OOM).</li>
+                <li><strong>Arquitectura NiFi &amp; Kafka KRaft:</strong> Configuración formal de colas con contrapresión estricta (10.000 objetos / 1 GB) dimensionada con Teoría de Colas $M/M/c$ ($\rho \le 0.80$).</li>
+                <li><strong>Validación Matemática:</strong> Agregaciones algebraicas en memoria $O(1)$ con el Monoide de Welford-Chan y detección de anomalías Z-Score Robusto con Mediana y MAD.</li>
+              </ul>
+            </div>
+          </details>
         </div>
 
         <!-- 3. FORMACIÓN FINANCIERA EIP/EFA -->

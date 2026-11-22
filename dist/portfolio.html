@@ -209,6 +209,287 @@
       line-height: 1.5;
     }
 
+    /* ========================================================
+       HERO DROPDOWNS HUB (LA ENTRADA CON DESPLEGABLES)
+       ======================================================== */
+    .hero-dropdowns-hub {
+      width: 100%;
+      max-width: 960px;
+      margin: 28px auto 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .hero-dropdowns-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    .hero-dropdowns-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      padding: 5px 16px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.12);
+    }
+    .hero-dropdown-card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.68) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .hero-dropdown-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+      transform: translateY(-2px);
+    }
+    .hero-dropdown-card[open] {
+      border-color: rgba(56, 189, 248, 0.55);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(20, 30, 48, 0.92) 100%);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.2);
+    }
+    .hero-dropdown-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 22px;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      transition: background 0.2s ease;
+    }
+    .hero-dropdown-summary::-webkit-details-marker {
+      display: none;
+    }
+    .hero-dropdown-summary:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .hero-dropdown-summary-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-dropdown-icon {
+      font-size: 26px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+      flex-shrink: 0;
+    }
+    .hero-dropdown-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .hero-dropdown-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    }
+    .hero-dropdown-summary-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .hero-badge-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .hero-badge-tag.badge-amber {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fbbf24;
+    }
+    .hero-badge-tag.badge-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
+    }
+    .hero-badge-tag.badge-sky {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+    }
+    .hero-badge-tag.badge-cyan {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.5);
+      color: #67e8f9;
+    }
+    .hero-chevron {
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+    }
+    .hero-dropdown-card[open] .hero-chevron {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+    .hero-dropdown-content {
+      padding: 0 22px 20px 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 4px;
+      padding-top: 16px;
+      animation: heroDropdownFade 0.3s ease;
+    }
+    @keyframes heroDropdownFade {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .hero-col-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .hero-bullet-list li {
+      position: relative;
+      padding-left: 14px;
+    }
+    .hero-bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    .hero-bullet-list strong {
+      color: #fff;
+    }
+    .hero-card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .hero-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .hero-action-btn.action-sky {
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #38bdf8;
+    }
+    .hero-action-btn.action-sky:hover {
+      background: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    }
+    .hero-action-btn.action-emerald {
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      color: #34d399;
+    }
+    .hero-action-btn.action-emerald:hover {
+      background: rgba(16, 185, 129, 0.3);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+    }
+    .hero-action-btn.action-purple {
+      background: rgba(168, 85, 247, 0.18);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      color: #c084fc;
+    }
+    .hero-action-btn.action-purple:hover {
+      background: rgba(168, 85, 247, 0.3);
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+    }
+    .hero-projects-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .hero-proj-pill {
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .hero-proj-pill b {
+      color: #fff;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .hero-proj-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 640px) {
+      .hero-content-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .hero-dropdown-summary {
+        padding: 12px 14px;
+      }
+      .hero-dropdown-title {
+        font-size: 14px;
+      }
+      .hero-dropdown-sub {
+        font-size: 11.5px;
+      }
+      .hero-badge-tag {
+        display: none;
+      }
+      .hero-dropdown-content {
+        padding: 0 14px 16px 14px;
+      }
+    }
+
     /* Stats Grid */
     .stats-grid {
       display: grid;
@@ -1432,6 +1713,159 @@
     <p class="hero-sub" id="port-sub">
       De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.
     </p>
+
+    <!-- 🧭 ENTRADA INTERACTIVA CON DESPLEGABLES (ACORDEÓN DE DOMINIOS) -->
+    <div class="hero-dropdowns-hub" id="hero-dropdowns-hub">
+      <div class="hero-dropdowns-header">
+        <span class="hero-dropdowns-badge" id="lbl-hub-badge">💡 ENTRADA INTERACTIVA · DESPLIEGA CADA ÁREA PARA EXPLORAR</span>
+      </div>
+
+      <!-- Desplegable 1: Especialización Google Cloud & Estudios -->
+      <details class="hero-dropdown-card" open>
+        <summary class="hero-dropdown-summary">
+          <div class="hero-dropdown-summary-left">
+            <span class="hero-dropdown-icon">🎓</span>
+            <div>
+              <div class="hero-dropdown-title" id="card1-title">Especialización en Data Engineering &amp; Estudios Técnicos</div>
+              <div class="hero-dropdown-sub" id="card1-sub">Google Cloud &amp; Coursera (Track Oficial) · Senda Financiera EIP/EFA</div>
+            </div>
+          </div>
+          <div class="hero-dropdown-summary-right">
+            <span class="hero-badge-tag badge-amber" id="card1-tag">EN CURSO · SIN TERMINAR</span>
+            <span class="hero-chevron">▾</span>
+          </div>
+        </summary>
+        <div class="hero-dropdown-content">
+          <div class="hero-content-grid">
+            <div class="hero-content-col">
+              <div class="hero-col-title">☁️ Especialización Oficial Google Cloud (En Progreso)</div>
+              <ul class="hero-bullet-list">
+                <li><strong>Ingesta Masiva &amp; Streaming:</strong> Apache NiFi con contrapresión estricta (10.000 obj / 1 GB) y Apache Kafka en modo KRaft (sin ZooKeeper).</li>
+                <li><strong>Computación Distribuida:</strong> PySpark Structured Streaming con watermarking y Polars (motor Apache Arrow en Rust) con salting antifragmentación.</li>
+                <li><strong>Data Warehouse &amp; Lakehouse:</strong> BigQuery (clustering, particionamiento diario y optimización de facturación) y Apache Iceberg (tablas ACID con Parquet ZSTD).</li>
+                <li><strong>Orquestación Cloud:</strong> Cloud Composer (Apache Airflow) y Dataproc Serverless.</li>
+              </ul>
+            </div>
+            <div class="hero-content-col">
+              <div class="hero-col-title">📚 Senda EIP/EFA &amp; Código Aplicado</div>
+              <ul class="hero-bullet-list">
+                <li><strong>Mercados Financieros:</strong> Microestructura de libro de órdenes, carteras eficientes y valoración fundamental de empresas.</li>
+                <li><strong>100% Código en Ejecución:</strong> Cada concepto estudiado se traslada a este repositorio en notebooks ejecutables y scripts con tests verificados.</li>
+              </ul>
+              <div class="hero-card-actions">
+                <a href="/cv_printable.html" class="hero-action-btn action-sky">📄 Ver en CV Oficial →</a>
+                <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="hero-action-btn action-emerald">📘 Guía Maestra PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <!-- Desplegable 2: 10 Proyectos de Ingeniería & Tests en Verde -->
+      <details class="hero-dropdown-card">
+        <summary class="hero-dropdown-summary">
+          <div class="hero-dropdown-summary-left">
+            <span class="hero-dropdown-icon">🚀</span>
+            <div>
+              <div class="hero-dropdown-title" id="card2-title">10 Proyectos de Ingeniería en Producción</div>
+              <div class="hero-dropdown-sub" id="card2-sub">Streaming, Sistemas Distribuidos, Contabilidad Formal &amp; Física Computacional</div>
+            </div>
+          </div>
+          <div class="hero-dropdown-summary-right">
+            <span class="hero-badge-tag badge-emerald" id="card2-tag">44 TESTS EN VERDE · CERO FALLOS</span>
+            <span class="hero-chevron">▾</span>
+          </div>
+        </summary>
+        <div class="hero-dropdown-content">
+          <div class="hero-projects-mini-grid">
+            <div class="hero-proj-pill">
+              <span class="hero-proj-tag">Fintech</span>
+              <b>1. Novus Trading Core v3.0:</b> TensorFlow Keras + Pacioli Double-Entry Ledger con sellado criptográfico SHA-256.
+            </div>
+            <div class="hero-proj-pill">
+              <span class="hero-proj-tag">Big Data</span>
+              <b>2. Streaming Lakehouse:</b> Apache NiFi + Kafka KRaft + PySpark + Iceberg Parquet ZSTD sin caídas OOM.
+            </div>
+            <div class="hero-proj-pill">
+              <span class="hero-proj-tag">IA Agéntica</span>
+              <b>3. Enjambre Jerárquico:</b> Work-Stealing distribuido con latencia inter-agente &lt; 5 ms y memoria persistente.
+            </div>
+            <div class="hero-proj-pill">
+              <span class="hero-proj-tag">Física CAD</span>
+              <b>4. CAD Lab &amp; Nanoclúster Au₂₀:</b> Tolerancias de chapa ±0.2 mm, teoría de colas M/M/c y dinámica molecular.
+            </div>
+          </div>
+          <div style="margin-top:12px; text-align:right;">
+            <a href="#proyectos" class="hero-action-btn action-purple">📂 Explorar los 10 Proyectos con Métricas Detalladas →</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- Desplegable 3: Pipelines Streaming, Trading Bot & APIs en Directo -->
+      <details class="hero-dropdown-card">
+        <summary class="hero-dropdown-summary">
+          <div class="hero-dropdown-summary-left">
+            <span class="hero-dropdown-icon">⚡</span>
+            <div>
+              <div class="hero-dropdown-title" id="card3-title">Pipelines Streaming, Bot Cuantitativo &amp; APIs en Vivo</div>
+              <div class="hero-dropdown-sub" id="card3-sub">Datos de Mercado en Directo · Telemetría en Tiempo Real a 60 FPS</div>
+            </div>
+          </div>
+          <div class="hero-dropdown-summary-right">
+            <span class="hero-badge-tag badge-sky" id="card3-tag">BINANCE API LIVE · AUDITABLE</span>
+            <span class="hero-chevron">▾</span>
+          </div>
+        </summary>
+        <div class="hero-dropdown-content">
+          <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:12px;">
+            Conexión en streaming a exchanges públicos, cálculo algebraico de VWAP acumulado ($\sum P \cdot V / \sum V$), Bandas de Bollinger y auditoría estricta de comisiones de intermediación (Fees Drag con drawdown real transparente del -3.48%).
+          </p>
+          <div class="hero-card-actions">
+            <a href="#trading" class="hero-action-btn action-sky">📈 Ver Trading Bot en Directo</a>
+            <a href="/pyspark_pipeline_archify.html" target="_blank" class="hero-action-btn action-purple">🔥 Pipeline PySpark &amp; BigQuery</a>
+            <button onclick="openApiModal()" class="hero-action-btn action-emerald">🔌 Abrir Consola REST API Explorer</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- Desplegable 4: Idiomas, Experiencia Real & Honestidad Junior -->
+      <details class="hero-dropdown-card">
+        <summary class="hero-dropdown-summary">
+          <div class="hero-dropdown-summary-left">
+            <span class="hero-dropdown-icon">🌍</span>
+            <div>
+              <div class="hero-dropdown-title" id="card4-title">Idiomas de Trabajo &amp; Trayectoria: 100% Honestidad Junior</div>
+              <div class="hero-dropdown-sub" id="card4-sub">Trilingüe (ES / FR / EN) · Raíces Industriales EPTA France &amp; Bayonne</div>
+            </div>
+          </div>
+          <div class="hero-dropdown-summary-right">
+            <span class="hero-badge-tag badge-cyan" id="card4-tag">TRILINGÜE C1 · JUNIOR BUILDER</span>
+            <span class="hero-chevron">▾</span>
+          </div>
+        </summary>
+        <div class="hero-dropdown-content">
+          <div class="hero-content-grid">
+            <div class="hero-content-col">
+              <div class="hero-col-title">🌍 Idiomas Demostrados en Entorno Laboral Real</div>
+              <ul class="hero-bullet-list">
+                <li>🇪🇸 <strong>Español:</strong> Nativo. Negociación y comunicación técnica fluida.</li>
+                <li>🇫🇷 <strong>Français:</strong> C1 / Fluido profesional. Cerca de 2 años desarrollando software en Bayonne (Francia) y trabajo industrial en células robóticas en EPTA France (Hendaye).</li>
+                <li>🇬🇧 <strong>English:</strong> Fluido en ingeniería, papers de IA, LLMs y documentación técnica.</li>
+              </ul>
+            </div>
+            <div class="hero-content-col">
+              <div class="hero-col-title">🌱 Filosofía de Ingeniero Junior</div>
+              <p style="font-size:13px; color:var(--text-muted); line-height:1.55; margin-bottom:10px;">
+                <em>«Apenas he trabajado en empresas tecnológicas tradicionales; por eso me presento con humildad como Junior y dejo que mis proyectos reales de código en producción hablen por mí.»</em>
+              </p>
+              <div class="hero-card-actions">
+                <a href="#trayectoria" class="hero-action-btn action-sky">🧭 Ver Línea de Tiempo de Trayectoria →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
     <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 12px; max-width: 980px;">
       <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="aura-btn aura-btn-emerald aura-btn-pill aura-btn-lg" id="port-btn-guide">📘 Guía Maestra PDF (Qué Debo Saber)</a>
       <a href="/cv_printable.html" class="aura-btn aura-btn-primary aura-btn-pill aura-btn-lg" id="port-btn-cv" style="background:linear-gradient(135deg, rgba(20,184,166,0.28), rgba(6,182,212,0.22)); border-color:rgba(45,212,191,0.55); color:#ccfbf1;">📄 Ver CV Oficial Imprimible</a>
@@ -2389,7 +2823,7 @@
   <!-- Footer Contact -->
   <footer>
     <div>
-      <b>Mikel Irastorza</b> · Presidente Supremo NovusMundus &amp; Systems Architect<br>
+      <b>Mikel Irastorza</b> · Junior Software &amp; Data Engineer («Project-First Builder»)<br>
       <span style="font-size:12px; color:var(--text-muted);">
         Trayectoria práctica: Formación Data Engineering en Google Cloud (En curso) · EPTA France (Robótica &amp; Chapa CAD) · Dev Web (Bayonne) · BBVA · NovusMundus<br>
         Email: mikel@novusmundus.com · GitHub: github.com/novomundus2-cmyk · X: @NovusMund
@@ -5956,6 +6390,19 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
       btnBot: "🚀 Probar Trading Bot",
       btnProjects: "📂 Ver 10 Proyectos",
       btnContact: "✉️ Contactar con Mikel",
+      hubBadge: "💡 ENTRADA INTERACTIVA · DESPLIEGA CADA ÁREA PARA EXPLORAR",
+      card1Title: "Especialización en Data Engineering &amp; Estudios Técnicos",
+      card1Sub: "Google Cloud &amp; Coursera (Track Oficial) · Senda Financiera EIP/EFA",
+      card1Tag: "EN CURSO · SIN TERMINAR",
+      card2Title: "10 Proyectos de Ingeniería en Producción",
+      card2Sub: "Streaming, Sistemas Distribuidos, Contabilidad Formal &amp; Física Computacional",
+      card2Tag: "44 TESTS EN VERDE · CERO FALLOS",
+      card3Title: "Pipelines Streaming, Bot Cuantitativo &amp; APIs en Vivo",
+      card3Sub: "Datos de Mercado en Directo · Telemetría en Tiempo Real a 60 FPS",
+      card3Tag: "BINANCE API LIVE · AUDITABLE",
+      card4Title: "Idiomas de Trabajo &amp; Trayectoria: 100% Honestidad Junior",
+      card4Sub: "Trilingüe (ES / FR / EN) · Raíces Industriales EPTA France &amp; Bayonne",
+      card4Tag: "TRILINGÜE C1 · JUNIOR BUILDER",
       realityBadgeTitle: "⚠️ TRANSPARENCIA CUANTITATIVA: BOT EN FASE DE I+D (DRAWDOWN REAL)",
       realityBadgeFeed: "📡 PRECIOS 100% REALES EN DIRECTO (BINANCE PUBLIC API)",
       realityPnlNetLbl: "PnL Neto Real Liquidado",
@@ -5978,6 +6425,19 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
       btnBot: "🚀 Tester le Bot de Trading",
       btnProjects: "📂 Explorer les 10 Projets",
       btnContact: "✉️ Contacter Mikel",
+      hubBadge: "💡 ENTRÉE INTERACTIVE · DÉPLIEZ CHAQUE DOMAINE POUR EXPLORER",
+      card1Title: "Spécialisation en Data Engineering &amp; Études Techniques",
+      card1Sub: "Google Cloud &amp; Coursera (Parcours Officiel) · Certification Financière EIP/EFA",
+      card1Tag: "EN COURS · NON TERMINÉ",
+      card2Title: "10 Projets d'Ingénierie en Production",
+      card2Sub: "Streaming, Systèmes Distribués, Comptabilité Formelle &amp; Physique Numérique",
+      card2Tag: "44 TESTS AU VERT · ZÉRO DÉFAUT",
+      card3Title: "Pipelines Streaming, Bot Quantitatif &amp; APIs en Direct",
+      card3Sub: "Flux de Données de Marché en Temps Réel · Télémétrie 60 FPS",
+      card3Tag: "BINANCE API LIVE · AUDITABLE",
+      card4Title: "Langues de Travail &amp; Parcours : 100% Honnêteté Junior",
+      card4Sub: "Trilingue (ES / FR / EN) · Expérience Industrielle EPTA France &amp; Bayonne",
+      card4Tag: "TRILINGUE C1 · JUNIOR BUILDER",
       realityBadgeTitle: "⚠️ TRANSPARENCE QUANTITATIVE : BOT EN PHASE R&D (DRAWDOWN RÉEL)",
       realityBadgeFeed: "📡 COURS 100% RÉELS EN DIRECT (BINANCE PUBLIC API)",
       realityPnlNetLbl: "PnL Net Réel Liquidé",
@@ -6000,6 +6460,19 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
       btnBot: "🚀 Launch Trading Bot",
       btnProjects: "📂 View 10 Projects",
       btnContact: "✉️ Contact Mikel",
+      hubBadge: "💡 INTERACTIVE ENTRANCE · EXPAND EACH DOMAIN TO EXPLORE",
+      card1Title: "Data Engineering Specialization &amp; Technical Studies",
+      card1Sub: "Google Cloud &amp; Coursera (Official Track) · Financial Certification EIP/EFA",
+      card1Tag: "IN PROGRESS · UNFINISHED",
+      card2Title: "10 Production Engineering Projects",
+      card2Sub: "Streaming, Distributed Systems, Formal Ledger &amp; Computational Physics",
+      card2Tag: "44 TESTS PASSING · ZERO FAILURES",
+      card3Title: "Streaming Pipelines, Quantitative Bot &amp; Live APIs",
+      card3Sub: "Real-Time Public Market Data · Live Telemetry at 60 FPS",
+      card3Tag: "BINANCE API LIVE · AUDITABLE",
+      card4Title: "Working Languages &amp; Trajectory: 100% Junior Transparency",
+      card4Sub: "Trilingual (ES / FR / EN) · Industrial Precision EPTA France &amp; Bayonne",
+      card4Tag: "TRILINGUAL C1 · JUNIOR BUILDER",
       realityBadgeTitle: "⚠️ QUANTITATIVE TRANSPARENCY: R&D TRADING BOT (REAL DRAWDOWN)",
       realityBadgeFeed: "📡 100% LIVE REAL PRICES STREAMING (BINANCE PUBLIC API)",
       realityPnlNetLbl: "Real Net Liquidated PnL",
@@ -6024,6 +6497,51 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
     const ti = document.getElementById('port-title');
     if (ti) ti.innerHTML = t.title;
     const su = document.getElementById('port-sub');
+    if (su) su.innerHTML = t.sub;
+
+    const bg = document.getElementById('port-btn-guide');
+    if (bg) bg.textContent = t.btnGuide;
+    const bc = document.getElementById('port-btn-cv');
+    if (bc) bc.textContent = t.btnCv;
+    const bp = document.getElementById('port-btn-pyspark');
+    if (bp) bp.textContent = t.btnPyspark;
+    const bb = document.getElementById('port-btn-bot');
+    if (bb) bb.textContent = t.btnBot;
+    const bj = document.getElementById('port-btn-projects');
+    if (bj) bj.textContent = t.btnProjects;
+    const bct = document.getElementById('port-btn-contact');
+    if (bct) bct.textContent = t.btnContact;
+
+    // Hero Dropdowns Hub Translation
+    const hubB = document.getElementById('lbl-hub-badge');
+    if (hubB && t.hubBadge) hubB.textContent = t.hubBadge;
+    const c1t = document.getElementById('card1-title');
+    if (c1t && t.card1Title) c1t.innerHTML = t.card1Title;
+    const c1s = document.getElementById('card1-sub');
+    if (c1s && t.card1Sub) c1s.innerHTML = t.card1Sub;
+    const c1g = document.getElementById('card1-tag');
+    if (c1g && t.card1Tag) c1g.textContent = t.card1Tag;
+
+    const c2t = document.getElementById('card2-title');
+    if (c2t && t.card2Title) c2t.innerHTML = t.card2Title;
+    const c2s = document.getElementById('card2-sub');
+    if (c2s && t.card2Sub) c2s.innerHTML = t.card2Sub;
+    const c2g = document.getElementById('card2-tag');
+    if (c2g && t.card2Tag) c2g.textContent = t.card2Tag;
+
+    const c3t = document.getElementById('card3-title');
+    if (c3t && t.card3Title) c3t.innerHTML = t.card3Title;
+    const c3s = document.getElementById('card3-sub');
+    if (c3s && t.card3Sub) c3s.innerHTML = t.card3Sub;
+    const c3g = document.getElementById('card3-tag');
+    if (c3g && t.card3Tag) c3g.textContent = t.card3Tag;
+
+    const c4t = document.getElementById('card4-title');
+    if (c4t && t.card4Title) c4t.innerHTML = t.card4Title;
+    const c4s = document.getElementById('card4-sub');
+    if (c4s && t.card4Sub) c4s.innerHTML = t.card4Sub;
+    const c4g = document.getElementById('card4-tag');
+    if (c4g && t.card4Tag) c4g.textContent = t.card4Tag;
     if (su) su.innerHTML = t.sub;
 
     const bg = document.getElementById('port-btn-guide');
