@@ -1,7 +1,7 @@
 # NovusMundus Intellectual Property, Prior Art & Open Evaluation License
 
 **Copyright (c) 2026 Mikel Irastorza / NovusMundus. All rights reserved.**  
-*Primary Author & Investigator:* Mikel Irastorza (<mikel@novusmundus.com>)  
+*Primary Author & Investigator:* Mikel Irastorza (<novomundus2@gmail.com>)  
 *Repository:* https://github.com/novomundus2-cmyk/AuraIcons-Interactive-Icon-Studio  
 *Permanent Identifier:* CERN Zenodo DOI (Pending release hook: `10.5281/zenodo.pending`)
 
