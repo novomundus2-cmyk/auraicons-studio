@@ -803,93 +803,143 @@
     }
 
     /* ====================================================================== */
-    /* INFO MODAL OVERLAY & DRAWER */
+    /* INFO MODAL OVERLAY & DRAWER (APPLE BENTO GLASS & ZERO OVERFLOW) */
     /* ====================================================================== */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(2, 6, 23, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 9999;
+      background: rgba(2, 6, 23, 0.82);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      z-index: 2000000;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: clamp(12px, 2.5vw, 24px);
+      overflow-y: auto;
     }
     .modal-overlay.open {
       display: flex !important;
     }
     .modal-box {
-      background: #0f172a;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 28px;
-      max-width: 680px;
+      background: linear-gradient(165deg, rgba(15, 23, 42, 0.97) 0%, rgba(9, 14, 26, 0.99) 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 26px;
+      max-width: 760px;
       width: 100%;
-      padding: clamp(24px, 4vw, 36px);
-      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+      max-height: min(92vh, 880px);
+      overflow-y: auto;
+      padding: 18px 24px 20px;
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
       position: relative;
-      animation: modalSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      margin: auto;
+      animation: modalSlide 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) transparent;
     }
     @keyframes modalSlide {
-      from { transform: translateY(20px) scale(0.97); opacity: 0; }
+      from { transform: translateY(16px) scale(0.97); opacity: 0; }
       to { transform: translateY(0) scale(1); opacity: 1; }
     }
     .modal-close {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 32px;
-      height: 32px;
+      top: 16px;
+      right: 18px;
+      z-index: 20;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
+      background: rgba(30, 41, 59, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e2e8f0;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      transition: all 0.18s ease;
     }
-    .modal-close:hover { color: #fff; background: var(--surface-hover); }
+    .modal-close:hover {
+      color: #fff;
+      background: #f43f5e;
+      border-color: #fda4af;
+      transform: scale(1.08);
+    }
     .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
+      font-size: 10.5px;
       font-weight: 800;
       color: var(--accent);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 11px;
+      border-radius: 999px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      letter-spacing: 0.07em;
+      margin-bottom: 6px;
     }
     .modal-title {
-      font-size: 24px;
+      font-size: clamp(18px, 2.3vw, 22px);
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      color: #ffffff;
+      padding-right: 44px;
     }
     .modal-content {
-      font-size: 14.5px;
+      font-size: 13.5px;
       color: #cbd5e1;
-      line-height: 1.65;
+      line-height: 1.55;
     }
     .modal-formula-box {
-      background: rgba(2, 6, 23, 0.9);
+      background: rgba(2, 6, 23, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       border-left: 4px solid var(--accent);
-      padding: 12px 16px;
-      margin: 14px 0;
-      border-radius: 8px;
+      padding: 8px 14px;
+      margin: 10px 0 8px;
+      border-radius: 12px;
       font-family: 'JetBrains Mono', monospace;
       color: #38bdf8;
+      overflow-x: auto;
+      max-width: 100%;
     }
     .modal-limit-box {
       background: rgba(245, 158, 11, 0.1);
       border: 1px solid rgba(245, 158, 11, 0.3);
-      padding: 10px 14px;
-      border-radius: 10px;
+      padding: 8px 13px;
+      border-radius: 12px;
       color: #fbbf24;
-      font-size: 13px;
-      margin-top: 14px;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    .screen-guide-bento {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .screen-guide-card {
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px;
+      padding: 10px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      transition: all 0.18s ease;
+    }
+    .screen-guide-card:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: rgba(30, 41, 59, 0.72);
+      transform: translateY(-1px);
     }
 
     /* Gold Molecule / Nanotechnology Section */
@@ -4143,42 +4193,91 @@
      ======================================================================== */
   const INFO_DATABASE = {
     'screen-guide': {
-      badge: 'MAPA Y ARQUITECTURA DE LA INTERFAZ',
-      title: 'Guía Completa: ¿Dónde está cada cosa?',
+      badge: '🧭 MAPA INTERACTIVO Y ARQUITECTURA DE PANTALLA',
+      title: 'Guía Rápida: ¿Dónde está cada cosa?',
       body: `
-        <div style="display:flex; flex-direction:column; gap:12px; font-size:13px; line-height:1.5;">
-          <div style="background:rgba(56,189,248,0.1); border-left:3px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:var(--accent);">1. 📡 Cinta Superior de Precios (Ticker Tape):</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">Arriba del todo. Muestra las cotizaciones en streaming de los 17 activos (Binance Spot v3 y Yahoo Finance en directo). El destello verde/rojo marca cada tick en milisegundos.</p>
+        <p style="font-size:13px; color:#94a3b8; margin-bottom:10px;">
+          Haz clic en cualquier bloque del mapa para saltar directamente a esa zona de la cabina:
+        </p>
+        <div class="screen-guide-bento">
+          <div class="screen-guide-card" style="border-left:3px solid #38bdf8;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#38bdf8; font-size:13px;">1. 📡 Cinta de Precios (Ticker Tape)</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(56,189,248,0.4); color:#7dd3fc;" onclick="jumpFromGuide('#portfolio-ticker-bar')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Arriba de la cabina. Cotizaciones en streaming en directo (Binance Spot v3 y mercados globales) con parpadeo por cada tick.
+            </p>
           </div>
-          <div style="background:rgba(16,185,129,0.1); border-left:3px solid #10b981; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#10b981;">2. 🎯 Radar de Oportunidades (Dónde Operar Ahora Mismo):</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">Tarjeta verde destacada. Analiza los 12 mercados abiertos y te dice exactamente el activo recomendado, la dirección (COMPRA/VENTA), precio, Stop-Loss al 1.5% y Take-Profit. Incluye el botón de 1-Clic para ejecutar.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #10b981;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#34d399; font-size:13px;">2. 🎯 Radar de Oportunidades</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(16,185,129,0.4); color:#6ee7b7;" onclick="jumpFromGuide('#opportunity-radar-banner')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Tarjeta esmeralda. Escanea los mercados abiertos y señala el mejor activo ahora mismo con Stop-Loss (-1.5%) y Take-Profit (+2.5%).
+            </p>
           </div>
-          <div style="background:rgba(192,132,252,0.1); border-left:3px solid #c084fc; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#c084fc;">3. 🕯️ Gráfico Interactivo TradingView:</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">En el centro. Selector de activos (pills), selector de temporalidades (1m, 5m, 15m, 1h, 1d) y alternancia entre Velas Japonesas Pro y Área Neón con curva cian de VWAP institucional y volumen.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #c084fc;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#d8b4fe; font-size:13px;">3. 🕯️ Gráfico TradingView &amp; Velas</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(192,132,252,0.4); color:#e9d5ff;" onclick="jumpFromGuide('#portfolio-tv-chart-box')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Centro de la cabina. Selector de activos, temporalidades (1m, 5m, 15m, 1h, 1d) y alternancia Velas Japonesas / Área Neón + curva VWAP.
+            </p>
           </div>
-          <div style="background:rgba(59,130,246,0.1); border-left:3px solid #60a5fa; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#60a5fa;">4. 📊 Telemetría Cuantitativa:</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">Columna izquierda bajo el gráfico. Detalla el VWAP exacto, la Volatilidad MAD robusta (1.4826), el Z-Score de sobreventa/sobrecompra y los botones manuales de COMPRAR/VENDER.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #60a5fa;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#93c5fd; font-size:13px;">4. 📊 Telemetría Cuantitativa</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(96,165,250,0.4); color:#bfdbfe;" onclick="jumpFromGuide('.trading-body')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Columna izquierda bajo el gráfico. Detalla el VWAP exacto, la Volatilidad MAD robusta (1.4826), el Z-Score y botones COMPRAR/VENDER.
+            </p>
           </div>
-          <div style="background:rgba(245,158,11,0.1); border-left:3px solid #f59e0b; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#f59e0b;">5. 🏛️ Cartera y Ledger Contable Novus (Pacioli):</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">Columna derecha bajo el gráfico. Muestra la Tesorería Disponible (Cash), Patrimonio Total (Equity), PnL en euros, Win Rate auditado y verificación de Partida Doble ΣDébitos=ΣCréditos.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #f59e0b;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#fcd34d; font-size:13px;">5. 🏛️ Cartera &amp; Ledger Pacioli</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(245,158,11,0.4); color:#fde68a;" onclick="jumpFromGuide('.trading-body')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Columna derecha bajo el gráfico. Tesorería (Cash), Patrimonio (Equity), comisiones reales y partida doble ΣDébitos = ΣCréditos.
+            </p>
           </div>
-          <div style="background:rgba(148,163,184,0.1); border-left:3px solid #94a3b8; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#94a3b8;">6. 📜 Tabla de Órdenes y Bloques SHA-256:</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">Abajo del todo. Registro inmutable de cada trade ejecutado con su ID, importe, PnL y hash criptográfico encadenado de bloque.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #94a3b8;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <b style="color:#e2e8f0; font-size:13px;">6. 📜 Órdenes &amp; Bloques SHA-256</b>
+              <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:rgba(148,163,184,0.4); color:#e2e8f0;" onclick="jumpFromGuide('#trades-table-body')">Ir ↗</button>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              Parte inferior de la cabina. Registro inmutable de cada operación liquidada con su ID, PnL neto tras comisiones y sello SHA-256.
+            </p>
           </div>
-          <div style="background:rgba(52,211,153,0.1); border-left:3px solid #34d399; padding:10px 14px; border-radius:0 8px 8px 0;">
-            <b style="color:#34d399;">7. 🟢 Modo Autopilot (Pónmelo a Trabajar):</b>
-            <p style="margin:4px 0 0; color:#cbd5e1;">En la barra de botones superior. Si está en verde, el robot escanea y rebalancea posiciones automáticamente en mercados abiertos sin intervención manual.</p>
+
+          <div class="screen-guide-card" style="border-left:3px solid #34d399; grid-column: 1 / -1;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+              <b style="color:#6ee7b7; font-size:13px;">7. 🟢 Modo Autopilot + 10 Proyectos + Molécula Au20 + Playbooks CTO</b>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:#10b981; color:#6ee7b7;" onclick="jumpFromGuide('#btn-autopilot-toggle')">Autopilot ↗</button>
+                <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:#f59e0b; color:#fcd34d;" onclick="jumpFromGuide('#molecula-oro')">Molécula Au20 ↗</button>
+                <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:#818cf8; color:#c7d2fe;" onclick="jumpFromGuide('#proyectos')">10 Proyectos ↗</button>
+                <button type="button" class="btn-pill" style="font-size:10.5px; padding:3px 9px; border-color:#38bdf8; color:#7dd3fc;" onclick="jumpFromGuide('#playbooks')">Playbooks CTO ↗</button>
+              </div>
+            </div>
+            <p style="margin:2px 0 0; font-size:12.2px; color:#cbd5e1; line-height:1.45;">
+              En la barra de la cabina puedes pausar/activar el Autopilot, y más abajo explorar la simulación cuántica Au20, los 10 proyectos verificados y los 5 Playbooks de arquitectura.
+            </p>
           </div>
         </div>
       `,
-      formula: '\\text{Pantalla} = \\text{Precios Stream} \\cup \\text{Radar} \\cup \\text{Gráficos TV} \\cup \\text{Telemetría} \\cup \\text{Ledger Pacioli}',
-      limit: 'Todos los botones con la letra "i" abren explicaciones matemáticas y operativas específicas.'
+      formula: '\\mathcal{U}_{\\text{Novus}} = \\text{Ticker}_{\\text{RT}} \\oplus \\text{Radar}_{\\text{SMC}} \\oplus \\text{OHLCV}_{\\text{VWAP}} \\oplus \\text{Ledger}_{\\text{SHA256}}',
+      limit: 'Pulsa cualquier botón circular "i" de la página para ver la fórmula matemática y los límites reales de ese indicador.'
     },
     'radar-opp': {
       badge: 'RADAR CUANTITATIVO EN VIVO',
@@ -4448,23 +4547,51 @@
     }
   };
 
+  function jumpFromGuide(selector) {
+    closeInfo();
+    const el = document.querySelector(selector);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.style.transition = 'box-shadow 0.35s ease';
+      el.style.boxShadow = '0 0 0 3px #38bdf8, 0 0 28px rgba(56,189,248,0.55)';
+      setTimeout(() => {
+        el.style.boxShadow = '';
+      }, 1800);
+    }
+  }
+
   function openInfo(key) {
     const item = INFO_DATABASE[key];
     if (!item) return;
 
+    const modalOverlay = document.getElementById('info-modal');
+    const modalBox = modalOverlay ? modalOverlay.querySelector('.modal-box') : null;
+    if (modalBox) {
+      modalBox.style.maxWidth = key === 'screen-guide' ? '880px' : '680px';
+      modalBox.scrollTop = 0;
+    }
+
     document.getElementById('modal-badge').innerText = item.badge;
     document.getElementById('modal-title').innerText = item.title;
 
-    let bodyHtml = `<p>${item.body}</p>`;
+    let bodyHtml = `<div>${item.body}</div>`;
     if (item.formula) {
       bodyHtml += `<div class="modal-formula-box" id="modal-formula-slot"></div>`;
     }
     if (item.limit) {
-      bodyHtml += `<div class="modal-limit-box"><b>⚠️ Lo que no promete:</b> ${item.limit}</div>`;
+      bodyHtml += `<div class="modal-limit-box"><b>💡 Nota clave:</b> ${item.limit}</div>`;
     }
+    bodyHtml += `
+      <div style="display:flex; justify-content:flex-end; margin-top:16px;">
+        <button type="button" class="btn-pill btn-pill-accent" onclick="closeInfo()" style="padding:8px 20px; font-weight:800;">
+          ✓ Entendido / Cerrar
+        </button>
+      </div>
+    `;
 
     document.getElementById('modal-body').innerHTML = bodyHtml;
-    document.getElementById('info-modal').style.display = 'flex';
+    modalOverlay.classList.add('open');
+    modalOverlay.style.display = 'flex';
 
     if (item.formula && window.katex) {
       const slot = document.getElementById('modal-formula-slot');
@@ -4477,32 +4604,53 @@
   }
 
   function openProjectInfo(code) {
-    const p = PROJECTS_DATA.find(x => x.code === code);
+    const allProjs = typeof getActiveProjects === 'function' ? getActiveProjects() : (PROJECTS_DATA_I18N.es || []);
+    const p = allProjs.find(x => x.code === code);
     if (!p) return;
+
+    const modalOverlay = document.getElementById('info-modal');
+    const modalBox = modalOverlay ? modalOverlay.querySelector('.modal-box') : null;
+    if (modalBox) {
+      modalBox.style.maxWidth = '680px';
+      modalBox.scrollTop = 0;
+    }
 
     document.getElementById('modal-badge').innerText = `PROYECTO ${p.code} · ${p.areaName.toUpperCase()}`;
     document.getElementById('modal-title').innerText = p.title;
 
     const bodyHtml = `
-      <p style="font-size:16px; font-weight:600; color:#f8fafc; margin-bottom:8px;">${p.simple}</p>
-      <p style="margin-bottom:12px;">${p.what}</p>
+      <p style="font-size:16px; font-weight:600; color:#f8fafc; margin-bottom:10px;">${p.simple}</p>
+      <div style="background:rgba(56,189,248,0.1); border-left:3px solid #38bdf8; padding:10px 14px; border-radius:0 10px 10px 0; margin-bottom:12px; font-size:13.5px; color:#e2e8f0;">
+        <b style="color:#38bdf8;">🎯 Qué quiero demostrar que sé hacer aquí:</b><br>
+        ${p.what}
+      </div>
       <div style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); padding:10px 14px; border-radius:10px; color:#34d399; margin-bottom:12px;">
         <b>✓ Evidencia Comprobada:</b> ${p.proof}
       </div>
       <div class="modal-limit-box">
-        <b>⚠️ Lo que no promete:</b> ${p.limit}
+        <b>⚠️ Alcance honesto (lo que no promete):</b> ${p.limit}
       </div>
-      <div style="margin-top:14px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent);">
-        Stack: ${p.stack.join(' · ')}
+      <div style="margin-top:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+        <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent);">
+          Stack: ${p.stack.join(' · ')}
+        </span>
+        <button type="button" class="btn-pill btn-pill-accent" onclick="closeInfo()" style="padding:7px 18px; font-weight:800;">
+          ✓ Cerrar
+        </button>
       </div>
     `;
 
     document.getElementById('modal-body').innerHTML = bodyHtml;
-    document.getElementById('info-modal').style.display = 'flex';
+    modalOverlay.classList.add('open');
+    modalOverlay.style.display = 'flex';
   }
 
   function closeInfo() {
-    document.getElementById('info-modal').style.display = 'none';
+    const modalOverlay = document.getElementById('info-modal');
+    if (modalOverlay) {
+      modalOverlay.classList.remove('open');
+      modalOverlay.style.display = 'none';
+    }
   }
 
   /* ========================================================================
