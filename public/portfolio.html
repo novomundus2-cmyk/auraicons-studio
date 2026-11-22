@@ -70,66 +70,365 @@
       padding: clamp(16px, 3vw, 40px) 24px 100px;
     }
 
-    /* Floating Navigation — Steve Jobs / Cupertino Minimalist Rounded Glass Dock */
-    .nav-dock {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      padding: 22px 34px 24px;
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.86) 0%, rgba(10, 15, 28, 0.92) 100%);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 36px;
-      margin-bottom: 48px;
-      box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(56, 189, 248, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      overflow: hidden;
+    /* ========================================================
+       STANDARD TOP NAVIGATION HEADER WITH CATEGORY DROPDOWNS
+       ======================================================== */
+    .normal-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 15, 29, 0.94);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     }
-    .brand-title {
-      font-size: 15.5px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    .normal-header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .normal-brand {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 6px 18px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      gap: 11px;
+      text-decoration: none;
+      color: #fff;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
     }
-    .brand-title span { color: var(--accent); }
-    .nav-links {
+    .normal-brand:hover {
+      opacity: 0.92;
+    }
+    .normal-brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(16, 185, 129, 0.2));
+      border: 1px solid rgba(56, 189, 248, 0.4);
       display: flex;
-      gap: 10px;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      width: 100%;
+      font-size: 19px;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);
     }
-    .nav-link {
+    .normal-brand-titles {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .normal-brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: #f8fafc;
+    }
+    .normal-brand-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: #38bdf8;
+      letter-spacing: 0.02em;
+    }
+
+    /* Desktop Navigation Menu */
+    .normal-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-cat-dropdown {
+      position: relative;
+    }
+    .nav-cat-trigger {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+    .nav-cat-trigger:hover,
+    .nav-cat-dropdown:hover .nav-cat-trigger,
+    .nav-cat-dropdown.is-open .nav-cat-trigger {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .nav-cat-chevron {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+      opacity: 0.7;
+    }
+    .nav-cat-dropdown:hover .nav-cat-chevron,
+    .nav-cat-dropdown.is-open .nav-cat-chevron {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    /* Floating Dropdown Menu */
+    .nav-cat-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      min-width: 330px;
+      max-width: 390px;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(10, 15, 28, 0.99) 100%);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 8px;
+      box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(56, 189, 248, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1010;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .nav-cat-dropdown:hover .nav-cat-menu,
+    .nav-cat-dropdown:focus-within .nav-cat-menu,
+    .nav-cat-dropdown.is-open .nav-cat-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-cat-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #e2e8f0;
+      transition: all 0.16s ease;
+      border: 1px solid transparent;
+    }
+    .nav-cat-item:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.25);
+      color: #fff;
+      transform: translateX(3px);
+    }
+    .nav-cat-item-icon {
+      font-size: 17px;
+      line-height: 1.2;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .nav-cat-item-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+    .nav-cat-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .nav-cat-item:hover .nav-cat-item-title {
+      color: #38bdf8;
+    }
+    .nav-cat-item-desc {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+    .nav-cat-item-badge {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .nav-badge-amber {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.45);
+    }
+    .nav-badge-emerald {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.45);
+    }
+    .nav-badge-blue {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+    }
+
+    /* Header Right Actions */
+    .normal-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .header-lang-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 6px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+    }
+    .header-lang-btn {
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .header-lang-btn:hover {
+      color: #fff;
+    }
+    .header-lang-btn.active {
+      background: rgba(56, 189, 248, 0.25);
+      color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+
+    /* CV CTA Button */
+    .header-cv-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       padding: 7px 15px;
       border-radius: 999px;
-      color: #e2e8f0;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(6, 182, 212, 0.18));
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #34d399;
       text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      background: rgba(56, 189, 248, 0.12);
+      font-size: 12.5px;
+      font-weight: 800;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
     }
-    .nav-link:hover, .nav-link.active {
+    .header-cv-cta:hover {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(6, 182, 212, 0.28));
+      border-color: #34d399;
       color: #fff;
-      border-color: var(--accent);
-      background: rgba(56, 189, 248, 0.24);
       transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+    }
+    .header-cv-badge {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.28);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #a7f3d0;
+    }
+
+    /* Mobile Hamburger Button */
+    .header-mobile-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .header-mobile-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    /* Mobile Drawer */
+    .mobile-nav-drawer {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      background: rgba(10, 15, 28, 0.98);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav-drawer.is-open {
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .mobile-nav-content {
+      padding: 16px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-cat-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mobile-cat-header {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 4px;
+    }
+    .mobile-cat-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+    .mobile-cat-link:hover {
+      background: rgba(56, 189, 248, 0.1);
+      color: #fff;
     }
     .btn-pill {
       display: inline-flex;
@@ -1370,26 +1669,7 @@
        ======================================================== */
     @media (max-width: 1024px) {
       .page-wrap { padding: 16px 18px 80px; max-width: 100%; }
-      .nav-dock {
-        border-radius: 28px;
-        padding: 18px 22px 20px;
-        gap: 14px;
-        flex-direction: column;
-        align-items: center;
-      }
-      .brand-title {
-        width: fit-content;
-        margin: 0 auto;
-        justify-content: center;
-        font-size: 14.5px;
-      }
-      .nav-links {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-      }
-      .btn-pill, .nav-link, .aura-header-btn {
+      .btn-pill, .aura-header-btn {
         white-space: nowrap;
         flex-shrink: 0;
         min-height: 36px;
@@ -1402,26 +1682,7 @@
 
     @media (max-width: 768px) {
       .page-wrap { padding: 12px 14px 60px; }
-      .nav-dock {
-        flex-direction: column;
-        align-items: center;
-        border-radius: 24px;
-        padding: 14px 16px 16px;
-        margin-bottom: 28px;
-      }
-      .brand-title {
-        width: fit-content;
-        margin: 0 auto;
-        justify-content: center;
-        font-size: 14px;
-      }
-      .nav-links {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 7px;
-      }
-      .btn-pill, .nav-link, .aura-header-btn {
+      .btn-pill, .aura-header-btn {
         white-space: nowrap;
         flex-shrink: 0;
         min-height: 34px;
@@ -1655,55 +1916,322 @@
 <!-- Interactive Canvas (Magnetic Floating Particles) -->
 <canvas id="interactive-bg-canvas"></canvas>
 
-<div class="page-wrap">
+<!-- ========================================================
+     HEADER NORMAL CON DESPLEGABLES POR CATEGORÍAS (STANDARD TOP HEADER)
+     ======================================================== -->
+<header class="normal-header" id="site-header">
+  <div class="normal-header-inner">
+    <!-- Brand -->
+    <a href="/portfolio.html" class="normal-brand" title="Mikel Irastorza · Portfolio Oficial">
+      <div class="normal-brand-logo">🌱</div>
+      <div class="normal-brand-titles">
+        <span class="normal-brand-name">Mikel Irastorza</span>
+        <span class="normal-brand-role">Junior Data &amp; Software Engineer</span>
+      </div>
+    </a>
 
-  <!-- Floating Navigation Dock -->
-  <nav class="nav-dock">
-    <div class="brand-title">
-      👑 <span>Mikel Irastorza</span> · NovusMundus
-    </div>
-    <div class="nav-links">
-      <!-- 🧭 AuraIcons Fast Return to CV -->
-      <a href="/cv_printable.html" class="aura-header-btn" title="Volver al CV Oficial de Mikel Irastorza">
-        <svg class="aura-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M19 12H5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Volver al CV</span>
-        <span class="aura-header-badge">Oficial</span>
+    <!-- Navegación con Desplegables por Categorías -->
+    <nav class="normal-nav" id="normal-nav-menu" aria-label="Navegación principal">
+      
+      <!-- Categoría 1: Estudios & Cloud -->
+      <div class="nav-cat-dropdown">
+        <button type="button" class="nav-cat-trigger" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-trigger-icon">🎓</span>
+          <span class="nav-trigger-text">Estudios &amp; Cloud</span>
+          <svg class="nav-cat-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-cat-menu">
+          <a href="#hero-dropdowns-hub" class="nav-cat-item">
+            <span class="nav-cat-item-icon">⚡</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Especialización Google Cloud</span>
+                <span class="nav-cat-item-badge nav-badge-amber">En curso · Sin terminar</span>
+              </div>
+              <span class="nav-cat-item-desc">Data Engineering &amp; Cloud Pipelines (Coursera)</span>
+            </div>
+          </a>
+          <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="nav-cat-item">
+            <span class="nav-cat-item-icon">📘</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Guía Maestra Data Engineering</span>
+                <span class="nav-cat-item-badge nav-badge-emerald">PDF Oficial</span>
+              </div>
+              <span class="nav-cat-item-desc">Arquitectura completa, BigQuery, Spark y patrones de datos</span>
+            </div>
+          </a>
+          <a href="#trayectoria" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🏛️</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Senda Financiera EIP / EFA</span>
+              </div>
+              <span class="nav-cat-item-desc">Certificación financiera, matemáticas cuantitativas y regulación</span>
+            </div>
+          </a>
+          <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="nav-cat-item">
+            <span class="nav-cat-item-icon">📑</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Optimización PySpark &amp; BigQuery</span>
+                <span class="nav-cat-item-badge nav-badge-blue">30 Reglas</span>
+              </div>
+              <span class="nav-cat-item-desc">Whitepaper técnico de optimización de costes y shuffle</span>
+            </div>
+          </a>
+          <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="nav-cat-item">
+            <span class="nav-cat-item-icon">🧠</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Notebook Gemini &amp; BigQuery</span>
+                <span class="nav-cat-item-badge nav-badge-blue">.ipynb</span>
+              </div>
+              <span class="nav-cat-item-desc">Pipeline interactivo con modelos de IA multimodal</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categoría 2: Proyectos (10) -->
+      <div class="nav-cat-dropdown">
+        <button type="button" class="nav-cat-trigger" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-trigger-icon">🚀</span>
+          <span class="nav-trigger-text">Proyectos (10)</span>
+          <svg class="nav-cat-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-cat-menu">
+          <a href="#trading" class="nav-cat-item">
+            <span class="nav-cat-item-icon">📈</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Trading Bot Core v3.0</span>
+                <span class="nav-cat-item-badge nav-badge-emerald">En vivo</span>
+              </div>
+              <span class="nav-cat-item-desc">Métricas Binance en directo, 45ms latencia y drawdown honesto</span>
+            </div>
+          </a>
+          <a href="#proyectos" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🌊</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Streaming Lakehouse</span>
+              </div>
+              <span class="nav-cat-item-desc">Apache NiFi, Kafka, PySpark Structured Streaming &amp; Iceberg</span>
+            </div>
+          </a>
+          <a href="https://miky-vercel.vercel.app" target="_blank" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🤖</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Enjambre IA &amp; Copiloto Miky</span>
+                <span class="nav-cat-item-badge nav-badge-blue">Vercel</span>
+              </div>
+              <span class="nav-cat-item-desc">Asistente senior de ingeniería de datos y orquestación</span>
+            </div>
+          </a>
+          <a href="#molecula-oro" class="nav-cat-item">
+            <span class="nav-cat-item-icon">✨</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Physics &amp; CAD Lab (Au₂₀)</span>
+              </div>
+              <span class="nav-cat-item-desc">Clúster piramidal de oro, modelado 3D Blender y visualizador</span>
+            </div>
+          </a>
+          <a href="#proyectos" class="nav-cat-item" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 4px; padding-top: 10px;">
+            <span class="nav-cat-item-icon">📂</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title" style="color: #38bdf8;">
+                <span>Ver los 10 Proyectos al Completo →</span>
+              </div>
+              <span class="nav-cat-item-desc">Auditoría matemática, repositorio GitHub y código fuente</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categoría 3: Datos & Streaming -->
+      <div class="nav-cat-dropdown">
+        <button type="button" class="nav-cat-trigger" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-trigger-icon">⚡</span>
+          <span class="nav-trigger-text">Datos &amp; Streaming</span>
+          <svg class="nav-cat-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-cat-menu">
+          <a href="/pyspark_pipeline_archify.html" target="_blank" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🔥</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Pipeline PySpark &amp; BigQuery</span>
+                <span class="nav-cat-item-badge nav-badge-emerald">Interactivo</span>
+              </div>
+              <span class="nav-cat-item-desc">Diagrama de flujo interactivo de procesamiento y carga</span>
+            </div>
+          </a>
+          <a href="/bot.html" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🤖</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Trading Studio Pro</span>
+              </div>
+              <span class="nav-cat-item-desc">Simulador quant avanzado, órdenes limit y backtesting</span>
+            </div>
+          </a>
+          <a href="/cockpit.html" class="nav-cat-item">
+            <span class="nav-cat-item-icon">⚡</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Big Data Cockpit</span>
+              </div>
+              <span class="nav-cat-item-desc">Panel de control de telemetría y monitoreo de pipelines</span>
+            </div>
+          </a>
+          <a href="/google-skills.html" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🌐</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Google Cloud Skills (177)</span>
+              </div>
+              <span class="nav-cat-item-desc">Directorio completo de competencias oficiales de Google</span>
+            </div>
+          </a>
+          <a href="/amenazas.html" target="_blank" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🛡️</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Seguridad &amp; Amenazas</span>
+              </div>
+              <span class="nav-cat-item-desc">Matriz de vectores de ataque, cifrado e invariantes de datos</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categoría 4: Trayectoria -->
+      <div class="nav-cat-dropdown">
+        <button type="button" class="nav-cat-trigger" aria-haspopup="true" aria-expanded="false">
+          <span class="nav-trigger-icon">🧭</span>
+          <span class="nav-trigger-text">Trayectoria</span>
+          <svg class="nav-cat-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-cat-menu">
+          <a href="#trayectoria" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🏗️</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Junior «Project-First Builder»</span>
+              </div>
+              <span class="nav-cat-item-desc">Filosofía práctica: construir primero, medir y rigor humilde</span>
+            </div>
+          </a>
+          <a href="#trayectoria" class="nav-cat-item">
+            <span class="nav-cat-item-icon">⚙️</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>EPTA France (Robótica Industrial)</span>
+              </div>
+              <span class="nav-cat-item-desc">Conformado de chapa, matricería y calibración milimétrica</span>
+            </div>
+          </a>
+          <a href="#trayectoria" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🌐</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Desarrollo Web (Bayonne)</span>
+              </div>
+              <span class="nav-cat-item-desc">Sistemas web dinámicos, bases de datos y portales</span>
+            </div>
+          </a>
+          <a href="#trayectoria" class="nav-cat-item">
+            <span class="nav-cat-item-icon">🏛️</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Banca Minorista &amp; Ops (BBVA)</span>
+              </div>
+              <span class="nav-cat-item-desc">Operaciones financieras, gestión de pasivo y compliance</span>
+            </div>
+          </a>
+          <a href="#playbooks" class="nav-cat-item">
+            <span class="nav-cat-item-icon">📘</span>
+            <div class="nav-cat-item-body">
+              <div class="nav-cat-item-title">
+                <span>Playbooks de Arquitectura</span>
+              </div>
+              <span class="nav-cat-item-desc">Buenas prácticas, patrones de diseño y Clean Code</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Acciones Derecha (Idiomas + Botón CV + Toggle Móvil) -->
+    <div class="normal-header-actions">
+      <!-- Selector de Idiomas -->
+      <div class="header-lang-group" id="portfolio-lang-switcher">
+        <button type="button" class="header-lang-btn active" id="btn-port-es" onclick="switchPortLang('es')">🇪🇸 ES</button>
+        <button type="button" class="header-lang-btn" id="btn-port-fr" onclick="switchPortLang('fr')">🇫🇷 FR</button>
+        <button type="button" class="header-lang-btn" id="btn-port-en" onclick="switchPortLang('en')">🇬🇧 EN</button>
+      </div>
+
+      <!-- Botón Ver CV Oficial -->
+      <a href="/cv_printable.html" class="header-cv-cta" title="Ver CV Oficial de Mikel Irastorza">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>CV Oficial</span>
+        <span class="header-cv-badge">Imprimible</span>
       </a>
-      <button onclick="openChattyConsoleModal()" class="btn-pill" style="border-color:#38bdf8; color:#38bdf8; font-weight:800; background:rgba(56,189,248,0.15); box-shadow:0 0 16px rgba(56,189,248,0.18);">💬 Chatty COO (Comando)</button>
-      <button onclick="openPresentationMode()" class="btn-pill" style="border-color:#ec4899; color:#f472b6; font-weight:800; background:rgba(236,72,153,0.13);">🎬 Modo Presentación</button>
-      <a href="#tienda" class="btn-pill" style="border-color:#f59e0b; color:#fbbf24; font-weight:800; background:rgba(245,158,11,0.13);">🏛️ Tienda Novus</a>
-      <button onclick="openCartModal()" id="dock-cart-btn" class="btn-pill btn-pill-gold" style="font-weight:800;">🛒 Carrito (<span id="cart-count-badge">0</span>)</button>
-      <a href="#trading" class="btn-pill" style="border-color:#06b6d4; color:#67e8f9; background:rgba(6,182,212,0.15); font-weight:800;">📈 Trading Bot Core</a>
-      <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="btn-pill" style="border-color:#10b981; color:#34d399; background:rgba(16,185,129,0.15); font-weight:800;">📘 Guía Maestra PDF</a>
-      <a href="/pyspark_pipeline_archify.html" target="_blank" class="btn-pill" style="border-color:#38bdf8; color:#38bdf8; background:rgba(56,189,248,0.14); font-weight:700;">🔥 Pipeline PySpark &amp; BigQuery</a>
-      <a href="https://miky-vercel.vercel.app" target="_blank" class="btn-pill" style="border-color:#a855f7; color:#c084fc; background:rgba(168,85,247,0.15); font-weight:700;">🧠 Copiloto Miky (Vercel)</a>
-      <a href="#molecula-oro" class="btn-pill btn-pill-gold">✨ Molécula de Oro (Au20)</a>
-      <a href="/bot.html" class="btn-pill" style="border-color:var(--accent); color:var(--accent); background:rgba(56,189,248,0.12);">🤖 Trading Studio Pro</a>
-      <a href="/cv_printable.html" class="btn-pill" style="border-color:#10b981; color:#34d399; background:rgba(16,185,129,0.14); font-weight:700;">📄 CV Imprimible</a>
-      <a href="/google-skills.html" class="btn-pill" style="border-color:#60a5fa; color:#93c5fd; background:rgba(96,165,250,0.14); font-weight:700;">🌐 Google Skills (177)</a>
-      <a href="#proyectos" class="btn-pill" style="border-color:#818cf8; color:#a5b4fc; background:rgba(129,140,248,0.18); font-weight:800; box-shadow:0 0 14px rgba(129,140,248,0.18);">📂 10 Proyectos</a>
-      <a href="#playbooks" class="btn-pill" style="border-color:#38bdf8; color:#7dd3fc; background:rgba(56,189,248,0.14); font-weight:700;">📘 Playbooks CTO</a>
-      <a href="#trayectoria" class="btn-pill" style="border-color:#14b8a6; color:#5eead4; background:rgba(20,184,166,0.18); font-weight:800; box-shadow:0 0 14px rgba(20,184,166,0.18);">🧭 Trayectoria</a>
-      <a href="/harness.html" target="_blank" class="btn-pill" style="border-color:#a855f7; color:#d8b4fe; background:rgba(168,85,247,0.15); font-weight:700;">🦾 Claude Harness</a>
-      <a href="/amenazas.html" target="_blank" class="btn-pill" style="border-color:#f43f5e; color:#fda4af; background:rgba(244,63,94,0.15); font-weight:700;">🛡️ Amenazas &amp; Seguridad</a>
-      <a href="/cockpit.html" class="btn-pill btn-pill-accent">⚡ Big Data Cockpit</a>
-      <a href="/evernote.html" class="btn-pill btn-pill-gold">📓 Diario Evernote</a>
-      <a href="http://127.0.0.1:54323" target="_blank" class="btn-pill" style="border-color:#2dd4bf; color:#5eead4; background:rgba(45,212,191,0.14); font-weight:700;">💾 Supabase Studio</a>
+
+      <!-- Botón Móvil Hamburguesa -->
+      <button type="button" class="header-mobile-toggle" id="header-mobile-toggle" aria-label="Abrir menú de navegación" onclick="toggleMobileNav()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
     </div>
-  </nav>
+  </div>
+
+  <!-- Menú Móvil Desplegable (Drawer) -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="mobile-nav-content">
+      <div class="mobile-cat-group">
+        <div class="mobile-cat-header">🎓 Estudios &amp; Cloud</div>
+        <a href="#hero-dropdowns-hub" class="mobile-cat-link" onclick="closeMobileNav()">⚡ Especialización Google Cloud <span class="nav-cat-item-badge nav-badge-amber">En curso</span></a>
+        <a href="/Guia_Maestra_Que_Debo_Saber_Data_Engineering.pdf" target="_blank" class="mobile-cat-link">📘 Guía Maestra Data Engineering (PDF)</a>
+        <a href="#trayectoria" class="mobile-cat-link" onclick="closeMobileNav()">🏛️ Senda Financiera EIP / EFA</a>
+        <a href="/Optimizacion_Pipeline_PySpark_BigQuery_30.pdf" target="_blank" class="mobile-cat-link">📑 Optimización PySpark &amp; BigQuery</a>
+        <a href="/gemini_bigquery_ai_pipeline.ipynb" download class="mobile-cat-link">🧠 Notebook Gemini &amp; BigQuery (.ipynb)</a>
+      </div>
+      <div class="mobile-cat-group">
+        <div class="mobile-cat-header">🚀 Proyectos (10)</div>
+        <a href="#trading" class="mobile-cat-link" onclick="closeMobileNav()">📈 Trading Bot Core v3.0</a>
+        <a href="#proyectos" class="mobile-cat-link" onclick="closeMobileNav()">🌊 Streaming Lakehouse</a>
+        <a href="https://miky-vercel.vercel.app" target="_blank" class="mobile-cat-link">🤖 Copiloto Miky (Vercel)</a>
+        <a href="#molecula-oro" class="mobile-cat-link" onclick="closeMobileNav()">✨ Physics CAD Lab (Au₂₀)</a>
+        <a href="#proyectos" class="mobile-cat-link" onclick="closeMobileNav()">📂 Ver los 10 Proyectos al Completo</a>
+      </div>
+      <div class="mobile-cat-group">
+        <div class="mobile-cat-header">⚡ Datos &amp; Streaming</div>
+        <a href="/pyspark_pipeline_archify.html" target="_blank" class="mobile-cat-link">🔥 Pipeline PySpark &amp; BigQuery</a>
+        <a href="/bot.html" class="mobile-cat-link">🤖 Trading Studio Pro</a>
+        <a href="/cockpit.html" class="mobile-cat-link">⚡ Big Data Cockpit</a>
+        <a href="/google-skills.html" class="mobile-cat-link">🌐 Google Cloud Skills (177)</a>
+        <a href="/amenazas.html" target="_blank" class="mobile-cat-link">🛡️ Seguridad &amp; Amenazas</a>
+      </div>
+      <div class="mobile-cat-group">
+        <div class="mobile-cat-header">🧭 Trayectoria</div>
+        <a href="#trayectoria" class="mobile-cat-link" onclick="closeMobileNav()">🏗️ Junior «Project-First Builder»</a>
+        <a href="#trayectoria" class="mobile-cat-link" onclick="closeMobileNav()">⚙️ EPTA France (Robótica Industrial)</a>
+        <a href="#trayectoria" class="mobile-cat-link" onclick="closeMobileNav()">🌐 Desarrollo Web (Bayonne)</a>
+        <a href="#trayectoria" class="mobile-cat-link" onclick="closeMobileNav()">🏛️ Banca Minorista &amp; Ops (BBVA)</a>
+        <a href="#playbooks" class="mobile-cat-link" onclick="closeMobileNav()">📘 Playbooks de Arquitectura</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrap">
 
   <!-- Hero Header -->
   <header class="hero">
-    <div style="display:flex; justify-content:center; margin-bottom:14px;">
-      <div id="portfolio-lang-switcher" style="display:inline-flex; align-items:center; gap:4px; padding:4px 10px; background:rgba(15,23,42,0.88); border:1px solid rgba(255,255,255,0.16); border-radius:999px; box-shadow:0 8px 24px rgba(0,0,0,0.35);">
-        <button type="button" class="aura-lang-btn active" id="btn-port-es" onclick="switchPortLang('es')" style="padding:3px 10px; font-size:11px; border-radius:999px;">🇪🇸 ES</button>
-        <button type="button" class="aura-lang-btn" id="btn-port-fr" onclick="switchPortLang('fr')" style="padding:3px 10px; font-size:11px; border-radius:999px;">🇫🇷 FR</button>
-        <button type="button" class="aura-lang-btn" id="btn-port-en" onclick="switchPortLang('en')" style="padding:3px 10px; font-size:11px; border-radius:999px;">🇬🇧 EN</button>
-      </div>
-    </div>
     <div class="hero-eyebrow" id="port-eyebrow">
       ⚡ Junior Data &amp; Software Engineer («Project-First Builder»)
     </div>
@@ -6542,20 +7070,6 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
     if (c4s && t.card4Sub) c4s.innerHTML = t.card4Sub;
     const c4g = document.getElementById('card4-tag');
     if (c4g && t.card4Tag) c4g.textContent = t.card4Tag;
-    if (su) su.innerHTML = t.sub;
-
-    const bg = document.getElementById('port-btn-guide');
-    if (bg) bg.textContent = t.btnGuide;
-    const bc = document.getElementById('port-btn-cv');
-    if (bc) bc.textContent = t.btnCv;
-    const bp = document.getElementById('port-btn-pyspark');
-    if (bp) bp.textContent = t.btnPyspark;
-    const bb = document.getElementById('port-btn-bot');
-    if (bb) bb.textContent = t.btnBot;
-    const bj = document.getElementById('port-btn-projects');
-    if (bj) bj.textContent = t.btnProjects;
-    const bct = document.getElementById('port-btn-contact');
-    if (bct) bct.textContent = t.btnContact;
 
     // Reality Banner elements translation
     const rbt = document.getElementById('reality-badge-title');
@@ -6597,6 +7111,50 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
     }
     if (window.AuraAudio && window.AuraAudio.playNavClick) window.AuraAudio.playNavClick();
   }
+
+  // --- Standard Header Categorical Dropdowns & Mobile Drawer Handlers ---
+  document.querySelectorAll('.nav-cat-dropdown').forEach(drop => {
+    const trigger = drop.querySelector('.nav-cat-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = drop.classList.contains('is-open');
+      document.querySelectorAll('.nav-cat-dropdown.is-open').forEach(d => {
+        if (d !== drop) d.classList.remove('is-open');
+      });
+      drop.classList.toggle('is-open', !isOpen);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-cat-dropdown')) {
+      document.querySelectorAll('.nav-cat-dropdown.is-open').forEach(d => d.classList.remove('is-open'));
+    }
+  });
+
+  document.querySelectorAll('.nav-cat-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-cat-dropdown.is-open').forEach(d => d.classList.remove('is-open'));
+    });
+  });
+
+  window.toggleMobileNav = function() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const btn = document.getElementById('header-mobile-toggle');
+    if (drawer) {
+      const open = drawer.classList.toggle('is-open');
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+  };
+
+  window.closeMobileNav = function() {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const btn = document.getElementById('header-mobile-toggle');
+    if (drawer) {
+      drawer.classList.remove('is-open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+  };
 
   window.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('mikel_lang') || 'es';
