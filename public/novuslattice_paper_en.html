@@ -18,7 +18,7 @@
         color: #7d6b58;
       }
       @bottom-left {
-        content: "NovusLattice · Mikel Irastorza (Novo Mundus)";
+        content: "NovusLattice · Mikel Irastorza · España";
         font-family: 'Inter', sans-serif;
         font-size: 8pt;
         color: #7d6b58;
@@ -38,17 +38,16 @@
       font-size: 9.5pt;
       margin: 0;
       padding: 0;
-      background: #e8e2d5; /* Fondo circundante en pantalla */
+      background: #e8e2d5;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Contenedor A4 Encuadrado con Márgenes Holgados */
     .a4-container {
       width: 210mm;
       max-width: 100%;
       min-height: 297mm;
       margin: 30px auto;
-      background: #faf6ee; /* Tono papel editorial cálido */
+      background: #faf6ee;
       padding: 22mm 24mm;
       box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14), 0 2px 10px rgba(0, 0, 0, 0.08);
       border: 1px solid #dcd3c4;
@@ -80,7 +79,7 @@
       flex-direction: column;
       justify-content: space-between;
       text-align: center;
-      padding: 35mm 10mm 20mm 10mm;
+      padding: 20mm 10mm 15mm 10mm;
       page-break-after: always;
       break-after: page;
       border-bottom: 2px solid #d9cbba;
@@ -91,18 +90,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .cover-tag {
       font-family: 'Cinzel', serif;
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2.5px;
       color: #8c5b1b;
       text-transform: uppercase;
       border-bottom: 1.5px solid #c9a975;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
       display: inline-block;
     }
 
@@ -113,25 +112,25 @@
       letter-spacing: 2px;
       color: #1b130a;
       line-height: 1.15;
-      margin: 8px 0;
+      margin: 6px 0;
     }
 
     .cover-subtitle {
       font-family: 'Inter', sans-serif;
-      font-size: 11pt;
+      font-size: 10.5pt;
       font-weight: 500;
       color: #5c4b3a;
       line-height: 1.45;
-      max-width: 620px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     .cover-meta-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 14px;
       max-width: 580px;
-      margin: 30px auto;
+      margin: 20px auto;
       text-align: left;
       background: #f3ece0;
       border: 1px solid #dcd1be;
@@ -159,10 +158,20 @@
       font-size: 8pt;
       color: #7d6b58;
       border-top: 1px solid #e0d5c5;
-      padding-top: 14px;
+      padding-top: 12px;
     }
 
-    /* BARRA DE IDIOMAS Y NAVEGACIÓN (Página 2 en adelante) */
+    /* PÁGINA 2: ÍNDICE EN PÁGINA PROPIA */
+    .toc-standalone-page {
+      min-height: 250mm;
+      page-break-after: always;
+      break-after: page;
+      padding: 15mm 5mm 20mm 5mm;
+      border-bottom: 2px solid #d9cbba;
+      margin-bottom: 25mm;
+    }
+
+    /* BARRA DE NAVEGACIÓN ENTRE IDIOMAS */
     .nav-bar {
       display: flex;
       justify-content: space-between;
@@ -220,49 +229,76 @@
       color: #1b130a;
     }
 
-    /* ÍNDICE GENERAL */
+    /* ÍNDICE GENERAL DETALLADO */
     .toc-box {
       background: #f4eee2;
       border: 1px solid #ded3c2;
       border-left: 4px solid #8c5b1b;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin: 18px 0 24px 0;
+      padding: 20px 24px;
+      margin: 15mm 0;
       font-family: 'Inter', sans-serif;
     }
 
     .toc-title {
       font-family: 'Cinzel', serif;
-      font-size: 10pt;
-      font-weight: 700;
+      font-size: 14pt;
+      font-weight: 800;
       color: #241c15;
-      margin: 0 0 10px 0;
+      margin: 0 0 16px 0;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #d9cbba;
+      padding-bottom: 8px;
     }
 
     .toc-list {
       list-style: none;
       padding: 0;
       margin: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 20px;
-      font-size: 8.5pt;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 9.5pt;
+    }
+
+    .toc-list li {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted #c9a975;
+      padding-bottom: 4px;
     }
 
     .toc-list a {
-      color: #5c4b3a;
+      color: #3b2e21;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .toc-list a:hover {
       color: #8c5b1b;
-      text-decoration: underline;
     }
 
-    /* TIPOGRAFÍA Y CONTENIDO */
+    .toc-page-num {
+      color: #8c5b1b;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CONTENIDO TÉCNICO CONTINUO (PÁGINA 3 EN ADELANTE) */
+    .content-stream {
+      margin-bottom: 25mm;
+    }
+
+    /* PÁGINA FINAL: GLOSARIO Y FUENTES */
+    .glossary-sources-page {
+      min-height: 250mm;
+      page-break-before: always;
+      break-before: page;
+      padding: 10mm 5mm;
+      border-top: 2px solid #d9cbba;
+    }
+
     h2.section-title {
       font-family: 'Cinzel', Georgia, serif;
       font-size: 13.5pt;
@@ -291,7 +327,6 @@
       hyphens: auto;
     }
 
-    /* TARJETAS Y FÓRMULAS */
     .card-box {
       background: #f7f2e7;
       border: 1px solid #d9cbba;
@@ -324,7 +359,6 @@
       font-style: italic;
     }
 
-    /* TABLAS INDUSTRIALES */
     table.data-table {
       width: 100%;
       border-collapse: collapse;
@@ -362,7 +396,6 @@
       color: #8c5b1b;
     }
 
-    /* GLOSARIO */
     .glossary-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -393,68 +426,119 @@
   <div class="a4-container">
     
     <!-- ========================================== -->
-    <!-- PÁGINA 1: PORTADA SOLEMNE Y DEDICADA      -->
+    <!-- PÁGINA 1: PORTADA SOLEMNE (CUBO DE ORO FCC)-->
     <!-- ========================================== -->
     <div class="cover-page">
       <div class="cover-header">
-        <span class="cover-tag">Official Technical Monograph · Novo Mundus</span>
-        <svg width="90" height="90" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="100" fill="#1e2530"/>
-  <rect width="504" height="504" x="4" y="4" rx="96" stroke="#c9a975" stroke-width="4" stroke-opacity="0.4"/>
-  <g opacity="0.25" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6,8">
-    <line x1="90" y1="256" x2="422" y2="256" />
-    <line x1="256" y1="90" x2="256" y2="422" />
-    <polygon points="256,110 390,256 256,402 122,256" />
-    <circle cx="256" cy="256" r="146" />
-  </g>
-  <g fill="#38bdf8">
-    <circle cx="132" cy="128" r="10" />
-    <circle cx="132" cy="384" r="10" />
-    <circle cx="316" cy="128" r="10" />
-    <circle cx="316" cy="384" r="10" />
-    <circle cx="452" cy="384" r="10" />
-  </g>
-  <path d="M 132 384 L 132 128 L 316 384 L 316 128 M 316 384 L 452 384" 
-        stroke="url(#goldNL)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M 132 128 L 316 384 L 452 384" 
-        stroke="#38bdf8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+        <span class="cover-tag">Official Technical Monograph</span>
+        <svg width="240" height="200" viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="goldNL" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+    <!-- Gradiente de Oro Metálico -->
+    <linearGradient id="goldMesh" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="35%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#b45309"/>
+      <stop offset="40%" stop-color="#f59e0b"/>
+      <stop offset="80%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#92400e"/>
     </linearGradient>
+    <radialGradient id="goldSphere" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="25%" stop-color="#fde047"/>
+      <stop offset="60%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </radialGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
   </defs>
+
+  <!-- Aristas del Cubo FCC Isométrico (a = 4.078 Å) -->
+  <g stroke="url(#goldMesh)" stroke-width="2.5" opacity="0.85">
+    <!-- Cara posterior -->
+    <line x1="160" y1="30" x2="250" y2="75" stroke-dasharray="4,4"/>
+    <line x1="250" y1="75" x2="250" y2="175" stroke-dasharray="4,4"/>
+    <line x1="250" y1="75" x2="160" y2="120" stroke-dasharray="4,4"/>
+
+    <!-- Aristas del Cubo principal -->
+    <line x1="70" y1="75" x2="160" y2="30"/>
+    <line x1="160" y1="30" x2="160" y2="130"/>
+    <line x1="70" y1="75" x2="70" y2="175"/>
+    <line x1="70" y1="175" x2="160" y2="220"/>
+    <line x1="160" y1="220" x2="250" y2="175"/>
+    <line x1="160" y1="130" x2="250" y2="85"/>
+    <line x1="70" y1="75" x2="160" y2="120"/>
+    <line x1="160" y1="120" x2="160" y2="220"/>
+
+    <!-- Enlaces del Tetraedro Au20 (Simetría Td) en el interior -->
+    <g stroke="#38bdf8" stroke-width="1.8" opacity="0.9">
+      <line x1="160" y1="55" x2="105" y2="155"/>
+      <line x1="160" y1="55" x2="215" y2="155"/>
+      <line x1="160" y1="55" x2="160" y2="195"/>
+      <line x1="105" y1="155" x2="215" y2="155"/>
+      <line x1="105" y1="155" x2="160" y2="195"/>
+      <line x1="215" y1="155" x2="160" y2="195"/>
+    </g>
+  </g>
+
+  <!-- Átomos de Oro (Esferas Cuánticas FCC y Tetraedro) -->
+  <!-- Vértices del Cubo -->
+  <circle cx="70" cy="75" r="7" fill="url(#goldSphere)"/>
+  <circle cx="160" cy="30" r="7" fill="url(#goldSphere)"/>
+  <circle cx="250" cy="75" r="5.5" fill="url(#goldSphere)" opacity="0.7"/>
+  <circle cx="70" cy="175" r="7" fill="url(#goldSphere)"/>
+  <circle cx="250" cy="175" r="7" fill="url(#goldSphere)"/>
+  <circle cx="160" cy="220" r="8" fill="url(#goldSphere)"/>
+
+  <!-- Centros de las Caras (FCC) -->
+  <circle cx="115" cy="52" r="6" fill="url(#goldSphere)"/>
+  <circle cx="205" cy="52" r="6" fill="url(#goldSphere)"/>
+  <circle cx="115" cy="147" r="7" fill="url(#goldSphere)"/>
+  <circle cx="205" cy="147" r="7" fill="url(#goldSphere)"/>
+  <circle cx="160" cy="170" r="7" fill="url(#goldSphere)"/>
+
+  <!-- Vértices del Tetraedro Au20 -->
+  <circle cx="160" cy="55" r="7.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="105" cy="155" r="7.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="215" cy="155" r="7.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="160" cy="195" r="8.5" fill="url(#goldSphere)" stroke="#38bdf8" stroke-width="2"/>
+
+  <!-- Texto descriptor del cubo -->
+  <text x="160" y="248" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#b45309" letter-spacing="1.5">
+    FCC a₀ = 4.078 Å · Au₂₀ Td
+  </text>
 </svg>
         <h1 class="cover-title">NOVUSLATTICE</h1>
-        <p class="cover-subtitle">Multiscale Continuum Framework, Sutton-Chen Potential in Sobolev H¹(Ω) Spaces & Real-Time Industrial Thermal Radar for Sheet Metal Manufacturing</p>
+        <p class="cover-subtitle">Multiscale Continuum Framework, Sutton-Chen Potential in Sobolev H¹(Ω) Spaces & Real-Time Industrial Thermal Compensation</p>
       </div>
 
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
-          <strong>Autor / Author / Auteur</strong>
+          <strong>Author</strong>
           <span>Mikel Irastorza</span>
         </div>
         <div class="cover-meta-item">
-          <strong>Entidad / Organization / Entité</strong>
-          <span>Novo Mundus (Málaga / Paris, Spain)</span>
+          <strong>Entity</strong>
+          <span>Mikel Irastorza</span>
         </div>
         <div class="cover-meta-item">
-          <strong>Identificador ORCID</strong>
+          <strong>Location</strong>
+          <span>Spain</span>
+        </div>
+        <div class="cover-meta-item">
+          <strong>ORCID Identifier</strong>
           <span><a href="https://orcid.org/0009-0005-2423-388X" target="_blank" style="color: #8c5b1b; text-decoration: none;">0009-0005-2423-388X</a></span>
         </div>
-        <div class="cover-meta-item">
-          <strong>DOI Zenodo (CERN / EU)</strong>
+        <div class="cover-meta-item" style="grid-column: span 2;">
+          <strong>Zenodo DOI (CERN / EU)</strong>
           <span><a href="https://doi.org/10.5281/zenodo.24440204" target="_blank" style="color: #8c5b1b; text-decoration: none;">10.5281/zenodo.24440204</a></span>
         </div>
         <div class="cover-meta-item" style="grid-column: span 2;">
-          <strong>Licencia / Legal Terms</strong>
+          <strong>License</strong>
           <span>PolyForm Noncommercial 1.0.0 & CC BY-NC-ND 4.0</span>
         </div>
         <div class="cover-meta-item" style="grid-column: span 2;">
-          <strong>Campo de Aplicación / Scope</strong>
-          <span>AFM Metrology, Shearing, CNC Bending EPTA, Anti-Galling & Thermal Drift</span>
+          <strong>Scope of Application</strong>
+          <span>Sheet Metal Forming and Bending, Precision Metrology, Dislocation Mechanics and CNC Thermal Compensation</span>
         </div>
       </div>
 
@@ -464,66 +548,69 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- PÁGINA 2 EN ADELANTE: CONTENIDO CONTINUO   -->
+    <!-- PÁGINA 2: ÍNDICE GENERAL EN PÁGINA PROPIA  -->
     <!-- ========================================== -->
-    <div class="content-body">
-      
-      <!-- Barra de navegación e Idiomas -->
+    <div class="toc-standalone-page">
       <div class="nav-bar">
         <div class="brand-mark">
           <span style="font-size: 14pt;">⚛️</span>
           <div>
             <div class="brand-name">NOVUSLATTICE</div>
             <div style="font-family: 'Inter', sans-serif; font-size: 7.2pt; color: #7d6b58; font-weight: 600;">
-              Mikel Irastorza · Novo Mundus
+              Mikel Irastorza · España
             </div>
           </div>
         </div>
 
         <div class="lang-switcher">
-          <a href="novuslattice_paper_es.html" class="lang-pill inactive">🇪🇸 Castellano</a>
-          <a href="novuslattice_paper_en.html" class="lang-pill active">🇬🇧 English</a>
-          <a href="novuslattice_paper_fr.html" class="lang-pill inactive">🇫🇷 Français</a>
+          <a href="novuslattice_paper_es.html" class="lang-pill inactive">Castellano</a>
+          <a href="novuslattice_paper_en.html" class="lang-pill active">English</a>
+          <a href="novuslattice_paper_fr.html" class="lang-pill inactive">Français</a>
         </div>
       </div>
 
-      <!-- Sumario / Índice General -->
       <div class="toc-box">
         <div class="toc-title">Table of Contents</div>
         <ul class="toc-list">
-          <li><a href="#sec1">1. Executive Summary & Physical Foundations</a></li><li><a href="#sec2">2. Unified Mathematical Formulation (Sutton-Chen)</a></li><li><a href="#sec3">3. The 5 Equivalent Forms of Invariance (Doctrine of Equivalents)</a></li><li><a href="#sec4">4. The 4 Canonical Industrial Use Cases (EPTA France Benchmark)</a></li><li><a href="#sec5">5. Cyclic Work Hardening & Dislocation Density</a></li><li><a href="#sec6">6. Technical Glossary & Notation</a></li><li><a href="#sec7">7. Academic References & Citations</a></li>
+          <li><a href="#sec1"><span>1. Executive Summary and Physical Foundations</span></a><span class="toc-page-num">Page 3</span></li><li><a href="#sec2"><span>2. Unified Mathematical Formulation (Sutton-Chen)</span></a><span class="toc-page-num">Page 3</span></li><li><a href="#sec3"><span>3. The Five Equivalent Forms of Invariance</span></a><span class="toc-page-num">Page 4</span></li><li><a href="#sec4"><span>4. Industrial Application Cases</span></a><span class="toc-page-num">Page 4</span></li><li><a href="#sec5"><span>5. Cyclic Work Hardening and Dislocation Density</span></a><span class="toc-page-num">Page 5</span></li><li><a href="#sec6"><span>6. Technical Glossary and Notation</span></a><span class="toc-page-num">Page 6</span></li><li><a href="#sec7"><span>7. Academic References and Sources</span></a><span class="toc-page-num">Page 6</span></li>
         </ul>
       </div>
+    </div>
 
+    <!-- ========================================== -->
+    <!-- PÁGINA 3 EN ADELANTE: CONTENIDO CONTINUO   -->
+    <!-- ========================================== -->
+    <div class="content-stream">
+      
       <!-- Sección 1 -->
-      <h2 class="section-title" id="sec1">1. Executive Summary & Physical Foundations</h2>
+      <h2 class="section-title" id="sec1">1. Executive Summary and Physical Foundations</h2>
       <p>
-        Historically, precision manufacturing and metal forming industries have modeled materials through static, homogeneous linear empirical coefficients. However, for tight-tolerance industrial parts such as commercial refrigeration chassis at <strong>EPTA France</strong>, strict specifications of <strong>±0.2 mm</strong> are systematically breached. The underlying cause is not mechanical slop, but <em>atomic physics</em>: dislocation cascades along crystallographic {111} slip planes, stored elastic bond energy, and daily workshop thermal shifts alter the material's elasto-plastic response.
+        In high-precision sheet metal forming, strict dimensional tolerances of <strong>±0.2 mm</strong> are routinely affected by microscopic mechanisms: residual stress relaxation upon tool removal (springback), crystal lattice thermal expansion caused by shop-floor temperature swings, and severe frictional contact at the tool interface.
         <br><br>
-        <strong>NovusLattice</strong>, conceived and formulated by <strong>Mikel Irastorza</strong>, unifies the many-body physics of FCC crystal lattices (featuring the canonical gold lattice constant <strong>a = 4.078 Å</strong> and aluminum <strong>a = 4.049 Å</strong>) with nonlinear continuum mechanics in Hilbert-Sobolev spaces <em>H¹(Ω)</em>. By deploying the Cauchy-Born kinematic rule coupled with real-time workshop thermal radar compensation, NovusLattice eliminates serial scrap and out-of-tolerance rejects.
+        <strong>NovusLattice</strong>, formulated by <strong>Mikel Irastorza</strong>, unifies the many-body physics of face-centered cubic (FCC) crystal lattices—anchored on the invariant lattice constants of gold <strong>a = 4.078 Å</strong> and aluminum <strong>a = 4.049 Å</strong>—with nonlinear continuum mechanics in Hilbert-Sobolev spaces <em>H¹(Ω)</em>. Through the Cauchy-Born kinematic rule and real-time environmental thermal compensation, the model precisely predicts overbend requirements and material behavior under actual production conditions.
         </p>
 
       <!-- Sección 2 -->
       <h2 class="section-title" id="sec2">2. Unified Mathematical Formulation (Sutton-Chen Potential)</h2>
-      <p>The total cohesive energy of the metallic lattice is computed by combining short-range Born-Mayer pair repulsion with long-range multi-body electronic d-band attraction (Finnis-Sinclair):</p>
+      <p>The total cohesive energy of the metallic lattice is defined by combining Born-Mayer short-range pair repulsion with multi-body electron density attraction:</p>
       
       <div class="formula-display">
 U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
 ρ_i = Σ_{j≠i} (a / r_ij)^m
       </div>
-      <p class="formula-desc">Where ε is the cohesive energy scale (eV), a is the equilibrium lattice constant (4.078 Å in Au, 4.049 Å in Al), n and m are integer range exponents (n=10, m=8 for Au; n=9, m=6 for Ni), c is the dimensionless many-body coupling parameter, and r_ij is interatomic separation.</p>
+      <p class="formula-desc">Where ε is the cohesive energy scale (eV), a is the equilibrium lattice constant (4.078 Å for Au; 4.049 Å for Al), n and m are integer range exponents (n=10, m=8 for Au; n=9, m=6 for Ni), c is the dimensionless coupling parameter, and r_ij is the interatomic distance.</p>
 
       <!-- Tabla de Constantes de Red -->
       <table class="data-table">
         <thead>
           <tr>
             <th>Elemento / Element</th>
-            <th>Red / Structure</th>
+            <th>Estructura / Lattice</th>
             <th>a₀ (Å)</th>
             <th>ε (eV)</th>
-            <th>c (Adim.)</th>
-            <th>n (Rep.)</th>
-            <th>m (Atr.)</th>
+            <th>c</th>
+            <th>n</th>
+            <th>m</th>
           </tr>
         </thead>
         <tbody>
@@ -537,7 +624,7 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
             <td>8</td>
           </tr>
           <tr>
-            <td><strong>Al (Aluminio)</strong></td>
+            <td><strong>Al (Aluminio / Aluminium)</strong></td>
             <td>FCC (c.f.c.)</td>
             <td>4.049 Å</td>
             <td>0.0331 eV</td>
@@ -546,7 +633,7 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
             <td>6</td>
           </tr>
           <tr>
-            <td><strong>Cu (Cobre / Cuivre)</strong></td>
+            <td><strong>Cu (Cobre / Copper / Cuivre)</strong></td>
             <td>FCC (c.f.c.)</td>
             <td>3.615 Å</td>
             <td>0.0123 eV</td>
@@ -555,7 +642,7 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
             <td>6</td>
           </tr>
           <tr>
-            <td><strong>Ni (Níquel)</strong></td>
+            <td><strong>Ni (Níquel / Nickel)</strong></td>
             <td>FCC (c.f.c.)</td>
             <td>3.520 Å</td>
             <td>0.0157 eV</td>
@@ -567,18 +654,18 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
       </table>
 
       <!-- Sección 3: Formas Equivalentes -->
-      <h2 class="section-title" id="sec3">3. The 5 Equivalent Mathematical Forms (Doctrine of Equivalents)</h2>
-      <p>Under the Berne Convention and the <em>Doctrine of Equivalents</em> in international patent jurisprudence (the Triple Identity Test: performing substantially the same function in substantially the same way to achieve the same result), Mikel Irastorza's invention protects the core physics across all isomorphic expressions:</p>
+      <h2 class="section-title" id="sec3">3. The Five Equivalent Forms of Invariance</h2>
+      <p>Under the technical equivalence principle, the physical formulation of NovusLattice is rigorously expressed across five continuous and discrete mathematical representations:</p>
       <div class="card-box">
         
       <div style="margin-bottom: 8px;">
         <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 1: Discrete Atomic Lattice:</strong> 
-        <span style="color: #3b2e21;">Direct pair sum and local electronic density over FCC lattice coordinates with n=10, m=8.</span>
+        <span style="color: #3b2e21;">Direct pair summation and local electronic density over FCC coordinates with exponents n=10, m=8.</span>
       </div>
     
       <div style="margin-bottom: 8px;">
-        <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 2: Continuum Cauchy-Born Rule:</strong> 
-        <span style="color: #3b2e21;">W_SC(F, a(T)) = (1 / V_0) · E_atomic(F · R_ij, a(T)), mapping lattice vectors through deformation gradient F.</span>
+        <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 2: Continuum Cauchy-Born Kinematics:</strong> 
+        <span style="color: #3b2e21;">W_SC(F, a(T)) = (1 / V_0) · E_atomic(F · R_ij, a(T)), mapping atomic bonds through macroscopic deformation gradient F.</span>
       </div>
     
       <div style="margin-bottom: 8px;">
@@ -587,25 +674,25 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
       </div>
     
       <div style="margin-bottom: 8px;">
-        <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 4: Thermal Radar Coupled Thermomechanics:</strong> 
-        <span style="color: #3b2e21;">a(T) = a_0 · [ 1 + α_L · (T_radar - T_0) ], modulating temperature-dependent stiffness E(T) in real time.</span>
+        <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 4: Thermal Compensation Thermomechanics:</strong> 
+        <span style="color: #3b2e21;">a(T) = a_0 · [ 1 + α_L · (T - T_0) ], modulating stiffness E(T) according to real shop-floor temperatures.</span>
       </div>
     
       <div style="margin-bottom: 8px;">
         <strong style="color: #8c5b1b; font-family: 'Inter', sans-serif;">Form 5: Closed-Form CNC Control Algorithm:</strong> 
-        <span style="color: #3b2e21;">Δθ_springback = θ_target · ( 3 · σ_y(T) / (E(T) · t) · R_die ), prescribing exact punch overbend angles.</span>
+        <span style="color: #3b2e21;">Δθ_springback = θ_target · ( 3 · σ_y(T) / (E(T) · t) · R_die ), prescribing the exact punch overbend angle.</span>
       </div>
     
       </div>
 
       <!-- Sección 4: Casos Industriales -->
-      <h2 class="section-title" id="sec4">4. The 4 Canonical Industrial Use Cases (EPTA France Benchmark)</h2>
+      <h2 class="section-title" id="sec4">4. Industrial Application Cases</h2>
       
-      <h3 class="sub-title">Case 1: Precision Shearing & Blanking Clearance</h3>
-      <p>Improper clearance causes burr formation and tool edge degradation. NovusLattice calculates the optimal blade clearance by minimizing interatomic fracture energy along {111} planes: Optimal Clearance C_opt = 0.006 · √(σ_y) · t = <strong>0.139 mm (±5 µm)</strong> for 1.5 mm sheet, ensuring clean ductile rupture without micro-cracks.</p>
+      <h3 class="sub-title">Case 1: Optimal Shearing and Blanking Clearance</h3>
+      <p>NovusLattice determines optimal blade clearance by minimizing interatomic fracture energy along {111} slip planes: Optimal Clearance C_opt = 0.006 · √(σ_y) · t = <strong>0.139 mm (±5 µm)</strong> for 1.5 mm sheet, ensuring clean separation without secondary burrs.</p>
 
-      <h3 class="sub-title">Case 2: Precision Bending & Springback Compensation (EPTA France Benchmark)</h3>
-      <p>At EPTA France, a 90° bend exhibits a springback of 0.934°, shifting the bent flange by 0.815 mm—over four times the allowable ±0.2 mm tolerance. NovusLattice integrates the elasto-plastic stress distribution and commands the CNC brake to overbend to <strong>90.934°</strong>. Upon tool release, the flange rebounds to precisely 90.000° with an error of only <strong>0.025 mm</strong> (10x tighter than required).</p>
+      <h3 class="sub-title">Case 2: Precision Bending and Springback Compensation (EPTA France Benchmark)</h3>
+      <p>In a 90° bend, springback produces a 0.934° deviation, shifting the flange by 0.815 mm and exceeding the ±0.2 mm allowable tolerance. NovusLattice calculates elasto-plastic stress relaxation and commands the CNC press brake to overbend to <strong>90.934°</strong>. Upon tool release, the flange rebounds to exactly 90.000° with an error of only <strong>0.025 mm</strong>, well within specifications.</p>
 
       <!-- Tabla Comparativa Benchmark EPTA France -->
       <table class="data-table">
@@ -614,7 +701,7 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
             <th>Parámetro / Parameter / Paramètre</th>
             <th>Método Tradicional (Empírico)</th>
             <th>NovusLattice (Mikel Irastorza)</th>
-            <th>Mejora / Improvement</th>
+            <th>Mejora Obtenida</th>
           </tr>
         </thead>
         <tbody>
@@ -632,80 +719,84 @@ U_total = ε · [ 1/2 · Σ_i Σ_{j≠i} (a / r_ij)^n - c · Σ_i √( ρ_i ) ]
           </tr>
           <tr>
             <td>Desviación Dimensional de Ala</td>
-            <td>0.815 mm (Fuera de tolerancia ±0.2)</td>
+            <td>0.815 mm (Fuera de tolerancia ±0.2 mm)</td>
             <td class="highlight-cell">0.025 mm (Dentro de tolerancia)</td>
             <td><strong>10x más preciso (Aprobado)</strong></td>
           </tr>
           <tr>
             <td>Tasa de Piezas de Desecho (Scrap)</td>
-            <td>10 chapas consecutivas rechazadas</td>
+            <td>Rechazo continuo de piezas</td>
             <td class="highlight-cell">0 piezas de desecho</td>
             <td><strong>100% de piezas conformes</strong></td>
           </tr>
         </tbody>
       </table>
 
-      <h3 class="sub-title">Case 3: Robotic Gripping, Tribology & Anti-Galling Protection</h3>
-      <p>High-speed dry contact between robotic gripper pads and sheet metal induces severe friction galling. NovusLattice calculates the critical normal contact force threshold of <strong>69.3 kN</strong> over 400 mm² at friction coefficient μ = 0.35, preventing cold-welding and surface score marks.</p>
+      <h3 class="sub-title">Case 3: Robotic Gripping and Anti-Galling Protection</h3>
+      <p>Severe contact pressure between robotic gripper pads and sheet metal can trigger friction-induced micro-welds (galling). NovusLattice defines a maximum normal load limit of <strong>69.3 kN</strong> over 400 mm² at friction coefficient μ = 0.35, preventing surface gouging.</p>
 
-      <h3 class="sub-title">Case 4: Workshop Environmental Drift & Real-Time Thermal Radar</h3>
-      <p>Between a 15°C morning and a 35°C afternoon, thermal lattice expansion a(T) and modulus degradation E(T) shift large-part dimensions by 0.58 mm. The NovusLattice thermal radar dynamically recalculates punch penetration depth (+0.082 mm at noon), achieving zero scrap across the entire production shift.</p>
+      <h3 class="sub-title">Case 4: Workshop Thermal Drift and Real-Time Compensation</h3>
+      <p>Ambient temperature fluctuations throughout the working day alter lattice spacing and elastic modulus. The NovusLattice thermal feedback loop dynamically adjusts punch stroke (+0.082 mm at peak temperature), maintaining dimensional precision across production shifts.</p>
 
       <!-- Sección 5: Endurecimiento Cíclico -->
-      <h2 class="section-title" id="sec5">5. Cyclic Work Hardening & Dislocation Accumulation</h2>
-      <p>Over 10,000 successive stamping cycles, forming tools experience cyclic plastic hardening. The dislocation density ρ(N) rises governed by the Taylor-Voce relationship: ΔH(N) = α · G · b · √(ρ(N)). NovusLattice predicts this surface hardness progression, auto-updating CNC bend parameters before fatigue rupture occurs.</p>
+      <h2 class="section-title" id="sec5">5. Cyclic Work Hardening and Dislocation Density</h2>
+      <p>Over repeated production cycles, forming tools experience cyclic plastic hardening governed by the Taylor-Voce relation: ΔH(N) = α · G · b · √(ρ(N)). NovusLattice tracks dislocation density buildup to recalibrate forming parameters before tool wear causes reject parts.</p>
       <div class="formula-display">
 ΔH(N) = α · G · b · √( ρ(N) )
 ρ(N) = ρ₀ + A · [ 1 - exp(-k · N) ]
       </div>
 
-      <!-- Sección 6: Glosario -->
-      <h2 class="section-title" id="sec6">6. Technical Glossary & Terminology</h2>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PÁGINA FINAL: GLOSARIO Y FUENTES          -->
+    <!-- ========================================== -->
+    <div class="glossary-sources-page">
+      <h2 class="section-title" id="sec6">6. Technical Glossary and Notation</h2>
       <div class="glossary-grid">
         
       <div class="glossary-item">
         <strong>Sutton-Chen Potential</strong>
-        <span>Many-body semi-empirical quantum potential accurately reproducing cohesion and C11, C12, C44 elastic constants in FCC metals.</span>
+        <span>Many-body semi-empirical quantum potential reproducing cohesion and C11, C12, C44 elastic constants in FCC metals.</span>
       </div>
     
       <div class="glossary-item">
         <strong>Cauchy-Born Kinematic Rule</strong>
-        <span>Mathematical bridge linking discrete crystallographic vectors to the macroscopic deformation gradient tensor F.</span>
+        <span>Mathematical link connecting discrete crystallographic lattice vectors to the continuous deformation gradient tensor F.</span>
       </div>
     
       <div class="glossary-item">
         <strong>Springback Elastic Recovery</strong>
-        <span>Geometric unbending driven by the release of residual elastic stress fields upon tool unloading.</span>
+        <span>Geometric angular deviation caused by residual elastic stress relaxation upon tool unloading.</span>
       </div>
     
       <div class="glossary-item">
-        <strong>Galling & Cold-Welding</strong>
-        <span>Severe adhesive wear mechanism resulting from microscopic cold-welding of metal asperities under extreme shear.</span>
+        <strong>Galling & Adhesive Wear</strong>
+        <span>Severe surface wear resulting from localized cold-welding and shear fracture under high normal contact loads.</span>
       </div>
     
       <div class="glossary-item">
         <strong>Sobolev Space H¹(Ω)</strong>
-        <span>Function space of square-integrable field variables with weak first derivatives in L², ensuring bounded deformation energy.</span>
+        <span>Hilbert function space with square-integrable weak derivatives in L², ensuring finite and physically bounded strain energy.</span>
       </div>
     
       <div class="glossary-item">
-        <strong>Industrial Thermal Radar</strong>
-        <span>Sensor-driven real-time feedback loop recalculating the lattice parameter a(T) from shop floor temperatures.</span>
+        <strong>Thermal Compensation</strong>
+        <span>Real-time process adjustment loop recalculating lattice expansion and stiffness from ambient temperature readings.</span>
       </div>
     
       </div>
 
-      <!-- Sección 7: Referencias Académicas -->
-      <h2 class="section-title" id="sec7">7. Academic References & Citations</h2>
+      <h2 class="section-title" id="sec7">7. Academic References and Sources</h2>
       <div class="card-box" style="font-size: 8.5pt; line-height: 1.55;">
         
-        1. Sutton, A. P., & Chen, J. (1990). <em>Long-range Finnis-Sinclair potentials for FCC metals</em>. Philosophical Magazine Letters, 61(3), 139-146.<br>
-        2. Cauchy, A. L. (1828). <em>Sur l'équilibre et le mouvement d'un système de points matériels liés par des forces d'attraction ou de répulsion mutuelle</em>. Ex. de Math., 3, 188-212.<br>
+        1. Sutton, A. P., & Chen, J. (1990). <em>Long-range Finnis-Sinclair potentials for FCC metals</em>. Philosophical Magazine Letters, 61(3), 139–146.<br>
+        2. Cauchy, A. L. (1828). <em>Sur l'équilibre et le mouvement d'un système de points matériels liés par des forces d'attraction ou de répulsion mutuelle</em>. Ex. de Math., 3, 188–212.<br>
         3. Adams, R. A., & Fournier, J. J. (2003). <em>Sobolev Spaces</em> (2nd ed.). Academic Press.<br>
-        4. Irastorza, M. (2026). <em>NovusLattice: Multiscale Continuum Framework and Real-Time Thermal Radar</em>. Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.24440204" style="color:#8c5b1b;">10.5281/zenodo.24440204</a>.
+        4. Li, X., Wang, B., & Wang, L.-S. (2003). <em>Au20: A Tetrahedral Cluster</em>. Science, 299(5608), 864–867.<br>
+        5. Irastorza, M. (2026). <em>NovusLattice: Multiscale Continuum Framework and Real-Time Thermal Compensation</em>. Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.24440204" style="color:#8c5b1b; text-decoration: none;">10.5281/zenodo.24440204</a>.
         
       </div>
-
     </div>
 
   </div>
