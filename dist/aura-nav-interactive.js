@@ -7,7 +7,107 @@
 (function () {
   'use strict';
 
-  // --- 1. WEB AUDIO API SYNTHESIZER ---
+  // --- 1. WEB AUDIO API SYNTHESIZER (5 SMOOTH PROFILES + BEETHOVEN RAPID-CLICK MELODY) ---
+  const SMOOTH_PROFILES = {
+    beethoven: {
+      id: 'beethoven',
+      icon: '🎹',
+      name: 'Beethoven Smooth',
+      badge: 'Clic rápido = Melodía',
+      desc: 'Para Elisa & 9ª Sinfonía nota a nota en cada clic'
+    },
+    velvet: {
+      id: 'velvet',
+      icon: '🌊',
+      name: 'Seda Suave (Velvet)',
+      badge: 'Ultra Smooth',
+      desc: 'Onda cálida filtrada tipo Cupertino sin agudos'
+    },
+    water: {
+      id: 'water',
+      icon: '💧',
+      name: 'Gota Zen (Water)',
+      badge: 'Orgánico',
+      desc: 'Armónico de gota de agua suave y relajante'
+    },
+    marimba: {
+      id: 'marimba',
+      icon: '🪵',
+      name: 'Marimba Cálida',
+      badge: 'Acústico',
+      desc: 'Madera afinada pentatónica con resonancia cálida'
+    },
+    crystal: {
+      id: 'crystal',
+      icon: '✨',
+      name: 'Cristal Armónico',
+      badge: 'Ambient',
+      desc: 'Acorde suave de quinta justa en sintetizador zen'
+    }
+  };
+
+  // Beethoven's Für Elise (Para Elisa) + Ode to Joy (Himno a la Alegría) note sequence (Hz)
+  const BEETHOVEN_MELODY = [
+    // Phrase 1: E5, D#5, E5, D#5, E5, B4, D5, C5, A4 (with warm A2 bass)
+    { f: 659.25, bass: 0 },
+    { f: 622.25, bass: 0 },
+    { f: 659.25, bass: 0 },
+    { f: 622.25, bass: 0 },
+    { f: 659.25, bass: 0 },
+    { f: 493.88, bass: 0 },
+    { f: 587.33, bass: 0 },
+    { f: 523.25, bass: 0 },
+    { f: 440.00, bass: 220.00 },
+    // Arpeggio 1: C4, E4, A4, B4 (with E3 bass)
+    { f: 261.63, bass: 0 },
+    { f: 329.63, bass: 0 },
+    { f: 440.00, bass: 0 },
+    { f: 493.88, bass: 164.81 },
+    // Arpeggio 2: E4, G#4, B4, C5 (with A2 bass)
+    { f: 329.63, bass: 0 },
+    { f: 415.30, bass: 0 },
+    { f: 493.88, bass: 0 },
+    { f: 523.25, bass: 220.00 },
+    // Phrase 2: E4, E5, D#5, E5, D#5, E5, B4, D5, C5, A4
+    { f: 329.63, bass: 0 },
+    { f: 659.25, bass: 0 },
+    { f: 622.25, bass: 0 },
+    { f: 659.25, bass: 0 },
+    { f: 622.25, bass: 0 },
+    { f: 659.25, bass: 0 },
+    { f: 493.88, bass: 0 },
+    { f: 587.33, bass: 0 },
+    { f: 523.25, bass: 0 },
+    { f: 440.00, bass: 220.00 },
+    // Finale Resolution: C4, E4, A4, B4, E4, C5, B4, A4
+    { f: 261.63, bass: 0 },
+    { f: 329.63, bass: 0 },
+    { f: 440.00, bass: 0 },
+    { f: 493.88, bass: 164.81 },
+    { f: 329.63, bass: 0 },
+    { f: 523.25, bass: 0 },
+    { f: 493.88, bass: 0 },
+    { f: 440.00, bass: 220.00 },
+    // Ode to Joy (9th Symphony): E4, E4, F4, G4, G4, F4, E4, D4, C4, C4, D4, E4, E4, D4, D4
+    { f: 329.63, bass: 130.81 },
+    { f: 329.63, bass: 0 },
+    { f: 349.23, bass: 0 },
+    { f: 392.00, bass: 196.00 },
+    { f: 392.00, bass: 0 },
+    { f: 349.23, bass: 0 },
+    { f: 329.63, bass: 0 },
+    { f: 293.66, bass: 196.00 },
+    { f: 261.63, bass: 130.81 },
+    { f: 261.63, bass: 0 },
+    { f: 293.66, bass: 0 },
+    { f: 329.63, bass: 0 },
+    { f: 329.63, bass: 130.81 },
+    { f: 293.66, bass: 196.00 },
+    { f: 293.66, bass: 196.00 }
+  ];
+
+  const MARIMBA_PENTATONIC = [523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33];
+
   class AuraAudioSynthesizer {
     constructor() {
       this.ctx = null;
@@ -17,6 +117,12 @@
       if (this.volume === 0) {
         this.isMuted = true;
       }
+      const savedProfile = localStorage.getItem('aura_sound_profile');
+      this.profile = SMOOTH_PROFILES[savedProfile] ? savedProfile : 'beethoven';
+      this.beethovenIndex = 0;
+      this.marimbaIndex = 0;
+      this.lastClickTimeMs = 0;
+      this.lastTriggerPerfMs = 0;
       this.soundPlayCount = parseInt(sessionStorage.getItem('aura_sound_play_count') || '0', 10);
     }
 
@@ -34,6 +140,21 @@
         this.ctx.resume();
       }
       return this.ctx;
+    }
+
+    setProfile(profileId) {
+      if (!SMOOTH_PROFILES[profileId]) return;
+      this.profile = profileId;
+      this.beethovenIndex = 0;
+      try {
+        localStorage.setItem('aura_sound_profile', profileId);
+      } catch (e) {}
+      if (this.isMuted) {
+        this.setMuted(false);
+      } else {
+        updateAllSoundUI();
+      }
+      this.playClickPop(true);
     }
 
     recordSoundPlay() {
@@ -84,52 +205,210 @@
       const ctx = this.getContext();
       if (!ctx || this.isMuted || this.volume <= 0) return;
       try {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
         const now = ctx.currentTime;
         const volFactor = this.volume;
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(540, now);
-        osc.frequency.exponentialRampToValueAtTime(840, now + 0.045);
-
-        gain.gain.setValueAtTime(0.02 * volFactor, now);
-        gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + 0.05);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.05);
-        this.recordSoundPlay();
-      } catch (e) {
-        // Audio might be waiting for user gesture
-      }
-    }
-
-    playClickPop() {
-      const ctx = this.getContext();
-      if (!ctx || this.isMuted || this.volume <= 0) return;
-      try {
         const osc = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
         const gain = ctx.createGain();
-        const now = ctx.currentTime;
-        const volFactor = this.volume;
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(950, now);
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(380, now);
-        osc.frequency.exponentialRampToValueAtTime(740, now + 0.07);
+        if (this.profile === 'beethoven') {
+          const previewNote = BEETHOVEN_MELODY[this.beethovenIndex % BEETHOVEN_MELODY.length].f;
+          osc.frequency.setValueAtTime(previewNote * 0.5, now);
+          osc.frequency.exponentialRampToValueAtTime(previewNote * 0.52, now + 0.055);
+        } else if (this.profile === 'water') {
+          osc.frequency.setValueAtTime(310, now);
+          osc.frequency.exponentialRampToValueAtTime(480, now + 0.06);
+        } else {
+          osc.frequency.setValueAtTime(280, now);
+          osc.frequency.exponentialRampToValueAtTime(380, now + 0.06);
+        }
 
-        gain.gain.setValueAtTime(0.04 * volFactor, now);
-        gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + 0.08);
+        // Smooth attack & silky decay
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(0.014 * volFactor, now + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.075);
 
-        osc.connect(gain);
+        osc.connect(filter);
+        filter.connect(gain);
         gain.connect(ctx.destination);
 
         osc.start(now);
         osc.stop(now + 0.08);
-        this.recordSoundPlay();
       } catch (e) {}
+    }
+
+    playClickPop(forceTrigger) {
+      const perfNow = typeof performance !== 'undefined' ? performance.now() : Date.now();
+      if (!forceTrigger && perfNow - this.lastTriggerPerfMs < 28) {
+        return; // Prevent duplicate firing on nested button + document click
+      }
+      this.lastTriggerPerfMs = perfNow;
+
+      const ctx = this.getContext();
+      if (!ctx || this.isMuted || this.volume <= 0) return;
+      try {
+        const now = ctx.currentTime;
+        const volFactor = this.volume;
+        const wallNow = Date.now();
+        const deltaMs = wallNow - this.lastClickTimeMs;
+        this.lastClickTimeMs = wallNow;
+
+        if (this.profile === 'beethoven') {
+          // If user paused clicking for > 4.5s, restart at the iconic opening E5-D#5-E5
+          if (deltaMs > 4500) {
+            this.beethovenIndex = 0;
+          }
+          const step = BEETHOVEN_MELODY[this.beethovenIndex % BEETHOVEN_MELODY.length];
+          this.beethovenIndex = (this.beethovenIndex + 1) % BEETHOVEN_MELODY.length;
+
+          const isFastBurst = deltaMs > 0 && deltaMs < 420;
+          const duration = isFastBurst ? 0.36 : 0.28;
+
+          // Warm Low-Pass Filter for Smooth Rhodes / Acoustic Felt Piano timbre
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1650, now);
+          filter.frequency.exponentialRampToValueAtTime(680, now + duration);
+
+          // Main fundamental sine wave
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(step.f, now);
+
+          gain1.gain.setValueAtTime(0.0001, now);
+          gain1.gain.linearRampToValueAtTime(0.065 * volFactor, now + 0.012);
+          gain1.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+          // Soft warm triangle overtone (1 octave higher, subtle)
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(step.f * 2, now);
+
+          gain2.gain.setValueAtTime(0.0001, now);
+          gain2.gain.linearRampToValueAtTime(0.015 * volFactor, now + 0.008);
+          gain2.gain.exponentialRampToValueAtTime(0.0001, now + duration * 0.65);
+
+          osc1.connect(gain1);
+          osc2.connect(gain2);
+          gain1.connect(filter);
+          gain2.connect(filter);
+
+          // Optional warm bass accompaniment note on cadence notes
+          if (step.bass > 0) {
+            const bassOsc = ctx.createOscillator();
+            const bassGain = ctx.createGain();
+            bassOsc.type = 'sine';
+            bassOsc.frequency.setValueAtTime(step.bass, now);
+            bassGain.gain.setValueAtTime(0.0001, now);
+            bassGain.gain.linearRampToValueAtTime(0.038 * volFactor, now + 0.015);
+            bassGain.gain.exponentialRampToValueAtTime(0.0001, now + duration * 1.25);
+            bassOsc.connect(bassGain);
+            bassGain.connect(filter);
+            bassOsc.start(now);
+            bassOsc.stop(now + duration * 1.28);
+          }
+
+          filter.connect(ctx.destination);
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + duration + 0.02);
+          osc2.stop(now + duration + 0.02);
+        } else if (this.profile === 'velvet') {
+          // Ultra-smooth low-frequency silk cushion
+          const osc = ctx.createOscillator();
+          const filter = ctx.createBiquadFilter();
+          const gain = ctx.createGain();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(720, now);
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(240, now);
+          osc.frequency.exponentialRampToValueAtTime(360, now + 0.11);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.055 * volFactor, now + 0.014);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.15);
+        } else if (this.profile === 'water') {
+          // Smooth Zen Water Droplet
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.exponentialRampToValueAtTime(620, now + 0.095);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.05 * volFactor, now + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.13);
+        } else if (this.profile === 'marimba') {
+          // Warm Wooden Pentatonic Marimba
+          const freq = MARIMBA_PENTATONIC[this.marimbaIndex % MARIMBA_PENTATONIC.length];
+          this.marimbaIndex = (this.marimbaIndex + 1) % MARIMBA_PENTATONIC.length;
+
+          const osc = ctx.createOscillator();
+          const filter = ctx.createBiquadFilter();
+          const gain = ctx.createGain();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1100, now);
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now);
+
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.055 * volFactor, now + 0.008);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.17);
+        } else {
+          // Crystal Ambient Fifth Chord
+          [440, 659.25].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + i * 0.015);
+            gain.gain.setValueAtTime(0.0001, now + i * 0.015);
+            gain.gain.linearRampToValueAtTime(0.032 * volFactor, now + i * 0.015 + 0.018);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.24);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + i * 0.015);
+            osc.stop(now + 0.25);
+          });
+        }
+
+        this.recordSoundPlay();
+        updateAllSoundUI();
+      } catch (e) {}
+    }
+
+    playBeethovenBurstDemo() {
+      this.setProfile('beethoven');
+      this.beethovenIndex = 0;
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          this.playClickPop(true);
+        }, i * 165);
+      }
     }
 
     playChime() {
@@ -138,22 +417,23 @@
       try {
         const now = ctx.currentTime;
         const volFactor = this.volume;
-        [620, 930].forEach((freq, idx) => {
+        [523.25, 659.25, 783.99].forEach((freq, idx) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-          const delay = idx * 0.04;
+          const delay = idx * 0.055;
 
-          osc.type = 'triangle';
+          osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, now + delay);
 
-          gain.gain.setValueAtTime(0.03 * volFactor, now + delay);
-          gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + delay + 0.12);
+          gain.gain.setValueAtTime(0.0001, now + delay);
+          gain.gain.linearRampToValueAtTime(0.035 * volFactor, now + delay + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.001 * volFactor, now + delay + 0.22);
 
           osc.connect(gain);
           gain.connect(ctx.destination);
 
           osc.start(now + delay);
-          osc.stop(now + delay + 0.12);
+          osc.stop(now + delay + 0.23);
         });
         this.recordSoundPlay();
       } catch (e) {}
@@ -425,18 +705,17 @@
     const isMuted = audioSynth.isMuted || audioSynth.volume <= 0;
     const vol = audioSynth.volume;
     const volPercent = isMuted ? 0 : Math.round(vol * 100);
+    const activeProf = SMOOTH_PROFILES[audioSynth.profile] || SMOOTH_PROFILES.beethoven;
 
-    let icon = '🔊';
+    let icon = activeProf.icon || '🔊';
     if (isMuted) {
       icon = '🔇';
-    } else if (vol <= 0.45) {
-      icon = '🔉';
     }
 
     // 1. CV Toolbar Sound Pill
     const cvSoundBtn = document.getElementById('cv-sound-toggle-btn');
     if (cvSoundBtn) {
-      cvSoundBtn.textContent = isMuted ? '🔇' : '🔔';
+      cvSoundBtn.textContent = isMuted ? '🔇' : icon;
       cvSoundBtn.classList.toggle('muted', isMuted);
     }
 
@@ -447,18 +726,37 @@
       dockSoundBtn.classList.toggle('muted', isMuted);
     }
 
-    // 3. Bottom-Right Sound FAB Widget
+    // 3. Top Nav-Dock Sound Selector Pill
+    const navSoundBtn = document.getElementById('aura-nav-sound-picker-btn');
+    if (navSoundBtn) {
+      navSoundBtn.innerHTML = isMuted
+        ? '🔇 Sonido: Silencio (Elegir)'
+        : `${activeProf.icon} Sonido: ${activeProf.name} ▾`;
+    }
+
+    // 4. Bottom-Right Sound FAB Widget
     const fabIcon = document.getElementById('aura-sound-fab-icon');
     if (fabIcon) {
-      fabIcon.textContent = icon;
+      fabIcon.textContent = isMuted ? '🔇' : activeProf.icon;
     }
     const fabBtn = document.getElementById('aura-sound-fab-btn');
     if (fabBtn) {
       fabBtn.classList.toggle('muted', isMuted);
-      fabBtn.setAttribute('title', isMuted ? 'Audio silenciado (Clic para abrir control)' : `Audio activo: ${volPercent}% (Clic para control)`);
+      fabBtn.setAttribute(
+        'title',
+        isMuted
+          ? 'Audio silenciado (Clic para elegir sonido suave)'
+          : `${activeProf.icon} ${activeProf.name} (${volPercent}%) · Clic para elegir sonido`
+      );
     }
 
-    // 4. Volume Popover Controls
+    // 5. Profile Buttons Active State
+    document.querySelectorAll('.aura-sound-profile-btn').forEach((btn) => {
+      const pid = btn.getAttribute('data-sound-profile');
+      btn.classList.toggle('active', !isMuted && pid === audioSynth.profile);
+    });
+
+    // 6. Volume Popover Controls
     const volSlider = document.getElementById('aura-vol-slider');
     if (volSlider) {
       volSlider.value = volPercent;
@@ -607,6 +905,17 @@
     cluster.id = 'aura-bottom-right-cluster';
     cluster.className = 'aura-bottom-right-cluster no-print';
 
+    const profilesHtml = Object.values(SMOOTH_PROFILES)
+      .map(
+        (p) => `
+          <button type="button" class="aura-sound-profile-btn ${audioSynth.profile === p.id ? 'active' : ''}" data-sound-profile="${p.id}" title="${p.desc}">
+            <span>${p.icon} ${p.name}</span>
+            <span class="aura-sound-profile-tag">${p.badge}</span>
+          </button>
+        `
+      )
+      .join('');
+
     cluster.innerHTML = `
       <!-- Contextual Page Arrow Button -->
       <button class="aura-page-arrow-btn" id="aura-page-arrow-btn" title="Subir al inicio · ${ctx.fullName}">
@@ -626,10 +935,19 @@
         <div class="aura-volume-popover" id="aura-volume-popover">
           <div class="aura-popover-header">
             <div class="aura-popover-title">
-              <span>🎛️ Aura Audio</span>
+              <span>🎛️ Sonidos Suaves (Smooth)</span>
             </div>
             <span class="aura-vol-badge" id="aura-vol-val-text">80%</span>
           </div>
+
+          <div class="aura-sound-profiles-list">
+            <div class="aura-sound-profile-label">Elige tu sonido al hacer clic:</div>
+            ${profilesHtml}
+          </div>
+
+          <button type="button" class="aura-popover-btn" id="aura-beethoven-demo-btn" style="width:100%; padding:8px 10px; border-radius:10px; border-color:rgba(16,185,129,0.5); background:rgba(16,185,129,0.16); color:#6ee7b7; font-weight:800;">
+            <span>▶️</span> <span>Probar ráfaga Beethoven (Para Elisa)</span>
+          </button>
 
           <div class="aura-slider-container">
             <input type="range" min="0" max="100" value="80" class="aura-vol-slider" id="aura-vol-slider" aria-label="Control de volumen AuraIcons">
@@ -643,14 +961,14 @@
               <span>🔊 Subir</span>
             </button>
             <button class="aura-popover-btn aura-popover-leave" id="aura-popover-leave-btn" title="Cerrar manteniendo la configuración actual">
-              <span>✓ Dejarlo</span>
+              <span>✓ Listo</span>
             </button>
           </div>
         </div>
 
         <!-- Floating Action Button -->
-        <button class="aura-sound-fab-btn" id="aura-sound-fab-btn" title="Efectos hápticos de sonido AuraIcons (Hover para agrandar, Clic para menú)">
-          <span class="aura-sound-fab-icon" id="aura-sound-fab-icon">🔊</span>
+        <button class="aura-sound-fab-btn" id="aura-sound-fab-btn" title="Elegir sonido suave (Beethoven Smooth, Seda, Gota Zen, Marimba, Cristal)">
+          <span class="aura-sound-fab-icon" id="aura-sound-fab-icon">🎹</span>
         </button>
       </div>
     `;
@@ -707,6 +1025,24 @@
     const muteBtn = document.getElementById('aura-popover-mute-btn');
     const boostBtn = document.getElementById('aura-popover-boost-btn');
     const leaveBtn = document.getElementById('aura-popover-leave-btn');
+    const demoBtn = document.getElementById('aura-beethoven-demo-btn');
+
+    document.querySelectorAll('.aura-sound-profile-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const pid = btn.getAttribute('data-sound-profile');
+        if (pid) {
+          audioSynth.setProfile(pid);
+        }
+      });
+    });
+
+    if (demoBtn) {
+      demoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        audioSynth.playBeethovenBurstDemo();
+      });
+    }
 
     // Hover effect: enlarges and plays blip
     fabBtn.addEventListener('mouseenter', () => {
@@ -760,7 +1096,13 @@
     }
 
     document.addEventListener('click', (e) => {
-      if (popover && popover.classList.contains('open') && !cluster.contains(e.target)) {
+      const navSoundBtn = document.getElementById('aura-nav-sound-picker-btn');
+      if (
+        popover &&
+        popover.classList.contains('open') &&
+        !cluster.contains(e.target) &&
+        (!navSoundBtn || !navSoundBtn.contains(e.target))
+      ) {
         popover.classList.remove('open');
       }
     });
@@ -779,6 +1121,27 @@
   function initAuraInteractions() {
     injectAuraFloatingDock();
     injectAuraBottomRightCluster();
+
+    // Inject top nav-dock sound selector button if .nav-links exists
+    const navLinks = document.querySelector('.nav-dock .nav-links');
+    if (navLinks && !document.getElementById('aura-nav-sound-picker-btn')) {
+      const soundBtn = document.createElement('button');
+      soundBtn.type = 'button';
+      soundBtn.id = 'aura-nav-sound-picker-btn';
+      soundBtn.className = 'btn-pill';
+      soundBtn.style.cssText =
+        'border-color:#10b981; color:#6ee7b7; background:rgba(16,185,129,0.18); font-weight:800; box-shadow:0 0 14px rgba(16,185,129,0.2);';
+      soundBtn.title = 'Elegir entre 5 sonidos suaves o Beethoven Smooth (si clicas rápido suena Para Elisa)';
+      soundBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const popover = document.getElementById('aura-volume-popover');
+        if (popover) {
+          popover.classList.toggle('open');
+        }
+      });
+      navLinks.appendChild(soundBtn);
+    }
+
     updateAllSoundUI();
 
     // Hook up all existing navigation buttons, segmented controls, and action pills
@@ -801,6 +1164,17 @@
     document.querySelectorAll(interactiveSelectors.join(',')).forEach((btn) => {
       applyMagneticPhysics(btn);
     });
+
+    // Global rapid-click melody trigger: clicking anywhere on the page advances the Beethoven melody (or plays the chosen smooth sound)
+    document.addEventListener(
+      'pointerdown',
+      (e) => {
+        const t = e.target;
+        if (t && t.closest && t.closest('#aura-volume-popover')) return;
+        audioSynth.playClickPop();
+      },
+      { passive: true }
+    );
   }
 
   if (document.readyState === 'loading') {
