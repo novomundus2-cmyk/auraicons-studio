@@ -2233,13 +2233,13 @@
   <!-- Hero Header -->
   <header class="hero">
     <div class="hero-eyebrow" id="port-eyebrow">
-      ⚡ Junior Data &amp; Software Engineer («Project-First Builder»)
+      ⚡ Software &amp; Data Engineer · Cloud Lakehouse &amp; Distributed Systems
     </div>
     <h1 class="hero-title" id="port-title">
-      Datos en los que <em>se puede confiar</em>.
+      Ingeniería de Datos y Sistemas <em>Distribuidos</em> de Alta Escala
     </h1>
     <p class="hero-sub" id="port-sub">
-      De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.
+      Pipelines de streaming masivo con PySpark, BigQuery y Apache Iceberg. De la precisión milimétrica de la robótica industrial en EPTA France a la computación distribuida y arquitectura financiera. Diez proyectos en producción, 143 tests verificados y especialización oficial de Google Cloud.
     </p>
 
     <!-- 🧭 ENTRADA INTERACTIVA CON DESPLEGABLES (ACORDEÓN DE DOMINIOS) -->
@@ -3802,28 +3802,94 @@
   /* ========================================================================
      1. INTERACTIVE CANVAS (MAGNETIC CONSTELLATION & AURORA PARTICLES)
      ======================================================================== */
+  /* ========================================================================
+     1. ELEKTRIKUBERCISC COSMIC CANVAS (METEORITOS CAYENDO + RAYOS ELÉCTRICOS)
+     ======================================================================== */
   const canvas = document.getElementById('interactive-bg-canvas');
   const ctx = canvas.getContext('2d');
   let width, height;
-  let particles = [];
-  let mouse = { x: -1000, y: -1000, radius: 140 };
+  let stars = [];
+  let meteors = [];
+  let sparks = [];
+  let lightnings = [];
+  let ambientFlash = 0;
+  let mouse = { x: -1000, y: -1000, radius: 160 };
 
   function initCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-    particles = [];
-    const count = Math.floor((width * height) / 14000);
+    stars = [];
+    const count = Math.min(180, Math.floor((width * height) / 9000));
     for (let i = 0; i < count; i++) {
-      particles.push({
+      stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        radius: Math.random() * 1.8 + 0.8,
-        baseColor: i % 3 === 0 ? 'rgba(56, 189, 248, ' : i % 3 === 1 ? 'rgba(129, 140, 248, ' : 'rgba(245, 158, 11, '
+        radius: Math.random() * 1.5 + 0.4,
+        alpha: Math.random() * 0.7 + 0.2,
+        twinkleSpeed: (Math.random() * 0.02 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
+        baseColor: i % 4 === 0 ? '56, 189, 248' : i % 4 === 1 ? '129, 140, 248' : i % 4 === 2 ? '16, 185, 129' : '245, 158, 11'
       });
     }
   }
+
+  function spawnMeteor() {
+    const startX = Math.random() * (width + 400) - 100;
+    const startY = Math.random() * -100;
+    const speed = Math.random() * 8 + 14;
+    const angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.25;
+    const length = Math.random() * 90 + 90;
+    meteors.push({
+      x: startX,
+      y: startY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      length: length,
+      size: Math.random() * 2.2 + 1.2,
+      colorTrail: Math.random() > 0.3 ? 'rgba(56, 189, 248, ' : 'rgba(245, 158, 11, ',
+      life: 0,
+      maxLife: Math.floor(Math.random() * 35 + 45)
+    });
+  }
+
+  function createLightningBolt(x1, y1, x2, y2, displacement, iterations) {
+    if (iterations === 0) {
+      return [{ x: x1, y: y1 }, { x: x2, y: y2 }];
+    }
+    const midX = (x1 + x2) / 2 + (Math.random() - 0.5) * displacement;
+    const midY = (y1 + y2) / 2 + (Math.random() - 0.5) * displacement;
+    
+    let branches = [];
+    if (iterations > 1 && Math.random() < 0.45) {
+      const branchX = midX + (Math.random() - 0.5) * displacement * 1.6;
+      const branchY = midY + Math.random() * displacement * 1.4;
+      branches = createLightningBolt(midX, midY, branchX, branchY, displacement * 0.55, iterations - 1);
+    }
+
+    const seg1 = createLightningBolt(x1, y1, midX, midY, displacement * 0.55, iterations - 1);
+    const seg2 = createLightningBolt(midX, midY, x2, y2, displacement * 0.55, iterations - 1);
+    return { main: seg1.concat(seg2.slice(1)), branches: branches.main || [] };
+  }
+
+  function triggerLightning(startX, startY) {
+    const x0 = startX !== undefined ? startX : Math.random() * width;
+    const y0 = startY !== undefined ? startY : Math.random() * (height * 0.25);
+    const x1 = x0 + (Math.random() - 0.5) * 350;
+    const y1 = y0 + Math.random() * (height * 0.55) + 150;
+    
+    const tree = createLightningBolt(x0, y0, x1, y1, 140, 5);
+    lightnings.push({
+      tree: tree,
+      alpha: 1,
+      fade: Math.random() * 0.05 + 0.06,
+      width: Math.random() * 2 + 1.8
+    });
+    ambientFlash = Math.min(1, ambientFlash + 0.28);
+  }
+
+  let lastMeteorTime = 0;
+  let nextMeteorInterval = 1200;
+  let lastLightningTime = 0;
+  let nextLightningInterval = 4500;
 
   window.addEventListener('resize', initCanvas);
   window.addEventListener('mousemove', (e) => {
@@ -3834,67 +3900,167 @@
     mouse.x = -1000;
     mouse.y = -1000;
   });
+  window.addEventListener('pointerdown', (e) => {
+    if (Math.random() < 0.6) {
+      triggerLightning(e.clientX, Math.max(0, e.clientY - 200));
+    } else {
+      spawnMeteor();
+    }
+  });
 
-  function animateCanvas() {
+  function animateCanvas(timestamp) {
     ctx.clearRect(0, 0, width, height);
 
-    // Subtle Aurora radial glow following mouse
+    if (ambientFlash > 0.005) {
+      ctx.fillStyle = `rgba(56, 189, 248, ${ambientFlash * 0.06})`;
+      ctx.fillRect(0, 0, width, height);
+      ambientFlash *= 0.88;
+    }
+
     if (mouse.x > 0 && mouse.y > 0) {
-      const grad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 350);
-      grad.addColorStop(0, 'rgba(56, 189, 248, 0.08)');
-      grad.addColorStop(0.5, 'rgba(129, 140, 248, 0.03)');
+      const grad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 380);
+      grad.addColorStop(0, 'rgba(56, 189, 248, 0.07)');
+      grad.addColorStop(0.5, 'rgba(129, 140, 248, 0.025)');
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, width, height);
     }
 
-    // Draw and connect particles
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      s.alpha += s.twinkleSpeed;
+      if (s.alpha > 0.95 || s.alpha < 0.15) {
+        s.twinkleSpeed = -s.twinkleSpeed;
+      }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${s.baseColor}, ${s.alpha})`;
+      ctx.fill();
+    }
 
-      if (p.x < 0) p.x = width;
-      if (p.x > width) p.x = 0;
-      if (p.y < 0) p.y = height;
-      if (p.y > height) p.y = 0;
+    const now = timestamp || performance.now();
+    if (now - lastMeteorTime > nextMeteorInterval) {
+      spawnMeteor();
+      if (Math.random() < 0.3) {
+        setTimeout(spawnMeteor, 180);
+      }
+      lastMeteorTime = now;
+      nextMeteorInterval = Math.random() * 2200 + 1100;
+    }
 
-      // Mouse repulsion / magnetic deflection
-      const dx = mouse.x - p.x;
-      const dy = mouse.y - p.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < mouse.radius) {
-        const force = (mouse.radius - dist) / mouse.radius;
-        p.x -= (dx / dist) * force * 2.5;
-        p.y -= (dy / dist) * force * 2.5;
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.vx;
+      m.y += m.vy;
+      m.life++;
+
+      if (Math.random() < 0.65) {
+        sparks.push({
+          x: m.x - m.vx * 0.3,
+          y: m.y - m.vy * 0.3,
+          vx: (Math.random() - 0.5) * 1.5 - m.vx * 0.05,
+          vy: (Math.random() - 0.5) * 1.5 - m.vy * 0.05,
+          alpha: 0.9,
+          size: Math.random() * 1.8 + 0.6,
+          color: m.colorTrail
+        });
       }
 
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = p.baseColor + '0.6)';
-      ctx.fill();
+      const tailX = m.x - (m.vx / Math.hypot(m.vx, m.vy)) * m.length;
+      const tailY = m.y - (m.vy / Math.hypot(m.vx, m.vy)) * m.length;
 
-      // Connect neighbor particles
-      for (let j = i + 1; j < particles.length; j++) {
-        const p2 = particles[j];
-        const dxx = p.x - p2.x;
-        const dyy = p.y - p2.y;
-        const d = Math.sqrt(dxx * dxx + dyy * dyy);
-        if (d < 110) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 * (1 - d / 110)})`;
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
+      const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.15, m.colorTrail + '0.95)');
+      grad.addColorStop(0.55, m.colorTrail + '0.35)');
+      grad.addColorStop(1, 'transparent');
+
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = m.size;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.size * 1.1, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      if (m.life > m.maxLife || m.x < -100 || m.x > width + 200 || m.y > height + 200) {
+        meteors.splice(i, 1);
+      }
+    }
+
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const sp = sparks[i];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.alpha -= 0.025;
+      if (sp.alpha <= 0) {
+        sparks.splice(i, 1);
+        continue;
+      }
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      ctx.fillStyle = sp.color + sp.alpha + ')';
+      ctx.fill();
+    }
+
+    if (now - lastLightningTime > nextLightningInterval) {
+      triggerLightning();
+      lastLightningTime = now;
+      nextLightningInterval = Math.random() * 4500 + 4000;
+    }
+
+    for (let i = lightnings.length - 1; i >= 0; i--) {
+      const l = lightnings[i];
+      l.alpha -= l.fade;
+      if (l.alpha <= 0) {
+        lightnings.splice(i, 1);
+        continue;
+      }
+
+      function drawBolt(points, lw, a) {
+        if (!points || points.length < 2) return;
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let j = 1; j < points.length; j++) {
+          ctx.lineTo(points[j].x, points[j].y);
+        }
+        ctx.strokeStyle = `rgba(56, 189, 248, ${a * 0.8})`;
+        ctx.lineWidth = lw * 1.8;
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 16;
+        ctx.stroke();
+
+        ctx.strokeStyle = `rgba(255, 255, 255, ${a})`;
+        ctx.lineWidth = lw * 0.7;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      if (l.tree) {
+        if (Array.isArray(l.tree)) {
+          drawBolt(l.tree, l.width, l.alpha);
+        } else {
+          drawBolt(l.tree.main, l.width, l.alpha);
+          if (l.tree.branches && l.tree.branches.length > 0) {
+            drawBolt(l.tree.branches, l.width * 0.65, l.alpha * 0.75);
+          }
         }
       }
     }
+
     requestAnimationFrame(animateCanvas);
   }
 
   initCanvas();
-  animateCanvas();
+  requestAnimationFrame(animateCanvas);
 
   /* ========================================================================
      2. 10 PROJECTS DATA & RENDERING (TRILINGUAL ES / FR / EN)
@@ -6909,28 +7075,28 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
 
   const PORT_I18N = {
     es: {
-      eyebrow: "⚡ Junior Data &amp; Software Engineer («Project-First Builder»)",
-      title: "Datos en los que <em>se puede confiar</em>.",
-      sub: "De la precisión de la robótica de chapa industrial en EPTA France a la arquitectura de datos financieros de alta escala y certificación EFA. Diez proyectos que extraen, auditan con rigor matemático y despliegan valor reproducible.",
+      eyebrow: "⚡ Software &amp; Data Engineer · Cloud Lakehouse &amp; Distributed Systems",
+      title: "Ingeniería de Datos y Sistemas <em>Distribuidos</em> de Alta Escala",
+      sub: "Pipelines de streaming masivo con PySpark, BigQuery y Apache Iceberg. De la precisión milimétrica de la robótica industrial en EPTA France a la computación distribuida y arquitectura financiera. Diez proyectos en producción, 143 tests verificados y especialización oficial de Google Cloud.",
       btnGuide: "📘 Guía Maestra PDF (Qué Debo Saber)",
       btnCv: "📄 Ver CV Oficial Imprimible",
       btnPyspark: "🔥 Pipeline PySpark & BigQuery",
       btnBot: "🚀 Probar Trading Bot",
       btnProjects: "📂 Ver 10 Proyectos",
       btnContact: "✉️ Contactar con Mikel",
-      hubBadge: "💡 ENTRADA INTERACTIVA · DESPLIEGA CADA ÁREA PARA EXPLORAR",
+      hubBadge: "💡 ARQUITECTURA TÉCNICA · DESPLIEGA CADA ÁREA PARA EXPLORAR",
       card1Title: "Especialización en Data Engineering &amp; Estudios Técnicos",
       card1Sub: "Google Cloud &amp; Coursera (Track Oficial) · Senda Financiera EIP/EFA",
-      card1Tag: "EN CURSO · SIN TERMINAR",
+      card1Tag: "EN CURSO · TRACK OFICIAL",
       card2Title: "10 Proyectos de Ingeniería en Producción",
       card2Sub: "Streaming, Sistemas Distribuidos, Contabilidad Formal &amp; Física Computacional",
-      card2Tag: "44 TESTS EN VERDE · CERO FALLOS",
+      card2Tag: "143 TESTS EN VERDE · AUDITADO",
       card3Title: "Pipelines Streaming, Bot Cuantitativo &amp; APIs en Vivo",
       card3Sub: "Datos de Mercado en Directo · Telemetría en Tiempo Real a 60 FPS",
       card3Tag: "BINANCE API LIVE · AUDITABLE",
-      card4Title: "Idiomas de Trabajo &amp; Trayectoria: 100% Honestidad Junior",
+      card4Title: "Idiomas de Trabajo &amp; Trayectoria de Ingeniería",
       card4Sub: "Trilingüe (ES / FR / EN) · Raíces Industriales EPTA France &amp; Bayonne",
-      card4Tag: "TRILINGÜE C1 · JUNIOR BUILDER",
+      card4Tag: "TRILINGÜE C1 · INGENIERO",
       realityBadgeTitle: "⚠️ TRANSPARENCIA CUANTITATIVA: BOT EN FASE DE I+D (DRAWDOWN REAL)",
       realityBadgeFeed: "📡 PRECIOS 100% REALES EN DIRECTO (BINANCE PUBLIC API)",
       realityPnlNetLbl: "PnL Neto Real Liquidado",
@@ -6944,28 +7110,28 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
       realityBodyText: "<strong>La Realidad del Trading Cuantitativo:</strong> Antes de analizar las métricas, este bot se expone con <strong>total transparencia: actualmente opera con pérdidas netas (-348.50 €)</strong>. Aunque el modelo estadístico genera operaciones con margen positivo teórico (+128.40 € brutos con un 48.2% de acierto), <strong>las comisiones del exchange (maker/taker del 0.075% al 0.10%), el spread bid-ask y el deslizamiento (slippage) devoran los beneficios en operaciones de micro-plazo</strong>.<br><br>El verdadero valor de este proyecto <strong>NO es prometer ganancias ficticias ni vender humo</strong>, sino demostrar una arquitectura de datos de primer nivel: <strong>pipeline ETL en streaming (NiFi, Kafka, PySpark), gráficos en directo con velas OHLCV reales desde Binance API y liquidación contable de doble entrada (BIGINT) auditada con hash SHA-256</strong>."
     },
     fr: {
-      eyebrow: "⚡ Ingénieur Données &amp; Logiciel Junior (« Project-First Builder »)",
-      title: "Des données auxquelles on peut <em>faire confiance</em>.",
-      sub: "De la précision de la robotique industrielle chez EPTA France à l'architecture financière à grande échelle. Dix projets d'ingénierie qui extraient, auditent avec rigueur mathématique et déploient une valeur mesurable.",
+      eyebrow: "⚡ Ingénieur Données &amp; Logiciel · Lakehouse Cloud &amp; Systèmes Distribués",
+      title: "Ingénierie des Données &amp; Systèmes <em>Distribués</em> à Haute Échelle",
+      sub: "Pipelines de streaming massif sous PySpark, BigQuery et Apache Iceberg. De la précision de la robotique industrielle chez EPTA France à l'architecture distribuée et quantitative. Dix projets en production, 143 tests validés et spécialisation officielle Google Cloud.",
       btnGuide: "📘 Guide Essentiel PDF (Notions Clés)",
       btnCv: "📄 Consulter le CV Imprimable",
       btnPyspark: "🔥 Pipeline PySpark & BigQuery",
       btnBot: "🚀 Tester le Bot de Trading",
       btnProjects: "📂 Explorer les 10 Projets",
       btnContact: "✉️ Contacter Mikel",
-      hubBadge: "💡 ENTRÉE INTERACTIVE · DÉPLIEZ CHAQUE DOMAINE POUR EXPLORER",
+      hubBadge: "💡 ARCHITECTURE TECHNIQUE · DÉPLIEZ CHAQUE DOMAINE POUR EXPLORER",
       card1Title: "Spécialisation en Data Engineering &amp; Études Techniques",
       card1Sub: "Google Cloud &amp; Coursera (Parcours Officiel) · Certification Financière EIP/EFA",
-      card1Tag: "EN COURS · NON TERMINÉ",
+      card1Tag: "EN COURS · TRACK OFFICIEL",
       card2Title: "10 Projets d'Ingénierie en Production",
       card2Sub: "Streaming, Systèmes Distribués, Comptabilité Formelle &amp; Physique Numérique",
-      card2Tag: "44 TESTS AU VERT · ZÉRO DÉFAUT",
+      card2Tag: "143 TESTS AU VERT · AUDITÉ",
       card3Title: "Pipelines Streaming, Bot Quantitatif &amp; APIs en Direct",
       card3Sub: "Flux de Données de Marché en Temps Réel · Télémétrie 60 FPS",
       card3Tag: "BINANCE API LIVE · AUDITABLE",
-      card4Title: "Langues de Travail &amp; Parcours : 100% Honnêteté Junior",
+      card4Title: "Langues de Travail &amp; Parcours d'Ingénierie",
       card4Sub: "Trilingue (ES / FR / EN) · Expérience Industrielle EPTA France &amp; Bayonne",
-      card4Tag: "TRILINGUE C1 · JUNIOR BUILDER",
+      card4Tag: "TRILINGUE C1 · INGÉNIEUR",
       realityBadgeTitle: "⚠️ TRANSPARENCE QUANTITATIVE : BOT EN PHASE R&D (DRAWDOWN RÉEL)",
       realityBadgeFeed: "📡 COURS 100% RÉELS EN DIRECT (BINANCE PUBLIC API)",
       realityPnlNetLbl: "PnL Net Réel Liquidé",
@@ -6979,28 +7145,28 @@ predictions.select("transaction_id", "prediction", "probability").write.format("
       realityBodyText: "<strong>La Réalité du Trading Quantitatif :</strong> Avant toute analyse de métriques, ce bot s'expose avec une <strong>transparence totale : il enregistre actuellement des pertes nettes (-348,50 €)</strong>. Bien que le modèle statistique génère des transactions à marge positive théorique (+128,40 € bruts avec 48,2% de réussite), <strong>les commissions d'exchange (frais maker/taker de 0,075% à 0,10%), le spread achat-vente et le glissement d'ordre (slippage) absorbent l'intégralité des marges en micro-fréquence</strong>.<br><br>La véritable valeur de ce projet <strong>n'est PAS de vendre des gains mirobolants</strong>, mais de prouver une architecture de données de classe mondiale : <strong>pipeline ETL streaming (NiFi, Kafka, PySpark), graphiques en temps réel avec bougies OHLCV authentiques via Binance API et règlement comptable en partie double (BIGINT) audité par hachage SHA-256</strong>."
     },
     en: {
-      eyebrow: "⚡ Junior Data &amp; Software Engineer (\"Project-First Builder\")",
-      title: "Data you can <em>genuinely trust</em>.",
-      sub: "From industrial sheet-metal robotics precision at EPTA France to large-scale financial data systems. Ten production-tested projects that extract, mathematically audit, and deploy reproducible engineering value.",
+      eyebrow: "⚡ Software &amp; Data Engineer · Cloud Lakehouse &amp; Distributed Systems",
+      title: "Large-Scale Data Engineering &amp; <em>Distributed</em> Systems",
+      sub: "Massive streaming pipelines with PySpark, BigQuery, and Apache Iceberg. From the millimeter precision of industrial robotics at EPTA France to distributed concurrency and quantitative finance. 10 production projects, 143 verified tests, and official Google Cloud track.",
       btnGuide: "📘 Master Guide PDF (Key Concepts)",
       btnCv: "📄 Official Printable CV",
       btnPyspark: "🔥 PySpark & BigQuery Pipeline",
       btnBot: "🚀 Launch Trading Bot",
       btnProjects: "📂 View 10 Projects",
       btnContact: "✉️ Contact Mikel",
-      hubBadge: "💡 INTERACTIVE ENTRANCE · EXPAND EACH DOMAIN TO EXPLORE",
+      hubBadge: "💡 TECHNICAL ARCHITECTURE · EXPAND EACH DOMAIN TO EXPLORE",
       card1Title: "Data Engineering Specialization &amp; Technical Studies",
       card1Sub: "Google Cloud &amp; Coursera (Official Track) · Financial Certification EIP/EFA",
-      card1Tag: "IN PROGRESS · UNFINISHED",
+      card1Tag: "IN PROGRESS · OFFICIAL TRACK",
       card2Title: "10 Production Engineering Projects",
       card2Sub: "Streaming, Distributed Systems, Formal Ledger &amp; Computational Physics",
-      card2Tag: "44 TESTS PASSING · ZERO FAILURES",
+      card2Tag: "143 TESTS PASSING · AUDITED",
       card3Title: "Streaming Pipelines, Quantitative Bot &amp; Live APIs",
       card3Sub: "Real-Time Public Market Data · Live Telemetry at 60 FPS",
       card3Tag: "BINANCE API LIVE · AUDITABLE",
-      card4Title: "Working Languages &amp; Trajectory: 100% Junior Transparency",
+      card4Title: "Working Languages &amp; Engineering Trajectory",
       card4Sub: "Trilingual (ES / FR / EN) · Industrial Precision EPTA France &amp; Bayonne",
-      card4Tag: "TRILINGUAL C1 · JUNIOR BUILDER",
+      card4Tag: "TRILINGUAL C1 · ENGINEER",
       realityBadgeTitle: "⚠️ QUANTITATIVE TRANSPARENCY: R&D TRADING BOT (REAL DRAWDOWN)",
       realityBadgeFeed: "📡 100% LIVE REAL PRICES STREAMING (BINANCE PUBLIC API)",
       realityPnlNetLbl: "Real Net Liquidated PnL",

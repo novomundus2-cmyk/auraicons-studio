@@ -118,6 +118,81 @@
       color: #fff;
     }
 
+    /* 🧭 Prominent Back Button in Screen Toolbar */
+    .cv-back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(16, 185, 129, 0.18));
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      color: #e0f2fe;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .cv-back-button:hover {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.38), rgba(16, 185, 129, 0.28));
+      border-color: #38bdf8;
+      color: #fff;
+      transform: translateX(-3px);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.45);
+    }
+    .cv-back-button svg {
+      transition: transform 0.2s ease;
+    }
+    .cv-back-button:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* 🧭 Omnipresent Floating Return Button (Always Visible On Scroll) */
+    .floating-back-pill {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      color: #f0f9ff;
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.35);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .floating-back-pill:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(30, 41, 59, 0.98);
+      border-color: #38bdf8;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 28px rgba(56, 189, 248, 0.55);
+      color: #fff;
+    }
+    .floating-back-pill svg {
+      transition: transform 0.2s ease;
+    }
+    .floating-back-pill:hover svg {
+      transform: translateX(-3px);
+    }
+
+    @media print {
+      .floating-back-pill, .cv-back-button {
+        display: none !important;
+      }
+    }
+
     /* CV Document Sheet */
     .cv-sheet {
       max-width: 860px;
@@ -809,13 +884,22 @@
 
   <!-- Screen Floating Toolbar (Hidden when printing to PDF) -->
   <div class="screen-toolbar no-print">
-    <div class="toolbar-left" style="display: flex; align-items: center; gap: 10px;">
+    <div class="toolbar-left" style="display: flex; align-items: center; gap: 12px;">
+      <!-- 🧭 BOTÓN RETORNO AL PORTFOLIO CON FLECHA (SIEMPRE VISIBLE) -->
+      <a href="/portfolio.html" class="cv-back-button" id="cv-back-btn" title="Volver al Portfolio Principal de Mikel Irastorza">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span id="lbl-cv-back">Volver al Portfolio</span>
+      </a>
+
       <button class="aura-sound-pill" id="cv-sound-toggle-btn" onclick="const m = window.AuraAudio ? window.AuraAudio.toggleMute() : false; this.textContent = m ? '🔇' : '🔔'; this.classList.toggle('muted', m); if(!m && window.AuraAudio) window.AuraAudio.playChime();" title="Activar/Silenciar efectos táctiles de audio AuraIcons" style="flex-shrink: 0;">
         🔔
       </button>
       <div>
-        <span id="cv-toolbar-title">🌱 Mikel Irastorza · Junior Software &amp; Data Engineer («Project-First Builder»)</span>
-        <span id="cv-toolbar-sub" style="font-weight:400; color:#94a3b8; font-size:11.5px; display: block;">Perfil Junior de Ingeniería · 44 Tests Automatizados Verificados</span>
+        <span id="cv-toolbar-title">🌱 Mikel Irastorza · Software &amp; Data Engineer</span>
+        <span id="cv-toolbar-sub" style="font-weight:400; color:#94a3b8; font-size:11.5px; display: block;">Cloud Pipelines, Distributed Systems &amp; Real-Time Data · 44 Tests Verificados</span>
       </div>
     </div>
     <div class="toolbar-actions">
@@ -850,6 +934,15 @@
       </a>
     </div>
   </div>
+
+  <!-- 🧭 BOTÓN FLOTANTE OMNIPRESENTE CON FLECHA (PERMANENTE EN TODA LA NAVEGACIÓN) -->
+  <a href="/portfolio.html" class="floating-back-pill no-print" id="cv-floating-back-pill" title="Volver al Portfolio Principal">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    <span id="lbl-cv-floating-back">Volver al Portfolio</span>
+  </a>
 
   <div class="cv-sheet">
 
@@ -1294,8 +1387,9 @@
   <script>
     const CV_I18N = {
       es: {
-        toolbarTitle: "🌱 Mikel Irastorza · Junior Software & Data Engineer («Project-First Builder»)",
-        toolbarSub: "Perfil Junior de Ingeniería · 44 Tests Automatizados Verificados",
+        backLbl: "Volver al Portfolio",
+        toolbarTitle: "🌱 Mikel Irastorza · Software & Data Engineer",
+        toolbarSub: "Cloud Data Pipelines, Distributed Systems & Real-Time Data · 44 Tests Verificados",
         printLbl: "Imprimir / PDF",
         pdfLbl: "PDF Oficial",
         qrLbl: "Móvil / QR",
@@ -1321,8 +1415,9 @@
         footerTests: "CV Oficial Verificado · Suite de 50 Tests Automatizados en Producción (100% Pasados)"
       },
       fr: {
-        toolbarTitle: "🌱 Mikel Irastorza · Ingénieur Logiciel & Données Junior (« Project-First Builder »)",
-        toolbarSub: "Profil Junior d'Ingénierie · 44 Tests Automatisés Validés en Production",
+        backLbl: "Retour au Portfolio",
+        toolbarTitle: "🌱 Mikel Irastorza · Ingénieur Logiciel & Données",
+        toolbarSub: "Pipelines de Données Cloud, Systèmes Distribués & Streaming · 44 Tests Validés",
         printLbl: "Imprimer / PDF",
         pdfLbl: "PDF Officiel",
         qrLbl: "Mobile / QR",
@@ -1348,8 +1443,9 @@
         footerTests: "CV Officiel Vérifié · Suite de 50 Tests Automatisés en Production (100% Validés)"
       },
       en: {
-        toolbarTitle: "🌱 Mikel Irastorza · Junior Software & Data Engineer (\"Project-First Builder\")",
-        toolbarSub: "Junior Engineering Profile · 44 Automated Production Tests Passing",
+        backLbl: "Back to Portfolio",
+        toolbarTitle: "🌱 Mikel Irastorza · Software & Data Engineer",
+        toolbarSub: "Cloud Data Pipelines, Distributed Systems & Real-Time Data · 44 Passing Tests",
         printLbl: "Print / PDF",
         pdfLbl: "Official PDF",
         qrLbl: "Mobile / QR",
@@ -1385,6 +1481,11 @@
       if (tt) tt.textContent = t.toolbarTitle;
       const ts = document.getElementById('cv-toolbar-sub');
       if (ts) ts.textContent = t.toolbarSub;
+
+      const bLbl = document.getElementById('lbl-cv-back');
+      if (bLbl && t.backLbl) bLbl.textContent = t.backLbl;
+      const fbLbl = document.getElementById('lbl-cv-floating-back');
+      if (fbLbl && t.backLbl) fbLbl.textContent = t.backLbl;
 
       const pLbl = document.getElementById('lbl-cv-print');
       if (pLbl) pLbl.textContent = t.printLbl;

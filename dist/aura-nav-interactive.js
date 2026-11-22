@@ -518,18 +518,29 @@
 
     const path = window.location.pathname.toLowerCase();
     const isCV = path.includes('cv_printable') || path.includes('/cv.html');
-    
-    // On CV printable page, the top toolbar already has Cockpit Big Data; keep CV page clean
-    if (isCV) return;
+    const isPortfolio = path.endsWith('/portfolio.html') || path === '/' || path.endsWith('/portfolio');
 
     const dock = document.createElement('div');
     dock.id = 'aura-floating-dock';
     dock.className = 'aura-floating-dock no-print';
 
-    const primaryLink = '/cv_printable.html';
-    const primaryTitle = 'Volver al CV';
-    const primarySub = 'Mikel Irastorza · PDF Oficial';
-    const primaryBadge = 'Oficial';
+    let primaryLink, primaryTitle, primarySub, primaryBadge;
+    if (isCV) {
+      primaryLink = '/portfolio.html';
+      primaryTitle = 'Volver al Portfolio';
+      primarySub = 'Mikel Irastorza · Primera Página';
+      primaryBadge = 'Inicio';
+    } else if (isPortfolio) {
+      primaryLink = '/cv_printable.html';
+      primaryTitle = 'Ver CV Oficial';
+      primarySub = 'Mikel Irastorza · PDF Imprimible';
+      primaryBadge = 'Oficial';
+    } else {
+      primaryLink = '/portfolio.html';
+      primaryTitle = 'Volver al Portfolio';
+      primarySub = 'Mikel Irastorza · Primera Página';
+      primaryBadge = 'Inicio';
+    }
 
     const isCompact = localStorage.getItem('aura_dock_compact') === 'true';
     if (isCompact) {
