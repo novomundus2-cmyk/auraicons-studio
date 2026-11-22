@@ -42,6 +42,7 @@ __pycache__/
 .aistudio/
 .cursor/
 .cursorrules
+.vscode/
 *.pbtxt
 *.pb
 *.proto
