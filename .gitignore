@@ -41,8 +41,10 @@ __pycache__/
 .antigravity/
 .aistudio/
 .cursor/
+.cursorrules
 *.pbtxt
 *.pb
 *.proto
+*.mdc
 
 
