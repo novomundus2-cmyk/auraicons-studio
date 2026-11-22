@@ -32,10 +32,17 @@ __pycache__/
 .ruff_cache/
 **/.ruff_cache/
 
-# Sensitive credentials
+# Sensitive credentials & environment
 .env
 .env.*
+*.env
 
-
+# AI & System Internals, Prompts, Logs & Brain Traces
 .antigravity/
+.aistudio/
+.cursor/
+*.pbtxt
+*.pb
+*.proto
+
 
