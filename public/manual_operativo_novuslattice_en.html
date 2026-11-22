@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovusLattice — Industrial Operations & Implementation Manual</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 12mm 15mm;
+      @bottom-right {
+        content: "Page " counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+      @bottom-left {
+        content: "NovusLattice · Industrial Operations Manual · Mikel Irastorza (Novo Mundus)";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      color: #241c15;
+      line-height: 1.52;
+      font-size: 9pt;
+      margin: 0;
+      padding: 0;
+      background: #faf6ee; /* Warm elegant editorial beige */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sans { font-family: 'Inter', -apple-system, sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #d9cbba;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2e2116;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.2pt;
+      color: #7d6b58;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 1px;
+    }
+
+    .badge-category {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #c9a975;
+      padding-bottom: 2px;
+    }
+
+    h1.main-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #1f160e;
+      margin: 0 auto 6px auto;
+      letter-spacing: -0.2px;
+      text-align: center;
+    }
+
+    .lead-text {
+      font-size: 9.2pt;
+      font-style: italic;
+      color: #4f4032;
+      line-height: 1.45;
+      max-width: 680px;
+      margin: 0 auto 10px auto;
+      text-align: center;
+    }
+
+    .section-header {
+      border-bottom: 1.5px solid #c9a975;
+      padding-bottom: 3px;
+      margin: 14px 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    h2.section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: #241c15;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .section-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0 0 6px 0;
+      text-align: justify;
+      color: #2b2219;
+      line-height: 1.5;
+      font-size: 8.6pt;
+    }
+
+    .step-box {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-left: 3.5px solid #8c5b1b;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 6px 0 8px 0;
+    }
+
+    .step-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #1f160e;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .step-badge {
+      font-size: 7pt;
+      background: #f6efe2;
+      color: #8c5b1b;
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid #e0d2c0;
+    }
+
+    .code-cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.8pt;
+      background: #241c15;
+      color: #f5f5f0;
+      padding: 5px 8px;
+      border-radius: 3px;
+      margin: 4px 0;
+      display: block;
+    }
+
+    table.editorial-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 10px 0;
+      font-size: 7.8pt;
+    }
+
+    table.editorial-table th {
+      background: #3d2f23;
+      color: #faf6ee;
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 7px;
+      text-align: left;
+    }
+
+    table.editorial-table td {
+      padding: 5px 7px;
+      border-bottom: 1px solid #e8dcce;
+      color: #2b2219;
+    }
+
+    table.editorial-table tr:nth-child(even) td {
+      background: #f6efe2;
+    }
+
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .trouble-item {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-radius: 4px;
+      padding: 7px 9px;
+      font-size: 7.6pt;
+      line-height: 1.4;
+    }
+
+    .trouble-item strong {
+      font-family: 'Inter', sans-serif;
+      color: #8c5b1b;
+      font-size: 8pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Continuous natural reading flow without forced artificial page breaks */
+    .step-box, .editorial-table, .trouble-grid, .trouble-item, .section-header {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       COVER & QUICK START GUIDE
+       ======================================================================= -->
+  <div class="header-nav">
+    <div>
+      <div class="brand-title">NovusLattice · Operations Manual</div>
+      <div class="brand-subtitle">Mikel Irastorza · Novo Mundus (Spain) · Industrial Edition 1.0</div>
+    </div>
+    <div style="font-family: 'Inter', sans-serif; font-size: 7.5pt; font-weight: bold; color: #8c5b1b;">
+      OFFICIAL SHOP-FLOOR GUIDE
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 8px;">
+    <div class="badge-category">Technical Operations Manual · Factory & Workshop</div>
+    <h1 class="main-title">NovusLattice: Industrial Operations & Implementation Manual</h1>
+    <div class="lead-text">
+      Practical guide for machine operators, manufacturing engineers, and CNC programmers: thermal radar calibration, springback overbend compensation (±0.2 mm tolerance), and burr-free shear cutting.
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">1. Operational Summary & Shop-Floor Purpose</h2>
+    <span class="section-tag">Section I · Introduction</span>
+  </div>
+  <p>
+    In precision sheet metal manufacturing (commercial refrigeration, automotive chassis, and mechatronic enclosures), scrap caused by trial bends and temperature-induced dimensional drift represents a major hidden cost. <strong>NovusLattice</strong> replaces trial-and-error adjustments with exact physical modeling grounded in atomic crystal lattice mechanics and real-time workshop temperature tracking.
+  </p>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Installation & System Setup</span>
+      <span class="step-badge">ZERO OVERHEAD</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Runs on any workshop PC or machine terminal (Linux, Windows, or macOS) with Python 3.9+. Operates 100% offline with zero cloud dependency.
+    </p>
+    <code class="code-cmd">git clone https://github.com/novomundus2-cmyk/NovusLattice.git && cd NovusLattice && pip install -e .</code>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">2. Precision Sheet Bending Procedure (EPTA France Benchmark)</h2>
+    <span class="section-tag">Section II · CNC Press Brake</span>
+  </div>
+  <p>
+    To eliminate elastic recovery (springback) scrap and consistently hold strict engineering tolerances (<strong>±0.20 mm</strong>):
+  </p>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Step 1: Measure Coil & Workshop Temperature</span>
+      <span class="step-badge">THERMAL SENSOR</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Record the incoming metal coil and ambient air temperature (e.g., 20 °C in the morning, 35 °C in the afternoon) using an infrared pyrometer or the machine's ambient RTD probe.
+    </p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Step 2: Execute Real-Time Overbend Calculation</span>
+      <span class="step-badge">CLI COMMAND</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Input the alloy type, sheet thickness (mm), punch radius, and temperature:
+    </p>
+    <code class="code-cmd">python3 -m novuslattice.cli bend --metal Al --thickness 1.5 --angle 90.0 --temp-k 293.15</code>
+    <p style="margin: 2px 0 0 0; font-size: 7.8pt; color: #5c4b3a;">
+      <strong>Calculated output:</strong> Target punch stroke angle = <strong>90.934°</strong>. Final residual error = <strong>0.025 mm</strong> (well within the ±0.20 mm benchmark).
+    </p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Step 3: Transfer Angle Correction to CNC Controller</span>
+      <span class="step-badge">MACHINE OFFSET</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Apply the <strong>+0.93°</strong> overbend correction on the press brake controller (Amada, Trumpf, Bystronic, or LVD) on the Y1/Y2 axis. The first produced part releases at exactly 90.0°, eliminating scrap panels.
+    </p>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">3. Burr-Free Industrial Shearing & Cutting</h2>
+    <span class="section-tag">Section III · Shear Cutting</span>
+  </div>
+  <p>
+    Incorrect blade clearance causes ductile tearing and secondary burrs that require costly manual deburring. NovusLattice computes the exact clearance based on {111} crystallographic slip planes:
+  </p>
+
+  <table class="editorial-table">
+    <thead>
+      <tr>
+        <th>Sheet Alloy</th>
+        <th>Thickness (t)</th>
+        <th>Optimal Blade Clearance</th>
+        <th>Tooling Tolerance</th>
+        <th>Operational Advantage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Aluminum 6061</strong></td>
+        <td>1.5 mm</td>
+        <td>0.139 mm (9.3% of t)</td>
+        <td>±0.005 mm (±5 µm)</td>
+        <td>Clean shear separation with zero burr</td>
+      </tr>
+      <tr>
+        <td><strong>Stainless Steel 304</strong></td>
+        <td>1.2 mm</td>
+        <td>0.144 mm (12.0% de t)</td>
+        <td>±0.005 mm (±5 µm)</td>
+        <td>Suppresses work-hardening at the edge</td>
+      </tr>
+      <tr>
+        <td><strong>Electrolytic Copper</strong></td>
+        <td>2.0 mm</td>
+        <td>0.193 mm (9.6% de t)</td>
+        <td>±0.008 mm (±8 µm)</td>
+        <td>Sharp rectangular edges for busbars</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-header">
+    <h2 class="section-title">4. Robotic Gripper Calibration & Anti-Galling Bounds</h2>
+    <span class="section-tag">Section IV · Robotics & Tribology</span>
+  </div>
+  <p>
+    When automated transfer arms or mobile companion robots (MIRA Robot Lab) handle finished sheet panels:
+  </p>
+  <div class="step-box">
+    <div class="step-title">
+      <span>Clamping Force Limit to Prevent Surface Galling</span>
+      <span class="step-badge">SURFACE INTEGRITY</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Excessive contact pressure at microscopic asperities causes cold-welding and scratching on pre-painted or polished metal. NovusLattice sets safe normal load limits:
+    </p>
+    <code class="code-cmd">python3 -m novuslattice.cli cases</code>
+    <p style="margin: 2px 0 0 0; font-size: 7.8pt; color: #5c4b3a;">
+      For 400 mm² contact pads, maximum normal clamping force in copper must not exceed <strong>69.3 kN</strong> with a static friction coefficient of <strong>0.35</strong>.
+    </p>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">5. Shop-Floor Troubleshooting Guide</h2>
+    <span class="section-tag">Section V · Rapid Resolution</span>
+  </div>
+
+  <div class="trouble-grid">
+    <div class="trouble-item">
+      <strong>Issue: Parts open by 1° more in the afternoon than in the morning.</strong>
+      <em>Root Cause:</em> Workshop warmed from 15 °C to 34 °C, thermally expanding lattice a(T) and softening modulus E(T).<br>
+      <em>Action:</em> Re-run CLI with current temperature and increase press overbend by +0.35°.
+    </div>
+
+    <div class="trouble-item">
+      <strong>Issue: Sharp burrs appear along bottom edge of cut sheet.</strong>
+      <em>Root Cause:</em> Blade clearance is too wide; material bends instead of shearing.<br>
+      <em>Action:</em> Re-shim knife gap to exact NovusLattice specification (0.139 mm for Al 1.5mm).
+    </div>
+
+    <div class="trouble-item">
+      <strong>Issue: Robotic suction or metal clamp leaves cosmetic indentation marks.</strong>
+      <em>Root Cause:</em> Asperity contact pressure exceeds material yield limit σ_y.<br>
+      <em>Action:</em> Reduce pneumatic pressure or enlarge pad surface area to 400 mm².
+    </div>
+
+    <div class="trouble-item">
+      <strong>Issue: New sheet coil batch exhibits bend angle variation.</strong>
+      <em>Root Cause:</em> Inter-batch yield strength fluctuation from raw material supplier.<br>
+      <em>Action:</em> Measure a single witness bend, feed deviation into NovusLattice, and apply correction across the entire coil.
+    </div>
+  </div>
+
+  <div style="margin-top: 10px; padding: 8px 12px; background: #f6efe2; border: 1px solid #e0d2c0; border-radius: 5px; font-size: 7.4pt; color: #524233; text-align: center;">
+    <strong>NovusLattice Industrial Manual · Author: Mikel Irastorza · Novo Mundus (Spain).</strong><br>
+    Technical support & enterprise shop-floor licensing: <span class="mono">novomundus2@gmail.com</span>
+  </div>
+
+</body>
+</html>

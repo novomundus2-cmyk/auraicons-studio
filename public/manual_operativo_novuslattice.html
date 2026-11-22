@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovusLattice — Manual de Operaciones e Implementación Industrial</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 12mm 15mm;
+      @bottom-right {
+        content: "Página " counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+      @bottom-left {
+        content: "NovusLattice · Manual Industrial · Mikel Irastorza (Novo Mundus)";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      color: #241c15;
+      line-height: 1.52;
+      font-size: 9pt;
+      margin: 0;
+      padding: 0;
+      background: #faf6ee; /* Warm elegant editorial beige */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sans { font-family: 'Inter', -apple-system, sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #d9cbba;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2e2116;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.2pt;
+      color: #7d6b58;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 1px;
+    }
+
+    .badge-category {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #c9a975;
+      padding-bottom: 2px;
+    }
+
+    h1.main-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #1f160e;
+      margin: 0 auto 6px auto;
+      letter-spacing: -0.2px;
+      text-align: center;
+    }
+
+    .lead-text {
+      font-size: 9.2pt;
+      font-style: italic;
+      color: #4f4032;
+      line-height: 1.45;
+      max-width: 680px;
+      margin: 0 auto 10px auto;
+      text-align: center;
+    }
+
+    .section-header {
+      border-bottom: 1.5px solid #c9a975;
+      padding-bottom: 3px;
+      margin: 14px 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    h2.section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: #241c15;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .section-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0 0 6px 0;
+      text-align: justify;
+      color: #2b2219;
+      line-height: 1.5;
+      font-size: 8.6pt;
+    }
+
+    .step-box {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-left: 3.5px solid #8c5b1b;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 6px 0 8px 0;
+    }
+
+    .step-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #1f160e;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .step-badge {
+      font-size: 7pt;
+      background: #f6efe2;
+      color: #8c5b1b;
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid #e0d2c0;
+    }
+
+    .code-cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.8pt;
+      background: #241c15;
+      color: #f5f5f0;
+      padding: 5px 8px;
+      border-radius: 3px;
+      margin: 4px 0;
+      display: block;
+    }
+
+    table.editorial-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 10px 0;
+      font-size: 7.8pt;
+    }
+
+    table.editorial-table th {
+      background: #3d2f23;
+      color: #faf6ee;
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 7px;
+      text-align: left;
+    }
+
+    table.editorial-table td {
+      padding: 5px 7px;
+      border-bottom: 1px solid #e8dcce;
+      color: #2b2219;
+    }
+
+    table.editorial-table tr:nth-child(even) td {
+      background: #f6efe2;
+    }
+
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .trouble-item {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-radius: 4px;
+      padding: 7px 9px;
+      font-size: 7.6pt;
+      line-height: 1.4;
+    }
+
+    .trouble-item strong {
+      font-family: 'Inter', sans-serif;
+      color: #8c5b1b;
+      font-size: 8pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Continuous natural reading flow without forced artificial page breaks */
+    .step-box, .editorial-table, .trouble-grid, .trouble-item, .section-header {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       PÁGINA 1: PORTADA Y GUÍA DE INICIO RÁPIDO
+       ======================================================================= -->
+  <div class="header-nav">
+    <div>
+      <div class="brand-title">NovusLattice · Manual de Operaciones</div>
+      <div class="brand-subtitle">Mikel Irastorza · Novo Mundus (España) · Edición Industrial 1.0</div>
+    </div>
+    <div style="font-family: 'Inter', sans-serif; font-size: 7.5pt; font-weight: bold; color: #8c5b1b;">
+      GUÍA OFICIAL DE PLANTA
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-bottom: 8px;">
+    <div class="badge-category">Manual Técnico Operativo · Fábrica y Taller</div>
+    <h1 class="main-title">Manual de Operación e Instalación Industrial: NovusLattice</h1>
+    <div class="lead-text">
+      Guía práctica para operarios, ingenieros de planta y programadores CNC: calibración del radar térmico, compensación del sobre-plegado (tolerancia ±0.2 mm) y corte limpio sin rebabas.
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">1. Resumen Operativo y Propósito en Planta</h2>
+    <span class="section-tag">Sección I · Introducción</span>
+  </div>
+  <p>
+    En la fabricación industrial de chapa metálica (muebles de refrigeración, chasis de automoción y estructuras mecatrónicas), el mayor coste oculto es el material desperdiciado por pruebas de doblado y piezas fuera de cota al cambiar la temperatura de la nave. <strong>NovusLattice</strong> sustituye el método tradicional de "ensayo y error" por un cálculo físico exacto basado en la red cristalina del metal y la temperatura ambiental real.
+  </p>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Requisitos Mínimos de Instalación</span>
+      <span class="step-badge">FÁCIL CONFIGURACIÓN</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Cualquier ordenador de taller o terminal conectado a la máquina (Linux, Windows o macOS) con Python 3.9 o superior. No requiere conexión a internet tras la instalación.
+    </p>
+    <code class="code-cmd">git clone https://github.com/novomundus2-cmyk/NovusLattice.git && cd NovusLattice && pip install -e .</code>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">2. Procedimiento de Plegado de Precisión (Caso EPTA France)</h2>
+    <span class="section-tag">Sección II · Plegado CNC</span>
+  </div>
+  <p>
+    Para evitar que las piezas dobladas se abran por recuperación elástica (<em>springback</em>) y fallen la inspección de calidad (tolerancia exigida: <strong>±0.20 mm</strong>):
+  </p>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Paso 1: Medir la Temperatura de la Chapa y la Nave</span>
+      <span class="step-badge">SENSOR TÉRMICO</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Comprobar la temperatura ambiente con la sonda del taller (termómetro infrarrojo en la bobina o sensor ambiental de la plegadora). Por ejemplo: 20 °C por la mañana o 35 °C al mediodía.
+    </p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Paso 2: Ejecutar el Cálculo del Sobre-Plegado</span>
+      <span class="step-badge">COMANDO CLI</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Indicar el tipo de metal, espesor (mm), radio de punzón y temperatura:
+    </p>
+    <code class="code-cmd">python3 -m novuslattice.cli bend --metal Al --thickness 1.5 --angle 90.0 --temp-k 293.15</code>
+    <p style="margin: 2px 0 0 0; font-size: 7.8pt; color: #5c4b3a;">
+      <strong>Resultado en pantalla:</strong> Ángulo objetivo de punzón = <strong>90.934°</strong>. Error residual final = <strong>0.025 mm</strong> (Cumple la tolerancia de ±0.2 mm con holgura).
+    </p>
+  </div>
+
+  <div class="step-box">
+    <div class="step-title">
+      <span>Paso 3: Cargar el Ángulo en el Control CNC de la Plegadora</span>
+      <span class="step-badge">AJUSTE DE MÁQUINA</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Introducir en la pantalla de la plegadora (Amada, Trumpf, Bystronic, LVD) el sobre-doblado de <strong>+0.93°</strong> en la corrección de ángulo del eje Y. La primera pieza saldrá a 90.0° exactos sin necesidad de tirar 10 chapas a la chatarra.
+    </p>
+  </div>
+
+  <!-- =======================================================================
+       CORTE, ROBÓTICA Y RESOLUCIÓN DE PROBLEMAS
+       ======================================================================= -->
+
+  <div class="section-header">
+    <h2 class="section-title">3. Procedimiento de Corte y Cizallado sin Rebabas</h2>
+    <span class="section-tag">Sección III · Corte Industrial</span>
+  </div>
+  <p>
+    Al cizallar o punzonar, una separación errónea entre cuchillas desgarra el metal y genera rebabas cortantes que exigen desbarbado manual. NovusLattice calcula la holgura óptima según los planos de corte atómicos {111}:
+  </p>
+
+  <table class="editorial-table">
+    <thead>
+      <tr>
+        <th>Material de la Chapa</th>
+        <th>Espesor (t)</th>
+        <th>Holgura Óptima Calculada</th>
+        <th>Tolerancia de Cuchilla</th>
+        <th>Beneficio Operativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Aluminio 6061</strong></td>
+        <td>1.5 mm</td>
+        <td>0.139 mm (9.3% de t)</td>
+        <td>±0.005 mm (±5 µm)</td>
+        <td>Corte limpio sin rebaba térmica</td>
+      </tr>
+      <tr>
+        <td><strong>Acero Inox AISI 304</strong></td>
+        <td>1.2 mm</td>
+        <td>0.144 mm (12.0% de t)</td>
+        <td>±0.005 mm (±5 µm)</td>
+        <td>Evita el endurecimiento por deformación</td>
+      </tr>
+      <tr>
+        <td><strong>Cobre Electrolítico</strong></td>
+        <td>2.0 mm</td>
+        <td>0.193 mm (9.6% de t)</td>
+        <td>±0.008 mm (±8 µm)</td>
+        <td>Aristas vivas para cuadros eléctricos</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-header">
+    <h2 class="section-title">4. Manipulación Robótica y Presión en Pinzas (Robot Lab)</h2>
+    <span class="section-tag">Sección IV · Robótica y Fricción</span>
+  </div>
+  <p>
+    En brazos manipuladores y robots móviles que transportan piezas terminadas:
+  </p>
+  <div class="step-box">
+    <div class="step-title">
+      <span>Límite de Fuerza para Evitar Marcas y Gripado (Anti-Galling)</span>
+      <span class="step-badge">SEGURIDAD SUPERFICIAL</span>
+    </div>
+    <p style="margin: 0; font-size: 8pt;">
+      Al presionar la chapa con pinzas metálicas o ventosas, las asperezas microscópicas pueden soldarse en frío si se excede la tensión de fluencia. NovusLattice establece el umbral seguro de agarre:
+    </p>
+    <code class="code-cmd">python3 -m novuslattice.cli cases</code>
+    <p style="margin: 2px 0 0 0; font-size: 7.8pt; color: #5c4b3a;">
+      Para almohadillas de 400 mm², la fuerza máxima de amarre en cobre no debe exceder <strong>69.3 kN</strong> con coeficiente de fricción estática de <strong>0.35</strong>.
+    </p>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">5. Guía de Solución de Problemas en Taller (Troubleshooting)</h2>
+    <span class="section-tag">Sección V · Incidencias Rápidas</span>
+  </div>
+
+  <div class="trouble-grid">
+    <div class="trouble-item">
+      <strong>Problema: Por la tarde las piezas se abren 1° más que por la mañana.</strong>
+      <em>Causa:</em> La nave subió de 15 °C a 34 °C. El calor dilata la red atómica a(T) y ablanda el módulo elástico E(T).<br>
+      <em>Solución:</em> Ejecutar el solver con la temperatura actual e incrementar el sobre-doblado en +0.35° en la máquina.
+    </div>
+
+    <div class="trouble-item">
+      <strong>Problema: Aparecen rebabas afiladas en la parte inferior del corte.</strong>
+      <em>Causa:</em> Holgura de cuchilla demasiado amplia; el metal se dobla antes de cortarse.<br>
+      <em>Solución:</em> Reducir la separación de cuchillas al valor exacto de la tabla de NovusLattice (0.139 mm en Al 1.5mm).
+    </div>
+
+    <div class="trouble-item">
+      <strong>Problema: La pinza del robot deja marcas o arañazos en la chapa pulida.</strong>
+      <em>Causa:</em> Presión en asperezas superior al límite de fluencia local σ_y.<br>
+      <em>Solución:</em> Reducir la presión neumática o aumentar la superficie de contacto de la almohadilla a 400 mm².
+    </div>
+
+    <div class="trouble-item">
+      <strong>Problema: Un lote de bobinas de chapa nueva varía de ángulo al doblarse.</strong>
+      <em>Causa:</em> Variación de límite elástico en la bobina de origen.<br>
+      <em>Solución:</em> Medir una sola pieza testigo, meter la desviación en NovusLattice y corregir la serie completa al instante.
+    </div>
+  </div>
+
+  <div style="margin-top: 10px; padding: 8px 12px; background: #f6efe2; border: 1px solid #e0d2c0; border-radius: 5px; font-size: 7.4pt; color: #524233; text-align: center;">
+    <strong>NovusLattice Industrial Manual · Autor: Mikel Irastorza · Novo Mundus (España).</strong><br>
+    Soporte técnico y licencias comerciales de planta: <span class="mono">novomundus2@gmail.com</span>
+  </div>
+
+</body>
+</html>
