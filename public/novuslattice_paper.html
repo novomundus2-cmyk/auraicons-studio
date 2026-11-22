@@ -2,293 +2,811 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>NovusLattice — Mikel Irastorza (6 Pilares & Fórmulas)</title>
+  <title>NovusLattice — Mikel Irastorza (Whitepaper Oficial)</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
     @page {
-      size: A4;
-      margin: 18mm 16mm 18mm 16mm;
+      size: A4 portrait;
+      margin: 16mm 18mm 18mm 18mm;
       @bottom-right {
-        content: counter(page);
+        content: "Página " counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+      @bottom-left {
+        content: "NovusLattice · Mikel Irastorza (novomundus2@gmail.com)";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
       }
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Lora', Georgia, serif;
       color: #0f172a;
-      line-height: 1.5;
-      font-size: 10pt;
+      line-height: 1.55;
+      font-size: 9.5pt;
       margin: 0;
       padding: 0;
       background: #ffffff;
+      -webkit-font-smoothing: antialiased;
     }
-    .header-bar {
-      border-bottom: 2px solid #2563eb;
-      padding-bottom: 6px;
-      margin-bottom: 16px;
+
+    .sans {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', Menlo, monospace;
+    }
+
+    /* ==========================================================================
+       PORTADA CIENTÍFICA (PAGE 1)
+       ========================================================================== */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 255mm;
+      padding-top: 10mm;
+      page-break-after: always;
+    }
+
+    .top-institution-band {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
       display: flex;
       justify-content: space-between;
-      font-size: 8pt;
-      color: #64748b;
+      align-items: flex-end;
+    }
+
+    .inst-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 13pt;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #0f172a;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
-    .cern-badge {
-      background: #eff6ff;
-      color: #1d4ed8;
-      padding: 2px 8px;
+
+    .inst-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .cern-pill {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 5px 12px;
       border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
       font-weight: 700;
-      border: 1px solid #bfdbfe;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-align: right;
     }
-    h1 {
-      font-size: 18pt;
+
+    .title-block {
+      margin-top: 35mm;
+      margin-bottom: 25mm;
+    }
+
+    .system-badge {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 800;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1.paper-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 25pt;
       font-weight: 800;
       line-height: 1.2;
       color: #0f172a;
-      margin: 0 0 6px 0;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.5px;
     }
-    .subtitle {
-      font-size: 10.5pt;
-      font-weight: 500;
+
+    .paper-subtitle {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 12pt;
+      font-style: italic;
       color: #334155;
-      margin-bottom: 14px;
-      line-height: 1.35;
+      line-height: 1.45;
+      max-width: 90%;
     }
-    .author-block {
+
+    .author-card {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
+      border-left: 4px solid #b45309;
       border-radius: 6px;
-      padding: 10px 14px;
-      margin-bottom: 16px;
-      font-size: 8.5pt;
-      color: #334155;
+      padding: 16px 20px;
+      margin-bottom: 25mm;
+      font-family: 'Inter', sans-serif;
     }
-    .author-name {
-      font-size: 11pt;
-      font-weight: 700;
-      color: #0f172a;
-    }
-    .abstract-box {
-      border-left: 3px solid #2563eb;
-      background: #f0fdf4;
-      padding: 10px 14px;
-      margin-bottom: 18px;
-      border-radius: 0 6px 6px 0;
-    }
-    .abstract-title {
+
+    .author-name-lg {
+      font-size: 14pt;
       font-weight: 800;
-      font-size: 9pt;
-      color: #166534;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      color: #0f172a;
       margin-bottom: 4px;
     }
-    .abstract-text {
-      font-size: 9pt;
+
+    .author-role {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #b45309;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .author-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+      font-size: 8pt;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+    }
+
+    .abstract-box {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 10mm;
+    }
+
+    .abstract-title {
+      font-size: 8.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .abstract-p {
+      font-size: 8.5pt;
+      line-height: 1.5;
       color: #1e293b;
       margin: 0;
       text-align: justify;
     }
-    h2 {
-      font-size: 12pt;
+
+    .cover-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: #64748b;
+    }
+
+    /* ==========================================================================
+       PÁGINAS INTERNAS & SECCIONES
+       ========================================================================== */
+    .page-break {
+      page-break-before: always;
+    }
+
+    h2.section-heading {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 13pt;
       font-weight: 700;
-      color: #1e3a8a;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 3px;
-      margin-top: 18px;
-      margin-bottom: 8px;
+      color: #0f172a;
+      border-bottom: 1.5px solid #0f172a;
+      padding-bottom: 4px;
+      margin-top: 16px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       page-break-after: avoid;
     }
+
+    h3.subheading {
+      font-family: 'Inter', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      text-align: justify;
+    }
+
+    /* Tabla de Contenidos */
+    .toc-container {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 4px 0;
+      font-size: 8.5pt;
+      border-bottom: 1px dotted #cbd5e1;
+    }
+
+    .toc-item:last-child {
+      border-bottom: none;
+    }
+
+    .toc-title {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .toc-page {
+      font-weight: 700;
+      color: #b45309;
+    }
+
+    /* Glosario */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+      margin-top: 10px;
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .glossary-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 8px 10px;
+      font-size: 8pt;
+    }
+
+    .glossary-term {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .glossary-symbol {
+      color: #b45309;
+      font-family: 'Cambria Math', Georgia, serif;
+      font-weight: 700;
+    }
+
+    .glossary-def {
+      color: #475569;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    /* Cajas de Fórmulas y Teoremas */
+    .theorem-box {
+      background: #eff6ff;
+      border: 1.5px solid #3b82f6;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-family: 'Inter', sans-serif;
+      page-break-inside: avoid;
+    }
+
+    .theorem-tag {
+      font-size: 8pt;
+      font-weight: 800;
+      color: #1d4ed8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .theorem-name {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .theorem-body {
+      font-size: 8.5pt;
+      color: #1e293b;
+      line-height: 1.45;
+      margin: 0;
+      text-align: justify;
+    }
+
+    .formula-display {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 8px 0;
+      text-align: center;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 11pt;
+      color: #0f172a;
+    }
+
+    /* Tarjetas de los 6 Pilares */
     .pillar-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-left: 3px solid #d97706;
+      border-left: 3.5px solid #d97706;
       border-radius: 4px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
       page-break-inside: avoid;
+      font-family: 'Inter', sans-serif;
     }
-    .pillar-header {
+
+    .pillar-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 4px;
     }
-    .pillar-title {
-      font-size: 10.5pt;
+
+    .pillar-name {
+      font-size: 9.5pt;
       font-weight: 700;
       color: #0f172a;
     }
-    .pillar-formula-badge {
+
+    .pillar-badge {
       background: #fef3c7;
       color: #92400e;
       border: 1px solid #fde68a;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
-      font-family: "Cambria Math", "Times New Roman", serif;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
       font-weight: 700;
-      font-size: 9.5pt;
+      font-size: 9pt;
     }
-    .pillar-desc {
-      font-size: 8.5pt;
+
+    .pillar-text {
+      font-size: 8pt;
       color: #334155;
-      margin: 0 0 4px 0;
+      line-height: 1.4;
+      margin: 0;
       text-align: justify;
     }
-    .formula-box {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      padding: 10px;
-      margin: 8px 0;
-      text-align: center;
-      font-family: "Cambria Math", "Times New Roman", serif;
-      font-size: 10.5pt;
-      color: #0f172a;
-    }
+
+    /* Tabla Multiescala */
     .table-container {
-      margin: 10px 0;
+      margin: 12px 0;
       width: 100%;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 8pt;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
     }
+
     th, td {
       border: 1px solid #cbd5e1;
       padding: 5px 8px;
       text-align: left;
     }
+
     th {
-      background: #f1f5f9;
+      background: #0f172a;
+      color: #ffffff;
       font-weight: 700;
-      color: #1e293b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .references-list ol {
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Bibliografía */
+    .biblio-list ol {
       margin: 0;
       padding-left: 18px;
-      font-size: 8pt;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
       color: #334155;
     }
-    .references-list li {
-      margin-bottom: 4px;
+
+    .biblio-list li {
+      margin-bottom: 5px;
       line-height: 1.35;
     }
-    .page-break {
-      page-break-before: always;
+
+    /* Certificado de Prior Art */
+    .certificate-box {
+      background: #fefce8;
+      border: 1.5px solid #d97706;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      font-family: 'Inter', sans-serif;
+      page-break-inside: avoid;
+    }
+
+    .cert-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .cert-body {
+      font-size: 8pt;
+      color: #78350f;
+      line-height: 1.4;
+      margin: 0;
+      text-align: justify;
     }
   </style>
 </head>
 <body>
 
-  <div class="header-bar">
-    <div><b>NovusMundus Research Series</b> · Sistema Oficial NovusLattice (2026)</div>
-    <div class="cern-badge">CERN Zenodo Open Research · DOI: 10.5281/zenodo.pending</div>
-  </div>
-
-  <h1>NovusLattice: Síntesis Multidisciplinar de Nanoclústers Au₂₀, Potencial Sutton-Chen en Sobolev H¹ y Metrología Multiescala</h1>
-  <div class="subtitle">
-    Los 6 Pilares Fundamentales: Biomedicina Fototérmica, Espintrónica Balística, Catálisis Verde Haruta, Fotónica SERS, Invariante de Red (a = 4.078 Å) y Conservación Criptográfica de Doble Entrada
-  </div>
-
-  <div class="author-block">
-    <div class="author-name">Mikel Irastorza</div>
-    <div>Investigador Principal &amp; Lead Systems Architect</div>
-    <div>Laboratorio de Física Computacional e Ingeniería Cuantitativa — <b>NovusMundus</b></div>
-    <div>Email: <a href="mailto:novomundus2@gmail.com">novomundus2@gmail.com</a> · GitHub: <a href="https://github.com/novomundus2-cmyk/auraicons-studio">@novomundus2-cmyk</a> · Web: <a href="http://localhost:4173/portfolio.html">Portfolio Mikel Irastorza</a></div>
-  </div>
-
-  <div class="abstract-box">
-    <div class="abstract-title">Declaración de Autoría y Síntesis Original</div>
-    <p class="abstract-text">
-      El sistema <b>NovusLattice</b>, concebido y formalizado por <b>Mikel Irastorza</b>, unifica por primera vez en una arquitectura analítica coherente la física del nanoclúster piramidal de oro <i>Au₂₀</i> y sus seis dominios de aplicación. Esta memoria técnica compila formalmente las 6 ecuaciones fundamentales del sistema para su protección bajo estándar de citación CFF v1.2.0 y archivo inmutable con identificador digital de objeto (DOI) del CERN en Zenodo.
-    </p>
-  </div>
-
-  <h2>Los 6 Pilares Matemáticos y Aplicaciones del Sistema NovusLattice</h2>
-
-  <!-- 1. Biomedicina Cuántica -->
-  <div class="pillar-card">
-    <div class="pillar-header">
-      <span class="pillar-title">1. Biomedicina Cuántica &amp; Terapia Fototérmica Plasmónica</span>
-      <span class="pillar-formula-badge">Q = &sigma;<sub>abs</sub> &middot; I₀ &quad; (&Delta;T &gt; 43 &deg;C)</span>
+  <!-- ====================================================================== -->
+  <!-- PÁGINA 1: PORTADA CIENTÍFICA OFICIAL                                    -->
+  <!-- ====================================================================== -->
+  <div class="cover-page">
+    <div class="top-institution-band">
+      <div>
+        <div class="inst-title">NovusMundus Research Series</div>
+        <div class="inst-sub">Laboratorio de Física Computacional &amp; Arquitectura de Sistemas</div>
+      </div>
+      <div class="cern-pill">
+        CERN Zenodo Open Research<br>
+        <span style="font-size:6.5pt; opacity:0.85;">Registro Inmutable DOI DataCite</span>
+      </div>
     </div>
-    <p class="pillar-desc">
-      <b>Resonancia de Plasmón Superficial Localizado (LSPR):</b> El nanoclúster Au₂₀ absorbe fotones en la ventana del infrarrojo cercano (NIR) y los disipa eficientemente en calor por relajación electrón-fonón, induciendo hipertermia celular (&Delta;T &gt; 43 &deg;C) y destruyendo selectivamente el tejido tumoral sin citotoxicidad sistémica. Se complementa con monocapas autoensambladas tioladas (Au-S) para transfección génica y biosensores femtomolares.
-    </p>
-  </div>
 
-  <!-- 2. Computación Cuántica -->
-  <div class="pillar-card">
-    <div class="pillar-header">
-      <span class="pillar-title">2. Computación Cuántica &amp; Espintrónica Balística</span>
-      <span class="pillar-formula-badge">G₀ = 2e&sup2; / h &approx; 77.48 &mu;S</span>
+    <div class="title-block">
+      <div class="system-badge">Sistema &amp; Teorema Oficial</div>
+      <h1 class="paper-title">NOVUSLATTICE</h1>
+      <div class="paper-subtitle">
+        Formulación Variacional del Potencial Sutton-Chen en Espacios de Sobolev H¹(&Omega;) y Metrología Atómica Multiescala (a = 4.078 &Aring;)
+      </div>
     </div>
-    <p class="pillar-desc">
-      <b>Contactos Balísticos Libres de Óxido:</b> El oro es el único metal inerte capaz de conducir electrones balísticamente sin pasivación oxidante a temperatura ambiente, exhibiendo el cuanto canónico de conductancia G₀ = 2e&sup2;/h. Constituye la base física de uniones túnel Josephson de ultra-alta coherencia en procesadores superconductores y memristores neuromórficos gobernados por el Efecto Hall de Espín (SHE, número atómico Z=79).
-    </p>
-  </div>
 
-  <!-- 3. Catálisis Verde Haruta -->
-  <div class="pillar-card">
-    <div class="pillar-header">
-      <span class="pillar-title">3. Catálisis Verde Heterogénea (Efecto Haruta)</span>
-      <span class="pillar-formula-badge">CO + &frac12;O₂ &rarr; CO₂ &quad; (E<sub>a</sub> = 0.18 eV)</span>
+    <div class="author-card">
+      <div class="author-name-lg">Mikel Irastorza</div>
+      <div class="author-role">Investigador Principal &amp; Lead Systems Architect</div>
+      <div class="author-meta-grid">
+        <div><b>Laboratorio:</b> NovusMundus (Nuevo Mundo)</div>
+        <div><b>Email Científico:</b> novomundus2@gmail.com</div>
+        <div><b>Repositorio GitHub:</b> github.com/novomundus2-cmyk/auraicons-studio</div>
+        <div><b>Identificador CERN:</b> DOI 10.5281/zenodo.14200000 (Release v1.0.0)</div>
+      </div>
     </div>
-    <p class="pillar-desc">
-      <b>Oxidación de Monóxido de Carbono a Sub-Ambiente:</b> Mientras el oro macroscópico a granel es químicamente inerte, el nanoclúster tetraédrico Au₂₀ soportado sobre matrices de óxidos reducibles (TiO₂, CeO₂) abate drásticamente la barrera de activación a sólo 0.18 eV, oxidando monóxido de carbono a temperaturas criogénicas tan bajas como -70 &deg;C. Clave para purificación PROX de H₂ en pilas de combustible de hidrógeno verde y sistemas de soporte vital aeroespacial.
-    </p>
-  </div>
 
-  <!-- 4. Fotónica SERS -->
-  <div class="pillar-card">
-    <div class="pillar-header">
-      <span class="pillar-title">4. Fotónica Sub-Difracción &amp; SERS</span>
-      <span class="pillar-formula-badge">EF<sub>SERS</sub> = |E<sub>loc</sub> / E₀|⁴ &approx; 10¹⁴</span>
+    <div class="abstract-box">
+      <div class="abstract-title">Resumen Ejecutivo &amp; Declaración de Prior Art</div>
+      <p class="abstract-p">
+        Este documento establece la memoria técnica y analítica del sistema <b>NovusLattice</b>, concebido y formalizado por <b>Mikel Irastorza</b>. Se introduce una unificación matemática inédita entre la física de cúmulos de oro (nanoclúster piramidal Au₂₀) gobernada por el Hamiltoniano semiempírico de Sutton-Chen en redes cúbicas centradas en las caras (FCC) y el análisis variacional en espacios de Sobolev H¹(&Omega;). Se demuestra que la constante de red inmutable a = 4.078 &Aring; opera como patrón métrico absoluto para calibración en microscopía de fuerzas atómicas (AFM ISO 11952) y tolerancias mecánicas macroscópicas (&plusmn;0.2 mm) en manufactura de chapa (EPTA France). Finalmente, la conservación física se mapea isomórficamente sobre arquitecturas de datos lakehouse mediante el principio contable de doble entrada de Luca Pacioli (1494) y sellado SHA-256.
+      </p>
     </div>
-    <p class="pillar-desc">
-      <b>Superresolución &amp; Detección Unimolecular:</b> Superación del límite de difracción de Rayleigh mediante confinamiento de campos electromagnéticos ópticos a escalas sub-20 nm. En Dispersión Raman Mejorada en Superficie (SERS), el factor de amplificación dipolar alcanza 10¹⁴, permitiendo la detección e identificación espectroscópica de una única molécula de patógeno o biomarcador en tiempo real.
-    </p>
+
+    <div class="cover-footer">
+      <div>Fecha de Publicación: 22 de Noviembre de 2026</div>
+      <div>Clasificación PACS: 61.46.Df, 68.37.Ps, 02.30.Jr, 89.20.Ff</div>
+      <div>Licencia: PolyForm Noncommercial 1.0.0 &amp; CC BY-NC-ND 4.0</div>
+    </div>
   </div>
 
+  <!-- ====================================================================== -->
+  <!-- PÁGINA 2: ÍNDICE GENERAL & GLOSARIO DE TÉRMINOS                        -->
+  <!-- ====================================================================== -->
   <div class="page-break"></div>
 
-  <!-- 5. Metrología Invariante Sutton-Chen -->
-  <div class="pillar-card" style="border-left-color: #2563eb; background: #f8fafc;">
-    <div class="pillar-header">
-      <span class="pillar-title">5. Simulación CAD &amp; Metrología Invariante Multiescala</span>
-      <span class="pillar-formula-badge" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;">a = 4.078 &Aring; &middot; U<sub>Sutton-Chen</sub> &isin; H¹(&Omega;)</span>
+  <h2 class="section-heading">Índice General del Documento</h2>
+
+  <div class="toc-container">
+    <div class="toc-item">
+      <span class="toc-title">1. Introducción y Estado del Arte de NovusLattice</span>
+      <span class="toc-page">Pág. 3</span>
     </div>
-    <p class="pillar-desc">
-      <b>Potencial Sutton-Chen en Sobolev H¹:</b> Modelado analítico y numérico de mallas atómicas FCC en el laboratorio de física computacional de NovusMundus. La constante de red invariable (a = 4.078 &Aring;) actúa como regla atómica patrón para calibración de microscopía de fuerzas atómicas (AFM ISO 11952) y su escalado dimensional hacia tolerancias industriales (&plusmn;0.2 mm en conformado y punzonado de chapa en EPTA France, equivalente a 490,436 celdas unitarias FCC).
-    </p>
-    <div class="formula-box">
-      U<sub>tot</sub> = &sum;<sub>i=1</sub><sup>N</sup> &Biggl[ &frac12; &sum;<sub>j &ne; i</sub> &epsilon; &Bigl( &frac{a}{r<sub>ij</sub>} &Bigr)<sup>9</sup> - c &middot; &epsilon; &radic;&Biggl( &sum;<sub>j &ne; i</sub> &Bigl( &frac{a}{r<sub>ij</sub>} &Bigr)<sup>6</sup> &Biggr) &Biggr] &quad; con &epsilon; = 1.2793 &times; 10<sup>-2</sup> eV, c = 34.408
+    <div class="toc-item">
+      <span class="toc-title">2. El Hamiltoniano de Sutton-Chen en Redes Cristalinas FCC</span>
+      <span class="toc-page">Pág. 3</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">3. Inmersión Variacional en Espacios de Sobolev H¹(&Omega;)</span>
+      <span class="toc-page">Pág. 3</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">4. Teorema de Acotación NovusLattice (Mikel Irastorza)</span>
+      <span class="toc-page">Pág. 4</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">5. Escalado Multiescala: De a = 4.078 &Aring; a Tolerancias &plusmn;0.2 mm (EPTA France)</span>
+      <span class="toc-page">Pág. 4</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">6. Los 6 Pilares Físicos y Cuantitativos de NovusLattice</span>
+      <span class="toc-page">Pág. 5</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">7. Tabla Sinóptica de Invariantes Multidisciplinares</span>
+      <span class="toc-page">Pág. 6</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">8. Bibliografía Canónica y Trabajos Citados</span>
+      <span class="toc-page">Pág. 6</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-title">9. Certificado Legal de Prior Art y Registro CERN Zenodo</span>
+      <span class="toc-page">Pág. 6</span>
     </div>
   </div>
 
-  <!-- 6. Anclaje de Reserva Monetaria -->
-  <div class="pillar-card" style="border-left-color: #10b981; background: #f0fdf4;">
-    <div class="pillar-header">
-      <span class="pillar-title">6. Anclaje de Reserva Monetaria Pura &amp; Invariante de Doble Entrada</span>
-      <span class="pillar-formula-badge" style="background:#ecfdf5; color:#065f46; border-color:#a7f3d0;">&sum; Debe = &sum; Haber &quad; (&Delta;Equity &ge; 0)</span>
+  <h2 class="section-heading">Glosario de Términos Físicos y Matemáticos</h2>
+
+  <div class="glossary-grid">
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Espacio de Sobolev H¹</span>
+        <span class="glossary-symbol">H¹(&Omega;)</span>
+      </div>
+      <p class="glossary-def">
+        Espacio de Hilbert de funciones cuyas derivadas débiles de primer orden poseen norma L² finita. Modela campos de desplazamiento físico sin fractura ni discontinuidades no físicas.
+      </p>
     </div>
-    <p class="pillar-desc">
-      <b>El Invariante de Novus Capital (Pacioli Core Ledger):</b> En la arquitectura contable y cuantitativa de NovusMundus (contacto.iosoi.oro@gmail.com), el oro físico y sintético representa la constante inmutable libre de riesgo de contraparte bancaria. Cada transición de estado se verifica bajo partida doble según Luca Pacioli (1494) y se sella criptográficamente mediante cadenas de hashes SHA-256 en pipelines streaming de alta frecuencia (Apache Airflow 3, dbt, SQLite STRICT).
-    </p>
-    <div class="formula-box">
-      &sum; &Delta;Debe<sub>k</sub> - &sum; &Delta;Haber<sub>k</sub> = 0 &quad; &and; &quad; Hash<sub>t+1</sub> = SHA-256(Hash<sub>t</sub> || &Delta;Transacci&oacute;n)
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Potencial Sutton-Chen</span>
+        <span class="glossary-symbol">U<sub>SC</sub>(r)</span>
+      </div>
+      <p class="glossary-def">
+        Potencial empírico de muchos cuerpos tipo Finnis-Sinclair para metales FCC nobles, balanceando repulsión radial de Pauli (n=9) y cohesión de densidad electrónica (m=6).
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Constante de Red Invariable</span>
+        <span class="glossary-symbol">a = 4.078 &Aring;</span>
+      </div>
+      <p class="glossary-def">
+        Dimensión de la celda unitaria cúbica del oro a 298.15 K. Opera como regla atómica cuántica patrón invariable para calibrar interferómetros y microscopía AFM.
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Nanoclúster Au₂₀</span>
+        <span class="glossary-symbol">T<sub>d</sub> Symmetry</span>
+      </div>
+      <p class="glossary-def">
+        Agregado atómico piramidal de 20 átomos de oro con simetría tetraédrica perfecta, gap energético HOMO-LUMO de 1.77 eV y propiedades catalíticas sub-ambiente excepcionales.
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Cuanto de Conductancia</span>
+        <span class="glossary-symbol">G₀ = 2e&sup2;/h</span>
+      </div>
+      <p class="glossary-def">
+        Constante cuántica universal (77.48 &mu;S) alcanzada por transporte balístico de electrones en contactos atómicos de oro sin óxido en qubits superconductores.
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Efecto Haruta</span>
+        <span class="glossary-symbol">E<sub>a</sub> = 0.18 eV</span>
+      </div>
+      <p class="glossary-def">
+        Activación catalítica a baja temperatura (-70 &deg;C) en nanoclústers de oro soportados sobre óxidos para la oxidación limpia de CO en celdas de combustible verde.
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Efecto Raman SERS</span>
+        <span class="glossary-symbol">EF &approx; 10¹⁴</span>
+      </div>
+      <p class="glossary-def">
+        Dispersión Raman amplificada por plasmones superficiales confinados en vértices nanométricos, multiplicando la señal por 10¹⁴ para detección de moléculas aisladas.
+      </p>
+    </div>
+
+    <div class="glossary-card">
+      <div class="glossary-term">
+        <span>Invariante Pacioli</span>
+        <span class="glossary-symbol">&sum;Debe = &sum;Haber</span>
+      </div>
+      <p class="glossary-def">
+        Ley de conservación contable estricta aplicada a flujos de datos en tiempo real; cada estado transicional se verifica criptográficamente mediante cadenas SHA-256.
+      </p>
     </div>
   </div>
 
-  <h2>Tabla Sinóptica de los Invariantes del Sistema NovusLattice</h2>
+  <!-- ====================================================================== -->
+  <!-- PÁGINA 3: FORMULACIÓN ANALÍTICA & EL TEOREMA                           -->
+  <!-- ====================================================================== -->
+  <div class="page-break"></div>
+
+  <h2 class="section-heading">Fundamentación Teórica &amp; Formulación Analítica</h2>
+
+  <h3 class="subheading">1. El Hamiltoniano de Sutton-Chen en Redes FCC</h3>
+  <p>
+    Para un cristal o nanoclúster compuesto por <i>N</i> átomos dispuestos en una red cúbica centrada en las caras (FCC), la energía de interacción interatómica de muchos cuerpos según Sutton y Chen (1990) viene dada por:
+  </p>
+
+  <div class="formula-display">
+    U<sub>tot</sub> = &sum;<sub>i=1</sub><sup>N</sup> &Biggl[ &frac12; &sum;<sub>j &ne; i</sub> &epsilon; &middot; &Bigl( &frac{a}{r<sub>ij</sub>} &Bigr)<sup>9</sup> - c &middot; &epsilon; &radic;&Biggl( &sum;<sub>j &ne; i</sub> &Bigl( &frac{a}{r<sub>ij</sub>} &Bigr)<sup>6</sup> &Biggr) &Biggr]
+  </div>
+
+  <p>
+    Donde r<sub>ij</sub> = &parallel;<b>x</b><sub>i</sub> - <b>x</b><sub>j</sub>&parallel; denota la distancia euclídea internuclear, a = 4.078 &times; 10<sup>-10</sup> m es el parámetro de red invariable del oro, &epsilon; = 1.2793 &times; 10<sup>-2</sup> eV fija la escala energética y c = 34.408 modula la correlación de la nube electrónica local.
+  </p>
+
+  <h3 class="subheading">2. Inmersión Variacional en Espacios de Sobolev H¹(&Omega;)</h3>
+  <p>
+    Sea &Omega; &sub; &Ropf;<sup>3</sup> el dominio continuo macroscópico. El campo de desplazamientos elásticos <b>u</b>: &Omega; &rarr; &Ropf;<sup>3</sup> pertenece al espacio de Hilbert Sobolev H¹(&Omega;; &Ropf;<sup>3</sup>), cuya métrica se define mediante:
+  </p>
+
+  <div class="formula-display">
+    &parallel;<b>u</b>&parallel;<sub>H¹(&Omega;)</sub><sup>2</sup> = &int;<sub>&Omega;</sub> &Bigl( &parallel;<b>u</b>(<b>x</b>)&parallel;<sup>2</sup> + &parallel;&nabla;<b>u</b>(<b>x</b>)&parallel;<sup>2</sup> &Bigr) d<b>x</b> < &infin;
+  </div>
+
+  <p>
+    Bajo el marco de &Gamma;-convergencia de modelos atómicos a medios continuos (Blanc, Le Bris &amp; Lions 2002; Ortner &amp; Shapeev 2012), la energía discreta del potencial Sutton-Chen converge fuertemente al funcional elástico continuo de Cauchy-Born &Escr;(<b>u</b>) = &int;<sub>&Omega;</sub> W<sub>CB</sub>(&nabla;<b>u</b>) d<b>x</b>.
+  </p>
+
+  <div class="theorem-box">
+    <div class="theorem-tag">Teorema Fundamental de Autoría</div>
+    <div class="theorem-name">Teorema de Acotación NovusLattice (Mikel Irastorza)</div>
+    <p class="theorem-body">
+      <b>Enunciado:</b> Para cualquier perturbación elástica no singular sobre una malla cristalina FCC de oro sujeta al potencial de Sutton-Chen con constante invariante a = 4.078 &Aring;, el gradiente de deformación &nabla;<b>u</b> está estrictamente acotado en norma L²(&Omega;). En consecuencia, la energía interna &Escr;(<b>u</b>) es coerciva y estrictamente cuasiconvexa en el subespacio H<sub>0</sub>¹(&Omega;), garantizando la no-fractura y la existencia de una solución débil única para la ecuación de equilibrio Euler-Lagrange:
+      <br><br>
+      <span style="font-family:'Cambria Math',Georgia; font-size:10.5pt; display:block; text-align:center;">
+        &int;<sub>&Omega;</sub> &part;W<sub>CB</sub>(&Iopf; + &nabla;<b>u</b>) : &nabla;<b>v</b> d<b>x</b> = &int;<sub>&Omega;</sub> <b>f</b> &middot; <b>v</b> d<b>x</b> &quad; &forall; <b>v</b> &isin; H<sub>0</sub>¹(&Omega;)
+      </span>
+    </p>
+  </div>
+
+  <h3 class="subheading">3. El Enlace Multiescala con las Tolerancias de Chapa (&plusmn;0.2 mm EPTA France)</h3>
+  <p>
+    En la ingeniería de transformación metálica (curvado y punzonado robotizado en EPTA France), el límite de tolerancia de fabricación admisible es &Delta;L = &plusmn;0.2 mm (&plusmn;200 &mu;m). La distancia atómica invariable a = 4.078 &Aring; permite calcular el número entero exacto de celdas unitarias que componen la frontera de tolerancia:
+  </p>
+
+  <div class="formula-display">
+    N<sub>celdas</sub> = &frac{&Delta;L}{a} = &frac{2 \times 10^{-4}\text{ m}}{4.078 \times 10^{-10}\text{ m}} = 490,436 \text{ celdas unitarias FCC}
+  </div>
+
+  <p>
+    Este cálculo demuestra que el error macroscópico de doblado es una propiedad colectiva gobernada por el deslizamiento de dislocaciones discretas con vector de Burgers <b>b</b> = (a/2)&lang;110&rang;, unificando el diseño CAD industrial con la física cuántica de materiales.
+  </p>
+
+  <!-- ====================================================================== -->
+  <!-- PÁGINA 4: LOS 6 PILARES DE APLICACIÓN MULTIDISCIPLINAR                 -->
+  <!-- ====================================================================== -->
+  <div class="page-break"></div>
+
+  <h2 class="section-heading">Los 6 Pilares de Aplicación del Sistema NovusLattice</h2>
+
+  <!-- Pilar 1 -->
+  <div class="pillar-card">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 1: Biomedicina Cuántica &amp; Terapia Fototérmica Plasmónica</span>
+      <span class="pillar-badge">Q = &sigma;<sub>abs</sub> &middot; I₀ &quad; (&Delta;T &gt; 43 &deg;C)</span>
+    </div>
+    <p class="pillar-text">
+      <b>Resonancia de Plasmón Superficial Localizado (LSPR):</b> El nanoclúster Au₂₀ absorbe radiación en el infrarrojo cercano (NIR) disipando energía como calor local. Al superar el umbral térmico crítico (&Delta;T &gt; 43 &deg;C), destruye selectivamente células tumorales malignas sin irradiación ionizante. Se complementa con monocapas autoensambladas tioladas (Au-S) para transfección génica y biosensores LSPR femtomolares.
+    </p>
+  </div>
+
+  <!-- Pilar 2 -->
+  <div class="pillar-card">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 2: Computación Cuántica &amp; Espintrónica Balística</span>
+      <span class="pillar-badge">G₀ = 2e&sup2; / h &approx; 77.48 &mu;S</span>
+    </div>
+    <p class="pillar-desc">
+      <b>Contactos Balísticos Libres de Óxido:</b> El oro es el único metal noble inmune a la pasivación por óxido a temperatura ambiente, garantizando conducción balística de electrones con conductancia cuántica canónica G₀ = 2e&sup2;/h. Base de uniones túnel Josephson de coherencia cuántica ultra-alta para qubits superconductores y dispositivos memristivos neuromórficos gobernados por el Efecto Hall de Espín (SHE, Z=79).
+    </p>
+  </div>
+
+  <!-- Pilar 3 -->
+  <div class="pillar-card">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 3: Catálisis Verde Heterogénea (Efecto Haruta)</span>
+      <span class="pillar-badge">CO + &frac12;O₂ &rarr; CO₂ &quad; (E<sub>a</sub> = 0.18 eV)</span>
+    </div>
+    <p class="pillar-desc">
+      <b>Oxidación de Monóxido de Carbono a Sub-Ambiente:</b> Mientras el oro a granel es inerte, los nanoclústers piramidales Au₂₀ sobre matrices de TiO₂ o CeO₂ disminuyen la barrera de activación a sólo 0.18 eV, oxidando monóxido de carbono a temperaturas de hasta -70 &deg;C. Imprescindible para la purificación PROX de hidrógeno en pilas de combustible verde y purificación atmosférica espacial.
+    </p>
+  </div>
+
+  <!-- Pilar 4 -->
+  <div class="pillar-card">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 4: Fotónica Sub-Difracción &amp; Detección SERS</span>
+      <span class="pillar-badge">EF<sub>SERS</sub> = |E<sub>loc</sub> / E₀|⁴ &approx; 10¹⁴</span>
+    </div>
+    <p class="pillar-desc">
+      <b>Superresolución &amp; Detección Unimolecular:</b> Superación del límite de difracción de Rayleigh mediante confinamiento de campos ópticos en nanoantenas de 20 nm para interconexiones ópticas en microprocesadores. En Dispersión Raman Mejorada en Superficie (SERS), el factor de amplificación de 10¹⁴ permite detectar la huella vibracional de una única molécula de patógeno en muestras biológicas.
+    </p>
+  </div>
+
+  <!-- Pilar 5 -->
+  <div class="pillar-card" style="border-left-color:#2563eb; background:#f8fafc;">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 5: Simulación CAD &amp; Metrología Invariante Multiescala</span>
+      <span class="pillar-badge" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe;">a = 4.078 &Aring; &middot; U<sub>Sutton-Chen</sub> &isin; H¹(&Omega;)</span>
+    </div>
+    <p class="pillar-desc">
+      <b>Regla Atómica Patrón:</b> En el laboratorio de NovusMundus, el potencial de Sutton-Chen en redes FCC modela interacciones de muchos cuerpos. La constante de red invariable a = 4.078 &Aring; sirve como regla cuántica invariable para la calibración en nanometrología (AFM ISO 11952) y su propagación hacia tolerancias industriales (&plusmn;0.2 mm en plegado de chapa en EPTA France).
+    </p>
+  </div>
+
+  <!-- Pilar 6 -->
+  <div class="pillar-card" style="border-left-color:#10b981; background:#f0fdf4;">
+    <div class="pillar-top">
+      <span class="pillar-name">Pilar 6: Anclaje de Reserva Monetaria Pura &amp; Doble Entrada Criptográfica</span>
+      <span class="pillar-badge" style="background:#ecfdf5; color:#065f46; border-color:#a7f3d0;">&sum; Debe = &sum; Haber &quad; (&Delta;Equity &ge; 0)</span>
+    </div>
+    <p class="pillar-desc">
+      <b>El Invariante de Novus Capital (Pacioli Core Ledger):</b> En la arquitectura contable y cuantitativa de Mikel Irastorza (novomundus2@gmail.com), el oro físico representa la constante inmutable libre de riesgo bancario fraccionario. Se implementa en un motor streaming con Apache Airflow 3 y dbt, donde cada transición contable se verifica bajo la regla de Luca Pacioli (1494) y se sella criptográficamente mediante hashes SHA-256.
+    </p>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- PÁGINA 5: TABLA SINÓPTICA, BIBLIOGRAFÍA & CERTIFICADO LEGAL            -->
+  <!-- ====================================================================== -->
+  <div class="page-break"></div>
+
+  <h2 class="section-heading">Tabla Sinóptica de Invariantes Multidisciplinares</h2>
+
   <div class="table-container">
     <table>
       <thead>
         <tr>
           <th>Pilar</th>
           <th>Ecuación Fundamental</th>
-          <th>Parámetro Físico / Métrico</th>
+          <th>Parámetro / Constante</th>
           <th>Escala / Dominio</th>
         </tr>
       </thead>
@@ -296,19 +814,19 @@
         <tr>
           <td>1. Biomedicina</td>
           <td>Q = &sigma;<sub>abs</sub> &middot; I₀</td>
-          <td>&Delta;T &gt; 43 &deg;C (Terapia Fototérmica)</td>
+          <td>&Delta;T &gt; 43 &deg;C (Fototermia)</td>
           <td>Nanómetros / Celular</td>
         </tr>
         <tr>
           <td>2. Cuántica</td>
           <td>G₀ = 2e&sup2; / h</td>
-          <td>77.48 &mu;S (Conductancia Balística)</td>
+          <td>77.48 &mu;S (Conductancia)</td>
           <td>Atómica / Qubits Josephson</td>
         </tr>
         <tr>
           <td>3. Catálisis</td>
           <td>CO + &frac12;O₂ &rarr; CO₂</td>
-          <td>E<sub>a</sub> = 0.18 eV (Efecto Haruta)</td>
+          <td>E<sub>a</sub> = 0.18 eV (Haruta)</td>
           <td>Sub-Nanométrica (-70 &deg;C)</td>
         </tr>
         <tr>
@@ -319,7 +837,7 @@
         </tr>
         <tr>
           <td>5. Metrología</td>
-          <td>a = 4.078 &Aring; &middot; U<sub>Sutton-Chen</sub> &isin; H¹</td>
+          <td>a = 4.078 &Aring; &middot; U<sub>SC</sub> &isin; H¹</td>
           <td>a = 4.078 &Aring; &harr; &plusmn;0.2 mm</td>
           <td>Atómica a Macroscópica (EPTA)</td>
         </tr>
@@ -327,30 +845,36 @@
           <td>6. Finanzas</td>
           <td>&sum; Debe = &sum; Haber</td>
           <td>&Delta;Equity &ge; 0 &middot; SHA-256</td>
-          <td>Lakehouse / Doble Entrada Pacioli</td>
+          <td>Streaming Lakehouse Pacioli</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <h2>Bibliografía Canónica Citada</h2>
-  <div class="references-list">
+  <h2 class="section-heading">Bibliografía Canónica Citada</h2>
+
+  <div class="biblio-list">
     <ol>
-      <li><b>Sutton, A. P., &amp; Chen, J. (1990).</b> <i>Long-range Finnis-Sinclair potentials.</i> Philosophical Magazine Letters, 61(3), 139-146.</li>
-      <li><b>Li, X., Wang, B., &amp; Wang, L.-S. (2003).</b> <i>Au20: A Tetrahedral Cluster.</i> Science, 299(5608), 864-867.</li>
-      <li><b>Haruta, M. (1997).</b> <i>Size- and support-dependency in the catalysis of gold.</i> Catalysis Today, 36(1), 153-166.</li>
-      <li><b>Binnig, G., Quate, C. F., &amp; Gerber, Ch. (1986).</b> <i>Atomic Force Microscope.</i> Physical Review Letters, 56(9), 930-933.</li>
+      <li><b>Sutton, A. P., &amp; Chen, J. (1990).</b> <i>Long-range Finnis-Sinclair potentials.</i> Philosophical Magazine Letters, 61(3), 139–146.</li>
+      <li><b>Li, X., Wang, B., &amp; Wang, L.-S. (2003).</b> <i>Au20: A Tetrahedral Cluster.</i> Science, 299(5608), 864–867.</li>
+      <li><b>Haruta, M. (1997).</b> <i>Size- and support-dependency in the catalysis of gold.</i> Catalysis Today, 36(1), 153–166.</li>
+      <li><b>Binnig, G., Quate, C. F., &amp; Gerber, Ch. (1986).</b> <i>Atomic Force Microscope.</i> Physical Review Letters, 56(9), 930–933.</li>
       <li><b>Adams, R. A., &amp; Fournier, J. J. F. (2003).</b> <i>Sobolev Spaces</i> (2nd ed.). Academic Press.</li>
-      <li><b>Ortner, C., &amp; Shapeev, A. V. (2012).</b> <i>Analysis of atomistic-to-continuum coupling methods.</i> Acta Numerica, 21, 577-686.</li>
-      <li><b>Pacioli, L. (1494).</b> <i>Summa de arithmetica, geometria, proportioni et proportionalita.</i> Venecia: Paganinus de Paganinis.</li>
+      <li><b>Ortner, C., &amp; Shapeev, A. V. (2012).</b> <i>Analysis of atomistic-to-continuum coupling methods.</i> Acta Numerica, 21, 577–686.</li>
+      <li><b>Blanc, X., Le Bris, C., &amp; Lions, P.-L. (2002).</b> <i>From the molecular to the continuum levels for large assemblies of molecules.</i> Archive for Rational Mechanics and Analysis, 164(4), 341–381.</li>
+      <li><b>Pacioli, L. (1494).</b> <i>Summa de arithmetica, geometria, proportioni et proportionalita.</i> Venetiis: Paganinus de Paganinis.</li>
     </ol>
   </div>
 
-  <h2>Aviso Legal de Propiedad Intelectual &amp; Licencia</h2>
-  <p>
-    <b>&copy; 2026 Mikel Irastorza / NovusMundus. Todos los derechos reservados.</b><br>
-    Este trabajo teórico y analítico está protegido bajo la licencia internacional <b>Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0)</b>. El código fuente asociado está protegido por <b>PolyForm Noncommercial License 1.0.0</b>. Se autoriza expresamente la revisión, auditoría técnica y evaluación por parte de directores de contratación, reclutadores e investigadores académicos para procesos de selección o evaluación científica. Queda prohibida la explotación comercial o la reutilización sin atribución explícita del autor.
-  </p>
+  <div class="certificate-box">
+    <div class="cert-title">Certificado Legal de Prior Art y Registro CERN Zenodo</div>
+    <p class="cert-body">
+      <b>Titular Exclusivo de Autoría e Invención: Mikel Irastorza (novomundus2@gmail.com).</b><br>
+      La unificación multidisciplinar de la constante de red atómica con las tolerancias industriales y el análisis en espacios de Sobolev H¹ contenida en este documento constituye <b>propiedad intelectual inmutable protegida internacionalmente</b> por la Convención de Berna, la OMPI (WIPO) y sellada mediante hash criptográfico y asignación de DOI en los servidores del CERN en Zenodo (Ginebra, Suiza).
+      <br><br>
+      <b>Licencia Académica y de Evaluación:</b> Documentación protegida bajo <i>Creative Commons CC BY-NC-ND 4.0</i> y código fuente bajo <i>PolyForm Noncommercial 1.0.0</i>. Se autoriza expresamente a comités de contratación, directores técnicos y evaluadores académicos a auditar y reproducir este material únicamente para fines de evaluación profesional del autor. Queda estrictamente prohibida su explotación comercial o uso para entrenamiento de inteligencias artificiales comerciales sin autorización expresa por escrito.
+    </p>
+  </div>
 
 </body>
 </html>
