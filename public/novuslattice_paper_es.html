@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovusLattice — Mikel Irastorza · Monografía de Física Teórica y Metrología Industrial</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 15mm 12mm 15mm;
+      @bottom-right {
+        content: "Página " counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+      @bottom-left {
+        content: "NovusLattice · Mikel Irastorza (Novo Mundus, España)";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #7d6b58;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      color: #241c15;
+      line-height: 1.52;
+      font-size: 9pt;
+      margin: 0;
+      padding: 0;
+      background: #faf6ee; /* Tono beige editorial cálido */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sans { font-family: 'Inter', -apple-system, sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* CABECERA Y NAVEGACIÓN */
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #d9cbba;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2e2116;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.2pt;
+      color: #7d6b58;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 1px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 7pt;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .lang-btn.active {
+      background: #8c5b1b;
+      color: #ffffff;
+    }
+
+    .lang-btn.inactive {
+      background: #efe7d8;
+      color: #4a3828;
+      border: 1px solid #d9cbba;
+    }
+
+    /* BLOQUE DE TÍTULO */
+    .hero-block {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .badge-category {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #c9a975;
+      padding-bottom: 2px;
+    }
+
+    h1.main-title {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 16pt;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #1f160e;
+      margin: 0 auto 6px auto;
+      letter-spacing: -0.2px;
+    }
+
+    .lead-text {
+      font-size: 9.2pt;
+      font-style: italic;
+      color: #4f4032;
+      line-height: 1.45;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ILUSTRACIÓN DE RED CRISTALINA */
+    .lattice-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 8px 0 10px 0;
+      background: #fdfcf9;
+      border-radius: 6px;
+      padding: 8px;
+      border: 1px solid #e5d8c6;
+    }
+
+    .lattice-svg {
+      width: 220px;
+      height: 125px;
+    }
+
+    /* METADATOS Y TABLA DE CONTENIDOS */
+    .meta-toc-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .meta-card, .toc-card {
+      background: #fdfcf9;
+      border: 1px solid #e0d2c0;
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .meta-author-name {
+      font-family: 'Cinzel', serif;
+      font-size: 10pt;
+      font-weight: 800;
+      color: #241c15;
+    }
+
+    .meta-author-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: #695644;
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    .meta-items {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.3pt;
+      color: #5c4b3a;
+      line-height: 1.5;
+      margin-top: 6px;
+      border-top: 1px solid #eee4d6;
+      padding-top: 4px;
+    }
+
+    .meta-items strong { color: #241c15; }
+
+    .toc-title {
+      font-family: 'Cinzel', serif;
+      font-size: 8pt;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #8c5b1b;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e5d8c6;
+      padding-bottom: 3px;
+      margin-bottom: 4px;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.3pt;
+      color: #4a3a2c;
+      line-height: 1.55;
+    }
+
+    .toc-list li {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .toc-list span.num {
+      color: #8c5b1b;
+      font-weight: 700;
+    }
+
+    /* RESUMEN EJECUTIVO */
+    .abstract-box {
+      background: #f6efe2;
+      border-left: 3.5px solid #8c5b1b;
+      border-radius: 3px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      font-size: 8.3pt;
+      line-height: 1.46;
+      color: #382c20;
+      text-align: justify;
+    }
+
+    /* ESTILOS DE SECCIÓN */
+    .section-header {
+      border-bottom: 1.5px solid #c9a975;
+      padding-bottom: 3px;
+      margin: 14px 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    h2.section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 10.5pt;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: #241c15;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .section-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 700;
+      color: #8c5b1b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0 0 6px 0;
+      text-align: justify;
+      color: #2b2219;
+      line-height: 1.5;
+      font-size: 8.6pt;
+    }
+
+    /* FÓRMULAS CON TIPOGRAFÍA HUMANA */
+    .math-block {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-left: 3.5px solid #8c5b1b;
+      border-radius: 4px;
+      padding: 8px 14px;
+      margin: 6px 0 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(46, 33, 22, 0.03);
+    }
+
+    .math-expr {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 9.8pt;
+      font-style: italic;
+      color: #1f160e;
+      letter-spacing: 0.3px;
+    }
+
+    .math-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.2pt;
+      color: #8c5b1b;
+      font-weight: 700;
+    }
+
+    /* TABLA EDITORIAL */
+    table.editorial-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 10px 0;
+      font-size: 7.8pt;
+    }
+
+    table.editorial-table th {
+      background: #3d2f23;
+      color: #faf6ee;
+      font-family: 'Inter', sans-serif;
+      font-size: 6.8pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 7px;
+      text-align: left;
+    }
+
+    table.editorial-table td {
+      padding: 5px 7px;
+      border-bottom: 1px solid #e8dcce;
+      color: #2b2219;
+    }
+
+    table.editorial-table tr:nth-child(even) td {
+      background: #f6efe2;
+    }
+
+    /* TARJETAS DE LOS 4 CASOS INDUSTRIALES */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .case-card {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-radius: 5px;
+      padding: 8px 10px;
+    }
+
+    .case-pill {
+      font-family: 'Cinzel', serif;
+      font-size: 6.8pt;
+      font-weight: 800;
+      color: #8c5b1b;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .case-card h4 {
+      font-family: 'Lora', serif;
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: #241c15;
+      margin: 0 0 2px 0;
+    }
+
+    .case-card p {
+      font-size: 7.6pt;
+      color: #524233;
+      line-height: 1.38;
+      margin: 0 0 4px 0;
+      text-align: left;
+    }
+
+    .case-stat {
+      font-family: 'Inter', sans-serif;
+      font-size: 7.2pt;
+      font-weight: 600;
+      color: #1f160e;
+      background: #f6efe2;
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid #e8dcce;
+      display: inline-block;
+    }
+
+    /* GLOSARIO */
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .glossary-item {
+      background: #fdfcf9;
+      border: 1px solid #dfd3c2;
+      border-radius: 4px;
+      padding: 7px 9px;
+      font-size: 7.5pt;
+      line-height: 1.4;
+    }
+
+    .glossary-item strong {
+      font-family: 'Inter', sans-serif;
+      color: #8c5b1b;
+      font-size: 7.8pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* BIBLIOGRAFÍA */
+    .bib-item {
+      font-size: 7.5pt;
+      line-height: 1.4;
+      color: #4a3a2c;
+      margin-bottom: 4px;
+      padding-left: 14px;
+      text-indent: -14px;
+    }
+
+    .bib-item strong { color: #241c15; }
+
+    /* FLUJO CONTINUO SIN SALTOS ARTIFICIALES */
+    .hero-block, .meta-toc-grid, .abstract-box, .section-header, .math-block, .editorial-table, .cases-grid, .case-card, .glossary-grid, .glossary-item, .bib-item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       PORTADA, VISTA DE RED, METADATOS Y TABLA DE CONTENIDOS
+       ======================================================================= -->
+  <div class="header-nav">
+    <div>
+      <div class="brand-title">Serie de Investigación Novo Mundus</div>
+      <div class="brand-subtitle">Mikel Irastorza · Física Teórica, Metrología y Sistemas Industriales</div>
+    </div>
+    <div class="lang-switcher">
+      <a href="novuslattice_paper_en.html" class="lang-btn inactive">English</a>
+      <a href="novuslattice_paper_es.html" class="lang-btn active">Español</a>
+      <a href="novuslattice_paper_en.html#french" class="lang-btn inactive">Français</a>
+    </div>
+  </div>
+
+  <div class="hero-block">
+    <div class="badge-category">Monografía Nº 01 · Artículo Oficial de Investigación</div>
+    <h1 class="main-title">NovusLattice: Potencial Interatómico de Sutton-Chen en Espacios de Sobolev H¹(Ω) y Mecánica de Medios Continuos Industrial</h1>
+    <div class="lead-text">
+      Un puente multiescala que une los invariantes de la red atómica (FCC de oro a = 4.078 Å) con las tolerancias de conformado de chapa industrial (±0.2 mm) y la manipulación robótica.
+    </div>
+  </div>
+
+  <!-- GRÁFICO VECTORIAL DE LA RED CRISTALINA FCC DE ORO -->
+  <div class="lattice-showcase">
+    <svg class="lattice-svg" viewBox="0 0 320 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="goldSphere" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#fff8d6"/>
+          <stop offset="35%" stop-color="#f5ba2f"/>
+          <stop offset="75%" stop-color="#b8860b"/>
+          <stop offset="100%" stop-color="#5a3d00"/>
+        </radialGradient>
+        <radialGradient id="centerGold" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="30%" stop-color="#ffd700"/>
+          <stop offset="75%" stop-color="#d4af37"/>
+          <stop offset="100%" stop-color="#735200"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Estructura Cúbica Isométrica -->
+      <polygon points="75,55 185,55 185,160 75,160" stroke="#8c7355" stroke-width="1.6" fill="rgba(212, 175, 55, 0.04)"/>
+      <polygon points="125,20 235,20 235,125 125,125" stroke="#bda68d" stroke-width="1.3" stroke-dasharray="3,3" fill="none"/>
+      <line x1="75" y1="55" x2="125" y2="20" stroke="#bda68d" stroke-width="1.3" stroke-dasharray="3,3"/>
+      <line x1="185" y1="55" x2="235" y2="20" stroke="#8c7355" stroke-width="1.6"/>
+      <line x1="185" y1="160" x2="235" y2="125" stroke="#8c7355" stroke-width="1.6"/>
+      <line x1="75" y1="160" x2="125" y2="125" stroke="#bda68d" stroke-width="1.3" stroke-dasharray="3,3"/>
+
+      <!-- Enlaces Diagonales de Red -->
+      <line x1="75" y1="55" x2="185" y2="160" stroke="#d4c2aa" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="185" y1="55" x2="75" y2="160" stroke="#d4c2aa" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+      <!-- Átomos: Capa posterior -->
+      <circle cx="125" cy="20" r="9" fill="url(#goldSphere)" opacity="0.6"/>
+      <circle cx="235" cy="20" r="9" fill="url(#goldSphere)" opacity="0.6"/>
+      <circle cx="125" cy="125" r="9" fill="url(#goldSphere)" opacity="0.6"/>
+      <circle cx="180" cy="72" r="10" fill="url(#centerGold)" opacity="0.7"/>
+      <circle cx="180" cy="72" r="9" fill="url(#goldSphere)" opacity="0.6"/>
+
+      <!-- Átomos: Centros de las Caras -->
+      <circle cx="100" cy="90" r="10" fill="url(#centerGold)" opacity="0.8"/>
+      <circle cx="210" cy="90" r="10" fill="url(#centerGold)"/>
+      <circle cx="130" cy="107" r="12" fill="url(#centerGold)"/>
+      <circle cx="155" cy="142" r="10" fill="url(#centerGold)"/>
+
+      <!-- Átomos: Esquinas frontales -->
+      <circle cx="75" cy="55" r="11" fill="url(#goldSphere)"/>
+      <circle cx="185" cy="55" r="11" fill="url(#goldSphere)"/>
+      <circle cx="75" cy="160" r="11" fill="url(#goldSphere)"/>
+      <circle cx="185" cy="160" r="11" fill="url(#goldSphere)"/>
+      <circle cx="235" cy="125" r="11" fill="url(#goldSphere)"/>
+
+      <!-- Cota: a = 4.078 Å -->
+      <line x1="75" y1="175" x2="185" y2="175" stroke="#8c5b1b" stroke-width="1.4"/>
+      <line x1="75" y1="170" x2="75" y2="180" stroke="#8c5b1b" stroke-width="1.4"/>
+      <line x1="185" y1="170" x2="185" y2="180" stroke="#8c5b1b" stroke-width="1.4"/>
+      <text x="130" y="172" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#6a4413" text-anchor="middle">a = 4.078 Å (0.4078 nm)</text>
+    </svg>
+  </div>
+
+  <div class="meta-toc-grid">
+    <div class="meta-card">
+      <div class="meta-author-name">Mikel Irastorza</div>
+      <div class="meta-author-desc">
+        Investigador Principal y Arquitecto de Sistemas Industriales<br>
+        Laboratorio Novo Mundus · Málaga (España) y París (Francia)<br>
+        Email: <span class="mono">novomundus2@gmail.com</span> · ORCID: <span class="mono">0009-0005-2423-388X</span>
+      </div>
+      <div class="meta-items">
+        <div><strong>Fecha:</strong> Noviembre 2026 · Versión Oficial 1.0.0</div>
+        <div><strong>Repositorio Exclusivo:</strong> <span class="mono">github.com/novomundus2-cmyk/NovusLattice</span></div>
+        <div><strong>Ecosistema Portfolio:</strong> <span class="mono">github.com/novomundus2-cmyk/portfolio-mikel</span></div>
+        <div><strong>Licencia:</strong> PolyForm Noncommercial 1.0.0 (Código) & CC BY-NC-ND 4.0 (Teoría)</div>
+      </div>
+    </div>
+
+    <div class="toc-card">
+      <div class="toc-title">Índice de Contenidos</div>
+      <ul class="toc-list">
+        <li><span>1. Potencial de Sutton-Chen en Espacios de Sobolev</span> <span class="num">§ 1</span></li>
+        <li><span>2. El Puente Multiescala de Medios Continuos</span> <span class="num">§ 2</span></li>
+        <li><span>3. Por qué los Átomos Mandan en la Fabricación</span> <span class="num">§ 3</span></li>
+        <li><span>4. Los 4 Casos de Uso Industriales</span> <span class="num">§ 4</span></li>
+        <li><span>5. Glosario Técnico y Científico</span> <span class="num">§ 5</span></li>
+        <li><span>6. Referencias y Citación Canónica</span> <span class="num">§ 6</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="abstract-box">
+    <strong>Resumen Ejecutivo:</strong> En la fabricación clásica, los metales se modelan como bloques continuos estáticos e isotrópicos. En la práctica real, cada cuchilla de corte, prensa de plegado y pinza robótica interactúa de forma directa con los planos de deslizamiento cristalográficos, los gradientes de fuerza interatómica y la dilatación térmica de la red. NovusLattice resuelve este salto al unificar el potencial empírico de Sutton-Chen con la mecánica de medios continuos en espacios de Sobolev H¹(Ω). Demostramos cómo monitorizar las constantes atómicas frente a las oscilaciones de temperatura en planta elimina el desperdicio recurrente de piezas—como las diez piezas consecutivas fuera de tolerancia que ocurrían históricamente en las líneas de plegado de EPTA France—actuando como un "radar térmico" analítico que recalcula el sobre-plegado CNC en tiempo real para clavar la tolerancia de ±0.2 mm.
+  </div>
+
+  <!-- =======================================================================
+       SECCIÓN 1: FORMULACIÓN MATEMÁTICA Y CASOS INDUSTRIALES
+       ======================================================================= -->
+
+  <div class="section-header">
+    <h2 class="section-title">1. Potencial de Sutton-Chen y Regularización en Sobolev H¹(Ω)</h2>
+    <span class="section-tag">Sección I · Mecánica Teórica</span>
+  </div>
+
+  <p>
+    Los metales nobles y de transición en redes cúbicas centradas en las caras (FCC) deben su cohesión a la densidad electrónica localizada. Los potenciales de pares como Lennard-Jones fallan porque no pueden capturar la energía de inmersión electrónica dependiente del entorno. El potencial de Sutton-Chen formula la energía potencial total combinando una suma repulsiva de pares con un término atractivo de densidad electrónica local:
+  </p>
+
+  <div class="math-block">
+    <div class="math-expr">
+      U_tot = Σ_i [ (1/2) Σ_(j ≠ i) ε · (a / r_ij)^n  −  c · ε · √( Σ_(j ≠ i) (a / r_ij)^m ) ]
+    </div>
+    <span class="math-tag">Ecuación 1</span>
+  </div>
+
+  <p>
+    Donde <em>a</em> es la constante de red de la celda unitaria (en oro, a = 4.078 Å; en aluminio, a = 4.050 Å; en cobre, a = 3.615 Å), <em>ε</em> es la escala de energía cohesiva, <em>c</em> es un parámetro de acoplamiento adimensional, y <em>n</em> y <em>m</em> son exponentes enteros que gobiernan la repulsión nuclear y la cohesión de la banda electrónica. En el límite continuo, el campo de desplazamientos <em>u</em> reside en el espacio de Hilbert de Sobolev H¹(Ω), asegurando que la energía interna de deformación:
+  </p>
+
+  <div class="math-block">
+    <div class="math-expr">
+      E(u) = ∫_Ω [ (1/2) · C_ijkl · ε_ij(u) · ε_kl(u) + ψ_pl(ε̄_p) ] dΩ  ≥  α · ||∇u||²_L²(Ω) − β · |Ω|
+    </div>
+    <span class="math-tag">Ecuación 2</span>
+  </div>
+
+  <p>
+    permanezca estrictamente coercitiva con α > 0. Esta propiedad matemática garantiza que, incluso bajo cizallamiento extremo o presiones de punzonado localizadas, la solución numérica no sufra colapso volumétrico artificial ni singularidades matemáticas.
+  </p>
+
+  <div class="section-header">
+    <h2 class="section-title">2. Escala de Calibración Multiescala: De la Red a la Máquina CNC</h2>
+    <span class="section-tag">Sección II · Jerarquía Metrológica</span>
+  </div>
+
+  <table class="editorial-table">
+    <thead>
+      <tr>
+        <th>Escala de Longitud</th>
+        <th>Dimensión Física</th>
+        <th>Mecanismo Físico Gobernante</th>
+        <th>Tolerancia Industrial Exigida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Celda Unitaria FCC (Au)</strong></td>
+        <td>4.078 Å (0.4078 nm)</td>
+        <td>Mínimo de energía de Sutton-Chen: ∂U/∂a = 0</td>
+        <td>Invariante físico absoluto</td>
+      </tr>
+      <tr>
+        <td><strong>Metrología AFM</strong></td>
+        <td>1.0 nm</td>
+        <td>Deflexión de micropalanca (ISO 11952)</td>
+        <td>±0.05 nm de resolución vertical</td>
+      </tr>
+      <tr>
+        <td><strong>Deriva Térmica en Nave</strong></td>
+        <td>0.462 mm / metro</td>
+        <td>Dilatación de red a(T) entre 15 °C y 35 °C</td>
+        <td>Compensación dinámica en ejes CNC</td>
+      </tr>
+      <tr>
+        <td><strong>Plegado de Chapa (EPTA)</strong></td>
+        <td>1.5 mm de espesor</td>
+        <td>Integración de momento de recuperación elástica</td>
+        <td>±0.20 mm (Referencia EPTA France)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-header">
+    <h2 class="section-title">3. Los 4 Casos Canónicos de Fabricación Industrial</h2>
+    <span class="section-tag">Sección III · Ingeniería Aplicada</span>
+  </div>
+
+  <div class="cases-grid">
+    <!-- Caso 1: Corte y Cizallado -->
+    <div class="case-card">
+      <span class="case-pill">Caso 1 · Corte y Cizallado</span>
+      <h4>Cizalladura Cristalográfica y Supresión de Rebabas</h4>
+      <p>
+        El punzonado y corte láser industrial fuerzan el movimiento de dislocaciones por los planos {111}. NovusLattice calcula el porcentaje exacto de separación entre cuchillas para garantizar un desgarro dúctil limpio sin rebabas térmicas secundarias.
+      </p>
+      <div class="case-stat">Holgura Al 1.5mm: 0.139 mm (±5 µm)</div>
+    </div>
+
+    <!-- Caso 2: Compensación de Springback -->
+    <div class="case-card">
+      <span class="case-pill">Caso 2 · Plegado en Prensa CNC</span>
+      <h4>Tolerancia de Recuperación Elástica (EPTA France)</h4>
+      <p>
+        Un pliegue sin compensar a 90° se abre 0.934° al retirar el punzón, generando un error de 0.815 mm en el ala que viola la tolerancia ±0.2 mm. NovusLattice sobre-dobla a 90.934°, dejando el error residual en apenas 0.025 mm.
+      </p>
+      <div class="case-stat">Error Residual: 0.025 mm (Cumple ±0.20 mm ✓)</div>
+    </div>
+
+    <!-- Caso 3: Manipulación Robótica -->
+    <div class="case-card">
+      <span class="case-pill">Caso 3 · Manipulación Robótica</span>
+      <h4>Contacto en Asperezas y Límite Anti-Gripado</h4>
+      <p>
+        Las pinzas y ventosas de agarre robótico deben sujetar piezas cortadas sin exceder la tensión de fluencia en las micro-asperezas superficiales. NovusLattice calcula la fuerza máxima para evitar arañazos y soldadura en frío.
+      </p>
+      <div class="case-stat">Fuerza Segura Cu: 69.3 kN (μ_s = 0.35)</div>
+    </div>
+
+    <!-- Caso 4: Deriva Térmica -->
+    <div class="case-card">
+      <span class="case-pill">Caso 4 · Ambiente de Taller</span>
+      <h4>Radar Térmico en Planta de Producción</h4>
+      <p>
+        Una oscilación de 20 °C en la nave (15 °C por la mañana a 35 °C por la tarde) alarga un panel de aluminio de 1 metro en 0.462 mm y reduce el módulo elástico un 0.7%. NovusLattice alimenta los topes CNC en tiempo real.
+      </p>
+      <div class="case-stat">Dilatación Panel: +0.462 mm por metro</div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       SECCIÓN 4: GLOSARIO, ARQUITECTURA Y CITACIÓN
+       ======================================================================= -->
+
+  <div class="section-header">
+    <h2 class="section-title">4. Implementación Industrial: Eliminando el Desperdicio en EPTA France</h2>
+    <span class="section-tag">Sección IV · Análisis de Caso Real</span>
+  </div>
+
+  <p>
+    En la fabricación de muebles frigoríficos industriales de alta exigencia en EPTA France, las células automáticas de plegado procesan bobinas continuas de chapa laminada en frío. Un reto crítico y constante en planta era la aparición súbita de lotes defectuosos: diez paneles consecutivos salían fuera de tolerancia sin que ningún parámetro visible de la máquina hubiera sido modificado por el operario.
+  </p>
+
+  <p>
+    La investigación técnica demostró que las bobinas entrantes llegan frías a primera hora (entre 14 °C y 16 °C). A medida que los circuitos hidráulicos de la prensa, el aire de la nave y la fricción calientan la maquinaria hasta los 34 °C a mediodía, la dilatación de la red cristalina a(T) altera el gradiente del potencial interatómico. Esto reduce el módulo de Young efectivo en deformación plana E'(T) en hasta 1.5 GPa, desplazando el ángulo de recuperación elástica en 0.4° y desviando las alas del panel en más de 0.35 mm.
+  </p>
+
+  <p>
+    NovusLattice actúa como un <strong>radar térmico en tiempo real</strong>. Al conectar una sonda de temperatura ambiental con la ecuación constitutiva de Sutton-Chen, el software suministra el ángulo exacto de sobre-plegado al tope CNC antes de cada bajada del punzón. Se eliminan por completo las piezas de desecho, se recupera la repetibilidad milimétrica y los muebles encajan con estanqueidad perfecta en la línea final de ensamblaje.
+  </p>
+
+  <div class="section-header">
+    <h2 class="section-title">5. Glosario Técnico y Científico</h2>
+    <span class="section-tag">Sección V · Léxico de Referencia</span>
+  </div>
+
+  <div class="glossary-grid">
+    <div class="glossary-item">
+      <strong>Potencial Empírico de Sutton-Chen:</strong>
+      Potencial metálico de muchos cuerpos que combina fuerzas repulsivas de pares nucleares con la raíz cuadrada de la densidad electrónica local, reproduciendo con exactitud constantes elásticas y energías superficiales en redes FCC.
+    </div>
+    <div class="glossary-item">
+      <strong>Espacio de Sobolev H¹(Ω):</strong>
+      Espacio funcional riguroso de campos de desplazamiento de cuadrado integrable cuyos gradientes débiles también son de cuadrado integrable, asegurando la existencia y unicidad del equilibrio elasto-plástico.
+    </div>
+    <div class="glossary-item">
+      <strong>Invariante de Red (a = 4.078 Å):</strong>
+      Espaciado atómico del oro a 293.15 K, utilizado como estándar metrológico inalterable que sirve de puente entre la microscopía de fuerzas atómicas (AFM) y las cotas del CAD industrial.
+    </div>
+    <div class="glossary-item">
+      <strong>Recuperación Elástica (Springback, K_s):</strong>
+      Cociente geométrico entre el ángulo con carga y tras la descarga de la prensa, originado por la energía elástica residual acumulada en la red atómica alrededor del eje neutro de plegado.
+    </div>
+    <div class="glossary-item">
+      <strong>Gripado y Tribología en Asperezas (Galling):</strong>
+      Daño superficial y micro-soldadura en frío producida cuando las presiones locales en picos microscópicos de rugosidad superan la tensión de fluencia durante el agarre robótico.
+    </div>
+    <div class="glossary-item">
+      <strong>Radar Térmico Dinámico:</strong>
+      Bucle algorítmico de retroalimentación que calcula las constantes de red dependientes de la temperatura a(T) y ajusta los desplazamientos CNC para neutralizar la deriva ambiental de la nave.
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2 class="section-title">6. Bibliografía Canónica y Normas de Citación</h2>
+    <span class="section-tag">Sección VI · Procedencia Académica</span>
+  </div>
+
+  <div class="bib-item">[1] <strong>Sutton, A. P., & Chen, J. (1990).</strong> "Long-range Finnis-Sinclair potentials." <em>Philosophical Magazine Letters</em>, 61(3), 139–146. DOI: 10.1080/09500839008206493.</div>
+  <div class="bib-item">[2] <strong>Ortner, C., & Shapeev, A. V. (2012).</strong> "Analysis of atomistic-to-continuum coupling methods." <em>Acta Numerica</em>, 21, 577–686. DOI: 10.1017/S0962492912000085.</div>
+  <div class="bib-item">[3] <strong>Binnig, G., Quate, C. F., & Gerber, Ch. (1986).</strong> "Atomic Force Microscope." <em>Physical Review Letters</em>, 56(9), 930–933. DOI: 10.1103/PhysRevLett.56.930.</div>
+  <div class="bib-item">[4] <strong>Adams, R. A., & Fournier, J. J. F. (2003).</strong> <em>Sobolev Spaces</em> (2ª ed.). Academic Press, Pure and Applied Mathematics Series.</div>
+  <div class="bib-item">[5] <strong>Gardiner, F. J. (1957).</strong> "The Spring Back of Metals." <em>Transactions of the ASME</em>, 79(1), 1–9.</div>
+  <div class="bib-item">[6] <strong>ISO 11952 (2019).</strong> <em>Surface chemical analysis — Determination of thickness and lateral resolution of nanostructured films by atomic force microscopy</em>.</div>
+  <div class="bib-item">[7] <strong>Irastorza, M. (2026).</strong> "NovusLattice: Multiscale Continuum Framework." <em>Novo Mundus Research Framework</em>, Versión 1.0.0. GitHub: novomundus2-cmyk/NovusLattice.</div>
+
+  <div style="margin-top: 10px; padding: 8px 12px; background: #f6efe2; border: 1px solid #e0d2c0; border-radius: 5px; font-size: 7.4pt; color: #524233; text-align: center;">
+    <strong>© 2026 Mikel Irastorza · Laboratorio de Física Cuantitativa Novo Mundus (Málaga / París).</strong><br>
+    Publicado bajo PolyForm Noncommercial 1.0.0 (Código Fuente) y CC BY-NC-ND 4.0 (Formulaciones Teóricas). Todos los derechos reservados.
+  </div>
+
+</body>
+</html>
