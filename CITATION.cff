@@ -1,13 +1,14 @@
 cff-version: 1.2.0
 message: "If you utilize this computational physics formulation, metrology methodology, or software architecture in your research or technical evaluations, please cite it as indicated below."
-title: "NovusMundus: Sutton-Chen Potential in Sobolev H¹, FCC Lattice Metrology, and Idempotent Lakehouse Streaming Architecture"
+title: "Novo Mundus: Sutton-Chen Potential in Sobolev H¹, FCC Lattice Metrology, and Idempotent Lakehouse Streaming Architecture"
 abstract: "Formal mathematical modeling, computational physics simulation, and quantitative data engineering framework developed by Mikel Irastorza. Establishes the analytical invariant lattice parameter (a = 4.078 Å) under the Sutton-Chen many-body empirical potential in Sobolev H¹ spaces as an absolute atomic metrology standard for Atomic Force Microscopy (AFM) calibration and continuum-to-discrete mechanical tolerance bridging (±0.2 mm sheet metal manufacturing), unified with high-frequency streaming lakehouse pipelines and cryptographically verified state machines."
 authors:
   - family-names: "Irastorza"
     given-names: "Mikel"
-    affiliation: "NovusLattice"
+    affiliation: "Novo Mundus"
+    address: "Spain"
     email: "novomundus2@gmail.com"
-    website: "https://novusmundus.com"
+    website: "https://novomundus.com"
 version: "1.0.0"
 date-released: "2026-11-22"
 license: "PolyForm-Noncommercial-1.0.0"
@@ -35,8 +36,8 @@ preferred-citation:
   title: "Sutton-Chen Potential in Sobolev H¹: Multi-Scale FCC Lattice Metrology and Idempotent Streaming Lakehouse Architecture"
   year: 2026
   month: 11
-  publisher: "NovusMundus Computational Laboratory"
-  institution: "NovusMundus"
+  publisher: "Novo Mundus Computational Laboratory"
+  institution: "Novo Mundus"
   identifiers:
     - type: doi
       value: "10.5281/zenodo.pending"
