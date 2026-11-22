@@ -31,3 +31,8 @@ __pycache__/
 **/.mypy_cache/
 .ruff_cache/
 **/.ruff_cache/
+
+# Sensitive credentials
+.env
+.env.*
+
